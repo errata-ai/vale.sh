@@ -1,0 +1,24 @@
+
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-5">
+  {{- range $i, $post := .Site.Data.users.configs -}}
+    <div class="col">
+      <div class="card h-100">
+        <div class="card-header">
+          <div class="avatar avatar-vertical">
+            <a href="{{ $post.source }}" target="_blank">
+              <img class="avatar-photo" src='https://github.com/{{ urlize $post.name }}.png' alt="{{ $post.name }}'s avatar">
+            </a>
+            <div class="avatar-intro">
+              <h4 class="avatar-name">
+                {{ $post.name }}
+              </h4>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          {{ $post.info }}
+        </div>
+      </div>
+    </div>
+  {{- end -}}
+</div>

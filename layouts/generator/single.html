@@ -1,0 +1,91 @@
+{{ define "main" }}
+<div class="row flex-xl-nowrap">
+   <div class="col-lg-5 col-xl-4 docs-sidebar d-none d-lg-block">
+      <nav class="docs-links" aria-label="Main navigation">
+         {{ partial "sidebar/explorer-menu.html" . }}
+      </nav>
+   </div>
+   <main class="docs-content col-lg-11 mx-xl-auto">
+      <h1 class="text-center">{{ .Title }}</h1>
+      <p class="lead text-center">{{ .Params.lead | safeHTML }}</p>
+      <div class="card">
+         <div class="card-body">
+            <form id="cfg-gen">
+               <div class="row mb-3">
+                  <label for="base-style" class="form-label">
+                  Base style <i
+                    class="fa fa-question-circle"
+                    data-bs-toggle="popover"
+                    data-bs-trigger="hover"
+                    data-bs-content="A 'base' style is a comprehensive style guide that serves as a starting point for an in-house style. You generally should only use one at a time."></i>
+                  </label>
+                  <div class="col">
+                     <select id="base-style" class="form-select" aria-label="Default select example">
+                        <option value="None" selected>Skip for now</option>
+                        <option value="Microsoft">Microsoft Writing Style Guide</option>
+                        <option value="Google">Google Developer Documentation Style Guide</option>
+                     </select>
+                  </div>
+               </div>
+               <div class="row mb-3">
+                  <label for="comp-style" class="form-label">
+                  Supplementary styles <i
+                    class="fa fa-question-circle"
+                    data-bs-toggle="popover"
+                    data-bs-trigger="hover"
+                    data-bs-content="A 'supplementary' style is a smaller, more specific style that can be used alongside a base style."></i>
+                  </label>
+                  <div class="col">
+                     <select id="comp-style" class="form-select" multiple aria-label="multiple select example">
+                        <option value="proselint">proselint</option>
+                        <option value="write-good">write-good</option>
+                        <option value="alex">alex</option>
+                        <option value="readability">readability</option>
+                        <option value="Joblint">Joblint</option>
+                     </select>
+                  </div>
+               </div>
+               <div class="row mb-3">
+                  <label for="ssg" class="form-label">
+                  Static Site Generator <i
+                    class="fa fa-question-circle"
+                    data-bs-toggle="popover"
+                    data-bs-trigger="hover"
+                    data-bs-content="These are generator-specific configurations for Vale (typically handling details like non-standard markup)."></i>
+                  </label>
+                  <div class="col">
+                     <select id="ssg" class="form-select" aria-label="Default select example">
+                        <option value="None" selected>None</option>
+                        <option value="Hugo">Hugo</option>
+                        <option value="Jekyll">Jekyll</option>
+                        <option value="Gatsby">Gatsby</option>
+                     </select>
+                  </div>
+               </div>
+               <div class="row mb-3">
+                  <label for="house" class="form-label">
+                  Style name <i
+                    class="fa fa-question-circle pointer"
+                    data-bs-toggle="popover"
+                    data-bs-trigger="hover"
+                    data-bs-content="This is the name of your custom style. It should be a single, alphanumeric word (usually capitalized) that doesn't conflict with an official package name."></i>
+                  </label>
+                  <div class="col">
+                     <input id="house" type="text" class="form-control" id="inputEmail3">
+                  </div>
+               </div>
+            </form>
+         </div>
+         <div class="card-footer p-0">
+          <div id="editor" class="inner">StylesPath = styles
+
+MinAlertLevel = suggestion
+Vocab = Base
+
+[*]
+BasedOnStyles = Vale</div>
+         </div>
+      </div>
+   </main>
+</div>
+{{ end }}

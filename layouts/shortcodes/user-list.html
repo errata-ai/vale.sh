@@ -1,0 +1,20 @@
+{{- $file := index .Params 0 -}}
+
+
+{{ if eq $file "posts"}}
+<ul>
+  {{- range $i, $post := .Site.Data.users.posts -}}
+  <li>
+    <a href="{{ $post.url }}" target="_blank">{{ $post.title }}</a> <span class="text-muted">({{ $post.author }}, {{ $post.year }})</span>
+  </li>
+  {{- end -}}
+</ul>
+{{ else }}
+<ul>
+  {{- range $i, $post := .Site.Data.users.videos -}}
+  <li>
+    <a href="{{ $post.url }}" target="_blank">{{ $post.title }}</a> <span class="text-muted">({{ $post.source }}, {{ $post.year }})</span>
+  </li>
+  {{- end -}}
+</ul>
+{{ end }}

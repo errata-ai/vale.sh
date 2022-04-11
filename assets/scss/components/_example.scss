@@ -1,0 +1,26 @@
+mark {
+  background: rgba(245, 194, 191, 0.7);
+}
+
+mark {
+  padding: 0.2em 0.3em;
+  margin: 0 0.25em;
+  line-height: 1;
+  display: inline-block;
+  border-radius: 0.25em;
+}
+
+.example-wrapper {
+  background: #fbf7f0;
+  line-height: 1.2;
+  white-space: pre;
+  padding: 0 1em 1em 1em;
+  font-family: sfmono-regular, menlo, monaco, consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 0.875rem;
+  overflow-x: auto;
+}
+
+[data-dark-mode] .example-wrapper {
+  background: #1b1f22;
+  color: #dee2e6;
+}

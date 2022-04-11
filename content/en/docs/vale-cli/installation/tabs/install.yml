@@ -1,0 +1,30 @@
+- title: <i class="fab fa-windows"></i> Windows
+  active: true
+  body: |
+    ```shell
+    > choco install vale
+    ```
+
+    See [Chocolatey](https://chocolatey.org/) for more information.
+
+- title: <i class="fab fa-apple"></i> macOS
+  body: |
+    ```shell
+    $ brew install vale
+    ```
+
+    See [Homebrew](https://brew.sh/) for more information.
+
+- title: <i class="fab fa-linux"></i> Linux
+  body: |
+    ```shell
+    $ snap install --edge vale
+    ```
+
+    See [Snapcraft](https://snapcraft.io/) for more information.
+
+    ```shell
+    $ brew install vale
+    ```
+
+    See [Linuxbrew](https://docs.brew.sh/Homebrew-on-Linux) for more information.

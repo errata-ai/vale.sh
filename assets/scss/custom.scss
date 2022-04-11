@@ -1,0 +1,110 @@
+#editor {
+  height: 200px;
+}
+
+pre {
+  margin: 0;
+}
+
+.click {
+  cursor: pointer;
+}
+
+.no-gutter {
+  --bs-gutter-x: 0;
+}
+
+.prompt_ {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  --tw-text-opacity: 1;
+}
+
+.avatar-vertical {
+  --ifm-avatar-intro-alignment: center;
+  --ifm-avatar-intro-margin: 0.5rem;
+  align-items: center;
+  flex-direction: column;
+}
+
+.avatar {
+  display: flex;
+}
+
+.avatar-photo {
+  border-radius: 5%;
+}
+
+.avatar-photo {
+  margin-top: 1rem;
+  height: 6rem;
+  width: 6rem;
+  overflow: hidden;
+}
+
+.avatar-intro {
+  display: flex;
+  flex: 1 1;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+h2 code {
+  font-size: 1.125rem;
+  border-radius: 0.25rem;
+}
+
+table {
+  margin: 1rem 0;
+}
+
+blockquote {
+  font-size: 1.125rem;
+}
+
+figure {
+  margin: 0;
+}
+
+[data-dark-mode] .card-header {
+  border-bottom: 1px solid #1b1f22;
+}
+
+[data-dark-mode] .card-footer {
+  border-top: 1px solid #1b1f22;
+}
+
+[data-dark-mode] .nav-tabs .nav-link.active,
+[data-dark-mode] .nav-tabs .banner .nav a.active,
+[data-dark-mode] .banner .nav .nav-tabs a.active,
+[data-dark-mode] .nav-tabs .nav-item.show .nav-link,
+[data-dark-mode] .nav-tabs .nav-item.show .banner .nav a,
+[data-dark-mode] .banner .nav .nav-tabs .nav-item.show a,
+[data-dark-mode] .nav-tabs .banner .nav li.show .nav-link,
+[data-dark-mode] .nav-tabs .banner .nav li.show a,
+[data-dark-mode] .banner .nav .nav-tabs li.show .nav-link,
+[data-dark-mode] .banner .nav .nav-tabs li.show a {
+  color: #dee2e6;
+  background-color: #1b1f22;
+  border-color: #1b1f22;
+}
+
+[data-dark-mode] .nav-tabs .nav-link:hover,
+[data-dark-mode] .nav-tabs .banner .nav a:hover,
+[data-dark-mode] .banner .nav .nav-tabs a:hover,
+[data-dark-mode] .nav-tabs .nav-link:focus,
+[data-dark-mode] .nav-tabs .banner .nav a:focus,
+[data-dark-mode] .banner .nav .nav-tabs a:focus {
+  border-color: #1b1f22;
+  isolation: isolate;
+}
+
+[data-dark-mode] .nav-link:hover,
+[data-dark-mode] .banner .nav a:hover,
+[data-dark-mode] .nav-link:focus,
+[data-dark-mode] .banner .nav a:focus {
+  color: #8ed6fb;
+}

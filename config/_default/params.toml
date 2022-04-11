@@ -1,43 +1,43 @@
 # Meta Data for SEO
 
 ## Homepage
-title = "Doks"
+description = "Vale is a command-line tool that brings code-like linting to prose. It's fast, cross-platform (Windows, macOS, and Linux), and highly customizable."
+title = "Vale.sh"
+titleAddition = "A linter for prose"
 titleSeparator = "-"
-titleAddition = "Modern Documentation Theme"
-description = "Doks is a Hugo theme for building secure, fast, and SEO-ready documentation websites, which you can easily update and customize."
 
 ## Documentation
 # docsVersion = "0.3"
 
 ## Open Graph
+domainTLD = "doks.netlify.app"
 images = ["doks.png"]
 ogLocale = "en_US"
-domainTLD = "doks.netlify.app"
 titleHome = "Doks Theme"
 
 ## Twitter Cards
-twitterSite = "@getdoks"
 twitterCreator = "@henkverlinde"
+twitterSite = "@getdoks"
 
 ## JSON-LD
 # schemaType = "Person"
-schemaType = "Organization"
-schemaName = "Doks"
 schemaAuthor = "Henk Verlinde"
-schemaAuthorTwitter = "https://twitter.com/henkverlinde"
-schemaAuthorLinkedIn = "https://www.linkedin.com/in/henkverlinde/"
 schemaAuthorGitHub = "https://github.com/h-enk"
+schemaAuthorLinkedIn = "https://www.linkedin.com/in/henkverlinde/"
+schemaAuthorTwitter = "https://twitter.com/henkverlinde"
+schemaGitHub = "https://github.com/h-enk/doks"
+schemaImage = "doks.png"
+schemaImageHeight = 640
+schemaImageWidth = 1280
+schemaLinkedIn = ""
 schemaLocale = "en-US"
 schemaLogo = "logo-doks.png"
-schemaLogoWidth = 512
 schemaLogoHeight = 512
-schemaImage = "doks.png"
-schemaImageWidth = 1280
-schemaImageHeight = 640
-schemaTwitter = "https://twitter.com/getdoks"
-schemaLinkedIn = ""
-schemaGitHub = "https://github.com/h-enk/doks"
+schemaLogoWidth = 512
+schemaName = "Doks"
 schemaSection = "blog"
+schemaTwitter = "https://twitter.com/getdoks"
+schemaType = "Organization"
 
 ## Sitelinks Search Box
 siteLinksSearchBox = false
@@ -46,24 +46,23 @@ siteLinksSearchBox = false
 themeColor = "#fff"
 
 # Images
-quality = 85
 bgColor = "#fff"
 landscapePhotoWidths = [900, 800, 700, 600, 500]
-portraitPhotoWidths = [800, 700, 600, 500]
 lqipWidth = "20x"
+portraitPhotoWidths = [800, 700, 600, 500]
+quality = 85
 smallLimit = "300"
 
 # Footer
-footer = "Powered by <a class=\"text-muted\" href=\"https://www.netlify.com/\">Netlify</a>, <a class=\"text-muted\" href=\"https://gohugo.io/\">Hugo</a>, and <a class=\"text-muted\" href=\"https://getdoks.org/\">Doks</a>"
+footer = "Powered by <a class=\"text-muted\" href=\"https://www.netlify.com/\">Netlify</a>, <a class=\"text-muted\" href=\"https://www.algolia.com/\">Algolia</a>, and <a class=\"text-muted\" href=\"https://gohugo.io/\">Hugo</a>"
 
 # Feed
 copyRight = "Copyright (c) 2020-2021 Henk Verlinde"
 
 # Alert
 alert = false
-alertDismissable = true
-# alertText = "Introducing the Doks child theme, several DX + UX updates, and more! <a class=\"alert-link stretched-link\" href=\"https://getdoks.org/blog/doks-v0.2/\" target=\"_blank\" rel=\"noopener\">Check out Doks v0.2</a>"
-alertText = "Introducing the Doks child theme, several DX + UX updates, and more! <a class=\"alert-link stretched-link\" href=\"https://getdoks.org/blog/doks-v0.2/\">Check out Doks v0.2</a>"
+alertDismissable = false
+alertText = "Help Vale grow by supporting us on Open Collective. <a class=\"alert-link stretched-link\" href=\"https://opencollective.com/vale\" target=\"_blank\" rel=\"noopener\">Become a backer!</a>"
 
 # Edit Page
 # repoHost [Github | Gitea | GitLab | Bitbucket | BitbucketServer ] is used for building the edit link based on git hoster
@@ -76,20 +75,20 @@ editPage = false
 lastMod = false
 
 [options]
-  lazySizes = true
-  clipBoard = true
-  instantPage = true
-  flexSearch = true
-  darkMode = true
-  bootStrapJs = true
-  breadCrumb = false
-  highLight = true
-  kaTex = false
-  multilingualMode = false
-  docsVersioning = false
-  fullWidth = false
+bootStrapJs = true
+breadCrumb = false
+clipBoard = true
+darkMode = true
+docsVersioning = false
+flexSearch = true
+fullWidth = false
+highLight = false
+instantPage = true
+kaTex = false
+lazySizes = true
+multilingualMode = false
 
 [menu]
-  [menu.section]
-    auto = true
-    collapsibleSidebar = true
+[menu.section]
+auto = false
+collapsibleSidebar = true

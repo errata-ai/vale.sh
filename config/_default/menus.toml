@@ -1,0 +1,103 @@
+[[community]]
+identifier = "about"
+name = "Community"
+weight = 10
+# url = "/about/"
+
+[[docs]]
+identifier = "vale-cli"
+name = "Vale CLI"
+url = "/docs/vale-cli/"
+weight = 10
+
+[[docs]]
+identifier = "topics"
+name = "Topics"
+url = "/docs/topics/"
+weight = 20
+
+[[docs]]
+identifier = "vale-server"
+name = "Vale Server"
+url = "/docs/vale-server/"
+weight = 30
+
+[[docs]]
+identifier = "integrations"
+name = "Integrations"
+url = "/docs/integrations/"
+weight = 40
+
+[[main]]
+name = "Docs"
+url = "/docs/vale-cli/installation/"
+# url = "/docs/1.0/prologue/introduction/"
+weight = 10
+
+[[main]]
+name = "Community"
+url = "/community/connect/"
+weight = 20
+
+[[main]]
+identifier = "resources"
+name = "Resources"
+url = "/resources/"
+weight = 30
+
+[[main]]
+identifier = "explorer"
+name = "Rule Explorer"
+parent = "resources"
+url = "/explorer/"
+weight = 40
+
+[[main]]
+identifier = "package-hub"
+name = "Package Hub"
+parent = "resources"
+url = "/hub/"
+weight = 50
+
+[[main]]
+identifier = "config-generator"
+name = "Config Generator"
+parent = "resources"
+url = "/generator/"
+weight = 60
+
+[[social]]
+name = "GitHub"
+post = "v0.1.0"
+pre = '<i class="fab fa-github"></i>'
+url = "https://github.com/h-enk/doks"
+weight = 10
+
+[[social]]
+name = "Slack"
+pre = '<i class="fab fa-slack"></i>'
+url = "https://www.youtube.com/channel/UC-5REsER-YXmqiyErSYs_hg"
+weight = 20
+
+[[social]]
+name = "Youtube"
+pre = '<i class="fab fa-youtube"></i>'
+url = "https://www.youtube.com/channel/UC-5REsER-YXmqiyErSYs_hg"
+weight = 30
+
+[[social]]
+name = "Discord"
+pre = '<i class="fab fa-discord"></i>'
+url = "https://www.youtube.com/channel/UC-5REsER-YXmqiyErSYs_hg"
+weight = 40
+
+[[footer]]
+name = "Privacy"
+url = "/privacy-policy/"
+weight = 10
+
+[[hub]]
+identifier = "browse"
+name = "Browse"
+url = "/hub/"
+weight = 10

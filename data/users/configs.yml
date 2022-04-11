@@ -1,0 +1,111 @@
+---
+- source: https://github.com/Homebrew/brew/blob/master/.vale.ini
+  org: https://github.com/Homebrew
+  info: An implemetation of a custom, in-house style for the Homebrew docs.
+  name: Homebrew
+- source: https://github.com/microsoft/spring-cloud-azure
+  info: |
+    A custom configuration for the Spring Cloud Azure docs.
+  org: https://github.com/microsoft
+  name: Microsoft
+- source: https://github.com/github/codeql/blob/main/docs/codeql/.vale.ini
+  info: A custom style built on top of the Microsoft Writing Style Guide.
+  org: https://github.com/github
+  name: GitHub
+- source: https://github.com/netlify/netlify-cms/blob/master/.vale.ini
+  info: A custom style and vocab for Netlify CMS website.
+  org: https://github.com/netlify
+  name: Netlify
+- source: https://github.com/linode/docs/blob/develop/.vale.ini
+  info: A custom configuration for Hugo-powered Markdown docs.
+  org: https://github.com/linode
+  name: Linode
+- source: https://docs.gitlab.com/ee/development/documentation/testing.html#vale
+  info: An extensive Vale configuration for various GitLab projects.
+  org: https://github.com/gitlabhq
+  name: GitLab
+- source: https://github.com/spotify/backstage/blob/master/.vale.ini
+  info: A basic Vale configuration for Spotify's Backstage project.
+  org: https://github.com/spotify
+  name: Spotify
+- source: https://github.com/cockroachdb/docs/blob/master/.vale.ini
+  info: A custom style for the CockroachDB user documentation.
+  org: https://github.com/cockroachdb
+  name: CockroachDB
+- source: https://github.com/eclipse/che-docs/blob/master/.vale.ini
+  info: An advanced Vale configuration for the Eclipse Che Documentation.
+  org: https://github.com/eclipse
+  name: Eclipse
+- source: https://github.com/eclipse/che-docs/blob/master/.vale.ini
+  info: |
+    Vale config files, styles, and docs to help individuals and teams roll out
+    Vale.
+  org: https://github.com/redhat-documentation
+  name: RedHat Documentation
+- source: https://github.com/writethedocs/www/blob/master/.vale.ini
+  info: A custom style for the Write the Docs website.
+  org: https://github.com/writethedocs
+  name: WritetheDocs
+- source: https://github.com/mautic/mautic-documentation/blob/master/.vale.ini
+  info: A configuration for the Mautic project based on the Google Developer
+    Documentation Style Guide.
+  org: https://github.com/mautic
+  name: Mautic
+- source: https://github.com/webpack/webpack.js.org/blob/master/.vale.ini
+  info: A proselint-based Vale configuration for the webpack website.
+  org: https://github.com/webpack
+  name: webpack
+- source: https://github.com/algolia/vale-action
+  info: A fork of the Vale GitHub action maintained by Algolia.
+  org: https://github.com/algolia
+  name: Algolia
+- source: https://github.com/DataDog/documentation/blob/master/.vale.ini
+  info: A custom style for the Datadog documentation.
+  org: https://github.com/DataDog
+  name: Datadog
+- source: https://github.com/rackerlabs/technical-blog/blob/master/.vale.ini
+  info: A custom style for the Rackspace Expert Insights Technical Blog.
+  org: https://github.com/rackerlabs
+  name: Rackspace
+- source: https://github.com/vaadin/docs/blob/latest/.vale.ini
+  info: A custom style and configuration for the Vaadin docs.
+  org: https://github.com/vaadin
+  name: Vaadin
+- source: https://github.com/vultr/vultr-mdtk
+  info: Vultr Markdown Toolkit.
+  org: https://github.com/Vultr
+  name: Vultr
+- source: https://github.com/commercetools/commercetools-docs-kit
+  info: Tools and components for developing Documentation websites 🛠
+  org: https://github.com/commercetools
+  name: commercetools
+- source: https://github.com/openshift-pipelines/pipelines-as-code
+  info: |
+    Pipelines as Code -- An opinionated CI based on OpenShift
+    Pipelines / Tekton.
+  org: https://github.com/openshift-pipelines
+  name: OpenShift Pipelines
+- source: https://github.com/trussworks/Engineering-Playbook
+  info: |
+    Repository of documentation on how we do Software Engineering at
+    TrussWorks.
+  org: https://github.com/TrussWorks
+  name: TrussWorks
+- source: https://github.com/chef/chef-web-docs/tree/master/tools/vale
+  info: |
+    A custom style, vocab, and output format for the Chef reference
+    documentation.
+  org: https://github.com/chef
+  name: Chef
+- source: https://github.com/vshn/application-catalog-docs/blob/master/docs/modules/ROOT/pages/.vale.ini
+  info: VSHN Application Catalog Documentation.
+  org: https://github.com/vshn
+  name: VSHN
+- source: https://github.com/ory/docs/blob/master/docs/.vale.ini
+  info: Documentation for all ORY products.
+  org: https://github.com/ory
+  name: ORY
+- source: https://github.com/SixLabors/docs/blob/main/vale.ini
+  info: API docs and tutorials on how to use ImagesSharp and related projects.
+  org: https://github.com/SixLabors
+  name: SixLabors
