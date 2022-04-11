@@ -5,10 +5,9 @@
 $body-bg-dark: $gray-900;
 $body-overlay-dark: darken($body-bg-dark, 2.5%);
 
-/*
+
 $border-dark: darken($body-bg-dark, 2.5%);
-*/
-$border-dark: $gray-800;
+// $border-dark: $gray-800;
 $body-color-dark: $gray-300;
 $dots-dark: darken($body-color-dark, 50%);
 
@@ -83,7 +82,7 @@ $navbar-dark-active-color: $link-color-dark;
 
 [data-dark-mode] body .navbar,
 [data-dark-mode] body .doks-subnavbar {
-  background-color: rgba(33, 37, 41, 0.95);
+  background-color: $gray-800;
   border-bottom: 1px solid $border-dark;
 }
 
@@ -458,7 +457,7 @@ $navbar-dark-active-color: $link-color-dark;
 */
 
 [data-dark-mode] body .offcanvas {
-  background-color: $body-bg-dark;
+  // background-color: $body-bg-dark;
 }
 
 [data-dark-mode] body .btn-close {
