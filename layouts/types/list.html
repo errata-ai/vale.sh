@@ -9,8 +9,8 @@
 		<h1 class="text-center">{{ .Title | title }}</h1>
 		<p class="lead text-center">Package {{ .Data.Singular }} {{ .Title }}</p>
 		<h2>Recent</h2>
-		<div class="row row-cols-1 row-cols-md-2 g-5">
-			{{ range .Data.Pages.ByWeight.Reverse -}}
+		<div class="row row-cols-1 row-cols-md-3 g-5">
+			{{ range .Data.Pages.ByWeight -}}
 				<div class="col">
 					{{ .Render "card" -}}
 				</div>

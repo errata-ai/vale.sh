@@ -16,20 +16,12 @@
 		<main class="docs-content col-lg-11 mx-xl-auto mt-3">
 		{{ end -}}
 			<div class="showcase-meta d-flex justify-content-between">
-				<span class="fw-bold">{{ .Title }}</span>
+				<span class="fw-bold"></span>
 				<span>
 					<a class="view-website" href="{{ .Params.link }}" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg></a>
 				</span>
 			</div>
-			{{ $image := index .Params.images 0 -}}
-			{{ .Scratch.Set "src" $image -}}
-			{{ .Scratch.Set "alt" .Title -}}
-			{{ .Scratch.Set "class" "card-img-top m-0 p-0" -}}
-			<div class="card my-3">
-				{{ partial "main/img.html" . }}
-			</div>
 			<h1>{{ .Title }}</h1>
-			<p class="lead">{{ .Params.lead | safeHTML }}</p>
 			{{ partial "main/headline-hash.html" .Content }}
 			{{ if .Params.functionalities -}}
 				<h2>Functionalities</h2>
