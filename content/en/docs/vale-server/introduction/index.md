@@ -58,7 +58,7 @@ On macOS, you need to start Vale Server from the **command line** rather than
 clicking its icon in the Applications folder or the taskbar:
 
 ```shell
-$ open -a "Vale Server"
+open -a "Vale Server"
 ```
 
 See [issues/80](https://github.com/errata-ai/vale-server/issues/80).
@@ -87,7 +87,7 @@ On Linux, you need to start Vale Server from the **command line** rather than
 clicking its icon:
 
 ```shell
-$ ./Vale-Server-linux.AppImage
+./Vale-Server-linux.AppImage
 ```
 
 See [issues/80](https://github.com/errata-ai/vale-server/issues/80).

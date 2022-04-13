@@ -31,9 +31,9 @@ directory to your `$PATH`.
 An example of this process for Linux is given below:
 
 ```shell
-$ wget https://github.com/errata-ai/vale/releases/download/v2.15.4/vale_2.15.4_Linux_64-bit.tar.gz
-$ mkdir bin && tar -xvzf vale_2.15.4_Linux_64-bit.tar.gz -C bin
-$ export PATH=./bin:"$PATH"
+wget https://github.com/errata-ai/vale/releases/download/v2.15.4/vale_2.15.4_Linux_64-bit.tar.gz
+mkdir bin && tar -xvzf vale_2.15.4_Linux_64-bit.tar.gz -C bin
+export PATH=./bin:"$PATH"
 ```
 
 ## Docker
@@ -41,7 +41,7 @@ $ export PATH=./bin:"$PATH"
 Vale is available on Docker Hub at [jdkato/vale][1]:
 
 ```shell
-$ docker pull jdkato/vale
+docker pull jdkato/vale
 ```
 
 Vale requires three components: a `.vale.ini` config file, a `StylesPath`
@@ -50,7 +50,7 @@ directory (specified in the config file), and a document or directory to lint.
 Here's an example of calling Vale with locally-defined components (assuming
 `$(pwd)/fixtures/styles/demo` contains a config file):
 
-```shell
+```bash
 $ docker run --rm -v $(pwd)/styles:/styles \
              --rm -v $(pwd)/fixtures/styles/demo:/docs \
              -w /docs \

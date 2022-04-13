@@ -20,7 +20,7 @@ Vale configuration.
 If you'd like to follow along locally, download or clone the sample repository
 and copy the terminal session below:
 
-```
+```bash
 $ cd vale-boilerplate
 # Check your version of Vale:
 $ vale -h
@@ -41,7 +41,7 @@ $ vale README.md
 The first component we're going to discuss is our `StylesPath` (the
 `/styles` directory):
 
-```shell
+```text
 $ tree styles
 ├───Microsoft
 ├───Vocab
