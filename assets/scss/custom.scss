@@ -20,15 +20,16 @@
 
 .description {
   font-size: 1rem;
-  ;
 }
 
-.prompt_ {
+.language-shell .line::before {
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
   --tw-text-opacity: 1;
+  content: "$ ";
+  color: #336699;
 }
 
 .avatar-vertical {

@@ -39,7 +39,7 @@ BasedOnStyles = Vale
 ## Package hosting
 
 The `Packages` key accepts two types of values: (1) a name of a package hosted
-in the official [Package Hub]() or (2) a URL to an externally-hosted package.
+in the official [Package Hub](/hub/) or (2) a URL to an externally-hosted package.
 
 ## Style-only packages
 

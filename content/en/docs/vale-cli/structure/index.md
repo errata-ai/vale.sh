@@ -36,7 +36,7 @@ $ vale README.md
 ✖ 1 errors, 3 warnings and 0 suggestions in 1 file.
 ```
 
-## `StylesPath`
+## StylesPath
 
 The first component we're going to discuss is our `StylesPath` (the
 `/styles` directory):
@@ -85,7 +85,7 @@ styles. Each of its sub-folders&mdash;in this case, `Blog` and
 These files allow you to control rule "exceptions" (such as what is considered
 a spelling error) without having to modify the style's source itself.
 
-## `.vale.ini`
+## .vale.ini
 
 The `.vale.ini` file is where you'll control the majority of Vale's behavior,
 including what files to lint and how to lint them:

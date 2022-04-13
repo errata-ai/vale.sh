@@ -11,8 +11,6 @@ weight: 10
 toc: true
 ---
 
-{{< youtube w7Ft2ymGmfc >}}
-
 ## Quick Start
 
 In general, the recommended approach on all platforms is to use a package

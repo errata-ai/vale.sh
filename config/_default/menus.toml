@@ -17,6 +17,12 @@ url = "/docs/topics/"
 weight = 20
 
 [[docs]]
+identifier = "guides"
+name = "Guides"
+url = "/docs/guides/"
+weight = 30
+
+[[docs]]
 identifier = "vale-server"
 name = "Vale Server"
 url = "/docs/vale-server/"
@@ -65,6 +71,13 @@ name = "Config Generator"
 parent = "resources"
 url = "/generator/"
 weight = 60
+
+[[main]]
+identifier = "manual"
+name = "CLI Manual"
+parent = "resources"
+url = "/manual/"
+weight = 70
 
 [[social]]
 name = "GitHub"

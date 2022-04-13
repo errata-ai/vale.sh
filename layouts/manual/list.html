@@ -1,0 +1,18 @@
+{{ define "main" }}
+<div class="row flex-xl-nowrap">
+	<div class="col-lg-5 col-xl-4 docs-sidebar d-none d-lg-block">
+		<nav class="docs-links" aria-label="Main navigation">
+			{{ partial "sidebar/explorer-menu.html" . }}
+		</nav>
+	</div>
+	<main class="docs-content col-lg-11 mx-xl-auto">
+		<h1 class="text-center">{{ .Title }}</h1>
+		<p class="lead text-center">{{ .Params.lead | safeHTML }}</p>
+    {{ $input := `vale [flags] [commands] [input...]
+vale file.md
+vale --output=JSON my_folder` }}
+    {{ transform.Highlight $input "shell" }}
+    {{ .Render "table" -}}
+	</main>
+</div>
+{{ end }}

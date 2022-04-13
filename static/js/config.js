@@ -51,7 +51,7 @@ function read_form(editor) {
 $(function () {
   var editor = ace.edit("editor");
 
-  editor.setTheme("ace/theme/clouds");
+  editor.setTheme("ace/theme/kuroir");
   editor.session.setMode("ace/mode/ini");
   editor.setReadOnly(true);
 
