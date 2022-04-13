@@ -29,6 +29,7 @@ url = "/docs/integrations/"
 weight = 40
 
 [[docs]]
+external = true
 identifier = "atom"
 name = "Atom"
 parent = "integrations"
