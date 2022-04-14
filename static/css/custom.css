@@ -95,3 +95,43 @@ blockquote {
 figure {
   margin: 0;
 }
+
+[data-dark-mode] .card-header {
+  border-bottom: 1px solid #1b1f22;
+}
+
+[data-dark-mode] .card-footer {
+  border-top: 1px solid #1b1f22;
+}
+
+[data-dark-mode] .nav-tabs .nav-link.active,
+[data-dark-mode] .nav-tabs .banner .nav a.active,
+[data-dark-mode] .banner .nav .nav-tabs a.active,
+[data-dark-mode] .nav-tabs .nav-item.show .nav-link,
+[data-dark-mode] .nav-tabs .nav-item.show .banner .nav a,
+[data-dark-mode] .banner .nav .nav-tabs .nav-item.show a,
+[data-dark-mode] .nav-tabs .banner .nav li.show .nav-link,
+[data-dark-mode] .nav-tabs .banner .nav li.show a,
+[data-dark-mode] .banner .nav .nav-tabs li.show .nav-link,
+[data-dark-mode] .banner .nav .nav-tabs li.show a {
+  /* color: #dee2e6; */
+  background-color: #161b22;
+  border-color: #1b1f22;
+}
+
+[data-dark-mode] .nav-tabs .nav-link:hover,
+[data-dark-mode] .nav-tabs .banner .nav a:hover,
+[data-dark-mode] .banner .nav .nav-tabs a:hover,
+[data-dark-mode] .nav-tabs .nav-link:focus,
+[data-dark-mode] .nav-tabs .banner .nav a:focus,
+[data-dark-mode] .banner .nav .nav-tabs a:focus {
+  border-color: #1b1f22;
+  isolation: isolate;
+}
+
+[data-dark-mode] .nav-link:hover,
+[data-dark-mode] .banner .nav a:hover,
+[data-dark-mode] .nav-link:focus,
+[data-dark-mode] .banner .nav a:focus {
+  color: #8ed6fb;
+}
