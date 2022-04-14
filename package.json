@@ -5,7 +5,7 @@
   "browserslist": [
     "defaults"
   ],
-  "repository": "https://github.com/h-enk/doks",
+  "repository": "https://github.com/errata-ai/vale.sh",
   "license": "MIT",
   "publishConfig": {
     "access": "public"
