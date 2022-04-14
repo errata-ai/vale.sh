@@ -10,34 +10,34 @@ titleSeparator = "-"
 # docsVersion = "0.3"
 
 ## Open Graph
-domainTLD = "doks.netlify.app"
-images = ["doks.png"]
-ogLocale = "en_US"
-titleHome = "Doks Theme"
+# domainTLD = "doks.netlify.app"
+# images = ["doks.png"]
+# ogLocale = "en_US"
+# titleHome = "Doks Theme"
 
 ## Twitter Cards
-twitterCreator = "@henkverlinde"
-twitterSite = "@getdoks"
+# twitterCreator = "@henkverlinde"
+# twitterSite = "@getdoks"
 
 ## JSON-LD
 # schemaType = "Person"
-schemaAuthor = "Henk Verlinde"
-schemaAuthorGitHub = "https://github.com/h-enk"
-schemaAuthorLinkedIn = "https://www.linkedin.com/in/henkverlinde/"
-schemaAuthorTwitter = "https://twitter.com/henkverlinde"
-schemaGitHub = "https://github.com/h-enk/doks"
-schemaImage = "doks.png"
-schemaImageHeight = 640
-schemaImageWidth = 1280
-schemaLinkedIn = ""
-schemaLocale = "en-US"
-schemaLogo = "logo-doks.png"
-schemaLogoHeight = 512
-schemaLogoWidth = 512
-schemaName = "Doks"
-schemaSection = "blog"
-schemaTwitter = "https://twitter.com/getdoks"
-schemaType = "Organization"
+# schemaAuthor = "Henk Verlinde"
+# schemaAuthorGitHub = "https://github.com/h-enk"
+# schemaAuthorLinkedIn = "https://www.linkedin.com/in/henkverlinde/"
+# schemaAuthorTwitter = "https://twitter.com/henkverlinde"
+# schemaGitHub = "https://github.com/h-enk/doks"
+# schemaImage = "doks.png"
+# schemaImageHeight = 640
+# schemaImageWidth = 1280
+# schemaLinkedIn = ""
+# schemaLocale = "en-US"
+# schemaLogo = "logo-doks.png"
+# schemaLogoHeight = 512
+# schemaLogoWidth = 512
+# schemaName = "Doks"
+# schemaSection = "blog"
+# schemaTwitter = "https://twitter.com/getdoks"
+# schemaType = "Organization"
 
 ## Sitelinks Search Box
 siteLinksSearchBox = false
@@ -57,7 +57,7 @@ smallLimit = "300"
 footer = "Powered by <a class=\"text-muted\" href=\"https://www.netlify.com/\">Netlify</a>, <a class=\"text-muted\" href=\"https://www.algolia.com/\">Algolia</a>, and <a class=\"text-muted\" href=\"https://gohugo.io/\">Hugo</a>"
 
 # Feed
-copyRight = "Copyright (c) 2020-2021 Henk Verlinde"
+copyRight = "Copyright (c) 2022 Joseph Kato"
 
 # Alert
 alert = false
@@ -68,7 +68,7 @@ alertText = "Help Vale grow by supporting us on Open Collective. <a class=\"aler
 # repoHost [Github | Gitea | GitLab | Bitbucket | BitbucketServer ] is used for building the edit link based on git hoster
 repoHost = "GitHub"
 #repoHost = "Gitea"
-docsRepo = "https://github.com/h-enk/doks"
+docsRepo = "https://github.com/errata-ai/vale.sh"
 docsRepoBranch = "master"
 docsRepoSubPath = ""
 editPage = false
