@@ -22,16 +22,6 @@
   font-size: 1rem;
 }
 
-.language-shell .line::before {
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  --tw-text-opacity: 1;
-  content: "$ ";
-  color: #336699;
-}
-
 .avatar-vertical {
   --ifm-avatar-intro-alignment: center;
   --ifm-avatar-intro-margin: 0.5rem;
