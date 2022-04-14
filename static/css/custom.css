@@ -14,7 +14,7 @@ mark {
   background: #fbf7f0;
   line-height: 2;
   white-space: pre;
-  padding: 0 1em 1em 1em;
+  padding: 1em;
   font-family: sfmono-regular, menlo, monaco, consolas, "Liberation Mono", "Courier New", monospace;
   font-size: 0.875rem;
   overflow-x: auto;
