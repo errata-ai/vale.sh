@@ -3,19 +3,16 @@ title: --glob
 lead: A glob pattern.
 label: flag
 toc: false
+css:
+  - vendor/asciinema-player.css
+js:
+  - vendor/asciinema-player.js
 ---
+
+{{< asciinema key="glob" rows="20" preload="1" >}}
 
 The `--glob` option specifies the type of files Vale will search. It accepts
 the standard [GNU/Linux syntax][1]. Additionally, any pattern prefixed with an
-`!` will be negated. For example,
-
-```bash
-# Exclude `.txt` files
-$ vale --glob='!*.txt' directory
-...
-# Only search `.md` and `.rst` files
-$ vale --glob='*.{md,rst}' directory
-...
-```
+`!` will be negated.
 
 [1]: https://github.com/gobwas/glob

@@ -3,15 +3,17 @@ title: --output
 lead: An output style ("line", "JSON", or a template file).
 label: flag
 toc: false
+css:
+  - vendor/asciinema-player.css
+js:
+  - vendor/asciinema-player.js
 ---
+
+{{< asciinema key="line" rows="20" preload="1" >}}
 
 The `--output` option specifies the format that Vale will use to report its
 alerts. There are three built-in styles: "CLI" (the default), "line", and
 "JSON".
-
-```shell
-vale --output=JSON somefile.md
-```
 
 In addition to the three provided output styles, Vale also supports custom
 output styles powered by Go's [`text/template`][1] package.

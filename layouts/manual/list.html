@@ -4,8 +4,7 @@
 		<h1 class="text-center">{{ .Title }}</h1>
 		<p class="lead text-center">{{ .Params.lead | safeHTML }}</p>
     {{ $input := `vale [flags] [commands] [input...]
-vale file.md
-vale --output=JSON my_folder` }}
+vale --help` }}
     {{ transform.Highlight $input "shell" }}
     {{ .Render "table" -}}
 	</main>

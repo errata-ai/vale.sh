@@ -10,7 +10,7 @@ js:
   - vendor/asciinema-player.js
 ---
 
-{{< asciinema key="sync" rows="10" preload="1" >}}
+{{< asciinema key="sync" rows="20" preload="1" >}}
 
 The `sync` command downloads and installs the latest version of each package
 listed in the active `.vale.ini` file.
