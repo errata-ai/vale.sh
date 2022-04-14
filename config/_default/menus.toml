@@ -153,13 +153,13 @@ weight = 70
 name = "GitHub"
 post = "v0.1.0"
 pre = '<i class="fab fa-github"></i>'
-url = "https://github.com/h-enk/doks"
+url = "https://github.com/errata-ai"
 weight = 10
 
 [[social]]
 name = "Slack"
 pre = '<i class="fab fa-slack"></i>'
-url = "https://www.youtube.com/channel/UC-5REsER-YXmqiyErSYs_hg"
+url = "https://writethedocs.slack.com/archives/CBWQQ5E57"
 weight = 20
 
 # [[social]]
@@ -168,11 +168,11 @@ weight = 20
 # url = "https://www.youtube.com/channel/UC-5REsER-YXmqiyErSYs_hg"
 # weight = 30
 
-# [[social]]
-# name = "Discord"
-# pre = '<i class="fab fa-discord"></i>'
-# url = "https://www.youtube.com/channel/UC-5REsER-YXmqiyErSYs_hg"
-# weight = 40
+[[social]]
+name = "Discord"
+pre = '<i class="fab fa-discord"></i>'
+url = "https://www.youtube.com/channel/UC-5REsER-YXmqiyErSYs_hg"
+weight = 40
 
 # [[footer]]
 # name = "Privacy"
