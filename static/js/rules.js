@@ -1,6 +1,7 @@
 $(document).ready(function () {
   var dt = $('#rule-explorer').DataTable({
     "bLengthChange": false,
+    "scrollX": true,
     "ordering": false,
     "dom": "<'row row-cols-1'<'col'l><'col'f>>" +
       "<'row row-cols-1'<'col'tr>>" +
