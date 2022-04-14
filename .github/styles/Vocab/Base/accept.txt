@@ -1,0 +1,15 @@
+[Cc]onfig
+Abdominocentesis
+alex
+Asciidoctor
+autolinks
+boolean
+Chocolately
+docutils
+jdkato
+Lua
+precompiled
+shortcodes
+subfolder
+Tengo
+Uninstallation

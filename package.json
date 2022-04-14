@@ -1,6 +1,6 @@
 {
-  "name": "@hyas/doks",
-  "description": "Doks theme",
+  "name": "vale.sh",
+  "description": "Website and documentation for the Vale CLI tool.",
   "version": "0.4.2",
   "browserslist": [
     "defaults"

@@ -180,7 +180,8 @@ swap:
   '(give|gave) rise to': lead to # this is bad!
 ```
 
-`substitution` can have one or two `%s` format specifiers in its message. Thiallows us to do either of the following:
+`substitution` can have one or two `%s` format specifiers in its message. This
+allows us to do either of the following:
 
 ```yaml
 message: "Consider using '%s' instead of '%s'"

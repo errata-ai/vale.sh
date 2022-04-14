@@ -3,3 +3,10 @@ public
 resources
 .netlify
 .hugo_build.lock
+
+# We want to ignore our StylesPath *except* for our local
+# `Vocab/Base` folder.
+.github/styles/.config
+
+.github/styles/Vocab/*
+!.github/styles/Vocab/Base

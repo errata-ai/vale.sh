@@ -88,7 +88,7 @@ Complete packages contain both a `.vale.ini` file and an associated
 
 The `StylesPath` should be named "styles" and can contain any
 typically-supported subfolder&mdash;such as [styles](/docs/topics/styles) and
-[vocabs](/docs/topics/vocab). The `.vale.ini` file should reference the
+[vocabularies](/docs/topics/vocab). The `.vale.ini` file should reference the
 included `StylesPath`:
 
 ```ini

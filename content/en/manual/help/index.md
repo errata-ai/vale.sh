@@ -5,7 +5,7 @@ label: flag
 toc: false
 ---
 
-The `--help` (`-h`) option prints Vale's CLI usage information to stdout.
+The `--help` (`-h`) option prints Vale's CLI usage information to `stdout`.
 
 ```shell
 vale --help

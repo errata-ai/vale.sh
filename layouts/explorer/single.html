@@ -1,19 +1,9 @@
 {{ define "main" }}
 	<div class="row flex-xl-nowrap">
-		<div class="col-lg-5 col-xl-4 docs-sidebar d-none d-lg-block">
-			<nav class="docs-links" aria-label="Main navigation">
-				{{ partial "sidebar/explorer-menu.html" . }}
-			</nav>
-		</div>
-		{{ if ne .Params.toc false -}}
-		<nav class="docs-toc d-none d-xl-block col-xl-3" aria-label="Secondary navigation">
-			{{ partial "sidebar/docs-toc.html" . }}
-		</nav>
-		{{ end -}}
 		{{ with .Params.toc -}}
-		<main class="docs-content col-lg-11 col-xl-9">
+		<main class="docs-content col-lg-12 col-xl-9">
 		{{ else -}}
-		<main class="docs-content col-lg-11 mx-xl-auto mt-3">
+		<main class="docs-content col-lg-12 mx-auto mt-3">
 		{{ end -}}
 			<div class="showcase-meta d-flex justify-content-between">
 				<span class="fw-bold">

@@ -11,7 +11,7 @@ weight: 20
 toc: true
 ---
 
-## Sample Respository
+## Sample Repository
 
 In order to familiarize ourselves with the typical Vale workflow, we'll be
 referencing a [sample repository][1] that contains the required components of a
