@@ -1,24 +1,26 @@
-<table id="rule-explorer" class="table table-hover table-responsive">
-  <thead>
-    <tr>
-      <th scope="col">ID</th>
-      <th scope="col">Extends</th>
-      <th scope="col">Description</th>
-      <th scope="col">Tags</th>
-    </tr>
-  </thead>
-  <tbody>
-    {{ range .Pages }}
-    <tr class="click" onclick="window.location='{{ .RelPermalink }}';">
-      <td>{{ .Title }}</td>
-      <td>{{ .Params.extends }}</td>
-      <td>{{ .Params.lead }}</td>
-      <td>
-        {{ range .Params.tags }}
-          <span class="badge rounded-pill bg-primary">{{ . }}</span>
-        {{ end }}
-      </td>
-    </tr>
-    {{ end }}
-  </tbody>
-</table>
+<div class="table-responsive">
+  <table id="rule-explorer" class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Extends</th>
+        <th scope="col">Description</th>
+        <th scope="col">Tags</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{ range .Pages }}
+      <tr class="click" onclick="window.location='{{ .RelPermalink }}';">
+        <td>{{ .Title }}</td>
+        <td>{{ .Params.extends }}</td>
+        <td>{{ .Params.lead }}</td>
+        <td>
+          {{ range .Params.tags }}
+            <span class="badge rounded-pill bg-primary">{{ . }}</span>
+          {{ end }}
+        </td>
+      </tr>
+      {{ end }}
+    </tbody>
+  </table>
+</div>
