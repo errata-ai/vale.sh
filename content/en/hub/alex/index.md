@@ -6,7 +6,7 @@ date: 2021-03-04T08:02:23+01:00
 lastmod: 2021-03-04T08:02:23+01:00
 draft: false
 org: get-alex
-link: https://github.com/errata-ai/proselint
+link: https://github.com/errata-ai/alex
 menu:
   hub:
     parent: "browse"
