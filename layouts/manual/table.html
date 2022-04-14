@@ -1,19 +1,21 @@
-<table id="manual" class="table table-hover table-responsive caption-top">
-  <caption class="text-muted">Click on a row below to learn more.</caption>
-  <thead>
-    <tr>
-      <th scope="col">Option</th>
-      <th scope="col">Type</th>
-      <th scope="col">Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    {{ range .Pages.ByWeight }}
-    <tr class="click" onclick="window.location='{{ .RelPermalink }}';">
-      <td><code>{{ .Title }}</code></td>
-      <td>{{ .Params.label }}</td>
-      <td>{{ .Params.lead }}</td>
-    </tr>
-    {{ end }}
-  </tbody>
-</table>
+<div class="table-responsive">
+  <table id="manual" class="table table-hover caption-top">
+    <caption class="text-muted">Click on a row below to learn more.</caption>
+    <thead>
+      <tr>
+        <th scope="col">Option</th>
+        <th scope="col">Type</th>
+        <th scope="col">Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{ range .Pages.ByWeight }}
+      <tr class="click" onclick="window.location='{{ .RelPermalink }}';">
+        <td><code>{{ .Title }}</code></td>
+        <td>{{ .Params.label }}</td>
+        <td>{{ .Params.lead }}</td>
+      </tr>
+      {{ end }}
+    </tbody>
+  </table>
+</div>
