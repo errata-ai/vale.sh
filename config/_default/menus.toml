@@ -171,7 +171,7 @@ weight = 20
 [[social]]
 name = "Discord"
 pre = '<i class="fab fa-discord"></i>'
-url = "https://www.youtube.com/channel/UC-5REsER-YXmqiyErSYs_hg"
+url = "https://github.com/errata-ai"
 weight = 40
 
 # [[footer]]
