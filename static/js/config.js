@@ -62,6 +62,7 @@ BasedOnStyles = Vale`
   editor.session.setMode("ace/mode/ini");
   editor.setReadOnly(true);
   editor.setValue(config);
+  editor.clearSelection();
 
   $("#cfg-gen").on('submit', function () {
     return false;
