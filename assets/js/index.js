@@ -1,4 +1,4 @@
-var suggestions = document.getElementById('suggestions');
+/*var suggestions = document.getElementById('suggestions');
 var search = document.getElementById('search');
 
 if (search !== null) {
@@ -6,7 +6,7 @@ if (search !== null) {
 }
 
 function inputFocus(e) {
-  if (e.ctrlKey && e.key === '/') {
+  if (e.metaKey && e.key === 'k' || e.ctrlKey && e.key === 'k') {
     e.preventDefault();
     search.focus();
   }
@@ -24,14 +24,14 @@ document.addEventListener('click', function (event) {
     suggestions.classList.add('d-none');
   }
 
-});
+});*/
 
 /*
 Source:
   - https://dev.to/shubhamprakash/trap-focus-using-javascript-6a3
 */
 
-document.addEventListener('keydown', suggestionFocus);
+/*document.addEventListener('keydown', suggestionFocus);
 
 function suggestionFocus(e) {
   const suggestionsHidden = suggestions.classList.contains('d-none');
@@ -52,4 +52,4 @@ function suggestionFocus(e) {
     focusableSuggestions[nextIndex].focus();
   }
 
-}
+}*/

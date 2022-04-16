@@ -182,7 +182,7 @@ button#doks-versions {
 }
 
 .form-control.is-search {
-  padding-right: 4rem;
+  // padding-right: 4rem;
   border: 1px solid transparent;
   background: $gray-100;
 }
@@ -191,7 +191,7 @@ button#doks-versions {
   border: 1px solid $primary;
 }
 
-.doks-search::after {
+/*.doks-search::after {
   position: absolute;
   top: 0.4625rem;
   right: 0.5375rem;
@@ -203,10 +203,10 @@ button#doks-versions {
   padding-left: 0.3125rem;
   font-size: $font-size-base * 0.75;
   color: $gray-700;
-  content: "Ctrl + /";
+  content: 'Cmd + k';
   border: 1px solid $gray-300;
   border-radius: 0.25rem;
-}
+}*/
 
 /*
 @include media-breakpoint-up(lg) {
