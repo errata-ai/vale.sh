@@ -110,3 +110,20 @@
 {{- range .Params.js }}
   <script src="/js/{{ . }}"></script>
 {{- end }}
+
+<script src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+<script>
+  docsearch({
+    // Your Search API Key
+    apiKey: '0e82d6007f06d9f280629a37bb8a0892',
+    // The index populated by the DocSearch scraper
+    indexName: 'docsearch_mock',
+    // Your Algolia Application ID
+    appId: '2Y8OU39U1X',
+    // Replace inputSelector with a CSS selector
+    // matching your search input
+    inputSelector: '#search',
+    // Set debug to true to inspect the dropdown
+    debug: false,
+  });
+</script>

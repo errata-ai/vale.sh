@@ -1,0 +1,17 @@
+{
+  "index_name": "docsearch_mock",
+  "start_urls": [
+    "https://vale.sh/docs"
+  ],
+  "strip_chars": "#›",
+  "selectors": {
+    "default": {
+      "lvl0": ".docs-content h1",
+      "lvl1": ".docs-content h2",
+      "lvl2": ".docs-content h3",
+      "lvl3": ".docs-content h4",
+      "lvl4": ".docs-content h5",
+      "text": ".docs-content p"
+    }
+  }
+}
