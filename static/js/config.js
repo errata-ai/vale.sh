@@ -49,11 +49,19 @@ function read_form(editor) {
 }
 
 $(function () {
+  var config = `StylesPath = styles
+
+MinAlertLevel = suggestion
+Vocab = Base
+
+[*]
+BasedOnStyles = Vale`
   var editor = ace.edit("editor");
 
   editor.setTheme("ace/theme/kuroir");
   editor.session.setMode("ace/mode/ini");
   editor.setReadOnly(true);
+  editor.setValue(config);
 
   $("#cfg-gen").on('submit', function () {
     return false;
