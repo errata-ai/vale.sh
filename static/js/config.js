@@ -27,10 +27,10 @@ function read_form(editor) {
     pkgs.push(ssg);
   }
 
-  const house = $('#house').val();
+  /*const house = $('#house').val();
   if (house.length > 0 && isAlpha(house)) {
     styles.push(house.split(" ")[0]);
-  }
+  }*/
 
   var code = editor.getValue();
   var parser = new ConfigIniParser();
