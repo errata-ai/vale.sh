@@ -1,0 +1,24 @@
+keys:
+  - rule
+  - scope
+  - level
+  - description
+
+data:
+  - rule: "`Vale.Spelling`"
+    scope: "`text`"
+    level: "`error`"
+    description: |
+      Spell checks text while respecting the active project's vocabulary.
+  - rule: "`Vale.Terms`"
+    scope: "`text`"
+    level: "`error`"
+    description: |
+      Enforces the current project's `Preferred`
+      [vocabulary terms](/docs/topics/vocab).
+  - rule: "`Vale.Avoid`"
+    scope: "`text`"
+    level: "`error`"
+    description: |
+      Enforces the current project's `Do not use`
+      [vocabulary terms](/docs/topics/vocab).

@@ -605,8 +605,4 @@ See [Scoping](/docs/topics/scoping) for more information.
 Vale comes with a single built-in style named `Vale` that implements three rules,
 as described in the table below.
 
-| Rule              | Scope  | Level   | Description                                                         |
-|-------------------|--------|---------|---------------------------------------------------------------------|
-| `Vale.Spelling`   | `text` | `error` | Spell checks text while respecting the active project's vocabulary. |
-| `Vale.Terms`      | `text` | `error` | Enforces the current project's `Preferred` [vocabulary terms](/docs/topics/vocab).                    |
-| `Vale.Avoid`      | `text` | `error` | Enforces the current project's `Do not use` [vocabulary terms](/docs/topics/vocab).                    |
+{{< table rules.yml >}}
