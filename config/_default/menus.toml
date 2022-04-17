@@ -162,16 +162,16 @@ pre = '<i class="fab fa-slack"></i>'
 url = "https://writethedocs.slack.com/archives/CBWQQ5E57"
 weight = 20
 
-# [[social]]
-# name = "Youtube"
-# pre = '<i class="fab fa-youtube"></i>'
-# url = "https://www.youtube.com/channel/UC-5REsER-YXmqiyErSYs_hg"
-# weight = 30
+[[social]]
+name = "Youtube"
+pre = '<i class="fab fa-youtube"></i>'
+url = "https://www.youtube.com/channel/UCw-GUZljsD4zddL-nppAu9w"
+weight = 30
 
 [[social]]
 name = "Discord"
 pre = '<i class="fab fa-discord"></i>'
-url = "https://github.com/errata-ai"
+url = "https://discord.gg/8S6HRxGgGq"
 weight = 40
 
 # [[footer]]
