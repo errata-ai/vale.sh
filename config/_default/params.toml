@@ -54,7 +54,7 @@ quality = 85
 smallLimit = "300"
 
 # Footer
-footer = "Powered by <a class=\"text-muted\" href=\"https://www.netlify.com/\">Netlify</a>, <a class=\"text-muted\" href=\"https://www.algolia.com/\">Algolia</a>, and <a class=\"text-muted\" href=\"https://gohugo.io/\">Hugo</a>"
+footer = "Powered by <a class=\"text-muted\" href=\"https://www.netlify.com/\">Netlify</a>, <a class=\"text-muted\" href=\"https://www.algolia.com/\">Algolia</a>, and <a class=\"text-muted\" href=\"https://getdoks.org/\">Hugo</a>"
 
 # Feed
 copyRight = "Copyright (c) 2022 Joseph Kato"
