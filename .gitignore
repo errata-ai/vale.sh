@@ -8,7 +8,5 @@ resources
 
 # We want to ignore our StylesPath *except* for our local
 # `Vocab/Base` folder.
-.github/styles/.config
-
-.github/styles/Vocab/*
+.github/styles/*
 !.github/styles/Vocab/Base

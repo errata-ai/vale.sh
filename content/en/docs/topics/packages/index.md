@@ -9,17 +9,29 @@ menu:
     parent: topics
 weight: 70
 toc: true
+mermaid: true
 ---
 
 ## Overview
 
-Packages provide a means of sharing complete Vale configurations. In practice,
-there are few different situations in which they are useful:
+Packages provide a means of sharing, extending, syncing, and updating Vale configurations.
 
-1. Keeping up with upstream style updates;
-2. using the same configuration across multiple projects;
-3. extending a base configuration; or
-4. some combination of the above.
+{{< mermaid class="text-center" >}}
+graph TD
+    C{Package}
+    C --> D[Project 1]
+    C --> E[Project 2]
+    C --> F[Project 3]
+    F --> |local overrides| G[Project 3]
+{{< /mermaid >}}
+
+In the example above, Project 1 and 2 will have identical configurations (as inherited from the upstream package). Any changes to the upstream package will propagate to both projects.
+
+Project 3 starts with the same configuration as 1 and 2, but applies its own
+overrides through a local `.vale.ini` file&mdash;for example, maybe you want to
+disable a rule or change a rule's severity.
+
+## Structure and Hosting
 
 A package is a `.zip` file that contains a `.vale.ini` file, a `StylesPath`
 folder, or both. You include a package by using the top-level `Packages` key
@@ -36,13 +48,11 @@ https://github.com/errata-ai/errata.ai/releases/download/v1.0.0/Test.zip
 BasedOnStyles = Vale
 ```
 
-## Package hosting
-
 The `Packages` key accepts two types of values: (1) a name of a package hosted
 in the official [Package Hub](/hub/) or (2) a URL to an externally-hosted
 package.
 
-## Style-only packages
+## Style-only
 
 Style-only (such as [write-good][1]) packages are a  `.zip` archive of a single
 style folder:
@@ -66,7 +76,7 @@ Archive:  write-good.zip
 After running the [`sync`](/manual/sync) command, the style will be added to
 the active `StylesPath`.
 
-## Config-only packages
+## Config-only
 
 Config-only (such as [Hugo][2]) packages are a  `.zip` archive of a single
 `.vale.ini` file:
@@ -81,7 +91,7 @@ Archive:  Hugo.zip
 After running the [`sync`](/manual/sync) command, the configuration file be
 added to `StylesPath/.config` according to the order in which it was loaded.
 
-## Complete packages
+## Complete
 
 Complete packages contain both a `.vale.ini` file and an associated
 `StylesPath` folder.
@@ -108,6 +118,24 @@ The packaged `StylesPath` will be merged with the active local `StylesPath`
 and any included configuration files will be added to the local
 `StylesPath/.config` folder.
 
+## Packages and VCS
+
+You'll want to add any packaged configuration components to your `.gitignore`
+(or equivalent) file.
+
+While this can be as simple as ignoring your entire `StylesPath`, it's likely
+that you'll also have some local components  as well.
+
+```ini
+# We want to ignore our StylesPath *except* for our local
+# `Vocab/Base` folder.
+
+.github/styles/*
+!.github/styles/Vocab/Base
+```
+
+The above example ignores the entire `.github/styles/` folder *except* for
+`.github/styles/Vocab/Base` (which we want to track changes for).
 
 [1]: /hub/write-good/
 [2]: /hub/hugo/

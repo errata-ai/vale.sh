@@ -12,5 +12,5 @@ js:
 
 {{< asciinema key="config" rows="20" preload="1" >}}
 
-The `ls-metrics` command prints the current configuration options (as JSON) to
+The `ls-config` command prints the current configuration options (as JSON) to
 `stdout`.
