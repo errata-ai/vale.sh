@@ -1,0 +1,103 @@
+keys:
+  - language
+  - extensions
+  - scopes
+data:
+  - language: C
+    extensions: "`.c`, `.h`"
+    scopes: |
+      `//` (`text.comment.line.ext`),
+      `/*...*/` (`text.comment.line.ext`),
+      `/*` (`text.comment.block.ext`)
+  - language: C#
+    extensions: "`.cs`, `.csx`"
+    scopes: |
+      `//` (`text.comment.line.ext`),
+      `/*...*/` (`text.comment.line.ext`),
+      `/*` (`text.comment.block.ext`)
+  - language: C++
+    extensions: "`.cpp`, `.cc`, `.cxx`, `.hpp`"
+    scopes: |
+      `//` (`text.comment.line.ext`),
+      `/*...*/` (`text.comment.line.ext`),
+      `/*` (`text.comment.block.ext`)
+  - language: CSS
+    extensions: "`.css`"
+    scopes: |
+      `/*...*/` (`text.comment.line.ext`),
+      `/*` (`text.comment.block.ext`)
+  - language: Go
+    extensions: "`.go`"
+    scopes: |
+      `//` (`text.comment.line.ext`),
+      `/*...*/` (`text.comment.line.ext`),
+      `/*` (`text.comment.block.ext`)
+  - language: Haskell
+    extensions: "`.hs`"
+    scopes: |
+      `--` (`text.comment.line.ext`),
+      `{-` (`text.comment.block.ext`)
+  - language: Java
+    extensions: "`.java`, `.bsh`"
+    scopes: |
+      `//` (`text.comment.line.ext`),
+      `/*...*/` (`text.comment.line.ext`),
+      `/*` (`text.comment.block.ext`)
+  - language: JavaScript
+    extensions: "`.js`"
+    scopes: |
+      `//` (`text.comment.line.ext`),
+      `/*...*/` (`text.comment.line.ext`),
+      `/*` (`text.comment.block.ext`)
+  - language: LESS
+    extensions: "`.less`"
+    scopes: |
+      `//` (`text.comment.line.ext`),
+      `/*...*/` (`text.comment.line.ext`),
+      `/*` (`text.comment.block.ext`)
+  - language: Lua
+    extensions: "`.lua`"
+    scopes: |
+      `--` (`text.comment.line.ext`),
+      `--[[` (`text.comment.block.ext`)
+  - language: Perl
+    extensions: "`.pl`, `.pm`, `.pod`"
+    scopes: |
+      `#` (`text.comment.line.ext`)
+  - language: PHP
+    extensions: "`.php`"
+    scopes: |
+      `//` (`text.comment.line.ext`),
+      `#` (`text.comment.line.ext`),
+      `/*...*/` (`text.comment.line.ext`),
+      `/*` (`text.comment.block.ext`)
+  - language: Python
+    extensions: "`.py`, `.py3`, `.pyw`, `.pyi`, `rpy`"
+    scopes: |
+      `#` (`text.comment.line.ext`),
+      `"""` (`text.comment.block.ext`)
+  - language: R
+    extensions: "`.r`, `.R`"
+    scopes: |
+      `#` (`text.comment.line.ext`)
+  - language: Ruby
+    extensions: "`.rb`"
+    scopes: |
+      `#` (`text.comment.line.ext`),
+      `^=begin` (`text.comment.block.ext`)
+  - language: Sass
+    extensions: "`.sass`"
+    scopes: |
+      `//` (`text.comment.line.ext`),
+      `/*...*/` (`text.comment.line.ext`),
+      `/*` (`text.comment.block.ext`)
+  - language: Scala
+    extensions: "`.scala`, `.sbt`"
+    scopes: |
+      `//` (`text.comment.line.ext`)
+  - language: Swift
+    extensions: "`.swift`"
+    scopes: |
+      `//` (`text.comment.line.ext`),
+      `/*...*/` (`text.comment.line.ext`),
+      `/*` (`text.comment.block.ext`)

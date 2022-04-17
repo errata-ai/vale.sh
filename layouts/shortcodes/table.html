@@ -1,0 +1,23 @@
+{{- $file := index .Params 0 -}}
+{{- $data := .Page.Resources.GetMatch $file | transform.Unmarshal -}}
+
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+        {{ range $index, $element := $data.keys }}
+          <th scope="col">{{ $element | title}}</th>
+        {{ end }}
+      </tr>
+    </thead>
+    <tbody>
+      {{ range $index, $element := $data.data }}
+        <tr>
+          {{ range $i, $k := $data.keys }}
+            <td>{{ (index $element $k) | markdownify }}</td>
+          {{ end }}
+        </tr>
+      {{ end }}
+    </tbody>
+  </table>
+</div>
