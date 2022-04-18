@@ -164,3 +164,8 @@ figure {
   border-top: 1px solid #0b0d11;
   border-right: 1px solid #0b0d11;
 }
+
+[data-dark-mode] .algolia-autocomplete .algolia-docsearch-suggestion--content:before,
+[data-dark-mode] .algolia-autocomplete .algolia-docsearch-suggestion--subcategory-column:before {
+  background: #0b0d11;
+}
