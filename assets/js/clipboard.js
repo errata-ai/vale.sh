@@ -32,4 +32,5 @@ clipboard.on('success', function (e) {
 
 clipboard.on('error', function (e) {
   console.error('Action:', e);
+  console.error('Trigger:', e.trigger);
 });
