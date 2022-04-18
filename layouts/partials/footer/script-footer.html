@@ -34,11 +34,6 @@
   {{ $slice = $slice | append $instantPage -}}
 {{ end -}}
 
-{{ if .Site.Params.options.flexSearch -}}
-  {{ $flexSearch := resources.Get "js/vendor/flexsearch/dist/flexsearch.bundle.js" -}}
-  {{ $slice = $slice | append $flexSearch -}}
-{{ end -}}
-
 {{ if .Site.Params.options.darkMode -}}
   {{ $darkMode := resources.Get "js/darkmode.js" -}}
   {{ $darkMode := $darkMode | js.Build -}}
@@ -112,6 +107,7 @@
   <script src="/js/{{ . }}"></script>
 {{- end }}
 
+{{ if (eq .Section "docs") -}}
 <script src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
 <script>
   docsearch({
@@ -128,3 +124,4 @@
     debug: false,
   });
 </script>
+{{- end }}
