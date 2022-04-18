@@ -169,3 +169,9 @@ figure {
 [data-dark-mode] .algolia-autocomplete .algolia-docsearch-suggestion--subcategory-column:before {
   background: #0b0d11;
 }
+
+@media (max-width: 768px) {
+  [data-dark-mode] .algolia-autocomplete .algolia-docsearch-suggestion .algolia-docsearch-suggestion--subcategory-column {
+    color: #a4a7ae;
+}
+}
