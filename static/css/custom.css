@@ -145,7 +145,7 @@ figure {
 }
 
 [data-dark-mode] .algolia-autocomplete .algolia-docsearch-suggestion--category-header {
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #0b0d11;
   color: #fff;
 }
 
