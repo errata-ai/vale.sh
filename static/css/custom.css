@@ -139,3 +139,28 @@ figure {
 [data-dark-mode] .banner .nav a:focus {
   color: #8ed6fb;
 }
+
+[data-dark-mode] .algolia-autocomplete .algolia-docsearch-suggestion--title {
+  color: #fff;
+}
+
+[data-dark-mode] .algolia-autocomplete .algolia-docsearch-suggestion--category-header {
+  border-bottom: 1px solid #ddd;
+  color: #fff;
+}
+
+[data-dark-mode] .algolia-autocomplete .algolia-docsearch-suggestion {
+  background-color: #161b22;
+  color: #fff;
+}
+
+[data-dark-mode] .algolia-autocomplete .ds-dropdown-menu [class^=ds-dataset-] {
+  border: 1px solid #0b0d11;
+  background: #161b22;
+}
+
+[data-dark-mode] .algolia-autocomplete .ds-dropdown-menu:before {
+  background: #161b22;
+  border-top: 1px solid #0b0d11;
+  border-right: 1px solid #0b0d11;
+}
