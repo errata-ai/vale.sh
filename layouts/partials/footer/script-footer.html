@@ -81,6 +81,7 @@
     <script src="{{ $index.RelPermalink }}" defer></script>
   {{ end -}}
 {{ else -}}
+  <!-- FIXME: minify $js breaks clipboard?? -->
   {{ $js := $js | fingerprint "sha512" -}}
   {{ $index := $index | minify | fingerprint "sha512" -}}
   {{ $bs := $bs | minify | fingerprint "sha512" -}}
