@@ -184,3 +184,9 @@ identifier = "browse"
 name = "Browse"
 url = "/hub/"
 weight = 10
+
+[[tertiary]]
+name = "Submit a package"
+pre = '<i class="fas fa-chevron-right"></i>'
+url = "https://github.com/errata-ai/vale.sh"
+weight = 10

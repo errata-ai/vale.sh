@@ -173,3 +173,30 @@
   </aside>
 </div>
 {{ end -}}
+
+{{ if or (eq .Section "hub") -}}
+<nav class="doks-subnavbar py-2 sticky-lg-top" aria-label="Secondary navigation">
+  <div class="container-xxl d-flex align-items-md-center">
+
+    <nav class="nav">
+      {{ range .Site.Menus.tertiary -}}
+        <a class="nav-link text-dark" href="{{ .URL | relURL }}" target="_blank" rel="noopener">{{ .Name | safeHTML }}&nbsp;{{ .Pre | safeHTML }}</a>
+      {{ end -}}
+    </nav>
+
+    <button class="btn doks-sidebar-toggle d-lg-none ms-auto order-3 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#doks-docs-nav" aria-controls="doks-docs-nav" aria-expanded="false" aria-label="Toggle showcase navigation">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="doks doks-expand" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Expand</title><polyline points="7 13 12 18 17 13"></polyline><polyline points="7 6 12 11 17 6"></polyline></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="doks doks-collapse" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Collapse</title><polyline points="17 11 12 6 7 11"></polyline><polyline points="17 18 12 13 7 18"></polyline></svg>
+    </button>
+
+  </div>
+</nav>
+
+<div class="container-xxl">
+  <aside class="doks-sidebar">
+    <nav id="doks-docs-nav" class="collapse d-lg-none" aria-label="Tertiary navigation">
+      {{ partial "sidebar/hub-menu.html" . }}
+    </nav>
+  </aside>
+</div>
+{{ end -}}
