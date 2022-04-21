@@ -109,3 +109,8 @@
   info: API docs and tutorials on how to use ImagesSharp and related projects.
   org: https://github.com/SixLabors
   name: SixLabors
+- source: https://github.com/postmanlabs/postman-docs/blob/develop/_vale.ini
+  info: |
+    Documentation for Postman, a collaboration platform for API development.
+  org: https://github.com/postmanlabs
+  name: Postman
