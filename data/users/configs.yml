@@ -1,23 +1,24 @@
 ---
 - source: https://github.com/Homebrew/brew/blob/master/.vale.ini
   org: https://github.com/Homebrew
-  info: An implemetation of a custom, in-house style for the Homebrew docs.
+  info: The missing package manager for macOS (or Linux)
   name: Homebrew
 - source: https://github.com/microsoft/spring-cloud-azure
-  info: |
-    A custom configuration for the Spring Cloud Azure docs.
+  info: Spring Cloud Azure Reference doc
   org: https://github.com/microsoft
   name: Microsoft
 - source: https://github.com/github/codeql/blob/main/docs/codeql/.vale.ini
-  info: A custom style built on top of the Microsoft Writing Style Guide.
+  info: |
+    CodeQL: the libraries and queries that power security researchers around
+    the world
   org: https://github.com/github
   name: GitHub
 - source: https://github.com/netlify/netlify-cms/blob/master/.vale.ini
-  info: A custom style and vocab for Netlify CMS website.
+  info: A Git-based CMS for Static Site Generators
   org: https://github.com/netlify
   name: Netlify
 - source: https://github.com/linode/docs/blob/develop/.vale.ini
-  info: A custom configuration for Hugo-powered Markdown docs.
+  info: Linode guides and tutorials.
   org: https://github.com/linode
   name: Linode
 - source: https://docs.gitlab.com/ee/development/documentation/testing.html#vale
@@ -25,15 +26,15 @@
   org: https://github.com/gitlabhq
   name: GitLab
 - source: https://github.com/spotify/backstage/blob/master/.vale.ini
-  info: A basic Vale configuration for Spotify's Backstage project.
+  info: Backstage is an open platform for building developer portals
   org: https://github.com/spotify
   name: Spotify
 - source: https://github.com/cockroachdb/docs/blob/master/.vale.ini
-  info: A custom style for the CockroachDB user documentation.
+  info: CockroachDB user documentation
   org: https://github.com/cockroachdb
   name: CockroachDB
 - source: https://github.com/eclipse/che-docs/blob/master/.vale.ini
-  info: An advanced Vale configuration for the Eclipse Che Documentation.
+  info: Eclipse Che Documentation
   org: https://github.com/eclipse
   name: Eclipse
 - source: https://github.com/eclipse/che-docs/blob/master/.vale.ini
@@ -42,17 +43,16 @@
     Vale.
   org: https://github.com/redhat-documentation
   name: RedHat
-- source: https://github.com/writethedocs/www/blob/master/.vale.ini
-  info: A custom style for the Write the Docs website.
+- source: https://github.com/writethedocs/www/blob/main/.vale.ini
+  info: The main website for Write the Docs.
   org: https://github.com/writethedocs
   name: Write the Docs
-- source: https://github.com/mautic/mautic-documentation/blob/master/.vale.ini
-  info: A configuration for the Mautic project based on the Google Developer
-    Documentation Style Guide.
+- source: https://github.com/mautic/mautic-documentation/blob/main/.vale.ini
+  info: User documentation for the Mautic project
   org: https://github.com/mautic
   name: Mautic
 - source: https://github.com/webpack/webpack.js.org/blob/master/.vale.ini
-  info: A proselint-based Vale configuration for the webpack website.
+  info: Repository for webpack documentation and more!
   org: https://github.com/webpack
   name: webpack
 - source: https://github.com/algolia/vale-action
@@ -60,7 +60,7 @@
   org: https://github.com/algolia
   name: Algolia
 - source: https://github.com/DataDog/documentation/blob/master/.vale.ini
-  info: A custom style for the Datadog documentation.
+  info: The source for Datadog's documentation site.
   org: https://github.com/DataDog
   name: Datadog
 - source: https://github.com/rackerlabs/technical-blog/blob/master/.vale.ini
@@ -68,7 +68,7 @@
   org: https://github.com/rackerlabs
   name: Rackspace
 - source: https://github.com/vaadin/docs/blob/latest/.vale.ini
-  info: A custom style and configuration for the Vaadin docs.
+  info: Official Vaadin documentation, for all parts of the platform.
   org: https://github.com/vaadin
   name: Vaadin
 - source: https://github.com/vultr/vultr-mdtk
@@ -93,11 +93,10 @@
   name: TrussWorks
 - source: https://github.com/chef/chef-web-docs/tree/master/tools/vale
   info: |
-    A custom style, vocab, and output format for the Chef reference
-    documentation.
+    The source for the Chef documentation published on docs.chef.io.
   org: https://github.com/chef
   name: Progress Chef
-- source: https://github.com/vshn/application-catalog-docs/blob/master/docs/modules/ROOT/pages/.vale.ini
+- source: https://github.com/vshn/application-catalog-docs/blob/main/docs/modules/ROOT/pages/.vale.ini
   info: VSHN Application Catalog Documentation.
   org: https://github.com/vshn
   name: VSHN
