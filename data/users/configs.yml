@@ -41,11 +41,11 @@
     Vale config files, styles, and docs to help individuals and teams roll out
     Vale.
   org: https://github.com/redhat-documentation
-  name: RedHat Documentation
+  name: RedHat
 - source: https://github.com/writethedocs/www/blob/master/.vale.ini
   info: A custom style for the Write the Docs website.
   org: https://github.com/writethedocs
-  name: WritetheDocs
+  name: Write the Docs
 - source: https://github.com/mautic/mautic-documentation/blob/master/.vale.ini
   info: A configuration for the Mautic project based on the Google Developer
     Documentation Style Guide.
@@ -84,7 +84,7 @@
     Pipelines as Code -- An opinionated CI based on OpenShift
     Pipelines / Tekton.
   org: https://github.com/openshift-pipelines
-  name: OpenShift Pipelines
+  name: OpenShift
 - source: https://github.com/trussworks/Engineering-Playbook
   info: |
     Repository of documentation on how we do Software Engineering at
@@ -96,7 +96,7 @@
     A custom style, vocab, and output format for the Chef reference
     documentation.
   org: https://github.com/chef
-  name: Chef
+  name: Progress Chef
 - source: https://github.com/vshn/application-catalog-docs/blob/master/docs/modules/ROOT/pages/.vale.ini
   info: VSHN Application Catalog Documentation.
   org: https://github.com/vshn
@@ -113,4 +113,4 @@
   info: |
     Documentation for Postman, a collaboration platform for API development.
   org: https://github.com/postmanlabs
-  name: Postman
+  name: Postman Inc.
