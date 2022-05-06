@@ -1,5 +1,5 @@
 ---
-title: readability
+title: Readability
 lead: |
   Vale-compatible implementations of many popular "readability" metrics.
 date: 2021-03-04T08:02:23+01:00
@@ -23,10 +23,10 @@ This package contains Vale-compatible implementations of many popular
 StylesPath = styles
 MinAlertLevel = suggestion
 
-Packages = readability
+Packages = Readability
 
 [*]
-BasedOnStyles = Vale, readability
+BasedOnStyles = Vale, Readability
 ```
 
 To get started, add the package to your configuration file (as shown above)
