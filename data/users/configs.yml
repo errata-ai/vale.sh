@@ -113,3 +113,7 @@
     Documentation for Postman, a collaboration platform for API development.
   org: https://github.com/postmanlabs
   name: Postman Inc.
+- source: https://github.com/pingcap/docs/blob/master/.vale.ini
+  info: TiDB/TiKV/PD documentation.
+  org: https://github.com/pingcap
+  name: PingCAP
