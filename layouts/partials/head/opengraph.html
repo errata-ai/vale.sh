@@ -1,12 +1,12 @@
 <meta property="og:locale" content="{{ .Site.Params.ogLocale }}" />
 <meta
   property="og:type"
-  content="{{ if .IsPage }}article{{ else }}website{{ end }}"
+  content="website"
 />
 <meta property="og:title" content="{{ .Title }}" />
 <meta
   property="og:description"
-  content="{{ with .Description }}{{ . }}{{ else }}{{if .IsPage}}{{ .Summary }}{{ else }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ end }}{{ end }}"
+  content="{{ with .Site.Params.description }}{{ . }}{{ end }}"
 />
 <meta
   property="og:image"
