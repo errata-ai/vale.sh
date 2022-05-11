@@ -16,15 +16,7 @@
   <title>{{ .Title }} {{ .Site.Params.titleSeparator }} {{ .Site.Params.title }}</title>
 {{ end -}}
 
-{{ with .Description -}}
-  <meta name="description" content="{{ . }}">
-{{ else -}}
-  {{ with .Summary | plainify -}}
-    <meta name="description" content="{{ . }}">
-  {{ else -}}
-    <meta name="description" content="{{ .Site.Params.description }}">
-  {{ end -}}
-{{ end -}}
+<meta name="description" content="{{ .Site.Params.description }}">
 
 {{ if $.Scratch.Get "paginator" }}
   <link rel="canonical" href="{{ .Paginator.URL | absURL }}">
