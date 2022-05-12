@@ -93,9 +93,29 @@ By default, literal blocks, inline literals, and `code-block`s are ignored.
 
 ### AsciiDoc
 
-AsciiDoc is supported through the external program [Asciidoctor](https://rubygems.org/gems/asciidoctor).
+AsciiDoc is supported through the external program [Asciidoctor](https://rubygems.org/gems/asciidoctor). By default, listing blocks and inline literals are ignored.
 
-By default, listing blocks and inline literals are ignored.
+You can customize how `asciidoctor` is called by passing [document attributes](https://docs.asciidoctor.org/asciidoc/latest/attributes/document-attributes-ref/):
+
+```ini
+StylesPath = <...>
+
+[asciidoctor]
+# attribute = value
+#
+# where 'YES' enables and 'NO' disables.
+
+# enable
+experimental = YES
+
+# assign a specific value
+attribute-missing = drop
+
+[*]
+BasedOnStyles = Vale
+
+# normal config ...
+```
 
 ### DITA
 
