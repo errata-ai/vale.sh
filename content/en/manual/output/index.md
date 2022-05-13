@@ -52,6 +52,7 @@ Where `core.Alert` has the same information as Vale's `--output=JSON` object.
 | `newTable`    | `bool`      | Creates a new [`tablewriter`][2] struct. newTable accepts one boolean value representing [`SetAutoWrapText`][2]. |
 | `addRow`      | `[]string`  | Appends the given row to a table.                                                                            |
 | `renderTable` | `Table`     | Prints the table-formatted output to `stdout`.                                                               |
+| `jsonEscape`  | `string`    | Ensure the given `STRING` is valid JSON.                                                                     |
 
 ## Examples
 
