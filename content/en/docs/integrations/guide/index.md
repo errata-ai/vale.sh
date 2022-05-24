@@ -84,7 +84,3 @@ If the editor or IDE allows for user-configured settings for a plugin, then some
 -   When to check a document with Vale, on every change, or on save?
 -   How to toggle between Vale CLI or Vale Server
 -   Custom paths for the Vale CLI binary, configuration, or styles paths
-
-## Vale server API reference
-
-You can find the full API reference for Vale server [in the OAS spec](https://docs.errata.ai/api/index.html#/Linting%20and%20Suggestions/LintText).
