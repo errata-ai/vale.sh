@@ -93,6 +93,13 @@ url = "https://github.com/dense-analysis/ale"
 weight = 10
 
 [[docs]]
+identifier = "neovim"
+name = "Neovim"
+parent = "integrations"
+url = "https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#vale"
+weight = 10
+
+[[docs]]
 identifier = "vscode"
 name = "VS Code"
 parent = "integrations"
