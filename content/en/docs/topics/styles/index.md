@@ -509,7 +509,7 @@ support grammar-focused rules.
 
 ```yaml
 extends: sequence
-message: "The infinitive '%[4]s' after 'be' requries 'to'. Did you mean '%[2]s %[3]s *to* %[4]s'?"
+message: "The infinitive '%[4]s' after 'be' requires 'to'. Did you mean '%[2]s %[3]s *to* %[4]s'?"
 tokens:
   - tag: MD
   - pattern: be
