@@ -51,13 +51,6 @@ url = "https://github.com/errata-ai/vale-action"
 weight = 10
 
 [[docs]]
-identifier = "jetbrains"
-name = "Jetbrains"
-parent = "integrations"
-url = "https://plugins.jetbrains.com/plugin/16136-grazie-professional"
-weight = 10
-
-[[docs]]
 identifier = "laravel"
 name = "Laravel"
 parent = "integrations"

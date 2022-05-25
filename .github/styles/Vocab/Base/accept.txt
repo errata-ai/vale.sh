@@ -6,7 +6,9 @@ autolinks
 boolean
 Chocolately
 docutils
+Grazie
 jdkato
+Jetbrains
 Lua
 precompiled
 shortcodes
