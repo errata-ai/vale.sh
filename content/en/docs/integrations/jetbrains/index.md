@@ -12,8 +12,8 @@ toc: true
 ---
 
 There are two options for using Vale with the suite of tools by Jetbrains: You
-can either configure Vale as an [external tool][1] or use the "official"
-[Grazie][2] plugin.
+can either configure Vale as an [external tool][1] or use the [Grazie][2]
+plugin.
 
 If you configure the CLI, Vale will work exactly as it does on the command line.
 The Grazie plugin, however, only supports a subset of Vale's functionality and
@@ -45,14 +45,14 @@ Go to `Preferences > Appearance & Behavior > Menus and Toolbars > Main Toolbar >
 
 {{< caption src="img/action.png" width="500px" >}}
 
-The new action will then appear in your toolbar:
+The new action will now appear in your toolbar:
 
 {{< caption src="img/toolbar.png" width="500px" >}}
 
 ### Add a shortcut (optional)
 
 Go to `Preferences > Keymap > External Tools > Vale`, click
-"Add Keyboard Shortcut", and enter a shortcut:
+"Add Keyboard Shortcut", and enter a shortcut of your choice:
 
 <div class="row row-cols-2">
   <div class="col">
