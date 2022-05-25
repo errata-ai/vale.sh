@@ -12,12 +12,12 @@ toc: true
 ---
 
 There are two options for using Vale with the suite of tools by Jetbrains: You
-can either configure Vale as an [external tool][1] or the "official"
+can either configure Vale as an [external tool][1] or use the "official"
 [Grazie][2] plugin.
 
-If you use the external tool configuration, Vale will work exactly as it does
-on the command line. The Grazie plugin, however, only supports a subset of
-Vale's functionality and may not work exactly as the CLI does in all cases.
+If you configure the CLI, Vale will work exactly as it does on the command line.
+The Grazie plugin, however, only supports a subset of Vale's functionality and
+may not work exactly as the CLI does in all cases.
 
 ## External tool
 
