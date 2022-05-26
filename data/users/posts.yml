@@ -1,7 +1,12 @@
 ---
+- title: What’s the difference between Vale Server and Vale CLI?
+  url: https://rolfe.blog/2022/04/10/whats-the-difference-between-vale-server-and-vale-cli/
+  author: Rolfe Dlugy-Hegwer
+  year: 2022
 - title: Reducing negative and biased language in documentation
   url: https://www.cncf.io/blog/2022/03/09/reducing-negative-and-biased-language-in-documentation/
   year: 2022
+  author: Chris Ward
 - title: Automate Style Checks with Jetbrains
   url: https://www.linkedin.com/pulse/automate-style-checks-tara-english-sweeney?trk=articles_directory
   year: 2022
