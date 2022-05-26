@@ -8,7 +8,7 @@ Chocolately
 docutils
 Grazie
 jdkato
-Jetbrains
+JetBrains
 Lua
 precompiled
 shortcodes

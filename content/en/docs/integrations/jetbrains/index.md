@@ -1,7 +1,7 @@
 ---
-title: Jetbrains
+title: JetBrains
 lead: |
-  Use Vale with the suite of tools by Jetbrains.
+  Use Vale with the suite of tools by JetBrains.
 draft: false
 images: []
 menu:
@@ -11,7 +11,7 @@ weight: 10
 toc: true
 ---
 
-There are two options for using Vale with the suite of tools by Jetbrains: You
+There are two options for using Vale with the suite of tools by JetBrains: You
 can either configure Vale as an [external tool][1] or use the [Grazie][2]
 plugin.
 
@@ -65,7 +65,7 @@ Go to `Preferences > Keymap > External Tools > Vale`, click
 
 ## Grazie
 
-[Grazie Professional][1] is plugin developed by the Jetbrains team that
+[Grazie Professional][1] is plugin developed by the JetBrains' team that
 "provides intelligent grammar checks, completion, and writing assistance for
 natural language."
 
