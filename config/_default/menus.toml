@@ -29,7 +29,6 @@ url = "/docs/integrations/"
 weight = 40
 
 [[docs]]
-external = true
 identifier = "atom"
 name = "Atom"
 parent = "integrations"
@@ -111,11 +110,6 @@ url = "https://medium.com/valelint"
 weight = 20
 
 [[main]]
-name = "Community"
-url = "/community/connect/"
-weight = 20
-
-[[main]]
 identifier = "resources"
 name = "Resources"
 url = "/resources/"
@@ -162,17 +156,17 @@ pre = '<i class="fab fa-slack"></i>'
 url = "https://writethedocs.slack.com/archives/CBWQQ5E57"
 weight = 20
 
-# [[social]]
-# name = "Youtube"
-# pre = '<i class="fab fa-youtube"></i>'
-# url = "https://www.youtube.com/channel/UCw-GUZljsD4zddL-nppAu9w"
-# weight = 30
-
 [[social]]
-name = "Discord"
-pre = '<i class="fab fa-discord"></i>'
-url = "https://discord.gg/8S6HRxGgGq"
-weight = 40
+name = "Youtube"
+pre = '<i class="fab fa-youtube"></i>'
+url = "https://www.youtube.com/channel/UCw-GUZljsD4zddL-nppAu9w"
+weight = 30
+
+# [[social]]
+# name = "Discord"
+# pre = '<i class="fab fa-discord"></i>'
+# url = "https://discord.gg/8S6HRxGgGq"
+# weight = 40
 
 # [[footer]]
 # name = "Privacy"

@@ -3,7 +3,7 @@
   org: https://github.com/Homebrew
   info: The missing package manager for macOS (or Linux)
   name: Homebrew
-- source: https://github.com/microsoft/spring-cloud-azure
+- source: https://github.com/microsoft/spring-cloud-azure/blob/main/docs/.vale.ini
   info: Spring Cloud Azure Reference doc
   org: https://github.com/microsoft
   name: Microsoft
@@ -63,10 +63,6 @@
   info: The source for Datadog's documentation site.
   org: https://github.com/DataDog
   name: Datadog
-- source: https://github.com/rackerlabs/technical-blog/blob/master/.vale.ini
-  info: A custom style for the Rackspace Expert Insights Technical Blog.
-  org: https://github.com/rackerlabs
-  name: Rackspace
 - source: https://github.com/vaadin/docs/blob/latest/.vale.ini
   info: Official Vaadin documentation, for all parts of the platform.
   org: https://github.com/vaadin
@@ -75,17 +71,17 @@
   info: Vultr Markdown Toolkit.
   org: https://github.com/Vultr
   name: Vultr
-- source: https://github.com/commercetools/commercetools-docs-kit
+- source: https://github.com/commercetools/commercetools-docs-kit/blob/main/packages/writing-style/.vale.ini
   info: Tools and components for developing Documentation websites 🛠
   org: https://github.com/commercetools
   name: commercetools
-- source: https://github.com/openshift-pipelines/pipelines-as-code
+- source: https://github.com/openshift-pipelines/pipelines-as-code/blob/main/.vale.ini
   info: |
     Pipelines as Code -- An opinionated CI based on OpenShift
     Pipelines / Tekton.
   org: https://github.com/openshift-pipelines
   name: OpenShift
-- source: https://github.com/trussworks/Engineering-Playbook
+- source: https://github.com/trussworks/Engineering-Playbook/blob/main/.vale.ini
   info: |
     Repository of documentation on how we do Software Engineering at
     TrussWorks.
@@ -96,14 +92,10 @@
     The source for the Chef documentation published on docs.chef.io.
   org: https://github.com/chef
   name: Progress Chef
-- source: https://github.com/vshn/application-catalog-docs/blob/main/docs/modules/ROOT/pages/.vale.ini
+- source: https://github.com/vshn/application-catalog-docs/blob/master/docs/modules/ROOT/pages/.vale.ini
   info: VSHN Application Catalog Documentation.
   org: https://github.com/vshn
   name: VSHN
-- source: https://github.com/ory/docs/blob/master/docs/.vale.ini
-  info: Documentation for all ORY products.
-  org: https://github.com/ory
-  name: ORY
 - source: https://github.com/SixLabors/docs/blob/main/vale.ini
   info: API docs and tutorials on how to use ImagesSharp and related projects.
   org: https://github.com/SixLabors
@@ -117,3 +109,11 @@
   info: TiDB/TiKV/PD documentation.
   org: https://github.com/pingcap
   name: PingCAP
+- source: https://github.com/timescale/docs/blob/latest/.vale.ini
+  info: Timescale product documentation 📖
+  org: https://github.com/timescale
+  name: Timescale
+- source: https://github.com/rackerlabs/technical-blog/blob/master/.vale.ini
+  info: A custom style for the Rackspace Expert Insights Technical Blog.
+  org: https://github.com/rackerlabs
+  name: Rackspace
