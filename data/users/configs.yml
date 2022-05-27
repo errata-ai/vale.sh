@@ -117,3 +117,39 @@
   info: A custom style for the Rackspace Expert Insights Technical Blog.
   org: https://github.com/rackerlabs
   name: Rackspace
+- source: https://github.com/aiven/devportal/blob/main/.vale.ini
+  info: Resources for users of the projects on the Aiven platform.
+  org: https://github.com/aiven
+  name: Aiven
+- source: https://github.com/buildkite/docs/blob/main/.vale.ini
+  info: The source files for the Buildkite documentation.
+  org: https://github.com/buildkite
+  name: Buildkite
+- source: https://github.com/ConsenSys/doctools.template-site/tree/main/.github/vale
+  info: The source files for the Buildkite documentation.
+  org: https://github.com/ConsenSys
+  name: ConsenSys
+- source: https://github.com/platformsh/platformsh-docs/blob/main/.vale.ini
+  info: Platform.sh documentation.
+  org: https://github.com/platformsh
+  name: Platform.sh
+- source: https://github.com/stoplightio/platform-docs/blob/main/.vale.ini
+  info: Documentation for the Stoplight Platform.
+  org: https://github.com/stoplightio
+  name: Stoplight
+- source: https://github.com/umbraco/UmbracoDocs/blob/main/.vale.ini
+  info: The official Umbraco Documentation
+  org: https://github.com/umbraco
+  name: Umbraco
+- source: https://github.com/inspec/inspec/tree/main/docs-chef-io/tools/vale
+  info: 'InSpec: Auditing and Testing Framework'
+  org: https://github.com/inspec
+  name: InSpec
+- source: https://github.com/cloudquery/docs/blob/main/.vale.ini
+  info: CloudQuery Documentation
+  org: https://github.com/cloudquery
+  name: CloudQuery
+- source: https://github.com/department-of-veterans-affairs/content-build/tree/main/script/vale
+  info: The scripts necessary for building content for `vets-website`
+  org: https://github.com/department-of-veterans-affairs
+  name: Department of Veterans Affairs
