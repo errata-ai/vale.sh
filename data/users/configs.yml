@@ -152,4 +152,4 @@
 - source: https://github.com/department-of-veterans-affairs/content-build/tree/main/script/vale
   info: The scripts necessary for building content for `vets-website`
   org: https://github.com/department-of-veterans-affairs
-  name: Department of Veterans Affairs
+  name: va.gov
