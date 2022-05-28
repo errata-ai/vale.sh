@@ -3,10 +3,7 @@ import { autocomplete } from '@algolia/autocomplete-js';
 autocomplete({
   container: '#autocomplete',
   placeholder: 'Search topics or keywords ...',
-  debug: true,
-  autoFocus: true,
-  defaultActiveItemId: 0,
-  shouldPanelOpen: false,
+  debug: false,
   getSources() {
     return [
       {
@@ -34,6 +31,7 @@ autocomplete({
                   <span class="badge rounded-pill bg-secondary result-tag"><i class="fas fa-calendar"></i> ${item.year}</span>
                   <span class="badge rounded-pill bg-secondary result-tag"><i class="fas fa-user"></i> ${item.author}</span>
                 </h6>
+                <a href="${item.href}" class="stretched-link" target="_blank"></a>
               </div>
             </div>`;
           },
