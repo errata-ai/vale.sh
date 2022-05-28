@@ -7,6 +7,12 @@
 {{ $highlight := resources.Get "js/highlight.js" -}}
 {{ $highlight := $highlight | js.Build -}}
 
+{{ $dataTemplate := resources.Get "js/data.js" -}}
+{{ $data := $dataTemplate | resources.ExecuteAsTemplate "data.js" . -}}
+
+{{ $goto := resources.Get "js/goto.js" -}}
+{{ $goto := $goto | js.Build -}}
+
 {{ $katex := resources.Get "js/vendor/katex/dist/katex.js" -}}
 {{ $katexAutoRender := resources.Get "js/vendor/katex/dist/contrib/auto-render.js" -}}
 
@@ -107,7 +113,8 @@
   <script src="/js/{{ . }}"></script>
 {{- end }}
 
-{{ if (eq .Section "docs") -}}
+{{ $lastPart := .RelPermalink | path.Base }}
+{{ if and (eq .Section "docs") (ne $lastPart "docs") -}}
 <script src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
 <script>
   docsearch({
@@ -124,4 +131,12 @@
     debug: false,
   });
 </script>
+{{- end }}
+
+{{ $goto := $goto | minify | fingerprint "sha512" -}}
+{{ $data := $data | minify | fingerprint "sha512" -}}
+
+{{ if and (eq .Section "docs") (eq $lastPart "docs") -}}
+  <script src="{{ $data.RelPermalink }}" integrity="{{ $data.Data.Integrity }}" crossorigin="anonymous" defer></script>
+  <script src="{{ $goto.RelPermalink }}" integrity="{{ $goto.Data.Integrity }}" crossorigin="anonymous" defer></script>
 {{- end }}

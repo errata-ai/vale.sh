@@ -111,7 +111,8 @@
 </div>
 {{ end -}}
 
-{{ if eq .Section "docs" -}}
+{{ $lastPart := .RelPermalink | path.Base }}
+{{ if and (eq .Section "docs") (ne $lastPart "docs") -}}
 <nav class="doks-subnavbar py-2 sticky-lg-top{{ if eq .Site.Params.options.flexSearch false }} d-lg-none{{ end }}" aria-label="Secondary navigation">
   <div class="container-{{ if .Site.Params.options.fullWidth }}fluid{{ else }}xxl{{ end }} d-flex align-items-md-center">
 

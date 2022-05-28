@@ -1,28 +1,47 @@
 ---
+- title: Writing like a pro with vale & neovim
+  url: https://bhupesh.me/writing-like-a-pro-with-vale-and-neovim/
+  author: Bhupesh Varshney
+  year: 2022
+  tags:
+    - Neovim
 - title: What’s the difference between Vale Server and Vale CLI?
   url: https://rolfe.blog/2022/04/10/whats-the-difference-between-vale-server-and-vale-cli/
   author: Rolfe Dlugy-Hegwer
   year: 2022
+  tags:
+    - server
 - title: Reducing negative and biased language in documentation
   url: https://www.cncf.io/blog/2022/03/09/reducing-negative-and-biased-language-in-documentation/
   year: 2022
   author: Chris Ward
+  tags:
+    - styles
 - title: Automate Style Checks with Jetbrains
   url: https://www.linkedin.com/pulse/automate-style-checks-tara-english-sweeney?trk=articles_directory
   year: 2022
   author: Tara English-Sweeney
+  tags:
+    - JetBrains
+    - IntelliJ
 - title: How To Automate Documentation Workflow For Developers
   url: https://www.smashingmagazine.com/2021/08/automate-documentation-workflow-for-developers/
   year: 2021
   author: Portia Burton
+  tags:
+    - GitHub Actions
 - title: First steps with the Vale prose linter
   url: https://passo.uno/posts/first-steps-with-the-vale-prose-linter/
   year: 2021
   author: Fabrizio Ferri Benedetti
+  tags:
+    - VS Code
 - title: Writing Articles with Vale
   url: https://www.thedroneely.com/posts/writing-with-vale/
   year: 2021
   author: Thedro Neely
+  tags:
+    - styles
 - title: Linting your content using Vale
   url: https://www.shwetashetye.com/blog/vale/
   year: 2021
@@ -31,6 +50,8 @@
   url: https://www.linode.com/blog/linode/docs-as-code-at-linode/
   year: 2020
   author: Nathan Melehan, Linode
+  tags:
+    - workflow
 - title: "Testing docs with Vale - Part 1: Installing the Vale CLI"
   url: https://deanna.dev/installing-vale-cli/
   year: 2020

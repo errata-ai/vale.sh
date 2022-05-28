@@ -35,6 +35,8 @@
     "version": "auto-changelog -p && git add CHANGELOG.md"
   },
   "devDependencies": {
+    "@algolia/autocomplete-js": "^1.6.3",
+    "@algolia/autocomplete-theme-classic": "^1.6.3",
     "@babel/cli": "^7.17",
     "@babel/core": "^7.17",
     "@babel/preset-env": "^7.16",

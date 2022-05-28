@@ -33,75 +33,74 @@ identifier = "atom"
 name = "Atom"
 parent = "integrations"
 url = "https://github.com/errata-ai/vale-atom"
-weight = 10
+weight = 120
 
 [[docs]]
 identifier = "emacs"
 name = "Emacs"
 parent = "integrations"
 url = "https://github.com/abingham/flycheck-vale"
-weight = 10
+weight = 120
 
 [[docs]]
 identifier = "gh-actions"
 name = "GitHub Actions"
 parent = "integrations"
 url = "https://github.com/errata-ai/vale-action"
-weight = 10
+weight = 120
 
 [[docs]]
 identifier = "laravel"
 name = "Laravel"
 parent = "integrations"
 url = "https://github.com/beyondcode/laravel-prose-linter"
-weight = 10
+weight = 120
 
 [[docs]]
 identifier = "obsidian"
 name = "Obsidian"
 parent = "integrations"
 url = "https://github.com/marcusolsson/obsidian-vale"
-weight = 10
+weight = 120
 
 [[docs]]
 identifier = "oxygen"
 name = "Oxygen XML"
 parent = "integrations"
 url = "https://www.oxygenxml.com/doc/versions/23.1/ug-editor/topics/vale-linter-addon.html"
-weight = 10
+weight = 120
 
 [[docs]]
 identifier = "sublime"
 name = "Sublime Text"
 parent = "integrations"
 url = "https://github.com/errata-ai/SubVale"
-weight = 10
+weight = 120
 
 [[docs]]
 identifier = "vim"
 name = "Vim"
 parent = "integrations"
 url = "https://github.com/dense-analysis/ale"
-weight = 10
+weight = 120
 
 [[docs]]
 identifier = "neovim"
 name = "Neovim"
 parent = "integrations"
 url = "https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#vale"
-weight = 10
+weight = 120
 
 [[docs]]
 identifier = "vscode"
 name = "VS Code"
 parent = "integrations"
 url = "https://github.com/errata-ai/vale-vscode"
-weight = 10
+weight = 120
 
 [[main]]
 name = "Docs"
-url = "/docs/vale-cli/installation/"
-# url = "/docs/1.0/prologue/introduction/"
+url = "/docs/"
 weight = 10
 
 [[main]]

@@ -1,22 +1,172 @@
-{{ define "main" }}
-<div class="row justify-content-center">
-  <div class="col-md-12 col-lg-10 col-xl-8">
-    <article>
-      <h1 class="text-center">{{ if eq .CurrentSection .FirstSection }}{{ .Section | humanize }}{{ else }}{{ .Title }}{{ end }}</h1>
-      <div class="text-center">{{ .Content }}</div>
-			<div class="card-list">
-				{{ $currentSection := .CurrentSection }}
-				{{ range where .Site.RegularPages.ByTitle "Section" .Section }}
-					{{ if in (.RelPermalink | string) $currentSection.RelPermalink }}
-						<div class="card my-3">
-							<div class="card-body">
-								<a class="stretched-link" href="{{ .RelPermalink }}">{{ .Params.title | title }} &rarr;</a>
-							</div>
-						</div>
-					{{ end }}
-				{{ end }}
-			</div>
-    </article>
+{{ define "sidebar-prefooter" }}
+<section class="section bg-light pt-5">
+    <div class="row justify-content-center mb-3">
+      <div class="col-auto text-center">
+        <h1 class="display-4">How can we help?</h1>
+      </div>
+      <!--end of col-->
+    </div>
+    <!--end of row-->
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-10 col-lg-8">
+        <form>
+            <div class="input-group input-group-lg mb-3">
+              <!--<input type="text" class="form-control" placeholder="Search topics or keywords ..." aria-label="Recipient's username" aria-describedby="button-addon2">
+              <button class="btn btn-primary" type="button" id="button-addon2">Search <i class="fas fa-search"></i></button>-->
+              <div id="autocomplete" class="w-100"></div>
+            </div>
+            <!--end of col-->
+        </form>
+      </div>
+      <!--end of col-->
+    </div>
+    <!--end of row-->
+  <!--end of container-->
+</section>
+<!--end of section-->
+
+<section class="mb-5">
+  <div class="container">
+    <div class="row justify-content-center mb-3">
+      <div class="col-auto">
+        <h3 class="h4">Docs by topic</h3>
+      </div>
+      <!--end of col-->
+    </div>
+    <!--end of row-->
+    <div class="row row-cols-1 row-cols-md-3 g-5">
+      <div class="col">
+        <div class="card h-100">
+          <div class="card-body">
+            <i class="fas fa-terminal fa-3x text-primary"></i>
+            <h4 class="mt-4 mb-3">Vale CLI</h4>
+            <p>
+              Install and configure the Vale command-line tool.
+            </p>
+            <a
+              href="/docs/vale-cli/installation/"
+              class="stretched-link"
+              ></a>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card h-100">
+          <div class="card-body">
+            <i class="fas fa-desktop fa-3x text-primary"></i>
+            <h4 class="mt-4 mb-3">Vale Server</h4>
+            <p>Get started with the Vale Server desktop app.</p>
+            <a
+              href="/docs/vale-server/introduction/"
+              class="stretched-link"
+              ></a>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card h-100">
+          <div class="card-body">
+            <i class="fas fa-puzzle-piece fa-3x text-primary"></i>
+            <h4 class="mt-4 mb-3">Integrations</h4>
+            <p>
+              Learn about Vale's third-party integrations.
+            </p>
+            <a
+              href="/docs/integrations/guide/"
+              class="stretched-link"
+              ></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--end of row-->
   </div>
-</div>
+  <!--end of container-->
+</section>
+
+<section class="flush-with-above mb-5">
+  <div class="container">
+    <div class="row justify-content-center mb-3">
+      <div class="col-auto">
+        <h3 class="h4">Community resources</h3>
+      </div>
+      <!--end of col-->
+    </div>
+    <!--end of row-->
+    <div class="row row-cols-1 row-cols-md-3 g-5">
+
+      <div class="col">
+        <div class="card">
+          <div class="card-header d-flex justify-content-between">
+            <div>
+              <span class="h6"><i class="fas fa-file-alt text-muted mr-1"></i> Posts</span>
+              <span class="badge bg-secondary">{{ len .Site.Data.users.posts }}</span>
+            </div>
+            <a href="#">View all &rsaquo;</a>
+          </div>
+          <div class="card-body">
+            <ul class="list-spacing-sm">
+              {{- range $post := (first 10 .Site.Data.users.posts) -}}
+              <li>
+                <a class="text-muted" href="{{ $post.url }}" target="_blank">{{ $post.title }}</a>
+              </li>
+              {{- end -}}
+            </ul>
+          </div>
+        </div>
+        <!--end of card-->
+      </div>
+      <!--end of col-->
+
+      <div class="col">
+        <div class="card">
+          <div class="card-header d-flex justify-content-between">
+            <div>
+              <span class="h6"><i class="fas fa-video text-muted mr-1"></i> Videos</span>
+              <span class="badge bg-secondary">{{ len .Site.Data.users.videos }}</span>
+            </div>
+            <a href="#">View all &rsaquo;</a>
+          </div>
+          <div class="card-body">
+            <ul class="list-spacing-sm">
+              {{- range $post := (first 10 .Site.Data.users.videos) -}}
+              <li>
+                <a class="text-muted" href="{{ $post.url }}" target="_blank">{{ $post.title }}</a>
+              </li>
+              {{- end -}}
+            </ul>
+          </div>
+        </div>
+        <!--end of card-->
+      </div>
+      <!--end of col-->
+
+      <div class="col">
+        <div class="card">
+          <div class="card-header d-flex justify-content-between">
+            <div>
+              <span class="h6"><i class="fas fa-comment text-muted mr-1"></i> Discussions</span>
+              <span class="badge bg-secondary">{{ len .Site.Data.repos.vale }}</span>
+            </div>
+            <a href="#">View all &rsaquo;</a>
+          </div>
+          <div class="card-body">
+            <ul class="list-spacing-sm">
+              {{- range $post := (first 10 .Site.Data.repos.vale) -}}
+              <li>
+                <a class="text-muted" href="{{ $post.URL }}" target="_blank">{{ $post.Title }}</a>
+              </li>
+              {{- end -}}
+            </ul>
+          </div>
+        </div>
+        <!--end of card-->
+      </div>
+      <!--end of col-->
+
+    </div>
+    <!--end of row-->
+  </div>
+  <!--end of container-->
+</section>
 {{ end }}

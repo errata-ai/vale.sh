@@ -1,0 +1,45 @@
+---
+- name: guides
+  entries:
+    - title: What’s the difference between Vale Server and Vale CLI?
+      url: https://rolfe.blog/2022/04/10/whats-the-difference-between-vale-server-and-vale-cli/
+      author: Rolfe Dlugy-Hegwer
+      year: 2022
+      type: post
+
+    - title: First steps with the Vale prose linter
+      url: https://passo.uno/posts/first-steps-with-the-vale-prose-linter/
+      year: 2021
+      author: Fabrizio Ferri Benedetti
+      type: post
+      tags:
+        - VS Code
+
+- name: workflows
+  entries:
+    - title: How To Automate Documentation Workflow For Developers
+      url: https://www.smashingmagazine.com/2021/08/automate-documentation-workflow-for-developers/
+      year: 2021
+      author: Portia Burton
+      type: post
+      tags:
+        - CI/CD
+        - GitHub Actions
+
+- name: integrations
+  entries:
+    - title: Writing like a pro with vale & neovim
+      url: https://bhupesh.me/writing-like-a-pro-with-vale-and-neovim/
+      author: Bhupesh Varshney
+      year: 2022
+      type: post
+      tags:
+        - Neovim
+    - title: Automate Style Checks with Jetbrains
+      url: https://www.linkedin.com/pulse/automate-style-checks-tara-english-sweeney?trk=articles_directory
+      author: Tara English-Sweeney
+      year: 2022
+      type: post
+      tags:
+        - Jetbrains
+        - IntelliJ

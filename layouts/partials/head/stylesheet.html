@@ -16,4 +16,13 @@
   <link rel="stylesheet" href="/css/{{ . }}">
 {{- end }}
 
+{{ $lastPart := .RelPermalink | path.Base }}
+{{ if and (eq .Section "docs") (ne $lastPart "docs") -}}
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
+{{- end }}
+
+{{ if and (eq .Section "docs") (eq $lastPart "docs") -}}
+  <link rel="stylesheet"  href="https://cdn.jsdelivr.net/npm/@algolia/autocomplete-theme-classic" />
+{{- end }}
+
 <link rel="stylesheet" href="/css/custom.css">
