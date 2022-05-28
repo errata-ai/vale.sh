@@ -4,6 +4,7 @@ publish = "public"
 
 [[headers]]
 for = "/*"
+
 [headers.values]
 Content-Security-Policy = "default-src 'self'; connect-src 'self' https://2y8ou39u1x-dsn.algolia.net https://2y8ou39u1x-2.algolianet.com https://2y8ou39u1x-3.algolianet.com; font-src 'self' https://use.fontawesome.com https://fonts.gstatic.com; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://2y8ou39u1x-3.algolianet.com https://cdn.jsdelivr.net https://use.fontawesome.com https://opencollective.com; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://use.fontawesome.com https://opencollective.com; img-src 'self' 'unsafe-inline' https://d33wubrfki0l68.cloudfront.net https://avatars.githubusercontent.com https://opencollective.com https://github.com data:; frame-src 'self' 'unsafe-inline' https://opencollective.com"
 
