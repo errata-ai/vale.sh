@@ -9,6 +9,8 @@ resources
 .vscode
 .idea
 
+functions/search/INDEX
+
 # We want to ignore our StylesPath *except* for our local
 # `Vocab/Base` folder.
 .github/styles/*

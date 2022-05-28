@@ -36,7 +36,7 @@
   year: 2020
   author: Nathan Melehan, Linode
 - title: "Testing docs with Vale - Part 1: Installing the Vale CLI"
-  url: https://deanna.dev/installing-vale-cli/
+  url: https://www.deanna.dev/posts/installing-vale-cli/
   year: 2020
   author: Deanna Thompson
 - title: Prose linting with Vale and Emacs

@@ -11,9 +11,10 @@ Content-Security-Policy = "default-src 'self'; connect-src 'self' https://2y8ou3
 [build.environment]
 NODE_VERSION = "17.8.0"
 NPM_VERSION = "8.5.5"
+GO111MODULE = "on"
 
 [context.production]
-command = "npm run build"
+command = "make"
 
 [context.deploy-preview]
 command = "npm run build -- -b $DEPLOY_PRIME_URL"
