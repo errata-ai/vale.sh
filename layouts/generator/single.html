@@ -7,50 +7,50 @@
          <div class="card-body">
             <form id="cfg-gen">
                <div class="row mb-3">
-                  <label for="base-style" class="form-label">
+                  <label class="form-label" for="base-style">
                   Base style <i
                     class="fa fa-question-circle"
+                    data-bs-content="A 'base' style is a comprehensive style guide that serves as a starting point for an in-house style. You generally should only use one at a time."
                     data-bs-toggle="popover"
-                    data-bs-trigger="hover"
-                    data-bs-content="A 'base' style is a comprehensive style guide that serves as a starting point for an in-house style. You generally should only use one at a time."></i>
+                    data-bs-trigger="hover"></i>
                   </label>
                   <div class="col">
-                     <select id="base-style" class="form-select" aria-label="Default select example">
-                        <option value="None" selected>Skip for now</option>
+                     <select aria-label="Default select example" class="form-select" id="base-style">
+                        <option selected value="None">Skip for now</option>
                         <option value="Microsoft">Microsoft Writing Style Guide</option>
                         <option value="Google">Google Developer Documentation Style Guide</option>
                      </select>
                   </div>
                </div>
                <div class="row mb-3">
-                  <label for="comp-style" class="form-label">
+                  <label class="form-label" for="comp-style">
                   Supplementary styles <i
                     class="fa fa-question-circle"
+                    data-bs-content="A 'supplementary' style is a smaller, more specific style that can be used alongside a base style."
                     data-bs-toggle="popover"
-                    data-bs-trigger="hover"
-                    data-bs-content="A 'supplementary' style is a smaller, more specific style that can be used alongside a base style."></i>
+                    data-bs-trigger="hover"></i>
                   </label>
                   <div class="col">
-                     <select id="comp-style" class="form-select" multiple aria-label="multiple select example">
+                     <select aria-label="multiple select example" class="form-select" id="comp-style" multiple>
                         <option value="proselint">proselint</option>
                         <option value="write-good">write-good</option>
                         <option value="alex">alex</option>
-                        <option value="readability">readability</option>
+                        <option value="readability">Readability</option>
                         <option value="Joblint">Joblint</option>
                      </select>
                   </div>
                </div>
                <div class="row mb-3">
-                  <label for="ssg" class="form-label">
+                  <label class="form-label" for="ssg">
                   Static Site Generator <i
                     class="fa fa-question-circle"
+                    data-bs-content="These are generator-specific configurations for Vale (typically handling details like non-standard markup)."
                     data-bs-toggle="popover"
-                    data-bs-trigger="hover"
-                    data-bs-content="These are generator-specific configurations for Vale (typically handling details like non-standard markup)."></i>
+                    data-bs-trigger="hover"></i>
                   </label>
                   <div class="col">
-                     <select id="ssg" class="form-select" aria-label="Default select example">
-                        <option value="None" selected>None</option>
+                     <select aria-label="Default select example" class="form-select" id="ssg">
+                        <option selected value="None">None</option>
                         <option value="Hugo">Hugo</option>
                      </select>
                   </div>
@@ -70,7 +70,7 @@
             </form>
          </div>
          <div class="card-footer p-0">
-          <div id="editor" class="inner"></div>
+          <div class="inner" id="editor"></div>
          </div>
       </div>
    </main>
