@@ -60,6 +60,7 @@
     "postcss": "^8.4",
     "postcss-cli": "^9.1",
     "purgecss-whitelister": "^2.4",
+    "query-string": "^7.1.1",
     "shx": "^0.3.4",
     "stylelint": "^14.6",
     "stylelint-config-standard-scss": "^3.0"
