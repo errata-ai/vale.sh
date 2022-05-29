@@ -65,21 +65,21 @@
 
 {{ if eq (hugo.Environment) "development" -}}
   {{ if .Site.Params.options.bootStrapJs -}}
-    <script src="{{ $bs.RelPermalink }}" defer></script>
+    <script defer src="{{ $bs.RelPermalink }}"></script>
   {{ end -}}
   {{ if and (.Site.Params.options.highLight) (ne .Params.nohighLight true) -}}
-    <script src="{{ $highlight.RelPermalink }}" defer></script>
+    <script defer src="{{ $highlight.RelPermalink }}"></script>
   {{ end -}}
   {{ if .Site.Params.options.kaTex -}}
-    <script src="{{ $katex.RelPermalink }}" defer></script>
-    <script src="{{ $katexAutoRender.RelPermalink }}" onload="renderMathInElement(document.body);" defer></script>
+    <script defer src="{{ $katex.RelPermalink }}"></script>
+    <script defer onload="renderMathInElement(document.body);" src="{{ $katexAutoRender.RelPermalink }}"></script>
   {{ end -}}
-  <script src="{{ $js.RelPermalink }}" defer></script>
+  <script defer src="{{ $js.RelPermalink }}"></script>
   {{ with .Params.mermaid -}}
-    <script src="{{ $mermaid.RelPermalink }}" defer></script>
+    <script defer src="{{ $mermaid.RelPermalink }}"></script>
   {{ end -}}
   {{ if and (.Site.Params.options.flexSearch) (eq .Section "docs") -}}
-    <script src="{{ $index.RelPermalink }}" defer></script>
+    <script defer src="{{ $index.RelPermalink }}"></script>
   {{ end -}}
 {{ else -}}
   <!-- FIXME: minify $js breaks clipboard?? -->
@@ -91,21 +91,21 @@
   {{ $katexAutoRender := $katexAutoRender | minify | fingerprint "sha512" -}}
   {{ $mermaid := $mermaid | minify | fingerprint "sha512" -}}
   {{ if .Site.Params.options.bootStrapJs -}}
-    <script src="{{ $bs.RelPermalink }}" integrity="{{ $bs.Data.Integrity }}" crossorigin="anonymous" defer></script>
+    <script crossorigin="anonymous" defer integrity="{{ $bs.Data.Integrity }}" src="{{ $bs.RelPermalink }}"></script>
   {{ end -}}
   {{ if and (.Site.Params.options.highLight) (ne .Params.nohighLight true)  -}}
-    <script src="{{ $highlight.RelPermalink }}" integrity="{{ $highlight.Data.Integrity }}" crossorigin="anonymous" defer></script>
+    <script crossorigin="anonymous" defer integrity="{{ $highlight.Data.Integrity }}" src="{{ $highlight.RelPermalink }}"></script>
   {{ end -}}
   {{ if .Site.Params.options.kaTex -}}
-    <script src="{{ $katex.RelPermalink }}" integrity="{{ $katex.Data.Integrity }}" crossorigin="anonymous" defer></script>
-    <script src="{{ $katexAutoRender.RelPermalink }}" integrity="{{ $katexAutoRender.Data.Integrity }}" crossorigin="anonymous" defer></script>
+    <script crossorigin="anonymous" defer integrity="{{ $katex.Data.Integrity }}" src="{{ $katex.RelPermalink }}"></script>
+    <script crossorigin="anonymous" defer integrity="{{ $katexAutoRender.Data.Integrity }}" src="{{ $katexAutoRender.RelPermalink }}"></script>
   {{ end -}}
-  <script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}" crossorigin="anonymous" defer></script>
+  <script crossorigin="anonymous" defer integrity="{{ $js.Data.Integrity }}" src="{{ $js.RelPermalink }}"></script>
   {{ with .Params.mermaid -}}
-    <script src="{{ $mermaid.RelPermalink }}" integrity="{{ $mermaid.Data.Integrity }}" crossorigin="anonymous" defer></script>
+    <script crossorigin="anonymous" defer integrity="{{ $mermaid.Data.Integrity }}" src="{{ $mermaid.RelPermalink }}"></script>
   {{ end -}}
   {{ if and (.Site.Params.options.flexSearch) (eq .Section "docs") -}}
-    <script src="{{ $index.Permalink }}" integrity="{{ $index.Data.Integrity }}" crossorigin="anonymous" defer></script>
+    <script crossorigin="anonymous" defer integrity="{{ $index.Data.Integrity }}" src="{{ $index.Permalink }}"></script>
   {{ end -}}
 {{ end -}}
 
@@ -128,7 +128,7 @@
     // matching your search input
     inputSelector: '#search',
     // Set debug to true to inspect the dropdown
-    debug: false,
+    debug: true,
   });
 </script>
 {{- end }}
@@ -137,6 +137,6 @@
 {{ $data := $data | minify | fingerprint "sha512" -}}
 
 {{ if and (eq .Section "docs") (eq $lastPart "docs") -}}
-  <script src="{{ $data.RelPermalink }}" integrity="{{ $data.Data.Integrity }}" crossorigin="anonymous" defer></script>
-  <script src="{{ $goto.RelPermalink }}" integrity="{{ $goto.Data.Integrity }}" crossorigin="anonymous" defer></script>
+  <script crossorigin="anonymous" defer integrity="{{ $data.Data.Integrity }}" src="{{ $data.RelPermalink }}"></script>
+  <script crossorigin="anonymous" defer integrity="{{ $goto.Data.Integrity }}" src="{{ $goto.RelPermalink }}"></script>
 {{- end }}
