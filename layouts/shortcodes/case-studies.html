@@ -1,12 +1,12 @@
 
 <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-5">
-  {{- range $i, $post := .Site.Data.users.configs -}}
+  {{- range $i, $post := .Site.Data.configs -}}
     <div class="col">
       <div class="card h-100 hub-card">
         <div class="card-header">
           <div class="avatar avatar-vertical">
             <a href="{{ $post.source }}" target="_blank">
-              <img class="avatar-photo" src='{{ $post.org }}.png' alt="{{ $post.name }}'s avatar">
+              <img alt="{{ $post.name }}'s avatar" class="avatar-photo" src='{{ $post.org }}.png'>
             </a>
             <div class="avatar-intro">
               <h4 class="avatar-name">

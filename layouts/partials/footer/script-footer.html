@@ -7,9 +7,6 @@
 {{ $highlight := resources.Get "js/highlight.js" -}}
 {{ $highlight := $highlight | js.Build -}}
 
-{{ $dataTemplate := resources.Get "js/data.js" -}}
-{{ $data := $dataTemplate | resources.ExecuteAsTemplate "data.js" . -}}
-
 {{ $goto := resources.Get "js/goto.js" -}}
 {{ $goto := $goto | js.Build -}}
 
@@ -134,9 +131,7 @@
 {{- end }}
 
 {{ $goto := $goto | minify | fingerprint "sha512" -}}
-{{ $data := $data | minify | fingerprint "sha512" -}}
 
 {{ if and (eq .Section "docs") (eq $lastPart "docs") -}}
-  <script crossorigin="anonymous" defer integrity="{{ $data.Data.Integrity }}" src="{{ $data.RelPermalink }}"></script>
   <script crossorigin="anonymous" defer integrity="{{ $goto.Data.Integrity }}" src="{{ $goto.RelPermalink }}"></script>
 {{- end }}
