@@ -93,19 +93,19 @@
     </div>
     <!--end of row-->
     <div class="row row-cols-1 row-cols-md-3 g-5">
-
+      {{ $posts := getJSON "https://github.com/errata-ai/library/releases/latest/download/posts.json"  }}
       <div class="col">
         <div class="card">
           <div class="card-header d-flex justify-content-between">
             <div>
               <span class="h6"><i class="fas fa-file-alt text-muted mr-1"></i> Posts</span>
-              <span class="badge bg-secondary">{{ len .Site.Data.users.posts }}</span>
+              <span class="badge bg-secondary">{{ len $posts }}</span>
             </div>
             <a href="#">View all &rsaquo;</a>
           </div>
           <div class="card-body">
             <ul class="list-spacing-sm">
-              {{- range $post := (first 10 .Site.Data.users.posts) -}}
+              {{- range $post := (first 10 $posts) -}}
               <li>
                 <a class="text-muted" href="{{ $post.url }}" target="_blank">{{ $post.title }}</a>
               </li>
@@ -117,18 +117,19 @@
       </div>
       <!--end of col-->
 
+      {{ $videos := getJSON "https://github.com/errata-ai/library/releases/latest/download/videos.json"  }}
       <div class="col">
         <div class="card">
           <div class="card-header d-flex justify-content-between">
             <div>
               <span class="h6"><i class="fas fa-video text-muted mr-1"></i> Videos</span>
-              <span class="badge bg-secondary">{{ len .Site.Data.users.videos }}</span>
+              <span class="badge bg-secondary">{{ len $videos }}</span>
             </div>
             <a href="#">View all &rsaquo;</a>
           </div>
           <div class="card-body">
             <ul class="list-spacing-sm">
-              {{- range $post := (first 10 .Site.Data.users.videos) -}}
+              {{- range $post := (first 10 $videos) -}}
               <li>
                 <a class="text-muted" href="{{ $post.url }}" target="_blank">{{ $post.title }}</a>
               </li>
@@ -140,18 +141,19 @@
       </div>
       <!--end of col-->
 
+      {{ $issues := getJSON "https://github.com/errata-ai/library/releases/latest/download/issues.json"  }}
       <div class="col">
         <div class="card">
           <div class="card-header d-flex justify-content-between">
             <div>
               <span class="h6"><i class="fas fa-comment text-muted mr-1"></i> Discussions</span>
-              <span class="badge bg-secondary">{{ len .Site.Data.repos.vale }}</span>
+              <span class="badge bg-secondary">{{ len $issues }}</span>
             </div>
             <a href="#">View all &rsaquo;</a>
           </div>
           <div class="card-body">
             <ul class="list-spacing-sm">
-              {{- range $post := (first 10 .Site.Data.repos.vale) -}}
+              {{- range $post := (first 10 $issues) -}}
               <li>
                 <a class="text-muted" href="{{ $post.URL }}" target="_blank">{{ $post.Title }}</a>
               </li>
