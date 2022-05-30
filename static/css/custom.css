@@ -201,3 +201,22 @@ figure {
   --aa-icon-color-rgb: 142, 214, 251;
   --aa-primary-color-rgb: 142, 214, 251;
 }
+
+/* Panel section */
+.aa-PanelSections {
+  column-gap: var(--aa-spacing);
+  display: flex;
+}
+
+.aa-PanelSection {
+  display: flex;
+  flex-direction: column;
+}
+
+.aa-PanelSection--left {
+  width: 50%;
+}
+
+.aa-PanelSection--right {
+  width: 50%;
+}

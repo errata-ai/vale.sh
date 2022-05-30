@@ -77,12 +77,6 @@ github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/dvyukov/go-fuzz v0.0.0-20210429054444-fca39067bc72/go.mod h1:11Gm+ccJnvAhCNLlf5+cS9KjtbaD5I5zaZpFMsTHWTw=
 github.com/elazarl/go-bindata-assetfs v1.0.1/go.mod h1:v+YaWX3bdea5J/mo8dSETolEo7R71Vk1u8bnjau5yw4=
-github.com/errata-ai/library v0.2.1 h1:PEyB4jyXaSdnn7j2jQO+zEaEeIZshIxuO8duXKuKxNs=
-github.com/errata-ai/library v0.2.1/go.mod h1:osag1fpnjjLM9+zxR1w6SrT6NT7Z36DDvUY3RBjlIzQ=
-github.com/errata-ai/library v0.3.0 h1:Ohuk4lOU14B1ZNk1j2QJFLpGERCApKOcI2ri942cRmg=
-github.com/errata-ai/library v0.3.0/go.mod h1:osag1fpnjjLM9+zxR1w6SrT6NT7Z36DDvUY3RBjlIzQ=
-github.com/errata-ai/library v0.4.0 h1:zyOl+F7nIDFiiFw5zVu7vrib/4DSzGKy7I/5lCoV7SU=
-github.com/errata-ai/library v0.4.0/go.mod h1:osag1fpnjjLM9+zxR1w6SrT6NT7Z36DDvUY3RBjlIzQ=
 github.com/errata-ai/library v0.4.1 h1:1DWJ4SQdPypATBB/nbBqtUv3nsovLX/2VangN+BX4Ps=
 github.com/errata-ai/library v0.4.1/go.mod h1:osag1fpnjjLM9+zxR1w6SrT6NT7Z36DDvUY3RBjlIzQ=
 github.com/fatih/set v0.2.1 h1:nn2CaJyknWE/6txyUDGwysr3G5QC6xWB/PtVjPBbeaA=

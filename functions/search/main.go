@@ -21,6 +21,7 @@ var indexName = "INDEX"
 type Result struct {
 	ID       string
 	Fragment string
+	Image    string
 }
 
 func getFragment(f map[string][]string) string {
