@@ -43,7 +43,6 @@ autocomplete({
                         <span class="badge rounded-pill bg-secondary result-tag"><i class="fas fa-calendar"></i> ${parsed.year}</span>
                         <span class="badge rounded-pill bg-secondary result-tag"><i class="fas fa-user"></i> ${parsed.author}</span>
                     </h6>
-                    <a href="${parsed.url}" class="stretched-link" target="_blank"></a>
                   </div>
                 </div>`
               },
@@ -73,9 +72,9 @@ autocomplete({
                     <p class="card-text pt-2">${preview.Fragment}</p>
                     <a href="${parsed.url}" class="stretched-link" target="_blank"></a>
                   </div>
-                  <div class="card-footer">
+                  <!--<div class="card-footer">
                       <small class="text-muted">Last updated 3 mins ago</small>
-                  </div>
+                  </div>-->
               </div>
           </div>
         </div>
