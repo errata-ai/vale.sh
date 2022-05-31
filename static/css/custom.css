@@ -226,3 +226,8 @@ figure {
   height: 25vw;
   object-fit: cover;
 }
+
+.info-line {
+  cursor: pointer;
+  text-decoration: underline solid var(--bs-primary);
+}
