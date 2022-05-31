@@ -86,7 +86,7 @@
     </div>
     <!--end of row-->
     <div class="row row-cols-1 row-cols-md-2 g-5">
-      {{ $posts := getJSON "https://github.com/errata-ai/library/releases/latest/download/posts.json"  }}
+      {{ $posts := getJSON "https://github.com/errata-ai/library/releases/latest/download/library.json"  }}
       {{- range $post := (first 4 $posts) -}}
         {{ $url := (printf "https://vale.sh/.netlify/functions/preview?url=%s" $post.url) }}
         {{ $og := getJSON $url }}
