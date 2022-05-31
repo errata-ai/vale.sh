@@ -4,7 +4,7 @@ import { parse } from 'query-string';
 autocomplete({
   container: '#autocomplete',
   placeholder: 'Search topics or keywords ...',
-  debug: true,
+  debug: false,
   defaultActiveItemId: 0,
   getSources({ query }) {
     return fetch(`https://vale.sh/.netlify/functions/search?q=${query}`, {
@@ -15,6 +15,10 @@ autocomplete({
       return [
           {
             sourceId: 'predictions',
+            getItemUrl({ item }) {
+              const parsed = parse(item.ID);
+              return parsed.url;
+            },
             getItems() {
               return data || [];
             },
