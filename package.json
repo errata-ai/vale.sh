@@ -64,7 +64,8 @@
     "query-string": "^7.1.1",
     "shx": "^0.3.4",
     "stylelint": "^14.6",
-    "stylelint-config-standard-scss": "^3.0"
+    "stylelint-config-standard-scss": "^3.0",
+    "typed.js": "^2.0.12"
   },
   "otherDependencies": {
     "hugo": "0.96.0"

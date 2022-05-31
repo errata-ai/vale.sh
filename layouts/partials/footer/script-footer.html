@@ -134,4 +134,18 @@
 
 {{ if and (eq .Section "docs") (eq $lastPart "docs") -}}
   <script crossorigin="anonymous" defer integrity="{{ $goto.Data.Integrity }}" src="{{ $goto.RelPermalink }}"></script>
+  <script crossorigin="anonymous" integrity="sha512-zKaK6G2LZC5YZTX0vKmD7xOwd1zrEEMal4zlTf5Ved/A1RrnW+qt8pWDfo7oz+xeChECS/P9dv6EDwwPwelFfQ==" referrerpolicy="no-referrer" src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.0/typed.min.js"></script>
+  <script>
+    var typed = new Typed('#search-instructions', {
+      strings: [
+        "Open a result in the <i>current tab</i> with <kbd>Enter</kbd>.",
+        "Open a result in a <i>new tab</i> with <kbd>Ctrl+Enter</kbd>.",
+        "Open a result in a <i>new window</i> with <kbd>Shift+Enter</kbd>."
+      ],
+      typeSpeed: 30,
+      backSpeed: 30,
+      backDelay: 1000,
+      startDelay: 1000
+    });
+  </script>
 {{- end }}
