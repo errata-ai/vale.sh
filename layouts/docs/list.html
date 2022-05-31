@@ -24,16 +24,9 @@
     </div>
 </section>
 
-<section class="mb-5">
+<section class="mb-3">
   <div class="container">
-    <div class="row justify-content-center mb-3">
-      <div class="col-auto">
-        <h3 class="h4">Docs by topic</h3>
-      </div>
-      <!--end of col-->
-    </div>
-    <!--end of row-->
-    <div class="row row-cols-1 row-cols-md-3 g-5">
+    <div class="row row-cols-1 row-cols-md-3 g-5 mt-3">
       <div class="col">
         <div class="card h-100">
           <div class="card-body">
@@ -92,79 +85,32 @@
       <!--end of col-->
     </div>
     <!--end of row-->
-    <div class="row row-cols-1 row-cols-md-3 g-5">
+    <div class="row row-cols-1 row-cols-md-2 g-5">
       {{ $posts := getJSON "https://github.com/errata-ai/library/releases/latest/download/posts.json"  }}
-      <div class="col">
-        <div class="card">
-          <div class="card-header d-flex justify-content-between">
-            <div>
-              <span class="h6"><i class="fas fa-file-alt text-muted mr-1"></i> Posts</span>
-              <span class="badge bg-secondary">{{ len $posts }}</span>
+      {{- range $post := (first 4 $posts) -}}
+        {{ $url := (printf "https://vale.sh/.netlify/functions/preview?url=%s" $post.url) }}
+        {{ $og := getJSON $url }}
+        <div class="col">
+          <div class="card h-100">
+            <img alt="post header image" class="card-img-top resource-img" src="{{ index $og.Preview.Images 0 }}">
+            <div class="card-body">
+              <h5 class="card-title">{{ $post.title }}</h5>
+              <h6 class="card-subtitle pb-2">
+                <small class="mb-1 text-muted">By {{ $post.author }}, {{ $post.year }}</small>
+              </h6>
+              <p class="card-text">{{ $og.Preview.Description }}</p>
+              <a class="stretched-link" href="{{ $post.url }}" target="_blank"></a>
             </div>
-            <a href="#">View all &rsaquo;</a>
-          </div>
-          <div class="card-body">
-            <ul class="list-spacing-sm">
-              {{- range $post := (first 10 $posts) -}}
-              <li>
-                <a class="text-muted" href="{{ $post.url }}" target="_blank">{{ $post.title }}</a>
-              </li>
-              {{- end -}}
-            </ul>
+            <div class="card-footer">
+              <small class="text-muted">
+                <span class="badge rounded-pill bg-secondary">Secondary</span>
+              </small>
+            </div>
           </div>
         </div>
         <!--end of card-->
-      </div>
+      {{- end -}}
       <!--end of col-->
-
-      {{ $videos := getJSON "https://github.com/errata-ai/library/releases/latest/download/videos.json"  }}
-      <div class="col">
-        <div class="card">
-          <div class="card-header d-flex justify-content-between">
-            <div>
-              <span class="h6"><i class="fas fa-video text-muted mr-1"></i> Videos</span>
-              <span class="badge bg-secondary">{{ len $videos }}</span>
-            </div>
-            <a href="#">View all &rsaquo;</a>
-          </div>
-          <div class="card-body">
-            <ul class="list-spacing-sm">
-              {{- range $post := (first 10 $videos) -}}
-              <li>
-                <a class="text-muted" href="{{ $post.url }}" target="_blank">{{ $post.title }}</a>
-              </li>
-              {{- end -}}
-            </ul>
-          </div>
-        </div>
-        <!--end of card-->
-      </div>
-      <!--end of col-->
-
-      {{ $issues := getJSON "https://github.com/errata-ai/library/releases/latest/download/issues.json"  }}
-      <div class="col">
-        <div class="card">
-          <div class="card-header d-flex justify-content-between">
-            <div>
-              <span class="h6"><i class="fas fa-comment text-muted mr-1"></i> Discussions</span>
-              <span class="badge bg-secondary">{{ len $issues }}</span>
-            </div>
-            <a href="#">View all &rsaquo;</a>
-          </div>
-          <div class="card-body">
-            <ul class="list-spacing-sm">
-              {{- range $post := (first 10 $issues) -}}
-              <li>
-                <a class="text-muted" href="{{ $post.URL }}" target="_blank">{{ $post.Title }}</a>
-              </li>
-              {{- end -}}
-            </ul>
-          </div>
-        </div>
-        <!--end of card-->
-      </div>
-      <!--end of col-->
-
     </div>
     <!--end of row-->
   </div>
