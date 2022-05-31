@@ -31,7 +31,7 @@ autocomplete({
                         <span class="badge rounded-pill bg-secondary result-tag"><i class="fas fa-calendar"></i> ${parsed.year}</span>
                         <span class="badge rounded-pill bg-secondary result-tag"><i class="fas fa-user"></i> ${parsed.author}</span>
                     </h6>
-                    <p class="card-text pt-2">${parsed.Fragment}</p>
+                    <p class="card-text pt-2">${item.Fragment}</p>
                     <a href="${parsed.url}" class="stretched-link" target="_blank"></a>
                   </div>
                 </div>`
