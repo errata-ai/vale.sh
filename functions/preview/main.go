@@ -3,10 +3,12 @@ package main
 import (
 	"bytes"
 	"encoding/json"
+	"io"
+	"net/http"
 
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
-	"github.com/badoux/goscraper"
+	"github.com/dyatlov/go-opengraph/opengraph"
 )
 
 func newErrResponse(err error) (*events.APIGatewayProxyResponse, error) {
@@ -24,14 +26,23 @@ func toJSON(t interface{}) (string, error) {
 }
 
 func handler(request events.APIGatewayProxyRequest) (*events.APIGatewayProxyResponse, error) {
-	url := request.QueryStringParameters["url"]
+	var reader io.Reader
 
-	s, err := goscraper.Scrape(url, 5)
+	url := request.QueryStringParameters["url"]
+	og := opengraph.NewOpenGraph()
+
+	resp, err := http.Get(url)
 	if err != nil {
 		return newErrResponse(err)
 	}
+	defer resp.Body.Close()
 
-	j, err := toJSON(s)
+	reader = resp.Body
+	if err := og.ProcessHTML(reader); err != nil {
+		return newErrResponse(err)
+	}
+
+	j, err := toJSON(og)
 	if err != nil {
 		return newErrResponse(err)
 	}
