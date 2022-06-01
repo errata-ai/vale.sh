@@ -101,18 +101,20 @@
         {{ $og := getJSON $url }}
         <div class="col">
           <div class="card h-100">
-            <img alt="post header image" class="card-img-top resource-img" src="{{ index $og.Preview.Images 0 }}">
+            {{ $pic := index $og.images 0 }}
+            <img alt="post header image" class="card-img-top resource-img" src="{{ $pic.url }}">
             <div class="card-body">
               <h5 class="card-title">{{ $post.title }}</h5>
               <h6 class="card-subtitle pb-2">
                 <small class="mb-1 text-muted">By {{ $post.author }}, {{ $post.year }}</small>
               </h6>
-              <p class="card-text">{{ $og.Preview.Description }}</p>
+              <p class="card-text">{{ $og.description }}</p>
               <a class="stretched-link" href="{{ $post.url }}" target="_blank"></a>
             </div>
             <div class="card-footer">
               <small class="text-muted">
                 <span class="badge rounded-pill bg-secondary">{{ $post.type }}</span>
+                <span class="badge rounded-pill bg-secondary">{{ $og.site_name }}</span>
               </small>
             </div>
           </div>
