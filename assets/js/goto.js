@@ -13,7 +13,7 @@ function getParts(id) {
 
 autocomplete({
   container: '#autocomplete',
-  placeholder: 'Search topics or keywords ...',
+  placeholder: 'Search topics or keywords',
   debug: false,
   defaultActiveItemId: 0,
   getSources({ query }) {
