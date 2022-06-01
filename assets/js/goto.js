@@ -14,7 +14,7 @@ function getParts(id) {
 autocomplete({
   container: '#autocomplete',
   placeholder: 'Search topics or keywords',
-  debug: false,
+  debug: true,
   defaultActiveItemId: 0,
   getSources({ query }) {
     return fetch(`https://vale.sh/.netlify/functions/search?q=${query}`, {
@@ -26,15 +26,24 @@ autocomplete({
           {
             sourceId: 'predictions',
             getItemUrl({ item }) {
-              const parsed = getParts(item.ID);
-              return parsed.url;
+              return getParts(item.ID).url;
             },
             getItems() {
               return data || [];
             },
             templates: {
-              noResults() {
-                return 'No results.';
+              noResults({ html }) {
+                return html`<div class="p-0 text-muted">
+                  <h3 class="mt-0">No results found.</h3>
+                  <p>Try adjusting your search with a <a href="https://github.com/errata-ai/library/blob/main/README.md#searching" target="_blank">query string</a>:</p>
+                  <ul>
+                    <li class="pt-2 pb-2">Faceted search: <code>date:>2021</code> or <code>author:jdkato</code></li>
+                    <li class="pt-2 pb-2">Fuzzy search: <code>term~1</code> or <code>term~2</code></li>
+                    <li class="pt-2 pb-2">Boosted search: <code>text:neovim title:nemvim^5</code></li>
+                    <li class="pt-2 pb-2">Regex search: <code>author:/(jdkato|another)/</code></li>
+                  </ul>
+                  <p>If you're still having trouble, feel free to ask a <a href="https://github.com/errata-ai/vale/discussions" target="_blank">question on GitHub</a>.</p>
+                </div>`;
               },
               item({ item, html, createElement }) {
                 const parsed = getParts(item.ID);
@@ -44,7 +53,7 @@ autocomplete({
                 return html`<div class="card text-muted">
                   <div class="card-body">
                     <h5 class="card-title mt-0">${parsed.title}</h5>
-                    <p class="card-text pt-2">${sample}</p>
+                    <p class="card-text pt-2"><small>${sample}</small></p>
                     <a href="${parsed.url}" class="stretched-link" target="_blank"></a>
                   </div>
                   <div class="card-footer">
