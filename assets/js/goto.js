@@ -1,5 +1,13 @@
 import { autocomplete } from '@algolia/autocomplete-js';
-import { parse } from 'query-string';
+
+function getParts(id) {
+  let tag = id.match(/title=(.+)&url=(.+)&year=(.+)/);
+  return {  //note you don't use = in an object definition
+     'title': tag[1],
+     'url': tag[2],
+     'year': tag[3],
+  }
+}
 
 autocomplete({
   container: '#autocomplete',
@@ -16,7 +24,7 @@ autocomplete({
           {
             sourceId: 'predictions',
             getItemUrl({ item }) {
-              const parsed = parse(item.ID);
+              const parsed = getParts(item.ID);
               return parsed.url;
             },
             getItems() {
@@ -27,7 +35,7 @@ autocomplete({
                 return 'No results.';
               },
               item({ item, html }) {
-                const parsed = parse(item.ID);
+                const parsed = getParts(item.ID);
                 return html`<div class="card text-muted">
                   <div class="card-body">
                     <h5 class="card-title mt-0">${parsed.title}</h5>
