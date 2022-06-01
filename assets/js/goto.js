@@ -37,10 +37,10 @@ autocomplete({
                   <h3 class="mt-0">No results found.</h3>
                   <p>Try adjusting your search with a <a href="https://github.com/errata-ai/library/blob/main/README.md#searching" target="_blank">query string</a>:</p>
                   <ul>
-                    <li class="pt-2 pb-2">Faceted search: <code>date:>2021</code> or <code>author:jdkato</code></li>
-                    <li class="pt-2 pb-2">Fuzzy search: <code>term~1</code> or <code>term~2</code></li>
-                    <li class="pt-2 pb-2">Boosted search: <code>text:neovim title:nemvim^5</code></li>
-                    <li class="pt-2 pb-2">Regex search: <code>author:/(jdkato|another)/</code></li>
+                    <li class="pt-1 pb-1">Faceted search: <i>date:>2021</i> or <i>author:jdkato</i></li>
+                    <li class="pt-1 pb-1">Fuzzy search: <i>term~1</i> or <i>term~2</i></li>
+                    <li class="pt-1 pb-1">Boosted search: <i>text:neovim title:neovim^5</i></li>
+                    <li class="pt-1 pb-1">Regex search: <i>author:/(jdkato|another)/</i></li>
                   </ul>
                   <p>If you're still having trouble, feel free to ask a <a href="https://github.com/errata-ai/vale/discussions" target="_blank">question on GitHub</a>.</p>
                 </div>`;
