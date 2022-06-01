@@ -4,14 +4,12 @@ import (
 	"bytes"
 	"embed"
 	"encoding/json"
-	"html"
 	"os"
 	"path/filepath"
 
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
 	"github.com/errata-ai/library/pkg/search"
-	strip "github.com/grokify/html-strip-tags-go"
 )
 
 //go:embed INDEX/*
@@ -35,7 +33,7 @@ func getFragment(f map[string][]string) string {
 		fragment = ""
 	}
 
-	return html.UnescapeString(strip.StripTags(fragment))
+	return fragment
 }
 
 func toJSON(t interface{}) (string, error) {
