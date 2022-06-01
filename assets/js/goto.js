@@ -14,7 +14,7 @@ function getParts(id) {
 autocomplete({
   container: '#autocomplete',
   placeholder: 'Search topics or keywords',
-  debug: true,
+  debug: false,
   defaultActiveItemId: 0,
   getSources({ query }) {
     return fetch(`https://vale.sh/.netlify/functions/search?q=${query}`, {
