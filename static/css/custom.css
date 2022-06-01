@@ -228,6 +228,5 @@ figure {
 }
 
 .info-line {
-  cursor: pointer;
   text-decoration: underline solid var(--bs-primary);
 }

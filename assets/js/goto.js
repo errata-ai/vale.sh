@@ -36,15 +36,15 @@ autocomplete({
               noResults() {
                 return 'No results.';
               },
-              item({ item, html, createElement}) {
+              item({ item, html, createElement }) {
                 const parsed = getParts(item.ID);
-                const fragment = createElement('p', {
+                const sample = createElement('p', {
                   dangerouslySetInnerHTML: {__html: item.Fragment},
                 });
                 return html`<div class="card text-muted">
                   <div class="card-body">
                     <h5 class="card-title mt-0">${parsed.title}</h5>
-                    <p class="card-text pt-2">${fragment}</p>
+                    <p class="card-text pt-2">${sample}</p>
                     <a href="${parsed.url}" class="stretched-link" target="_blank"></a>
                   </div>
                   <div class="card-footer">
