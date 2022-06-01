@@ -228,5 +228,5 @@ figure {
 }
 
 .info-line {
-  text-decoration: underline solid var(--bs-primary);
+  text-decoration: underline solid #99d98c;
 }
