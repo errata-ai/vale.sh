@@ -41,7 +41,7 @@ autocomplete({
                 return html`<div class="card text-muted">
                   <div class="card-body">
                     <h5 class="card-title mt-0">${parsed.title}</h5>
-                    <p class="card-text pt-2">${item.Fragment}</p>
+                    <p class="card-text pt-2">${html`${item.Fragment}`}</p>
                     <a href="${parsed.url}" class="stretched-link" target="_blank"></a>
                   </div>
                   <div class="card-footer">
