@@ -58,6 +58,16 @@ rules.
 
 ## Extension points
 
+{{< alert context="info">}}
+**Heads up**!
+
+In addition to the standard Go [regex syntax][1], Vale also
+supports positive lookahead (`(?=re)`), negative lookahead (`(?!re)`),
+positive lookbehind (`(?<=re)`), and negative lookbehind (`(?<!re)`).
+
+[1]: https://pkg.go.dev/regexp/syntax
+{{< /alert >}}
+
 The building blocks of styles are rules (YAML files ending in `.yml`), which utilize extension points to perform specific tasks.
 
 The basic structure of a rule consists of a small header \(shown below\) followed by extension-specific arguments.
