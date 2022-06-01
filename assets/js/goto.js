@@ -3,10 +3,10 @@ import { autocomplete } from '@algolia/autocomplete-js';
 function getParts(id) {
   let tag = id.match(/title=(.+)&url=(.+)&author=(.+)&year=(.+)/);
   return {
-     'title': tag[1],
-     'url': tag[2],
-      'author': tag[3],
-     'year': tag[4],
+    'title': tag[1],
+    'url': tag[2],
+    'author': tag[3],
+    'year': tag[4],
   }
 }
 
