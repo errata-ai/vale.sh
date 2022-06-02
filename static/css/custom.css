@@ -116,12 +116,25 @@ figure {
   margin: 0;
 }
 
+body pre > code {
+  border-radius: 0 !important;
+}
+
+body code:not(.hljs) {
+  border-radius: 6px;
+}
+
 [data-dark-mode] .card-header {
   border-bottom: 1px solid #1b1f22;
 }
 
 [data-dark-mode] .card-footer {
   border-top: 1px solid #1b1f22;
+}
+
+[data-dark-mode] body code:not(.hljs) {
+  background: #161b22;
+  color: #dee2e6;
 }
 
 [data-dark-mode] .nav-tabs .nav-link.active,
