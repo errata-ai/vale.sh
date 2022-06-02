@@ -242,4 +242,8 @@ body code:not(.hljs) {
 
 .info-line {
   text-decoration: underline solid #99d98c;
+  text-decoration-line: underline;
+  -webkit-text-decoration-line: underline;
+  text-decoration-color: #99d98c;
+  -webkit-text-decoration-color: #99d98c;
 }
