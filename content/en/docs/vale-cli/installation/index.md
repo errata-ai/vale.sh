@@ -11,7 +11,7 @@ weight: 10
 toc: true
 ---
 
-## Quick Start
+## Package Managers
 
 In general, the recommended approach on all platforms is to use a package
 manager such as Homebrew (macOS) or Chocolately (Windows):
