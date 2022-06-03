@@ -1,5 +1,5 @@
 ---
-title: Folder Structure
+title: Quick Start
 lead: |
   Set up the necessary config files and folder structure to start enforcing
   a style guide.

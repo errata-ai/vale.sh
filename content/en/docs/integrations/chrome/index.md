@@ -14,6 +14,15 @@ toc: true
 
 ## Installation
 
+{{< alert context="info" icon="👉">}}
+**Heads up**!
+
+Check out "[Taking Vale Server to the web][1]" for an explanation of how our
+extension is different from most other writing tools.
+
+[1]: https://medium.com/valelint/taking-vale-server-to-the-web-4de44b32e547
+{{< /alert >}}
+
 Go to the [installation page](https://chrome.google.com/webstore/detail/vale-server/goinboihbomchileeihgfnbohjdhfcoi) and click the *Add to Chrome* button:
 
 ![](img/install.png)
