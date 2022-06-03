@@ -1,5 +1,5 @@
 ---
-title: Quick Start
+title: Tutorial
 lead: |
   Set up the necessary config files and folder structure to start enforcing
   a style guide.
@@ -10,6 +10,26 @@ menu:
 weight: 20
 toc: true
 ---
+
+## Quick Start
+
+The fastest way to get started with Vale is to use the
+[Config Generator](/generator) to create a `.vale.ini` configuration file.
+
+Once you have your local `.vale.ini` created in the directory of your choice,
+run `vale sync` from the command line to initialize it:
+
+```bash
+$ cd some-project
+# You'll need to create this file
+$ cat .vale.ini
+...
+$ vale sync
+...
+$ ls styles
+...
+$ vale README.md
+```
 
 ## Sample Repository
 
