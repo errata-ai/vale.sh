@@ -16,6 +16,8 @@ toc: true
 The fastest way to get started with Vale is to use the
 [Config Generator](/generator) to create a `.vale.ini` configuration file.
 
+{{< youtube xf--28Iz_TQ >}}
+
 Once you have your local `.vale.ini` created in the directory of your choice,
 run `vale sync` from the command line to initialize it:
 
