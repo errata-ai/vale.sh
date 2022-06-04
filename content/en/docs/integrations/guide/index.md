@@ -25,7 +25,7 @@ Look at how the VSCode extension uses the [`buildCommand`](https://github.com/er
 
 ## With Vale Server
 
-Your extension should call the Vale server [`/vale`](https://docs.errata.ai/api/index.html#/Linting%20and%20Suggestions/LintText) endpoint, which the user of your plugin needs to have installed.
+Your extension should call the Vale server `/vale` endpoint, which the user of your plugin needs to have installed.
 
 _<http://localhost:7777/vale>_ with the text to lint in the `text` parameter and `format` as the file extension of the file to check, including the leading ".".
 
@@ -63,7 +63,7 @@ Each object contains the following information:
 
 -   `Action`: An action or change to the text that Vale server can take with a rule, containing a `Name` for the action and `Params` passed to the action.
 -   `Check`: The rule set and rule triggered.
--   `Description`: A more detailed explanation for a rule. You can use it with [custom output format](https://docs.errata.ai/vale/cli#--output) or an editor integration's UI.
+-   `Description`: A more detailed explanation for a rule. You can use it with [custom output format](/docs/manual/output) or an editor integration's UI.
 -   `Line`: The line that contains the error.
 -   `Link`: Link to explanation of style guide rule
 -   `Message`: Help text output by the rule
