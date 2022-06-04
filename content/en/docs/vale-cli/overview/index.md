@@ -1,5 +1,5 @@
 ---
-title: Introduction
+title: Overview
 lead: |
   Learn about Vale and its use cases.
 draft: false
