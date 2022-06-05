@@ -63,7 +63,7 @@ Each object contains the following information:
 
 -   `Action`: An action or change to the text that Vale server can take with a rule, containing a `Name` for the action and `Params` passed to the action.
 -   `Check`: The rule set and rule triggered.
--   `Description`: A more detailed explanation for a rule. You can use it with [custom output format](/docs/manual/output) or an editor integration's UI.
+-   `Description`: A more detailed explanation for a rule. You can use it with [custom output format](/manual/output) or an editor integration's UI.
 -   `Line`: The line that contains the error.
 -   `Link`: Link to explanation of style guide rule
 -   `Message`: Help text output by the rule
