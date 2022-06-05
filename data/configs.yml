@@ -157,3 +157,7 @@
   info: The k6 documentation website.
   org: https://github.com/grafana
   name: Grafana
+- source: https://github.com/earthly/website/blob/main/.vale.ini
+  info: Build automation for the post-container era
+  org: https://github.com/earthly
+  name: Earthly
