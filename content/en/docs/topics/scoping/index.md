@@ -130,6 +130,28 @@ DITA is supported through the [DITA Open Toolkit](https://www.dita-ot.org/). You
 
 By default, `<codeblock>`, `<tt>`, and `<codeph>` elements are ignored.
 
+To ignore other elements, add the elements of your choice under `IgnoredScopes` or `IgnoredClasses` in your `.vale.ini` configuration file:
+
+```ini
+StylesPath = .github/styles
+
+# <userinput> is transformed as a <kbd class="ph userinput"> by the DITA-OT, it goes into IgnoredScopes
+IgnoredScopes = kbd
+
+# <uicontrol> is transformed as a <span class="ph uicontrol"> by the DITA-OT, it goes into IgnoredClasses
+IgnoredClasses = uicontrol
+
+# Suggestion, warning or error
+MinAlertLevel = suggestion
+
+# Change to the file format of your choice
+[*.{dita,ditamap}]
+```
+
+{{< alert context="info">}}
+You do not have to add the `<codeblock>`, `<tt>` and `<codeph>` elements to your `IgnoredScopes` or `IgnoredClasses`.
+{{< /alert >}}
+
 ### XML
 
 XML is supported through the external program [`xsltproc`](http://xmlsoft.org/XSLT/xsltproc.html).
