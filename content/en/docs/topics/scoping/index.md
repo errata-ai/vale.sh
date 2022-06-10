@@ -135,10 +135,10 @@ To ignore other elements, add the elements of your choice under `IgnoredScopes` 
 ```ini
 StylesPath = .github/styles
 
-# <userinput> is transformed as a <kbd class="ph userinput"> by the DITA-OT, it goes into IgnoredScopes
+# <userinput> has an equivalent in HTML. It is transformed as a <kbd class="ph userinput"> by the DITA-OT. It goes into IgnoredScopes:
 IgnoredScopes = kbd
 
-# <uicontrol> is transformed as a <span class="ph uicontrol"> by the DITA-OT, it goes into IgnoredClasses
+# <uicontrol> does not have an equivalent in HTML. It is transformed as a <span class="ph uicontrol"> by the DITA-OT. It goes into IgnoredClasses:
 IgnoredClasses = uicontrol
 
 # Suggestion, warning or error
