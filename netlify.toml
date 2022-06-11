@@ -17,13 +17,13 @@ GO111MODULE = "on"
 command = "make"
 
 [context.deploy-preview]
-command = "npm run build -- -b $DEPLOY_PRIME_URL"
+command = "make preview"
 
 [context.branch-deploy]
-command = "npm run build -- -b $DEPLOY_PRIME_URL"
+command = "make preview"
 
 [context.next]
-command = "npm run build"
+command = "make"
 
 [context.next.environment]
 HUGO_ENV = "next"
