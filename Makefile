@@ -1,9 +1,11 @@
-all: build preview
-
 define build_index
     curl https://github.com/errata-ai/library/releases/latest/download/INDEX.zip -L -o INDEX.zip
     unzip INDEX.zip -d functions/search
 endef
+
+.PHONY: build preview
+
+all: build
 
 build:
 	$(call build_index)
