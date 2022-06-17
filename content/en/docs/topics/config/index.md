@@ -102,7 +102,7 @@ WordTemplate = \b(?:%s)\b
 ### Format associations
 
 Format associations allow you to associate an "unknown" file extension with
-a supported [file format](scoping):
+a supported [file format]({{< ref "scoping" >}}):
 
 ```ini
 [formats]
