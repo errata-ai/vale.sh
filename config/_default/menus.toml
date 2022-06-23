@@ -57,12 +57,12 @@ parent = "integrations"
 url = "https://www.oxygenxml.com/doc/versions/23.1/ug-editor/topics/vale-linter-addon.html"
 weight = 120
 
-[[docs]]
-identifier = "sublime"
-name = "Sublime Text"
-parent = "integrations"
-url = "https://github.com/errata-ai/SubVale"
-weight = 120
+# [[docs]]
+# identifier = "sublime"
+# name = "Sublime Text"
+# parent = "integrations"
+# url = "https://github.com/errata-ai/SubVale"
+# weight = 120
 
 [[docs]]
 identifier = "vim"
