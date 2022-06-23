@@ -17,12 +17,6 @@ url = "/docs/topics/"
 weight = 20
 
 [[docs]]
-identifier = "vale-server"
-name = "Vale Server"
-url = "/docs/vale-server/"
-weight = 30
-
-[[docs]]
 identifier = "integrations"
 name = "Integrations"
 url = "/docs/integrations/"
@@ -75,13 +69,6 @@ identifier = "vim"
 name = "Vim"
 parent = "integrations"
 url = "https://github.com/dense-analysis/ale"
-weight = 120
-
-[[docs]]
-identifier = "neovim"
-name = "Neovim"
-parent = "integrations"
-url = "https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#vale"
 weight = 120
 
 [[docs]]
