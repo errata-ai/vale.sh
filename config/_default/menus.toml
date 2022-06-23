@@ -29,13 +29,6 @@ url = "/docs/integrations/"
 weight = 40
 
 [[docs]]
-identifier = "atom"
-name = "Atom"
-parent = "integrations"
-url = "https://github.com/errata-ai/vale-atom"
-weight = 120
-
-[[docs]]
 identifier = "emacs"
 name = "Emacs"
 parent = "integrations"
