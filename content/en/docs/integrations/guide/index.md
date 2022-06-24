@@ -11,25 +11,17 @@ weight: 115
 toc: true
 ---
 
-Vale can provide JSON output that extensions can use. How you get this output can depend on if you use Vale server or CLI.
+Vale can provide JSON output that extensions can use.
 
-## With Vale CLI
-
-Your extension should call the Vale CLI binary, which the user of your plugin needs to have installed, setting the output to `JSON` mode, along with any other arguments.
+Your extension should call the Vale CLI, which the user of your plugin
+needs to have installed, setting the output to `JSON` mode, along with any other
+arguments.
 
 ```shell
 vale --output JSON {path/file}
 ```
 
 Look at how the VSCode extension uses the [`buildCommand`](https://github.com/errata-ai/vale-vscode/blob/78cd80ff5bcc043f51aa22126997c4e86e5b13fd/src/features/vsUtils.ts#L290) method to create [a reusable command the extension can call](https://github.com/errata-ai/vale-vscode/blob/78cd80ff5bcc043f51aa22126997c4e86e5b13fd/src/features/vsProvider.ts#L97) with a variety of parameters.
-
-## With Vale Server
-
-Your extension should call the Vale server `/vale` endpoint, which the user of your plugin needs to have installed.
-
-_<http://localhost:7777/vale>_ with the text to lint in the `text` parameter and `format` as the file extension of the file to check, including the leading ".".
-
-The VSCode extension does something similar, creating a [`postString`](https://github.com/errata-ai/vale-vscode/blob/dbdb13bdf05c3ca8562a3f181c07fcb609ea9793/src/features/vsUtils.ts#L238) method that handles creating the request and response to the endpoint, [that the extension calls](https://github.com/errata-ai/vale-vscode/blob/78cd80ff5bcc043f51aa22126997c4e86e5b13fd/src/features/vsProvider.ts#L44) when needed.
 
 ## JSON output of checks
 
@@ -82,5 +74,4 @@ For example, the VSCode extension uses the shared [`handleJSON`](https://github.
 If the editor or IDE allows for user-configured settings for a plugin, then some of the following are good settings to include:
 
 -   When to check a document with Vale, on every change, or on save?
--   How to toggle between Vale CLI or Vale Server
 -   Custom paths for the Vale CLI binary, configuration, or styles paths
