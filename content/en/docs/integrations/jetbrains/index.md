@@ -65,7 +65,7 @@ Go to `Preferences > Keymap > External Tools > Vale`, click
 
 ## Grazie
 
-[Grazie Professional][1] is plugin developed by the JetBrains' team that
+[Grazie Professional][2] is plugin developed by the JetBrains' team that
 "provides intelligent grammar checks, completion, and writing assistance for
 natural language."
 
