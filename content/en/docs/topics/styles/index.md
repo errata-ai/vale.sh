@@ -557,6 +557,8 @@ tag: '...'
 skip: 3
 ```
 
+`sequence`-based are [sentence-scoped](/docs/topics/scoping/#markup).
+
 ### script
 
 `script` allows for the creation of arbitrary logic-based rules using
