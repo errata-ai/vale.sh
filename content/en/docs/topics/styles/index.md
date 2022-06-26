@@ -519,19 +519,24 @@ support grammar-focused rules.
 
 ```yaml
 extends: sequence
+# `%[4]s` is like `%s`, but specifically refers to the 4th token in our
+# sequence.
 message: "The infinitive '%[4]s' after 'be' requires 'to'. Did you mean '%[2]s %[3]s *to* %[4]s'?"
 tokens:
   - tag: MD
   - pattern: be
   - tag: JJ
+  # The `|` notation means that we'll accept `VB` or `VBN` in position 4.
   - tag: VB|VBN
 ```
 
-Its built on top of [prose](https://github.com/jdkato/prose) (an open-source
-natural language processing library) and makes significant use of
-part-of-speech tagging.
+Every `sequence`-based rule is required to have at least one `pattern` (such as
+`pattern: be`, shown above). This becomes the "anchor" of the sequence: we find
+all instances of the first pattern and then check that the left- and right-hand
+sides of the sequence match.
 
-An individual `NLPToken` has the following structure:
+Each entry in a sequence is known as an `NLPToken` and has the following
+structure:
 
 ```yaml
 # [optional]: A regular expression (required
@@ -551,14 +556,6 @@ tag: '...'
 # this token and the next one.
 skip: 3
 ```
-
-The example rule illustrates the basics of the extension point: we're looking
-for a particular *sequence* of tokens (which can either be a regular
-expression or a part-of-speech tag). The `|` notation means that we'll accept
-`VB` or `VBN` in position 4.
-
-There's also new notation in the `message`:  `%[4]s` is like `%s`, but
-specifically refers to the 4th token in our sequence.
 
 ### script
 
