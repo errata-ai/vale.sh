@@ -165,3 +165,7 @@
   info: D2iQ Product Documentation and Docs Website Code
   org: https://github.com/mesosphere
   name: D2iQ
+- source: https://github.com/SAP/cloud-sdk/blob/main/.vale.ini
+  info: The SAP Cloud SDK documentation and support repository.
+  org: https://github.com/SAP
+  name: SAP
