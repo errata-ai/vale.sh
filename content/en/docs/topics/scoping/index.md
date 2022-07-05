@@ -149,11 +149,24 @@ Transform = docbook-xsl-snapshot/html/docbook.xsl
 
 ### Org
 
-[Org](https://orgmode.org/) support is built in.
-
-Vale ignores code blocks, literal examples, code strings, and verbatim strings by default.
+[Org](https://orgmode.org/) support is built in. Vale ignores code blocks, literal examples, code strings, and verbatim strings by default.
 
 ### Code
+
+Vale supports linting source code comments in a number of languages (see the table below). You can assign a markup
+format to the content of the comments using the [format association](/docs/topics/config/#format-associations) section:
+
+```ini
+StylesPath = styles
+MinAlertLevel = suggestion
+
+[formats]
+# Rust + Markdown
+rs = md
+
+[*.md]
+BasedOnStyles = Vale
+```
 
 {{< table code.yml >}}
 
