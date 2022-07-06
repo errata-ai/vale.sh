@@ -26,7 +26,7 @@ weight = 40
 identifier = "emacs"
 name = "Emacs"
 parent = "integrations"
-url = "https://github.com/abingham/flycheck-vale"
+url = "https://github.com/tpeacock19/flymake-vale"
 weight = 120
 
 [[docs]]
