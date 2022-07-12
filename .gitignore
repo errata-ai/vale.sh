@@ -10,6 +10,7 @@ resources
 .idea
 
 functions/search/INDEX
+INDEX.zip
 
 # We want to ignore our StylesPath *except* for our local
 # `Vocab/Base` folder.
