@@ -31,5 +31,5 @@ BasedOnStyles = Vale, Microsoft
 To get started, add the package to your configuration file (as shown above)
 and then run `vale sync`.
 
-[1]: (https://docs.microsoft.com/en-us/style-guide/welcome/
+[1]: https://docs.microsoft.com/en-us/style-guide/welcome/
 [2]: https://github.com/MicrosoftDocs/microsoft-style-guide/blob/master/LICENSE
