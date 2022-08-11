@@ -72,8 +72,10 @@ scoping rules applied.
 Markdown autolinks are not currently supported. See [issues/288](https://github.com/errata-ai/vale/issues/288) for more information.
 {{< /alert >}}
 
-[GitHub-Flavored Markdown](https://github.github.com/gfm/) support is built in.
-By default, indented blocks, fenced blocks, and code spans are ignored.
+[GitHub-Flavored Markdown](https://github.github.com/gfm/) support is built in. Vale ignores indented blocks, fenced
+blocks, and code spans by default.
+
+The supported extensions are `.md`, `.mdown`, `.markdown`, and `.markdn`.
 
 If you're using another flavor of Markdown, see
 [non-standard markup](#non-standard-markup) for information on how to
@@ -81,8 +83,10 @@ make your flavor compatible.
 
 ### HTML
 
-HTML5 support is built in. By default, `script`, `style`, `pre`, `code`,
-and `tt` tags are ignored.
+HTML5 support is built in. Vale ignores `script`, `style`, `pre`, `code`,
+and `tt` tags by default.
+
+The supported extensions are `.html`, `.htm`, `.shtml`, and `.xhtml`.
 
 ### reStructuredText
 
@@ -91,11 +95,13 @@ reStructuredText is supported through the external program
 `rst2html` by installing either [Sphinx](http://www.sphinx-doc.org/en/stable/) or
 [docutils](http://docutils.sourceforge.net/).
 
-By default, literal blocks, inline literals, and `code-block`s are ignored.
+Vale ignores literal blocks, inline literals, and `code-block`s by default. The supported extensions are `.rst` and `.rest`.
 
 ### AsciiDoc
 
-AsciiDoc is supported through the external program [Asciidoctor](https://rubygems.org/gems/asciidoctor). By default, listing blocks and inline literals are ignored.
+AsciiDoc is supported through the external program [Asciidoctor](https://rubygems.org/gems/asciidoctor).
+
+Vale ignores listing blocks and inline literals by default. The supported extensions are `.adoc`, `.asciidoc` and `.asc`.
 
 You can customize how `asciidoctor` is called by passing [document attributes](https://docs.asciidoctor.org/asciidoc/latest/attributes/document-attributes-ref/):
 
@@ -128,7 +134,7 @@ you'll likely experience worse performance with DITA files compared to other for
 
 DITA is supported through the [DITA Open Toolkit](https://www.dita-ot.org/). You'll need to follow the [installation instructions](https://www.dita-ot.org/dev/topics/installing-client.html), including the optional step of adding the absolute path for the `bin` directory to the `PATH` system variable.
 
-By default, `<codeblock>`, `<tt>`, and `<codeph>` elements are ignored.
+Vale ignores `<codeblock>`, `<tt>`, and `<codeph>` elements by default.
 
 ### XML
 
@@ -141,7 +147,26 @@ You also need to provide a version 1.0 XSL Transformation \(XSLT\) for convertin
 Transform = docbook-xsl-snapshot/html/docbook.xsl
 ```
 
+### Org
+
+[Org](https://orgmode.org/) support is built in. Vale ignores code blocks, literal examples, code strings, and verbatim strings by default.
+
 ### Code
+
+Vale supports linting source code comments in a number of languages (see the table below). You can assign a markup
+format to the content of the comments using the [format association](/docs/topics/config/#format-associations) section:
+
+```ini
+StylesPath = styles
+MinAlertLevel = suggestion
+
+[formats]
+# Rust + Markdown
+rs = md
+
+[*.md]
+BasedOnStyles = Vale
+```
 
 {{< table code.yml >}}
 

@@ -28,3 +28,11 @@
     ```
 
     See [Linuxbrew](https://docs.brew.sh/Homebrew-on-Linux) for more information.
+
+    On Fedora, you can use the `mczernek/vale` COPR repository:
+
+    ```shell
+    sudo dnf copr enable mczernek/vale && sudo dnf install vale
+    ```
+
+    See the [community documentation](https://github.com/m-czernek/vale-spec) for more information.
