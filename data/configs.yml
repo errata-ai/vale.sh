@@ -169,7 +169,7 @@
   info: The SAP Cloud SDK documentation and support repository.
   org: https://github.com/SAP
   name: SAP
-- source: https://github.com/Kong/docs.konghq.com/blob/main/vale.ini
+- source: https://github.com/Kong/docs.konghq.com/blob/main/.vale.ini
   info: 🦍 Source code for docs.konghq.com website
   org: https://github.com/Kong
   name: Kong
