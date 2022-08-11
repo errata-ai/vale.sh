@@ -121,7 +121,7 @@
   info: Resources for users of the projects on the Aiven platform.
   org: https://github.com/aiven
   name: Aiven
-- source: https://github.com/buildkite/docs/blob/main/.vale.ini
+- source: https://github.com/buildkite/docs/blob/main/vale/.vale.ini
   info: The source files for the Buildkite documentation.
   org: https://github.com/buildkite
   name: Buildkite
