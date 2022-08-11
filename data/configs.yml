@@ -169,3 +169,7 @@
   info: The SAP Cloud SDK documentation and support repository.
   org: https://github.com/SAP
   name: SAP
+- source: https://github.com/angular/angular/tree/main/aio/tools/doc-linter
+  info: The modern web developer’s platform.
+  org: https://github.com/angular/angular
+  name: Angular
