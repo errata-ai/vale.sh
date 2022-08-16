@@ -3,6 +3,7 @@ title: Trademaks
 lead: Enforce the use of '®'.
 tags:
   - terminology & branding
+extends: conditional
 draft: false
 toc: false
 ---
@@ -23,5 +24,5 @@ second: '(myterm) (?:®|\(R\))'
 {{< output >}}
 <mark title="'myterm' should be marked as a trademark">myterm</mark> used with no prior trademarking.
 
-myterm (R) is okay here..
+myterm (R) is okay here.
 {{< /output >}}
