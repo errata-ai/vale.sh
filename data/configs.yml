@@ -33,16 +33,16 @@
   info: CockroachDB user documentation
   org: https://github.com/cockroachdb
   name: CockroachDB
-- source: https://github.com/eclipse/che-docs/blob/master/.vale.ini
-  info: Eclipse Che Documentation
-  org: https://github.com/eclipse
-  name: Eclipse
-- source: https://github.com/eclipse/che-docs/blob/master/.vale.ini
-  info: |
-    Vale config files, styles, and docs to help individuals and teams roll out
-    Vale.
-  org: https://github.com/redhat-documentation
-  name: RedHat
+#- source: https://github.com/eclipse/che-docs/blob/master/.vale.ini
+#  info: Eclipse Che Documentation
+#  org: https://github.com/eclipse
+#  name: Eclipse
+#- source: https://github.com/eclipse/che-docs/blob/master/.vale.ini
+#  info: |
+#    Vale config files, styles, and docs to help individuals and teams roll out
+#    Vale.
+#  org: https://github.com/redhat-documentation
+#  name: RedHat
 - source: https://github.com/writethedocs/www/blob/main/.vale.ini
   info: The main website for Write the Docs.
   org: https://github.com/writethedocs
