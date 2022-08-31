@@ -14,7 +14,7 @@ toc: true
 ## Package Managers
 
 In general, the recommended approach on all platforms is to use a package
-manager such as Homebrew (macOS) or Chocolately (Windows):
+manager such as Homebrew (macOS) or Chocolatey (Windows):
 
 {{< tabs install >}}
 
