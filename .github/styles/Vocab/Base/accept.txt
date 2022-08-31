@@ -4,7 +4,6 @@ alex
 Asciidoctor
 autolinks
 boolean
-Chocolately
 docutils
 Grazie
 jdkato

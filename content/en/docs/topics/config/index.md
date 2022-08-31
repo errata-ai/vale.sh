@@ -131,7 +131,7 @@ BasedOnStyles = Style1, Style2
 
 `BasedOnStyles` specifies styles that should have all of their rules enabled.
 
-If you only want to enabled certain rules within a style, you can do so on an
+If you only want to enable certain rules within a style, you can do so on an
 individual basis:
 
 ```ini

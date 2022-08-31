@@ -27,7 +27,7 @@ To configure Vale as an external tool, go to
 {{< caption src="img/args.png" width="500px" >}}
 
 Then, to run Vale on the current file, click `Tools > External Tools > Vale`.
-An output panel will appears with clickable navigation links:
+An output panel will appear with clickable navigation links:
 
 {{< caption src="img/output.png" width="800px" >}}
 

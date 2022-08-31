@@ -1,5 +1,5 @@
 ---
-title: Trademaks
+title: Trademarks
 lead: Enforce the use of '®'.
 tags:
   - terminology & branding
