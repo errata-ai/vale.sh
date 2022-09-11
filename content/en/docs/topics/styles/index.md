@@ -426,6 +426,7 @@ into its `message` format specifier (`%s`).
 | `ignore`       | `string` | A relative path \(from `StylesPath`\) to a file consisting of one word per line to ignore.  |
 | `dicpath`      | `string` | The location to look for `.dic` and `.aff` files.                                           |
 | `dictionaries` | `array`  | An array of dictionaries to load.                                                           |
+| `append`       | `bool`   | Adds the array of dictionaries after the default Vale dictionary, instead of replacing it.  |
 {{< /details >}}
 
 ```yaml
