@@ -50,11 +50,11 @@ directory (specified in the config file), and a document or directory to lint.
 Here's an example of calling Vale with locally-defined components (assuming
 `$(pwd)/fixtures/styles/demo` contains a config file):
 
-```shell
-$ docker run --rm -v $(pwd)/styles:/styles \
-             --rm -v $(pwd)/fixtures/styles/demo:/docs \
-             -w /docs \
-             jdkato/vale .
+```bash
+docker run --rm -v $(pwd)/styles:/styles \
+           --rm -v $(pwd)/fixtures/styles/demo:/docs \
+           -w /docs \
+           jdkato/vale .
 ```
 
 By default, the image supports HTML, Markdown, AsciiDoc, and reStructuredText
