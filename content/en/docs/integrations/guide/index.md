@@ -21,7 +21,7 @@ arguments.
 vale --output JSON {path/file}
 ```
 
-Look at how the VSCode extension uses the [`buildCommand`](https://github.com/errata-ai/vale-vscode/blob/78cd80ff5bcc043f51aa22126997c4e86e5b13fd/src/features/vsUtils.ts#L290) method to create [a reusable command the extension can call](https://github.com/errata-ai/vale-vscode/blob/78cd80ff5bcc043f51aa22126997c4e86e5b13fd/src/features/vsProvider.ts#L97) with a variety of parameters.
+Look at how the VS Code extension uses the [`buildCommand`](https://github.com/errata-ai/vale-vscode/blob/78cd80ff5bcc043f51aa22126997c4e86e5b13fd/src/features/vsUtils.ts#L290) method to create [a reusable command the extension can call](https://github.com/errata-ai/vale-vscode/blob/78cd80ff5bcc043f51aa22126997c4e86e5b13fd/src/features/vsProvider.ts#L97) with a variety of parameters.
 
 ## JSON output of checks
 
@@ -65,7 +65,7 @@ Each object contains the following information:
 
 A plugin should loop through these checks, and parse the values, to output them to an appropriate part of the IDE or editor interface.
 
-For example, the VSCode extension uses the shared [`handleJSON`](https://github.com/errata-ai/vale-vscode/blob/78cd80ff5bcc043f51aa22126997c4e86e5b13fd/src/features/vsProvider.ts#L110) method to take each check object and convert it to a [VSCode diagnostic](https://code.visualstudio.com/api/references/vscode-api#Diagnostic) that appears in the bottom status bar of the editor window. If a user uses Vale server, you can also implement some form of "fix" solution propagated from the rule to the JSON, to the IDE or editor with the `Action` property. For example, in the [Microsoft style ellipses check](https://github.com/errata-ai/Microsoft/blob/ec219cff4ef10c558945f25dcb47eb1fc6ebca24/Microsoft/Ellipses.yml), the action is to offer to remove the ellipses.
+For example, the VS Code extension uses the shared [`handleJSON`](https://github.com/errata-ai/vale-vscode/blob/78cd80ff5bcc043f51aa22126997c4e86e5b13fd/src/features/vsProvider.ts#L110) method to take each check object and convert it to a [VS Code diagnostic](https://code.visualstudio.com/api/references/vscode-api#Diagnostic) that appears in the bottom status bar of the editor window. If a user uses Vale server, you can also implement some form of "fix" solution propagated from the rule to the JSON, to the IDE or editor with the `Action` property. For example, in the [Microsoft style ellipses check](https://github.com/errata-ai/Microsoft/blob/ec219cff4ef10c558945f25dcb47eb1fc6ebca24/Microsoft/Ellipses.yml), the action is to offer to remove the ellipses.
 
 ## General tips
 
