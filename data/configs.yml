@@ -177,3 +177,8 @@
   info: 🦍 Source code for docs.konghq.com website
   org: https://github.com/Kong
   name: Kong
+- source: https://github.com/splunk/vale-splunk-style-guide/blob/main/.vale.ini
+  info: Splunk documentation
+  org: https://github.com/splunk
+  name: Splunk
+
