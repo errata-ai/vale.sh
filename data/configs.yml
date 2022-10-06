@@ -179,6 +179,6 @@
   name: Kong
 - source: https://github.com/splunk/vale-splunk-style-guide/blob/main/.vale.ini
   info: Splunk documentation
-  org: https://github.com/Splunk
+  org: https://github.com/splunk
   name: Splunk
 
