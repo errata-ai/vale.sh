@@ -52,7 +52,6 @@ $(function () {
   var config = `StylesPath = styles
 
 MinAlertLevel = suggestion
-Vocab = Base
 
 [*]
 BasedOnStyles = Vale`
