@@ -236,7 +236,7 @@ This is a steward that raises an alert.
 
 {{< alert icon="👉" >}}
 You can override the default search process by manually specifying a path using
-the [--config](/docs/getting-started/cli/#--config) option.
+the [--config](/manual/config/) option.
 {{< /alert >}}
 
 Vale expects its configuration to be in a file named `.vale.ini` or
