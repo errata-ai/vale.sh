@@ -111,6 +111,7 @@ The most general extension point is `existence`. As its name implies, it looks f
 | `append` | `bool` | Adds `raw` to the end of `tokens`, assuming both are defined. |
 | `ignorecase` | `bool` | Makes all matches case-insensitive. |
 | `nonword` | `bool` | Removes the default word boundaries \(`\b`\). |
+| `action` | `array` | Options for correcting matches, read the [actions](#actions) section. |
 | `raw` | `array` | A list of tokens to be concatenated into a pattern. |
 | `tokens` | `array` | A list of tokens to be transformed into a non-capturing group. |
 | `exceptions` | `array` | An array of strings to be ignored. |
@@ -609,6 +610,24 @@ definition, for instance, `scope` will be the entire, unprocessed document
 since the rule used `scope: raw`.
 
 See [Scoping](/docs/topics/scoping) for more information.
+
+## Actions
+
+Actions in rules indicate a way for external tools with Vale integration to provide methods for correcting style issues. For example with code actions in VSCode.
+
+The Vale CLI tool doesn't directly do anything with the value of this field and it's up to the external tool to support any actions.
+
+While styles can use whatever value they want for actions and tools can implement the actions how they want, there are a series of standard actions that existing rules and tools use.
+
+{{< details "Key summary" >}}
+| Name | Parameters | Suggested implementation |
+| :--- | :--- | :--- |
+| `replace` | Values from the `swap` key | Swap matched value for suggestion in `swap` |
+| `remove` | None | Remove the instance of the matched token. |
+| `suggest` |  |  |
+| `edit` |  |  |
+| `convert` |  |  |
+{{< /details >}}
 
 ## Built-in style
 
