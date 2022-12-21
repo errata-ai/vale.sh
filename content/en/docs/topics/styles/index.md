@@ -624,9 +624,7 @@ While styles can use whatever value they want for actions and tools can implemen
 | :--- | :--- | :--- |
 | `replace` | Values from the `swap` key | Swap matched value for suggestion in `swap` |
 | `remove` | None | Remove the instance of the matched token. |
-| `suggest` |  |  |
-| `edit` |  |  |
-| `convert` |  |  |
+| `suggest` | `spellings` | Suggest alternatives from a non-hardcoded source. Currently only for spelling errors and `spelling` styles. |
 {{< /details >}}
 
 ## Built-in style
