@@ -65,6 +65,12 @@ Each object contains the following information:
 
 A plugin should loop through these checks, and parse the values, to output them to an appropriate part of the IDE or editor interface.
 
+{{< alert context="info" icon="👉">}}
+**Heads up**!
+
+A plugin needs to implement actions itself, Vale CLI only provides the action passed from the style and the matched tokens from text checked. You can find [suggestions on how to implement the action in the styles guide](/docs/topics/styles#actions).
+{{< /alert >}}
+
 For example, the VS Code extension uses the shared [`handleJSON`](https://github.com/errata-ai/vale-vscode/blob/78cd80ff5bcc043f51aa22126997c4e86e5b13fd/src/features/vsProvider.ts#L110) method to take each check object and convert it to a [VS Code diagnostic](https://code.visualstudio.com/api/references/vscode-api#Diagnostic) that appears in the bottom status bar of the editor window. If a user uses Vale server, you can also implement some form of "fix" solution propagated from the rule to the JSON, to the IDE or editor with the `Action` property. For example, in the [Microsoft style ellipses check](https://github.com/errata-ai/Microsoft/blob/ec219cff4ef10c558945f25dcb47eb1fc6ebca24/Microsoft/Ellipses.yml), the action is to offer to remove the ellipses.
 
 ## General tips
