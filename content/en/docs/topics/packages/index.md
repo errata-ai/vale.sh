@@ -54,6 +54,7 @@ in the official [Package Hub](/hub/)
   2. a URL to an externally-hosted
 package
   3. an absolute or relative path to a package ZIP file located in a local file system.
+  4. an absolute or relative path to a directory containing package files.
 
 ## Style-only
 
