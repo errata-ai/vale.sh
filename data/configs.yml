@@ -181,4 +181,12 @@
   info: Splunk documentation
   org: https://github.com/splunk
   name: Splunk
+- source: https://docs.fedoraproject.org/en-US/fedora-docs/contributing-docs/tools-vale-linter/
+  info: Fedora Linux documentation
+  org: https://github.com/fedora-infra
+  name: Fedora
+- source: https://docs.medusajs.com/contribution-guidelines/#linting-with-vale
+  info: Open-source headless commerce engine
+  org: https://github.com/medusajs
+  name: Medusa
 
