@@ -247,7 +247,7 @@ equivalent of `$HOME` \(see below\).
 
 | OS      | Search Locations                                     |
 | :------ | :--------------------------------------------------- |
-| Windows | `$HOME`, `%UserProfile%`, or `%HomeDrive%%HomePath%` |
+| Windows | `%UserProfile%`                                      |
 | macOS   | `$HOME`                                              |
 | Linux   | `$HOME`                                              |
 
