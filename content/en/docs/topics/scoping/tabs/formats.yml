@@ -1,0 +1,54 @@
+- title: Hugo Shortcodes
+  active: true
+  body: |
+    To ignore entire blocks of text, you'll want to define `BlockIgnores`.
+    Consider the following [shortcode-like](https://gohugo.io/content-management/shortcodes/)
+    `file` snippet:
+
+    ```text
+    {< file "hello.go" go >}
+    package main
+
+    func main() {
+        fmt.Printf("hello, world\n")
+    }
+    {</ file >}
+    ```
+
+    To ignore all instances of `file`, we'd use a pattern along the lines of the
+    following:
+
+    ```ini
+    BlockIgnores = (?s) *({< file [^>]* >}.*?{</ ?file >})
+    ```
+
+- title: Markdown
+  body: |
+    To ignore an inline section of text you'll want to define `TokenIgnores`.
+    Let's say we want to ignore math equations of the form `$...$`, that look something like:
+
+    ```latex
+    $\begin{bmatrix} k & k & k \end{bmatrix}^T$
+    ```
+
+    To ignore all instances of math equations, we'd use a pattern along the lines of the
+    following:
+
+    ```ini
+    TokenIgnores = (\$+[^\n$]+\$+)
+    ```
+
+- title: reStructuredText
+  body: |
+    To ignore directive blocks use `BlockIgnores`. For example, ignoring `.. math::` directives:
+
+    ```ini
+    BlockIgnores = (?s) *(\.\. math::)
+    ```
+
+    To ignore inline roles use `TokenIgnores`. For example, ignoring `:math:` roles:
+
+    ```ini
+    TokenIgnores = (:math:`.*`)
+    ```
+
