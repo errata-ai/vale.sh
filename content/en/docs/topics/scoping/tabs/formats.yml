@@ -1,9 +1,9 @@
 - title: Hugo Shortcodes
   active: true
   body: |
-    To ignore entire blocks of text, you'll
-    want to define `BlockIgnores`. Consider the following
-    [shortcode-like](https://gohugo.io/content-management/shortcodes/) `file` snippet:
+    To ignore entire blocks of text, you'll want to define `BlockIgnores`.
+    Consider the following [shortcode-like](https://gohugo.io/content-management/shortcodes/)
+    `file` snippet:
 
     ```text
     {< file "hello.go" go >}

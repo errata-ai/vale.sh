@@ -175,7 +175,9 @@ BasedOnStyles = Vale
 ## Non-standard markup
 
 When working with non-HTML markup, you'll probably find that there are certain
-non-standard sections of text you'd like to ignore. This is possible using [`BlockIgnores`](/docs/topics/config/#blockignores) and [`TokenIgnores`](/docs/topics/config/#tokenignores). Some examples:
+non-standard sections of text you'd like to ignore. This is possible using
+[`BlockIgnores`](/docs/topics/config/#blockignores) and
+[`TokenIgnores`](/docs/topics/config/#tokenignores). Some examples:
 
 {{< tabs formats >}}
 
