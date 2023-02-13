@@ -152,23 +152,41 @@ Style1.Rule2 = error
 
 #### BlockIgnores
 
+`BlockIgnores` allow you to exclude certain block-level sections of text that
+don't have an associated HTML tag that could be used with [`SkippedScopes`](#skippedscopes).
+
 ```ini
 [*]
 BlockIgnores = (?s) *({< file [^>]* >}.*?{</ ?file >})
 ```
 
-`BlockIgnores` allow you to exclude certain block-level sections of text that
-don't have an associated HTML tag that could be used with `SkippedScopes`.
+The basic idea is to capture the entire block in the first grouping. See
+[regex101](https://regex101.com/r/mFM0kZ/1/) for a more thorough explanation.
+
+You can also define more than one block by using a list \(the `\` allows for line
+breaks\):
+
+```ini
+BlockIgnores = (?s) *({< output >}.*?{< ?/ ?output >}), \
+(?s) *({< highlight .* >}.*?{< ?/ ?highlight >})
+```
+
+See [Non-standard markup](/docs/topics/scoping/#non-standard-markup) for more usage examples.
 
 #### TokenIgnores
+
+`TokenIgnores` allow you to exclude certain inline-level sections of text that
+don't have an associated HTML tag that could be used with [`IgnoredScopes`](#ignoredscopes).
 
 ```ini
 [*]
 TokenIgnores = (\$+[^\n$]+\$+)
 ```
 
-`TokenIgnores` allow you to exclude certain inline-level sections of text that
-don't have an associated HTML tag that could be used with `IgnoredScopes`.
+The basic idea is to capture the entire inline-level section in the first grouping. See
+[regex101](https://regex101.com/r/mFM0kZ/1/) for a more thorough explanation.
+
+See [Non-standard markup](/docs/topics/scoping/#non-standard-markup) for more usage examples.
 
 #### Transform
 
