@@ -10,6 +10,11 @@ p {
   height: 2.5rem;
 }
 
+pre {
+  margin-top: 1rem !important;
+  margin-bottom: 1rem !important;
+}
+
 .result-tag {
   margin-right: 2px;
 }
