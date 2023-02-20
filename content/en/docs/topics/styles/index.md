@@ -613,19 +613,127 @@ See [Scoping](/docs/topics/scoping) for more information.
 
 ## Actions
 
-Actions in rules indicate a way for external tools with Vale integration to provide methods for correcting style issues. For example with code actions in VSCode.
-
+Actions in rules indicate a way for external tools with Vale integration to provide methods for correcting style issues.
+For example, with code actions in VSCode.
 The Vale CLI tool doesn't directly do anything with the value of this field and it's up to the external tool to support any actions.
 
+{{< alert icon="👉" >}}
+Rule actions are currently only supported in **Visual Studio Code** and **Sublime Text 3**. Support for other clients is on the way!
+{{< /alert >}}
+
 While styles can use whatever value they want for actions and tools can implement the actions how they want, there are a series of standard actions that existing rules and tools use.
+An action consists of a `name` and an array of `params`, and can be added to any rule definition.
 
 {{< details "Key summary" >}}
 | Name | Parameters | Suggested implementation |
 | :--- | :--- | :--- |
-| `replace` | Values from the `swap` key | Swap matched value for suggestion in `swap` |
-| `remove` | None | Remove the instance of the matched token. |
-| `suggest` | `spellings` | Suggest alternatives from a non-hardcoded source. Currently only for spelling errors and `spelling` styles. |
+| [`suggest`](#suggest) | `spellings` | Suggest alternatives from a non-hardcoded source. Currently only for spelling errors and `spelling` styles. |
+| [`replace`](#replace) | Values from the `swap` key | Swap matched value for suggestion in `swap` |
+| [`remove`](#remove) | None | Remove the instance of the matched token. |
+| [`convert`](#convert) | None | Convert the case of the matched text of any rule according to the parameter provided. |
+| [`edit`](#edit) | String | Perform an in-place edit on the match string according to the provided parameters. |
 {{< /details >}}
+
+For example, a [`spelling`](#spelling) rule that uses the [`suggest`](#suggest) action:
+
+```yaml
+extends: spelling
+message: "Did you really mean '%s'?"
+level: error
+action:
+  name: suggest
+  params:
+    - spellings
+ignore:
+  - vocab.txt
+```
+
+### suggest
+
+`suggest` takes a single parameter and returns an array of possible replacements.
+
+{{< details "Params summary" >}}
+| Name | Type | Description |
+| :--- | :--- | :--- |
+| `spellings` | N/A | Returns an array of possible replacements for a misspelled word. |
+{{< /details >}}
+
+```yaml
+action:
+  name: suggest
+  params:
+    - spellings
+```
+
+### replace
+
+`replace` returns an array of user-provided replacements.
+
+{{< alert icon="👉" >}}
+Rules that extend `substitution` will automatically populate the `params` array, so you can simply provide the `name`, as
+`replace` returns an array of user-provided replacements:
+
+```yaml
+action:
+  name: replace
+```
+{{< /alert >}}
+
+```yaml
+action:
+  name: replace
+  params:
+    - option1
+    - option2
+    ...
+```
+
+### remove
+
+`remove` will remove the matched text of any rule.
+
+```yaml
+action:
+  name: remove
+```
+
+### convert
+
+`convert` will convert the case of the matched text of any rule according to the parameter provided.
+
+{{< details "Params summary" >}}
+| Name | Type | Description |
+| :--- | :--- | :--- |
+| `simple` | N/A | Return the matched text as a lowercased, space-delimited string. |
+{{< /details >}}
+
+```yaml
+action:
+  name: convert
+  params:
+    - simple
+```
+
+### edit
+
+`edit` will perform an in-place edit on the match string according to the provided parameters.
+
+{{< details "Params summary" >}}
+| Name | Type | Description |
+| :--- | :--- | :--- |
+| `replace` | `string`, `string` | Replace the first parameter with the second. |
+| `trim` | `string` | Trim the first parameter from the end of the matched text. |
+| `remove` | `string` | Remove the first parameter from the both start and end of the matched text. |
+| `split` | `string`, `int` | Split the matched text on the first parameter at the index of the second parameter. |
+{{< /details >}}
+
+```yaml
+action:
+  name: edit
+  params:
+    - remove
+    - '.?!'
+```
 
 ## Built-in style
 
