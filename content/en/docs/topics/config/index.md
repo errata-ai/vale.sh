@@ -173,6 +173,10 @@ BlockIgnores = (?s) *({< output >}.*?{< ?/ ?output >}), \
 
 See [Non-standard markup](/docs/topics/scoping/#non-standard-markup) for more usage examples.
 
+{{< alert icon="👉" context="warning" >}}
+Ignore patterns aren't yet supported in DITA. See [issues/407](https://github.com/errata-ai/vale/issues/407) for more information.
+{{< /alert >}}
+
 #### TokenIgnores
 
 `TokenIgnores` allow you to exclude certain inline-level sections of text that
@@ -187,6 +191,10 @@ The basic idea is to capture the entire inline-level section in the first groupi
 [regex101](https://regex101.com/r/mFM0kZ/1/) for a more thorough explanation.
 
 See [Non-standard markup](/docs/topics/scoping/#non-standard-markup) for more usage examples.
+
+{{< alert icon="👉" context="warning" >}}
+Ignore patterns aren't yet supported in DITA. See [issues/407](https://github.com/errata-ai/vale/issues/407) for more information.
+{{< /alert >}}
 
 #### Transform
 
