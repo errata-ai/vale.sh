@@ -618,7 +618,7 @@ For example, with code actions in VSCode.
 The Vale CLI tool doesn't directly do anything with the value of this field and it's up to the external tool to support any actions.
 
 {{< alert icon="👉" >}}
-Rule actions are currently only supported in **Visual Studio Code** and **Sublime Text 3**. Support for other clients is on the way!
+Rule actions are currently only supported in **Visual Studio Code**. Support for other clients is on the way!
 {{< /alert >}}
 
 While styles can use whatever value they want for actions and tools can implement the actions how they want, there are a series of standard actions that existing rules and tools use.
