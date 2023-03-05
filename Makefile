@@ -13,4 +13,4 @@ build:
 
 preview:
 	$(call build_index)
-	npm run build -- -b $DEPLOY_PRIME_URL
+	npm run build -- -b ${DEPLOY_PRIME_URL}

@@ -71,6 +71,12 @@ data:
       `#` (`text.comment.line.ext`),
       `/*...*/` (`text.comment.line.ext`),
       `/*` (`text.comment.block.ext`)
+  - language: PowerShell
+    extensions: "`.ps1`"
+    scopes: |
+      `#` (`text.comment.line.ext`),
+      `<#...#>` (`text.comment.line.ext`),
+      `<#` (`text.comment.block.ext`)
   - language: Python
     extensions: "`.py`, `.py3`, `.pyw`, `.pyi`, `rpy`"
     scopes: |
@@ -85,6 +91,10 @@ data:
     scopes: |
       `#` (`text.comment.line.ext`),
       `^=begin` (`text.comment.block.ext`)
+  - language: Rust
+    extensions: "`.rs`"
+    scopes: |
+      `//` (`text.comment.line.ext`)
   - language: Sass
     extensions: "`.sass`"
     scopes: |
