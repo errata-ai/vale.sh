@@ -154,7 +154,7 @@
   org: https://github.com/umbraco
   name: Umbraco
 - source: https://github.com/inspec/inspec/tree/main/docs-chef-io/tools/vale
-  info: 'InSpec: Auditing and Testing Framework'
+  info: "InSpec: Auditing and Testing Framework"
   org: https://github.com/inspec
   name: InSpec
 - source: https://github.com/cloudquery/docs/blob/main/.vale.ini
@@ -189,4 +189,7 @@
   info: Open-source headless commerce engine
   org: https://github.com/medusajs
   name: Medusa
-
+- source: https://github.com/docker/docs/blob/main/.vale.ini
+  info: Docker helps developers bring their ideas to life by conquering the complexity of app development.
+  org: https://github.com/docker
+  name: Docker
