@@ -14,25 +14,3 @@
     ```
 
     See [Homebrew](https://brew.sh/) for more information.
-
-- title: <i class="fab fa-linux"></i> Linux
-  body: |
-    ```shell
-    snap install --edge vale
-    ```
-
-    See [Snapcraft](https://snapcraft.io/) for more information.
-
-    ```shell
-    brew install vale
-    ```
-
-    See [Linuxbrew](https://docs.brew.sh/Homebrew-on-Linux) for more information.
-
-    On Fedora, you can use the `mczernek/vale` COPR repository:
-
-    ```shell
-    sudo dnf copr enable mczernek/vale && sudo dnf install vale
-    ```
-
-    See the [community documentation](https://github.com/m-czernek/vale-spec) for more information.
