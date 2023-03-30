@@ -5,7 +5,7 @@
     choco install vale
     ```
 
-    See [Chocolatey](https://chocolatey.org/) for more information.
+    See [Chocolatey](https://community.chocolatey.org/packages/vale) for more information.
 
 - title: <i class="fab fa-apple"></i> macOS
   body: |
@@ -13,4 +13,4 @@
     brew install vale
     ```
 
-    See [Homebrew](https://brew.sh/) for more information.
+    See [Homebrew](https://formulae.brew.sh/formula/vale) for more information.
