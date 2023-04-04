@@ -128,7 +128,7 @@ tokens:
     - arguably
 ```
 
-These tokens can be anything from simple phrases \(as in the above example\) to complex regular expressions&mdash;e.g., [the number of spaces between sentences](https://github.com/errata-ai/vale/blob/master/styles/demo/Spacing.yml) or [the position of punctuation after quotes](https://github.com/errata-ai/Google/blob/master/Google/Quotes.yml).
+These tokens can be anything from simple phrases \(as in the above example\) to complex regular expressions&mdash;e.g., [the number of spaces between sentences](https://github.com/errata-ai/vale/blob/master/testdata/styles/demo/Spacing.yml) or [the position of punctuation after quotes](https://github.com/errata-ai/Google/blob/master/Google/Quotes.yml).
 
 You may define the tokens as elements of lists named either `tokens` \(shown above\) or `raw`. The former converts its elements into a word-bounded, non-capturing group. For instance,
 
