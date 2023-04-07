@@ -8,6 +8,7 @@ resources
 
 .vscode
 .idea
+*.sublime-project
 
 functions/search/INDEX
 INDEX.zip
