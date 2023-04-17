@@ -14,10 +14,10 @@ toc: false
 ```yaml
 message: "Missing an 'Introduction' heading."
 extends: occurrence
-scope: heading
+scope: raw
 level: error
 min: 1
-token: Introduction
+token: "# Introduction"
 ```
 
 ## Example
