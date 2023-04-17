@@ -138,7 +138,7 @@ weight = 20
 [[social]]
 name = "YouTube"
 pre = '<i class="fab fa-youtube"></i>'
-url = "https://www.youtube.com/channel/UCw-GUZljsD4zddL-nppAu9w"
+url = "https://www.youtube.com/@valecli"
 weight = 30
 
 # [[social]]
