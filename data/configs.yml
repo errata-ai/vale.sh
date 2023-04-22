@@ -197,3 +197,7 @@
   info: Powerful, fast, and an easy to use search engine.
   org: https://github.com/meilisearch
   name: Meilisearch
+- source: https://github.com/crossplane/docs/blob/master/utils/vale/.vale.ini
+  info: Universal Control Plane
+  org: https://github.com/crossplane
+  name: Crossplane
