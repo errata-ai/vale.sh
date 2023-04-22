@@ -331,6 +331,8 @@ of `match`.
 | `match` | `string` | `$title`, `$sentence`, `$lower`, `$upper`, or a pattern. |
 | `style` | `string` | AP or Chicago; only applies when match is set to `$title`. |
 | `exceptions` | `array` | An array of strings to be ignored. |
+| `indicators` | `array` | An array of suffixes that indicate the next token should be ignored. |
+| `threshold` | `float` | The minimum proportion of words that must be (un)capitalized for a sentence to be considered correct (default: 0.8). |
 {{< /details >}}
 
 ```yaml
@@ -562,6 +564,14 @@ skip: 3
 `sequence`-based are [sentence-scoped](/docs/topics/scoping/#markup).
 
 ### script
+
+{{< alert context="info">}}
+**Heads up**!
+
+When using `script`-based rules, you're limited to the standard Go [regex syntax][1].
+
+[1]: https://pkg.go.dev/regexp/syntax
+{{< /alert >}}
 
 `script` allows for the creation of arbitrary logic-based rules using
 [Tengo](https://github.com/d5/tengo), a Go-like scripting language.

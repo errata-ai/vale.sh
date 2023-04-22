@@ -64,6 +64,35 @@ There are two `code` scopes: `comment.line` and `comment.block`.
 Any format not listed below is considered to be `text` and has no special
 scoping rules applied.
 
+## Multi-scope rules
+
+Rules may define multiple scopes by using a YAML array:
+
+```yaml
+scope:
+    # h1 OR h2
+    - heading.h2
+    - heading.h3
+```
+
+## Negation & multi-part selectors
+
+Any scope prefaced with "~" is negated:
+
+```yaml
+scope:
+  # all scopes != h2
+  - ~heading.h2
+```
+
+You can chain multiple scopes together using "&":
+
+
+```yaml
+scope:
+  - ~blockquote & ~heading
+```
+
 ## Formats
 
 ### Markdown
