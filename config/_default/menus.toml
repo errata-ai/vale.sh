@@ -116,6 +116,12 @@ url = "/generator/"
 weight = 60
 
 [[main]]
+name = "Vale Studio"
+parent = "resources"
+url = "https://studio.vale.sh/"
+weight = 70
+
+[[main]]
 identifier = "manual"
 name = "CLI Manual"
 parent = "resources"
