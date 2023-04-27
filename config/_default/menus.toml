@@ -58,17 +58,17 @@ url = "https://www.oxygenxml.com/doc/versions/23.1/ug-editor/topics/vale-linter-
 weight = 120
 
 [[docs]]
-identifier = "sublime"
-name = "Sublime Text"
-parent = "integrations"
-url = "https://packagecontrol.io/packages/SublimeLinter-contrib-vale"
-weight = 120
-
-[[docs]]
 identifier = "vim"
 name = "Vim"
 parent = "integrations"
 url = "https://github.com/dense-analysis/ale"
+weight = 120
+
+[[docs]]
+identifier = "sublime"
+name = "Sublime Text"
+parent = "integrations"
+url = "https://packagecontrol.io/packages/SublimeLinter-vale"
 weight = 120
 
 [[docs]]

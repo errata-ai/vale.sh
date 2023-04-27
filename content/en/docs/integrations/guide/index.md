@@ -11,21 +11,41 @@ weight: 115
 toc: true
 ---
 
+There are two ways to integrate Vale with other tools and services: using the
+Vale CLI directly or using the Vale Language Server (`vale-ls`).
+
+For any application that supports the [Language Server Protocol][1], we
+recommend using the Vale Language Server.
+
+## `vale-ls`
+
+The Vale Language Server (`vale-ls`) is distributed as a standalone binary that
+acts as a wrapper around a local installation of Vale, providing autocomplete,
+diagnostics, and hover popups, and more. The server supports the following `initializationParams`:
+
+| Parameter         | Default | Description                                                                                                           |
+|---------------|--------:|-----------------------------------------------------------------------------------------------------------------------|
+| `installVale` | `true`  | Automatically install and update Vale. If `false`, the `vale` executable needs to be available on the user's `$PATH`. |
+| `filter`      | `None`  | An [output filter](https://vale.sh/manual/filter/) to apply when calling Vale.                                        |
+| `config`      | `None`  | An absolute path to a `.vale.ini` file to be used as the default configuration.                                       |
+
+
+To use the server, you'll need to download the latest release from [GitHub][2].
+
+## `--output=JSON`
+
 Vale can provide JSON output that extensions can use.
 
 Your extension should call the Vale CLI, which the user of your plugin
-needs to have installed, setting the output to `JSON` mode, along with any other
-arguments.
+needs to have installed, setting the output to `JSON` mode, along with any
+other arguments.
 
 ```shell
-vale --output JSON {path/file}
+vale --output JSON file_path
 ```
 
-Look at how the VS Code extension uses the [`buildCommand`](https://github.com/errata-ai/vale-vscode/blob/78cd80ff5bcc043f51aa22126997c4e86e5b13fd/src/features/vsUtils.ts#L290) method to create [a reusable command the extension can call](https://github.com/errata-ai/vale-vscode/blob/78cd80ff5bcc043f51aa22126997c4e86e5b13fd/src/features/vsProvider.ts#L97) with a variety of parameters.
-
-## JSON output of checks
-
-Whether using Vale CLI or Server, the JSON output of the checks configured to run is similar, consisting of a file name with an array of check objects.
+The result is a JSON object that contains the path to the file and an array of
+objects that contain the line number, the error message, and the matched text.
 
 ```json
 {
@@ -65,19 +85,5 @@ Each object contains the following information:
 
 A plugin should loop through these checks, and parse the values, to output them to an appropriate part of the IDE or editor interface.
 
-{{< alert context="info" icon="👉">}}
-**Heads up**!
-
-A plugin needs to implement actions itself, Vale CLI only provides the action passed from the style and the matched tokens from text checked. You can find [suggestions on how to implement the action in the styles guide](/docs/topics/styles#actions).
-{{< /alert >}}
-
-For example, the VS Code extension uses the shared [`handleJSON`](https://github.com/errata-ai/vale-vscode/blob/78cd80ff5bcc043f51aa22126997c4e86e5b13fd/src/features/vsProvider.ts#L110) method to take each check object and convert it to a [VS Code diagnostic](https://code.visualstudio.com/api/references/vscode-api#Diagnostic) that appears in the bottom status bar of the editor window. If a user uses Vale server, you can also implement some form of "fix" solution propagated from the rule to the JSON, to the IDE or editor with the `Action` property. For example, in the [Microsoft style ellipses check](https://github.com/errata-ai/Microsoft/blob/ec219cff4ef10c558945f25dcb47eb1fc6ebca24/Microsoft/Ellipses.yml), the action is to offer to remove the ellipses.
-
-## General tips
-
-### Configuration options
-
-If the editor or IDE allows for user-configured settings for a plugin, then some of the following are good settings to include:
-
--   When to check a document with Vale, on every change, or on save?
--   Custom paths for the Vale CLI binary, configuration, or styles paths
+[1]: https://microsoft.github.io/language-server-protocol/
+[2]: https://github.com/errata-ai/vale-ls/releases
