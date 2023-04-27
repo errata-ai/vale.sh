@@ -60,8 +60,8 @@ footer = "Powered by <a class=\"text-muted\" href=\"https://www.netlify.com/\">N
 copyRight = "Copyright (c) 2022 Joseph Kato"
 
 # Alert
-alert = false
-alertDismissable = false
+alert = true
+alertDismissable = true
 alertText = "Help Vale grow by supporting us on Open Collective. <a class=\"alert-link stretched-link\" href=\"https://opencollective.com/vale\" target=\"_blank\" rel=\"noopener\">Become a backer!</a>"
 
 # Edit Page
