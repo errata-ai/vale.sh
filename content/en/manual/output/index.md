@@ -54,6 +54,8 @@ Where `core.Alert` has the same information as Vale's `--output=JSON` object.
 | `renderTable` | `Table`     | Prints the table-formatted output to `stdout`.                                                               |
 | `jsonEscape`  | `string`    | Ensure the given `STRING` is valid JSON.                                                                     |
 
+See the [Sprig Function Documentation][4] for the full list.
+
 ## Examples
 
 The following example re-implements Vale's default output style using a
@@ -105,3 +107,4 @@ template.
 [1]: https://golang.org/pkg/text/template/
 [2]: https://github.com/olekukonko/tablewriter#ascii-table-writer
 [3]: https://godoc.org/github.com/olekukonko/tablewriter#Table.SetAutoWrapText
+[4]: http://masterminds.github.io/sprig/
