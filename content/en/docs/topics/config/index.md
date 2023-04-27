@@ -244,6 +244,18 @@ This is some text
 .. vale on
 ```
 
+### Org Mode
+
+Org Mode uses its own comment style:
+
+```text
+# vale off
+
+This is some text
+
+# vale on
+```
+
 {{< alert icon="👉" >}}
 Commenting out headers/headings isn't currently supported. See [issues/340](https://github.com/errata-ai/vale/issues/340) for more information.
 {{< /alert >}}
