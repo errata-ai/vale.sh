@@ -46,13 +46,9 @@ scopes, rules are compatible across all formats within a particular type.
 | `list`           | Matches all `<li>` tags.                                                                                                           |
 | `paragraph`      | Matches all paragraphs \(segments of text separated by two newlines\).                                                             |
 | `sentence`       | Matches all sentences.                                                                                                             |
-| `link`           | Matches all `<a>` tags.                                                                                                            |
 | `alt`            | Matches all `alt` attributes.                                                                                                      |
 | `blockquote`     | Matches all `<blockquote>` tags.                                                                                                   |
 | `summary`        | Matches all body text \(excluding headings, code spans, code blocks, and table cells\).                                            |
-| `code`           | Matches all `<code>` tags.                                                                                                         |
-| `strong`         | Matches all `<strong>` and `<b>` tags.                                                                                             |
-| `emphasis`       | Matches all `<em>` and `<i>` tags                                                                                                  |
 | `raw`            | Uses the raw, unprocessed markup source instead of a specific scope.                                                               |
 
 ### code
