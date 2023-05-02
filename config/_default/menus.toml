@@ -65,13 +65,6 @@ url = "https://github.com/dense-analysis/ale"
 weight = 120
 
 [[docs]]
-identifier = "sublime"
-name = "Sublime Text"
-parent = "integrations"
-url = "https://packagecontrol.io/packages/SublimeLinter-vale"
-weight = 120
-
-[[docs]]
 identifier = "vscode"
 name = "VS Code"
 parent = "integrations"

@@ -2,7 +2,7 @@
 title: Sublime Text
 lead: |
   Use Vale with the Sublime Text 4.
-draft: true
+draft: false
 images: []
 menu:
   docs:
