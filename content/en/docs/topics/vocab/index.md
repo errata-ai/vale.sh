@@ -37,22 +37,22 @@ consisting of two plain-text files&mdash;`accept.txt` and
 `reject.txt`&mdash;that contain one word, phrase, or regular expression per
 line.
 
-The effects of using a custom `Vocab` are as follows:
-
-* Entries in `accept.txt` are added to every exception list in all styles
-  listed in `BasedOnStyles`&mdash;meaning that you now only need to update your
-  project's *vocabulary* to customize third-party styles (rather than the
+Entries in `accept.txt` will be added to every exception list in all styles
+  listed in `BasedOnStyles`. To customize third-party styles, you now only 
+  need to update your project's *vocabulary* (rather than the
   styles themselves).
+  
+A custom `Vocab` automatically affects your rules as follows:
 
-* Entries in `accept.txt` are automatically added to a substitution rule
+* `accept.txt` entries are added to a substitution rule
   (`Vale.Terms`), ensuring that any occurrences of these words or phrases
   exactly match their corresponding entry in `accept.txt`.
 
-* Entries in `reject.txt` are automatically added to an existence rule
+* `reject.txt` entries are added to an existence rule
   (`Vale.Avoid`) that will flag all occurrences as errors.
 
-This means that your exceptions can be developed independent of a style,
-allowing you to use the same exceptions with multiple styles or switch styles
+This allows you to develop exceptions independent of a style. 
+You can use the same exceptions with multiple styles or switch styles
 without having to re-implement them.
 
 ## Folder structure
