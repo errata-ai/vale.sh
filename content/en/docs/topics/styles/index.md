@@ -13,10 +13,10 @@ toc: true
 
 ## Overview
 
-Vale has a powerful extension system that doesn't require knowledge of
-any programming language. Instead, it uses collections of individual
-[YAML](http://yaml.org) files (or "rules") to enforce particular writing
-constructs.
+Vale has a powerful extension system to enforce particular writing
+constructs. Vale uses collections of individual
+[YAML](http://yaml.org) files (or "rules") amd doesn't require knowledge of
+any programming language.
 
 ```yaml
 # An example rule from the "Microsoft" style.
@@ -460,20 +460,17 @@ environment variable or the `dicpath` key.
 
 `spelling` offers two different ways of ignoring non-dictionary words:
 
-1. Using *ignore* files: Ignore files are plain-text files
-   that list words to be ignored during spell check (one case-insensitive entry
-   per line) . For example,
+- Using plain-text *ignore* files that list words to be ignored during spell check. You can name these files anything you'd like and add one case-insensitive entry
+   per line, for example:
 
    ```text title="ignore.txt"
    destructuring
    transpiler
    ```
 
-   Here, we're instructing `spelling` to ignore both
-   `[Dd]estructuring` and `[Tt]ranspiler`.
+   Here, `spelling` will ignore both `[Dd]estructuring` and `[Tt]ranspiler`.
 
-   You can name these files anything you'd like and reference them relative to
-   the active `StylesPath`:
+   In your spelling rule(s), you must reference the *ignore* file(s) relative to the active `StylesPath`:
 
    ```yaml
    extends: spelling
@@ -485,9 +482,7 @@ environment variable or the `dicpath` key.
      - ignore2.txt
    ```
 
-2. Using *filters*: You can also customize the spell-checking experience by
-   defining *filters*, which are Go-compatible
-   regular expressions to applied to individual words:
+- Using *filters* that define Go-compatible regular expressions to be applied to individual words:
 
    ```yaml
    extends: spelling
