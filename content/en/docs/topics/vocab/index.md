@@ -102,49 +102,43 @@ mentioned above) and may also be regular expressions.
 An important factor in successfully implementing a custom `Vocab` is
 understanding how Vale handles case sensitivity.
 
-While most spell-checking tools ignore case altogether, Vale's `Vocab` files
-are case-aware by default. This means that, for example, a vocabulary
-consisting of
+Vale's `Vocab` files are case-aware by default while most spell-checking tools ignore case.
+
+For example, a vocabulary consisting of
 
 ```text
 MongoDB
 ```
 
-will enforce the *exact* use of "MongoDB": "mongoDB," "MongoDb," etc., will all
-result in errors. There are two ways around this.
+will enforce the *exact* use of "MongoDB": "mongoDB," "MongoDb," etc.
 
-First, you can indicate that a given entry should be case-insensitive by
-providing an appropriate regular expression:
+To provide case-insensitive checks, you have two options:
 
-```text
-(?i)MongoDB
-[Oo]bservability
-```
+- You can provide a regular expression:
 
-The entry, `(?i)MongoDB`, marks the entire pattern as case-insensitive while
-the second, `[Oo]bservability`, provides two acceptable options.
+    ```text
+    (?i)MongoDB
+    [Oo]bservability
+    ```
 
-Second, you can disable `Vale.Terms` and just use `Vale.Spelling`:
+    `(?i)MongoDB` marks the entire pattern as case-insensitive.  
+    `[Oo]bservability` provides two acceptable options.
 
-```ini
-BasedOnStyles = Vale
+- You can disable `Vale.Terms` and just use `Vale.Spelling`:
 
-Vale.Terms = NO
-```
+    ```ini
+    BasedOnStyles = Vale
 
-This will provide a more traditional spell-checking experience.
+    Vale.Terms = NO
+    ```
 
-## Relation to ignore files
+## Difference between vocabularies and ignore files
 
-The functionality of vocabularies is similar to the existing concept of
-[*ignore* files](/docs/topics/styles/#ignoring-non-dictionary-words).
+In comparison to [*ignore* files](/docs/topics/styles/#ignoring-non-dictionary-words), 
+vocabularies apply to multiple extension points (rather than just `spelling`), 
+support regular expressions, and have built-in rules (`Vale.Terms` and `Vale.Avoid`).
 
-The major differences are that vocabularies apply to multiple extension points
-(rather than just `spelling`), support regular expressions, and have built-in
-rules associated with them (`Vale.Terms` and `Vale.Avoid`).
-
-In general, this means that ignore files are for style *creators* while
-vocabularies are for style *users*:
+Ignore files are for style *creators* while vocabularies are for style *users*:
 
 * If you're developing or maintaining a style, you may still want to include a
   custom `spelling` rule&mdash;`MyStyle.Spelling`&mdash;that packages its own
@@ -154,7 +148,7 @@ vocabularies are for style *users*:
   files completely.
 
 For example, if you were using `Vale.Spelling` with a `<StylesPath>/vocab.txt`
-file prior to `v2.3`, you can simply copy the contents of `vocab.txt` into
+file prior to `v2.3`, you can copy the contents of `vocab.txt` into
 `<StylesPath>/Vocab/<MyVocab>/accept.txt` and it'll work the same (you may
 also want to disable `Vale.Terms` and `Vale.Avoid` to replicate the exact
 experience).
