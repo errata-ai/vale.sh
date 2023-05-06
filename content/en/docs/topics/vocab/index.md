@@ -104,13 +104,11 @@ understanding how Vale handles case sensitivity.
 
 Vale's `Vocab` files are case-aware by default while most spell-checking tools ignore case.
 
-For example, a vocabulary consisting of
+For example, the following vocabulary file will enforce the *exact* use of "MongoDB": "mongoDB," "MongoDb," etc.
 
 ```text
 MongoDB
 ```
-
-will enforce the *exact* use of "MongoDB": "mongoDB," "MongoDb," etc.
 
 To provide case-insensitive checks, you have two options:
 
