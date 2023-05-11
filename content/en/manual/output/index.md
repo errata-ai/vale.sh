@@ -25,6 +25,8 @@ To use a custom format, pass the path to a template file through the
 vale --output='path/to/my/template.tmpl' somefile.md
 ```
 
+The value of `--output` may be absolute, relative, or relative to `StylesPath`.
+
 Template files have access to the following data structures:
 
 ```go
