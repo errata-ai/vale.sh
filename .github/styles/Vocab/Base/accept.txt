@@ -8,6 +8,8 @@ docutils
 Grazie
 jdkato
 JetBrains
+lookahead
+lookbehind
 Lua
 precompiled
 shortcodes

@@ -51,7 +51,7 @@ Where `core.Alert` has the same information as Vale's `--output=JSON` object.
 | `blue`        | `string`    | Returns the given `STRING` with an ANSI-formatted blue foreground color.                                     |
 | `yellow`      | `string`    | Returns the given `STRING` with an ANSI-formatted yellow foreground color.                                   |
 | `underline`   | `string`    | Returns the given `STRING` with an ANSI-formatted underline.                                                 |
-| `newTable`    | `bool`      | Creates a new [`tablewriter`][2] struct. newTable accepts one boolean value representing [`SetAutoWrapText`][2]. |
+| `newTable`    | `bool`      | Creates a new [`tablewriter`][2] struct. `newTable` accepts one boolean value representing [`SetAutoWrapText`][2]. |
 | `addRow`      | `[]string`  | Appends the given row to a table.                                                                            |
 | `renderTable` | `Table`     | Prints the table-formatted output to `stdout`.                                                               |
 | `jsonEscape`  | `string`    | Ensure the given `STRING` is valid JSON.                                                                     |

@@ -622,7 +622,7 @@ See [Scoping](/docs/topics/scoping) for more information.
 
 ## Actions
 
-Actions in rules indicate a way for external tools with Vale integration to provide methods for correcting style issues. For example with code actions in VSCode.
+Actions in rules indicate a way for external tools with Vale integration to provide methods for correcting style issues.
 
 The Vale CLI tool doesn't directly do anything with the value of this field and it's up to the external tool to support any actions.
 
