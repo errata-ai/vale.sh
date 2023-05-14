@@ -121,7 +121,6 @@ The most general extension point is `existence`. As its name implies, it looks f
 extends: existence
 message: Consider removing '%s'
 level: warning
-code: false
 ignorecase: true
 tokens:
     - appears to be
