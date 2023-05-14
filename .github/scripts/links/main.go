@@ -6,6 +6,13 @@ import (
 	"time"
 )
 
+type User struct {
+	Source string
+	Info   string
+	Org    string
+	Name   string
+}
+
 func main() {
 
 	links := []string{
