@@ -117,6 +117,8 @@ StylesPath = styles
 
 Vocab = Blog
 
+Packages = write-good
+
 [*.md]
 BasedOnStyles = Vale, write-good
 ```
