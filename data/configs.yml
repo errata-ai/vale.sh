@@ -201,3 +201,11 @@
   info: Universal Control Plane
   org: https://github.com/crossplane
   name: Crossplane
+- source: https://docs.circ.utdallas.edu/user-guide/contributing/workflow.html#_documentation_testing
+  info: Cyberinfrastructure Research Computing (CIRC)
+  org: https://github.com/utdal/
+  name: The University of Texas at Dallas
+- source: https://hpc.nmsu.edu/contribution/vale/
+  info: New Mexico State University High Performance Computing
+  org: https://github.com/nmsu-hpc
+  name: New Mexico State University
