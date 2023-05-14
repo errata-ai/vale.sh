@@ -145,7 +145,7 @@
   info: Platform.sh documentation.
   org: https://github.com/platformsh
   name: Platform.sh
-- source: https://github.com/stoplightio/platform-docs/blob/main/.vale.ini
+- source: https://blog.stoplight.io/linting-the-stoplight-docs-with-vale
   info: Documentation for the Stoplight Platform.
   org: https://github.com/stoplightio
   name: Stoplight
@@ -193,7 +193,7 @@
   info: Docker helps developers bring their ideas to life by conquering the complexity of app development.
   org: https://github.com/docker
   name: Docker
-- source: https://github.com/meilisearch/documentation/blob/main/.vale.ini
+- source: https://blog.meilisearch.com/prose-linting-with-vale/
   info: Powerful, fast, and an easy to use search engine.
   org: https://github.com/meilisearch
   name: Meilisearch

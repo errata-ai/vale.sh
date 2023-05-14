@@ -3,8 +3,13 @@ package main
 import (
 	"fmt"
 	"net/http"
-	"time"
+	"os"
+	"path/filepath"
+
+	"gopkg.in/yaml.v3"
 )
+
+var configs = "../../../data/configs.yml"
 
 type User struct {
 	Source string
@@ -14,35 +19,35 @@ type User struct {
 }
 
 func main() {
+	users := []User{}
 
-	links := []string{
-		"http://google.com",
-		"http://facebook.com",
-		"http://stackoverflow.com",
-		"http://golang.org",
-		"http://amazon.com",
+	configPath, err := filepath.Abs(configs)
+	if err != nil {
+		panic(err)
 	}
 
-	c := make(chan string)
-	for _, link := range links {
-		go checkLink(link, c)
+	data, err := os.ReadFile(configPath)
+	if err != nil {
+		panic(err)
 	}
-	for l := range c {
-		go func(link string) {
-			time.Sleep(5 * time.Second)
-			checkLink(link, c)
-		}(l)
 
+	err = yaml.Unmarshal(data, &users)
+	if err != nil {
+		panic(err)
 	}
+
+	for _, user := range users {
+		checkLink(user.Source, user.Name)
+	}
+
 }
 
-func checkLink(link string, c chan string) {
-	_, err := http.Get(link)
+func checkLink(link, name string) {
+	resp, err := http.Get(link)
 	if err != nil {
-		fmt.Println(link, "might be down!")
-		c <- link
-		return
+		panic(err)
+	} else if resp.StatusCode != http.StatusOK {
+		panic(fmt.Sprintf("'%s' is not OK", link))
 	}
-	fmt.Println(link, "is up!")
-	c <- link
+	fmt.Println(fmt.Sprintf("'%s' is OK", name))
 }
