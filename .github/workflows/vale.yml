@@ -1,0 +1,17 @@
+name: reviewdog
+on: [pull_request]
+
+jobs:
+  vale:
+    name: runner / vale
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: errata-ai/vale-action@reviewdog
+        with:
+          files: README.md content
+          ebug: true
+          fail_on_error: true
+          reporter: github-check
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
