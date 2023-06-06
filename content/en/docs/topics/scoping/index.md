@@ -67,8 +67,8 @@ Rules may define multiple scopes by using a YAML array:
 ```yaml
 scope:
     # h1 OR h2
+    - heading.h1
     - heading.h2
-    - heading.h3
 ```
 
 ## Negation & multi-part selectors
