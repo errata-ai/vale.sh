@@ -15,7 +15,7 @@ toc: true
 
 Vale has a powerful extension system to enforce particular writing
 constructs. Vale uses collections of individual
-[YAML](http://yaml.org) files (or "rules") amd doesn't require knowledge of
+[YAML](http://yaml.org) files (or "rules") and doesn't require knowledge of
 any programming language.
 
 ```yaml
