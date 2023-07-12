@@ -37,8 +37,8 @@ directory to your `$PATH`.
 An example of this process for Linux is given below:
 
 ```shell
-wget https://github.com/errata-ai/vale/releases/download/v2.15.4/vale_2.15.4_Linux_64-bit.tar.gz
-mkdir bin && tar -xvzf vale_2.15.4_Linux_64-bit.tar.gz -C bin
+wget https://github.com/errata-ai/vale/releases/download/v2.28.0/vale_2.28.0_Linux_64-bit.tar.gz
+mkdir bin && tar -xvzf vale_2.28.0_Linux_64-bit.tar.gz -C bin
 export PATH=./bin:"$PATH"
 ```
 
