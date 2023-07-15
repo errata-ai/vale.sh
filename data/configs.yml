@@ -71,8 +71,8 @@
   info: A fork of the Vale GitHub action maintained by Algolia.
   org: https://github.com/algolia
   name: Algolia
-- source: https://github.com/DataDog/documentation/blob/master/.vale.ini
-  info: The source for Datadog's documentation site.
+- source: https://github.com/DataDog/datadog-vale/blob/main/.vale.ini
+  info: The Documentation Style Guide for the Vale Linter maintained by the Datadog Documentation team.
   org: https://github.com/DataDog
   name: Datadog
 - source: https://github.com/vaadin/docs/blob/latest/.vale.ini
