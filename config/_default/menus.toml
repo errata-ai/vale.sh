@@ -37,6 +37,13 @@ url = "https://github.com/errata-ai/vale-action"
 weight = 120
 
 [[docs]]
+identifier = "circleci"
+name = "CircleCI"
+parent = "integrations"
+url = "https://circleci.com/developer/orbs/orb/circleci/vale"
+weight = 120
+
+[[docs]]
 identifier = "laravel"
 name = "Laravel"
 parent = "integrations"
