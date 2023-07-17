@@ -55,7 +55,7 @@
 #  org: https://github.com/redhat-documentation
 #  name: RedHat
 
-- source: https://github.com/writethedocs/www/blob/main/.vale.ini
+- source: https://github.com/writethedocs/www/blob/main/vale/vale.ini
   info: The main website for Write the Docs.
   org: https://github.com/writethedocs
   name: Write the Docs
