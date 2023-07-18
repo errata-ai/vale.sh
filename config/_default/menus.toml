@@ -75,7 +75,7 @@ weight = 120
 identifier = "vscode"
 name = "VS Code"
 parent = "integrations"
-url = "https://github.com/errata-ai/vale-vscode"
+url = "https://github.com/chrischinchilla/vale-vscode"
 weight = 120
 
 [[main]]
