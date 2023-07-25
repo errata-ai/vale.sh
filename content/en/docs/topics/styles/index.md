@@ -610,6 +610,12 @@ script: |
   }
 ```
 
+Scripts must define a `matches` variable with an array value.
+To initialize an empty `matches` variable, use `matches := []`.
+
+A match must be a map with the keys `begin` and `end` set to integer indexes.
+For more information about map values, refer to [Tengo Language Syntax | Map values](https://github.com/d5/tengo/blob/master/docs/tutorial.md#map-values).
+
 All scripts have access to Tengo's [`text`](https://github.com/d5/tengo/blob/master/docs/stdlib-text.md) module, which provides a number of
 string- and regex-related utility functions.
 
