@@ -210,6 +210,6 @@
   org: https://github.com/nmsu-hpc
   name: NMSU
 - source: https://github.com/opensearch-project/documentation-website/blob/main/.vale.ini
-  info: OpenSearch Project
+  info: OpenSearch
   org: https://github.com/opensearch-project
   name: OpenSearch
