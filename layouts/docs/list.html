@@ -93,7 +93,7 @@
           {{ $pic := index $og.images 0 }}
           {{ if not $pic }}
           {{ $pic = dict "url" "https://vale.sh/images/fallback.png" }}
-          {{ end
+          {{ end }}
           <img alt="post header image" class="card-img-top resource-img" src="{{ $pic.url }}">
           <div class="card-body">
             <h5 class="card-title">{{ $post.title }}</h5>
