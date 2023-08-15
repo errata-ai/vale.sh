@@ -209,3 +209,7 @@
   info: New Mexico State University High Performance Computing
   org: https://github.com/nmsu-hpc
   name: NMSU
+- source: https://github.com/opensearch-project/documentation-website/blob/main/.vale.ini
+  info: OpenSearch Project
+  org: https://github.com/opensearch-project
+  name: OpenSearch
