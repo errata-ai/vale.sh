@@ -13,10 +13,10 @@
     <div class="row justify-content-center">
       <div class="col col-md-12 col-lg-10">
         <form>
-            <div class="input-group input-group-lg mb-3">
-              <div class="w-100" id="autocomplete"></div>
-            </div>
-            <!--end of col-->
+          <div class="input-group input-group-lg mb-3">
+            <div class="w-100" id="autocomplete"></div>
+          </div>
+          <!--end of col-->
         </form>
         <p class="text-center">
           <small class="text-muted d-sm-inline-block" id="search-instructions"></small>
@@ -25,8 +25,8 @@
       <!--end of col-->
     </div>
     <!--end of row-->
-  <!--end of container-->
-    </div>
+    <!--end of container-->
+  </div>
 </section>
 
 <section class="mb-3">
@@ -40,10 +40,7 @@
             <p>
               Install and configure the Vale command-line tool.
             </p>
-            <a
-              class="stretched-link"
-              href="/docs/vale-cli/installation/"
-              ></a>
+            <a class="stretched-link" href="/docs/vale-cli/installation/"></a>
           </div>
         </div>
       </div>
@@ -55,10 +52,7 @@
             <p>
               Read about Vale's markup and rule customization features.
             </p>
-            <a
-              class="stretched-link"
-              href="/docs/topics/scoping/"
-              ></a>
+            <a class="stretched-link" href="/docs/topics/scoping/"></a>
           </div>
         </div>
       </div>
@@ -70,10 +64,7 @@
             <p>
               Learn about Vale's third-party integrations.
             </p>
-            <a
-              class="stretched-link"
-              href="/docs/integrations/guide/"
-              ></a>
+            <a class="stretched-link" href="/docs/integrations/guide/"></a>
           </div>
         </div>
       </div>
@@ -93,31 +84,34 @@
     </div>
     <!--end of row-->
     <div class="row row-cols-1 row-cols-md-2 g-5">
-      {{ $posts := getJSON "https://github.com/errata-ai/library/releases/latest/download/library.json"  }}
+      {{ $posts := getJSON "https://github.com/errata-ai/library/releases/latest/download/library.json" }}
       {{- range $post := (first 4 $posts) -}}
-        {{ $url := (printf "https://vale.sh/.netlify/functions/preview?url=%s" $post.url) }}
-        {{ $og := getJSON $url }}
-        <div class="col">
-          <div class="card h-100">
-            {{ $pic := index $og.images 0 }}
-            <img alt="post header image" class="card-img-top resource-img" src="{{ $pic.url }}">
-            <div class="card-body">
-              <h5 class="card-title">{{ $post.title }}</h5>
-              <h6 class="card-subtitle pb-2">
-                <small class="mb-1 text-muted">By {{ $post.author }}, {{ $post.year }}</small>
-              </h6>
-              <p class="card-text">{{ $og.description }}</p>
-              <a class="stretched-link" href="{{ $post.url }}" target="_blank"></a>
-            </div>
-            <div class="card-footer">
-              <small class="text-muted">
-                <span class="badge rounded-pill bg-secondary">{{ $post.type }}</span>
-                <span class="badge rounded-pill bg-secondary">{{ $og.site_name }}</span>
-              </small>
-            </div>
+      {{ $url := (printf "https://vale.sh/.netlify/functions/preview?url=%s" $post.url) }}
+      {{ $og := getJSON $url }}
+      <div class="col">
+        <div class="card h-100">
+          {{ $pic := index $og.images 0 }}
+          {{ if not $pic }}
+          {{ $pic = dict "url" "https://vale.sh/images/fallback.png" }}
+          {{ end
+          <img alt="post header image" class="card-img-top resource-img" src="{{ $pic.url }}">
+          <div class="card-body">
+            <h5 class="card-title">{{ $post.title }}</h5>
+            <h6 class="card-subtitle pb-2">
+              <small class="mb-1 text-muted">By {{ $post.author }}, {{ $post.year }}</small>
+            </h6>
+            <p class="card-text">{{ $og.description }}</p>
+            <a class="stretched-link" href="{{ $post.url }}" target="_blank"></a>
+          </div>
+          <div class="card-footer">
+            <small class="text-muted">
+              <span class="badge rounded-pill bg-secondary">{{ $post.type }}</span>
+              <span class="badge rounded-pill bg-secondary">{{ $og.site_name }}</span>
+            </small>
           </div>
         </div>
-        <!--end of card-->
+      </div>
+      <!--end of card-->
       {{- end -}}
       <!--end of col-->
     </div>
