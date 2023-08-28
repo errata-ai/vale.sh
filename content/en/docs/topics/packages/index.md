@@ -122,6 +122,22 @@ The packaged `StylesPath` will be merged with the active local `StylesPath`
 and any included configuration files will be added to the local
 `StylesPath/.config` folder.
 
+## Package ordering and overrides
+
+In the case of conflicting configuration, the order in which packages are
+loaded is important:
+
+```ini
+Packages = pkg1, pkg2
+
+# Local configuration ...
+[*.{md,adoc}]
+Test.Rule = YES
+```
+
+In the above example, `pkg2` will override any conflicting configuration from
+`pkg1`. Similarly, local configuration will override any conflicting package.
+
 ## Packages and VCS
 
 You'll want to add any packaged configuration components to your `.gitignore`
