@@ -278,14 +278,15 @@ This is a steward that raises an alert.
 
 {{< alert icon="👉" >}}
 You can override the default search process by manually specifying a path using
-the [--config](/manual/config/) option.
+the [--config](/manual/config/) option or by defining a `VALE_CONFIG_PATH` environment variable.
 {{< /alert >}}
 
 Vale expects its configuration to be in a file named `.vale.ini` or
 `_vale.ini`. It'll start looking for this file in the same folder as the file
-that's being linted. If it can't find one, it'll search up to 6 levels up the
-file tree. After 6 levels, it'll look for a global configuration file in the OS
-equivalent of `$HOME` \(see below\).
+that's being linted. If it can't find one, it'll search up up the file tree.
+
+If no ancestor of the current directory has a configuration file, it checks for 
+a global configuration file in the OS equivalent of `$HOME` \(see below\).
 
 | OS      | Search Locations                                     |
 | :------ | :--------------------------------------------------- |
