@@ -111,3 +111,9 @@ data:
       `//` (`text.comment.line.ext`),
       `/*...*/` (`text.comment.line.ext`),
       `/*` (`text.comment.block.ext`)
+  - language: TypeScript
+    extensions: "`.ts`, `.tsx`"
+    scopes: |
+      `//` (`text.comment.line.ext`),
+      `/*...*/` (`text.comment.line.ext`),
+      `/*` (`text.comment.block.ext`)
