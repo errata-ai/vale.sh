@@ -56,6 +56,13 @@ styles/
 where _base_, _blog_, and _docs_ are your styles that each contain certain
 rules.
 
+{{< alert context="info">}}
+**Heads up**!
+
+Make sure your rule files end in extension `.yml`. Do not end them in `.yaml`,
+as Vale will not detect them.
+{{< /alert >}}
+
 ## Extension points
 
 {{< alert context="info">}}
