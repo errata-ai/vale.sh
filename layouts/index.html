@@ -54,17 +54,21 @@
 
 <section class="section section-sm" id="users">
   <div class="container">
-    <div class="row row-cols-3 row-cols-sm-4 row-cols-md-6 row-cols-lg-8">
-      {{- range $i, $post := (shuffle .Site.Data.configs) -}}
-      <div class="col-span-1 flex justify-center py-2 px-2 text-center">
-        <a href="{{ $post.source }}" rel="noreferrer" target="_blank">
-          <img class="inline-block h-10 w-10" src="/images/users/{{ $post.name }}.png" />
-          <div class="text-xs py-2 text-secondary">{{ $post.name }}</div>
-        </a>
+    <div class="row justify-content-center text-center">
+      <div class="col pb-3">
+        <h2>See how Vale is being used by ...</h2>
       </div>
-      {{- end -}}
+      <div class="row row-cols-3 row-cols-sm-4 row-cols-md-6 row-cols-lg-8">
+        {{- range $i, $post := (shuffle .Site.Data.configs) -}}
+        <div class="col-span-1 flex justify-center py-2 px-2 text-center">
+          <a href="{{ $post.source }}" rel="noreferrer" target="_blank">
+            <img class="inline-block h-10 w-10" src="/images/users/{{ $post.name }}.png" />
+            <div class="text-xs py-2 text-secondary">{{ $post.name }}</div>
+          </a>
+        </div>
+        {{- end -}}
+      </div>
     </div>
-  </div>
 </section>
 
 <section class="section section-sm">
@@ -72,26 +76,8 @@
     <div class="row justify-content-center text-center">
       <div class="col">
         <h2>Sponsors &amp; Supporters</h2>
-        <a href="https://opencollective.com/vale/organization/0/website"><img
-            src="https://opencollective.com/vale/organization/0/avatar.svg?avatarHeight=100"></a>
-        <a href="https://opencollective.com/vale/organization/1/website"><img
-            src="https://opencollective.com/vale/organization/1/avatar.svg?avatarHeight=100"></a>
-        <a href="https://opencollective.com/vale/organization/2/website"><img
-            src="https://opencollective.com/vale/organization/2/avatar.svg?avatarHeight=100"></a>
-        <a href="https://opencollective.com/vale/organization/3/website"><img
-            src="https://opencollective.com/vale/organization/3/avatar.svg?avatarHeight=100"></a>
-        <a href="https://opencollective.com/vale/organization/4/website"><img
-            src="https://opencollective.com/vale/organization/4/avatar.svg?avatarHeight=100"></a>
-        <a href="https://opencollective.com/vale/organization/5/website"><img
-            src="https://opencollective.com/vale/organization/5/avatar.svg?avatarHeight=100"></a>
-        <a href="https://opencollective.com/vale/organization/6/website"><img
-            src="https://opencollective.com/vale/organization/6/avatar.svg?avatarHeight=100"></a>
-        <a href="https://opencollective.com/vale/organization/7/website"><img
-            src="https://opencollective.com/vale/organization/7/avatar.svg?avatarHeight=100"></a>
-        <a href="https://opencollective.com/vale/organization/8/website"><img
-            src="https://opencollective.com/vale/organization/8/avatar.svg?avatarHeight=100"></a>
-        <a href="https://opencollective.com/vale/organization/9/website"><img
-            src="https://opencollective.com/vale/organization/9/avatar.svg?avatarHeight=100"></a>
+        <script
+          src='https://opencollective.com/vale/banner.js?style={"a":{"display":"none"}, "h2": {"display":"none"}}'></script>
       </div>
     </div>
   </div>

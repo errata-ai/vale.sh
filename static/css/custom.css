@@ -125,7 +125,7 @@ figure {
   margin: 0;
 }
 
-body pre > code {
+body pre>code {
   border-radius: 0 !important;
 }
 
@@ -144,6 +144,10 @@ body code:not(.hljs) {
 [data-dark-mode] body code:not(.hljs) {
   background: #161b22;
   color: #dee2e6;
+}
+
+.opencollective-banner {
+  background: #161b22 !important;
 }
 
 [data-dark-mode] .nav-tabs .nav-link.active,
