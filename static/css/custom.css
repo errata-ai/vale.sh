@@ -146,10 +146,6 @@ body code:not(.hljs) {
   color: #dee2e6;
 }
 
-.opencollective-banner {
-  background: #161b22 !important;
-}
-
 [data-dark-mode] .nav-tabs .nav-link.active,
 [data-dark-mode] .nav-tabs .banner .nav a.active,
 [data-dark-mode] .banner .nav .nav-tabs a.active,
