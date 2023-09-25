@@ -256,3 +256,17 @@ body code:not(.hljs) {
   text-decoration-color: #99d98c;
   -webkit-text-decoration-color: #99d98c;
 }
+
+.popover-header {
+  margin-top: 0;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.clickable:hover {
+  text-decoration: underline;
+}
+
+

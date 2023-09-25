@@ -20,39 +20,39 @@
 {{ $slice := slice $app -}}
 
 {{ if .Site.Params.options.lazySizes -}}
-  {{ $lazySizes := resources.Get "js/lazysizes.js" -}}
-  {{ $lazySizes := $lazySizes | js.Build -}}
-  {{ $slice = $slice | append $lazySizes -}}
+{{ $lazySizes := resources.Get "js/lazysizes.js" -}}
+{{ $lazySizes := $lazySizes | js.Build -}}
+{{ $slice = $slice | append $lazySizes -}}
 {{ end -}}
 
 {{ if .Site.Params.options.clipBoard -}}
-  {{ $clipBoard := resources.Get "js/clipboard.js" -}}
-  {{ $clipBoard := $clipBoard | js.Build -}}
-  {{ $slice = $slice | append $clipBoard -}}
+{{ $clipBoard := resources.Get "js/clipboard.js" -}}
+{{ $clipBoard := $clipBoard | js.Build -}}
+{{ $slice = $slice | append $clipBoard -}}
 {{ end -}}
 
 {{ if .Site.Params.options.instantPage -}}
-  {{ $instantPage := resources.Get "js/instant.page.js" -}}
-  {{ $instantPage := $instantPage | js.Build -}}
-  {{ $slice = $slice | append $instantPage -}}
+{{ $instantPage := resources.Get "js/instant.page.js" -}}
+{{ $instantPage := $instantPage | js.Build -}}
+{{ $slice = $slice | append $instantPage -}}
 {{ end -}}
 
 {{ if .Site.Params.options.darkMode -}}
-  {{ $darkMode := resources.Get "js/darkmode.js" -}}
-  {{ $darkMode := $darkMode | js.Build -}}
-  {{ $slice = $slice | append $darkMode -}}
+{{ $darkMode := resources.Get "js/darkmode.js" -}}
+{{ $darkMode := $darkMode | js.Build -}}
+{{ $slice = $slice | append $darkMode -}}
 {{ end -}}
 
 {{ if and (.Site.Params.alert) (.Site.Params.alertDismissable) -}}
-  {{ $alert := resources.Get "js/alert.js" -}}
-  {{ $alert := $alert | js.Build -}}
-  {{ $slice = $slice | append $alert -}}
+{{ $alert := resources.Get "js/alert.js" -}}
+{{ $alert := $alert | js.Build -}}
+{{ $slice = $slice | append $alert -}}
 {{ end -}}
 
 {{ if .Site.Params.options.kaTex -}}
-  {{ $katexConfig := resources.Get "js/katex.js" -}}
-  {{ $katexConfig := $katexConfig | js.Build -}}
-  {{ $slice = $slice | append $katexConfig -}}
+{{ $katexConfig := resources.Get "js/katex.js" -}}
+{{ $katexConfig := $katexConfig | js.Build -}}
+{{ $slice = $slice | append $katexConfig -}}
 {{ end -}}
 
 {{ $scrollLock := resources.Get "js/scroll-lock.js" | js.Build -}}
@@ -61,54 +61,59 @@
 {{ $js := $slice | resources.Concat "main.js" -}}
 
 {{ if eq (hugo.Environment) "development" -}}
-  {{ if .Site.Params.options.bootStrapJs -}}
-    <script defer src="{{ $bs.RelPermalink }}"></script>
-  {{ end -}}
-  {{ if and (.Site.Params.options.highLight) (ne .Params.nohighLight true) -}}
-    <script defer src="{{ $highlight.RelPermalink }}"></script>
-  {{ end -}}
-  {{ if .Site.Params.options.kaTex -}}
-    <script defer src="{{ $katex.RelPermalink }}"></script>
-    <script defer onload="renderMathInElement(document.body);" src="{{ $katexAutoRender.RelPermalink }}"></script>
-  {{ end -}}
-  <script defer src="{{ $js.RelPermalink }}"></script>
-  {{ with .Params.mermaid -}}
-    <script defer src="{{ $mermaid.RelPermalink }}"></script>
-  {{ end -}}
-  {{ if and (.Site.Params.options.flexSearch) (eq .Section "docs") -}}
-    <script defer src="{{ $index.RelPermalink }}"></script>
-  {{ end -}}
+{{ if .Site.Params.options.bootStrapJs -}}
+<script defer src="{{ $bs.RelPermalink }}"></script>
+{{ end -}}
+{{ if and (.Site.Params.options.highLight) (ne .Params.nohighLight true) -}}
+<script defer src="{{ $highlight.RelPermalink }}"></script>
+{{ end -}}
+{{ if .Site.Params.options.kaTex -}}
+<script defer src="{{ $katex.RelPermalink }}"></script>
+<script defer onload="renderMathInElement(document.body);" src="{{ $katexAutoRender.RelPermalink }}"></script>
+{{ end -}}
+<script defer src="{{ $js.RelPermalink }}"></script>
+{{ with .Params.mermaid -}}
+<script defer src="{{ $mermaid.RelPermalink }}"></script>
+{{ end -}}
+{{ if and (.Site.Params.options.flexSearch) (eq .Section "docs") -}}
+<script defer src="{{ $index.RelPermalink }}"></script>
+{{ end -}}
 {{ else -}}
-  <!-- FIXME: minify $js breaks clipboard?? -->
-  {{ $js := $js | fingerprint "sha512" -}}
-  {{ $index := $index | minify | fingerprint "sha512" -}}
-  {{ $bs := $bs | minify | fingerprint "sha512" -}}
-  {{ $highlight := $highlight | minify | fingerprint "sha512" -}}
-  {{ $katex := $katex | minify | fingerprint "sha512" -}}
-  {{ $katexAutoRender := $katexAutoRender | minify | fingerprint "sha512" -}}
-  {{ $mermaid := $mermaid | minify | fingerprint "sha512" -}}
-  {{ if .Site.Params.options.bootStrapJs -}}
-    <script crossorigin="anonymous" defer integrity="{{ $bs.Data.Integrity }}" src="{{ $bs.RelPermalink }}"></script>
-  {{ end -}}
-  {{ if and (.Site.Params.options.highLight) (ne .Params.nohighLight true)  -}}
-    <script crossorigin="anonymous" defer integrity="{{ $highlight.Data.Integrity }}" src="{{ $highlight.RelPermalink }}"></script>
-  {{ end -}}
-  {{ if .Site.Params.options.kaTex -}}
-    <script crossorigin="anonymous" defer integrity="{{ $katex.Data.Integrity }}" src="{{ $katex.RelPermalink }}"></script>
-    <script crossorigin="anonymous" defer integrity="{{ $katexAutoRender.Data.Integrity }}" src="{{ $katexAutoRender.RelPermalink }}"></script>
-  {{ end -}}
-  <script crossorigin="anonymous" defer integrity="{{ $js.Data.Integrity }}" src="{{ $js.RelPermalink }}"></script>
-  {{ with .Params.mermaid -}}
-    <script crossorigin="anonymous" defer integrity="{{ $mermaid.Data.Integrity }}" src="{{ $mermaid.RelPermalink }}"></script>
-  {{ end -}}
-  {{ if and (.Site.Params.options.flexSearch) (eq .Section "docs") -}}
-    <script crossorigin="anonymous" defer integrity="{{ $index.Data.Integrity }}" src="{{ $index.Permalink }}"></script>
-  {{ end -}}
+<!-- FIXME: minify $js breaks clipboard?? -->
+{{ $js := $js | fingerprint "sha512" -}}
+{{ $index := $index | minify | fingerprint "sha512" -}}
+{{ $bs := $bs | minify | fingerprint "sha512" -}}
+{{ $highlight := $highlight | minify | fingerprint "sha512" -}}
+{{ $katex := $katex | minify | fingerprint "sha512" -}}
+{{ $katexAutoRender := $katexAutoRender | minify | fingerprint "sha512" -}}
+{{ $mermaid := $mermaid | minify | fingerprint "sha512" -}}
+{{ if .Site.Params.options.bootStrapJs -}}
+<script crossorigin="anonymous" defer integrity="{{ $bs.Data.Integrity }}" src="{{ $bs.RelPermalink }}"></script>
+{{ end -}}
+{{ if and (.Site.Params.options.highLight) (ne .Params.nohighLight true) -}}
+<script crossorigin="anonymous" defer integrity="{{ $highlight.Data.Integrity }}"
+  src="{{ $highlight.RelPermalink }}"></script>
+{{ end -}}
+{{ if .Site.Params.options.kaTex -}}
+<script crossorigin="anonymous" defer integrity="{{ $katex.Data.Integrity }}" src="{{ $katex.RelPermalink }}"></script>
+<script crossorigin="anonymous" defer integrity="{{ $katexAutoRender.Data.Integrity }}"
+  src="{{ $katexAutoRender.RelPermalink }}"></script>
+{{ end -}}
+<script crossorigin="anonymous" defer integrity="{{ $js.Data.Integrity }}" src="{{ $js.RelPermalink }}"></script>
+{{ with .Params.mermaid -}}
+<script crossorigin="anonymous" defer integrity="{{ $mermaid.Data.Integrity }}"
+  src="{{ $mermaid.RelPermalink }}"></script>
+{{ end -}}
+{{ if and (.Site.Params.options.flexSearch) (eq .Section "docs") -}}
+<script crossorigin="anonymous" defer integrity="{{ $index.Data.Integrity }}" src="{{ $index.Permalink }}"></script>
+{{ end -}}
 {{ end -}}
 
 {{- range .Params.js }}
-  <script src="/js/{{ . }}"></script>
+<script src="/js/{{ . }}"></script>
 {{- end }}
+
+<script src="/js/vendor/zoom.min.js"></script>
 
 {{ $lastPart := .RelPermalink | path.Base }}
 {{ if and (eq .Section "docs") (ne $lastPart "docs") -}}
@@ -133,21 +138,23 @@
 {{ $goto := $goto | minify | fingerprint "sha512" -}}
 
 {{ if and (eq .Section "docs") (eq $lastPart "docs") -}}
-  <script crossorigin="anonymous" defer integrity="{{ $goto.Data.Integrity }}" src="{{ $goto.RelPermalink }}"></script>
-  <script crossorigin="anonymous" integrity="sha512-zKaK6G2LZC5YZTX0vKmD7xOwd1zrEEMal4zlTf5Ved/A1RrnW+qt8pWDfo7oz+xeChECS/P9dv6EDwwPwelFfQ==" referrerpolicy="no-referrer" src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.0/typed.min.js"></script>
-  <script>
-    var typed = new Typed('#search-instructions', {
-      strings: [
-        "Search by <code>author:jdkato</code>, <code>type:post</code>, and/or <code>year:>2020</code>.",
-        "Search for fuzzy-matched strings <code>openapi~2</code>.",
-        "Search using regex <code>/(cli|server)/</code>.",
-        "Search using boosting <code>title:vale&#94;5 text:speed</code>.",
-        "Search across all posts, videos, discussions, and repositories."
-        ],
-      typeSpeed: 30,
-      backSpeed: 30,
-      backDelay: 1000,
-      startDelay: 1000
-    });
-  </script>
+<script crossorigin="anonymous" defer integrity="{{ $goto.Data.Integrity }}" src="{{ $goto.RelPermalink }}"></script>
+<script crossorigin="anonymous"
+  integrity="sha512-zKaK6G2LZC5YZTX0vKmD7xOwd1zrEEMal4zlTf5Ved/A1RrnW+qt8pWDfo7oz+xeChECS/P9dv6EDwwPwelFfQ=="
+  referrerpolicy="no-referrer" src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.0/typed.min.js"></script>
+<script>
+  var typed = new Typed('#search-instructions', {
+    strings: [
+      "Search by <code>author:jdkato</code>, <code>type:post</code>, and/or <code>year:>2020</code>.",
+      "Search for fuzzy-matched strings <code>openapi~2</code>.",
+      "Search using regex <code>/(cli|server)/</code>.",
+      "Search using boosting <code>title:vale&#94;5 text:speed</code>.",
+      "Search across all posts, videos, discussions, and repositories."
+    ],
+    typeSpeed: 30,
+    backSpeed: 30,
+    backDelay: 1000,
+    startDelay: 1000
+  });
+</script>
 {{- end }}

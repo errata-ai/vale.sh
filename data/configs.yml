@@ -1,215 +1,133 @@
 ---
 - source: https://github.com/angular/angular/tree/main/aio/tools/doc-linter
-  info: The modern web developer’s platform
+  docs: https://angular.io/guide/docs-lint-errors
+  info: The modern web developer’s platform.
+  website: https://angular.io/
   org: https://github.com/angular/angular
   name: Angular
-- source: https://docs.gitlab.com/ee/development/documentation/testing.html#vale
-  info: An extensive Vale configuration for various GitLab projects.
+
+- docs: https://docs.gitlab.com/ee/development/documentation/testing.html#vale
+  source: https://gitlab.com/gitlab-org/gitlab/-/tree/master/doc/.vale/gitlab
+  info: The most comprehensive AI-powered DevSecOps Platform.
+  website: https://about.gitlab.com/
   org: https://github.com/gitlabhq
   name: GitLab
-- source: https://github.com/Homebrew/brew/blob/master/.vale.ini
-  org: https://github.com/Homebrew
-  info: The missing package manager for macOS (or Linux)
-  name: Homebrew
-- source: https://github.com/microsoft/spring-cloud-azure/blob/main/docs/.vale.ini
-  info: Spring Cloud Azure Reference doc
-  org: https://github.com/microsoft
-  name: Microsoft
-- source: https://github.com/github/codeql/blob/main/docs/codeql/.vale.ini
-  info: |
-    CodeQL: the libraries and queries that power security researchers around
-    the world
-  org: https://github.com/github
-  name: GitHub
-- source: https://github.com/netlify/netlify-cms/blob/master/.vale.ini
-  info: A Git-based CMS for Static Site Generators
-  org: https://github.com/netlify
-  name: Netlify
-- source: https://github.com/linode/docs/blob/develop/.vale.ini
-  info: Linode guides and tutorials.
-  org: https://github.com/linode
-  name: Linode
-- source: https://github.com/SAP/cloud-sdk/blob/main/.vale.ini
-  info: The SAP Cloud SDK documentation and support repository.
-  org: https://github.com/SAP
-  name: SAP
-- source: https://github.com/spotify/backstage/blob/master/.vale.ini
-  info: Backstage is an open platform for building developer portals
-  org: https://github.com/spotify
-  name: Spotify
-- source: https://github.com/cockroachdb/docs/blob/master/.vale.ini
-  info: CockroachDB user documentation
-  org: https://github.com/cockroachdb
-  name: CockroachDB
 
-# TODO: Fix org names
-#
-#- source: https://github.com/eclipse/che-docs/blob/master/.vale.ini
-#  info: Eclipse Che Documentation
-#  org: https://github.com/eclipse
-#  name: Eclipse
-#- source: https://github.com/eclipse/che-docs/blob/master/.vale.ini
-#  info: |
-#    Vale config files, styles, and docs to help individuals and teams roll out
-#    Vale.
-#  org: https://github.com/redhat-documentation
-#  name: RedHat
-
-- source: https://github.com/writethedocs/www/blob/main/vale/vale.ini
-  info: The main website for Write the Docs.
-  org: https://github.com/writethedocs
-  name: Write the Docs
-- source: https://github.com/mautic/mautic-documentation/blob/main/.vale.ini
-  info: User documentation for the Mautic project
-  org: https://github.com/mautic
-  name: Mautic
-- source: https://github.com/webpack/webpack.js.org/blob/master/.vale.ini
-  info: Repository for webpack documentation and more!
-  org: https://github.com/webpack
-  name: webpack
-- source: https://github.com/algolia/vale-action
-  info: A fork of the Vale GitHub action maintained by Algolia.
-  org: https://github.com/algolia
-  name: Algolia
-- source: https://github.com/DataDog/datadog-vale/blob/main/.vale.ini
-  info: The Documentation Style Guide for the Vale Linter maintained by the Datadog Documentation team.
-  org: https://github.com/DataDog
-  name: Datadog
-- source: https://github.com/vaadin/docs/blob/latest/.vale.ini
-  info: Official Vaadin documentation, for all parts of the platform.
-  org: https://github.com/vaadin
-  name: Vaadin
-- source: https://github.com/vultr/vultr-mdtk
-  info: Vultr Markdown Toolkit.
-  org: https://github.com/Vultr
-  name: Vultr
-- source: https://github.com/commercetools/commercetools-docs-kit/blob/main/packages/writing-style/.vale.ini
-  info: Tools and components for developing Documentation websites 🛠
-  org: https://github.com/commercetools
-  name: commercetools
-- source: https://github.com/openshift-pipelines/pipelines-as-code/blob/main/.vale.ini
-  info: |
-    Pipelines as Code -- An opinionated CI based on OpenShift
-    Pipelines / Tekton.
-  org: https://github.com/openshift-pipelines
-  name: OpenShift
-- source: https://github.com/trussworks/Engineering-Playbook/blob/main/.vale.ini
-  info: |
-    Repository of documentation on how we do Software Engineering at
-    TrussWorks.
-  org: https://github.com/TrussWorks
-  name: TrussWorks
-- source: https://github.com/chef/chef-web-docs/tree/master/tools/vale
-  info: |
-    The source for the Chef documentation published on docs.chef.io.
-  org: https://github.com/chef
-  name: Progress Chef
-- source: https://github.com/vshn/application-catalog-docs/blob/master/docs/modules/ROOT/pages/.vale.ini
-  info: VSHN Application Catalog Documentation.
-  org: https://github.com/vshn
-  name: VSHN
-- source: https://github.com/SixLabors/docs/blob/main/vale.ini
-  info: API docs and tutorials on how to use ImagesSharp and related projects.
-  org: https://github.com/SixLabors
-  name: SixLabors
-- source: https://github.com/postmanlabs/postman-docs/blob/develop/_vale.ini
-  info: |
-    Documentation for Postman, a collaboration platform for API development.
-  org: https://github.com/postmanlabs
-  name: Postman Inc.
-- source: https://github.com/pingcap/docs/blob/master/.vale.ini
-  info: TiDB/TiKV/PD documentation.
-  org: https://github.com/pingcap
-  name: PingCAP
-- source: https://github.com/timescale/docs/blob/latest/.vale.ini
-  info: Timescale product documentation 📖
-  org: https://github.com/timescale
-  name: Timescale
-- source: https://github.com/rackerlabs/technical-blog/blob/master/.vale.ini
-  info: A custom style for the Rackspace Expert Insights Technical Blog.
-  org: https://github.com/rackerlabs
-  name: Rackspace
-- source: https://github.com/aiven/devportal/blob/main/.vale.ini
-  info: Resources for users of the projects on the Aiven platform.
-  org: https://github.com/aiven
-  name: Aiven
-- source: https://github.com/buildkite/docs/blob/main/vale/.vale.ini
-  info: The source files for the Buildkite documentation.
-  org: https://github.com/buildkite
-  name: Buildkite
-- source: https://github.com/ConsenSys/doctools.template-site/tree/main/.github/vale
-  info: The source files for the Buildkite documentation.
-  org: https://github.com/ConsenSys
-  name: ConsenSys
-- source: https://github.com/platformsh/platformsh-docs/blob/main/.vale.ini
-  info: Platform.sh documentation.
-  org: https://github.com/platformsh
-  name: Platform.sh
-- source: https://blog.stoplight.io/linting-the-stoplight-docs-with-vale
-  info: Documentation for the Stoplight Platform.
-  org: https://github.com/stoplightio
-  name: Stoplight
-- source: https://github.com/umbraco/UmbracoDocs/blob/main/.vale.ini
-  info: The official Umbraco Documentation
-  org: https://github.com/umbraco
-  name: Umbraco
-- source: https://github.com/inspec/inspec/tree/main/docs-chef-io/tools/vale
-  info: "InSpec: Auditing and Testing Framework"
-  org: https://github.com/inspec
-  name: InSpec
-- source: https://github.com/cloudquery/docs/blob/main/.vale.ini
-  info: CloudQuery Documentation
-  org: https://github.com/cloudquery
-  name: CloudQuery
-- source: https://github.com/grafana/k6-docs/blob/main/.vale.ini
-  info: The k6 documentation website.
-  org: https://github.com/grafana
-  name: Grafana
-- source: https://github.com/earthly/website/blob/main/.vale.ini
-  info: Build automation for the post-container era
-  org: https://github.com/earthly
-  name: Earthly
-- source: https://github.com/mesosphere/dcos-docs-site/blob/main/.vale.ini
-  info: D2iQ Product Documentation and Docs Website Code
-  org: https://github.com/mesosphere
-  name: D2iQ
-- source: https://github.com/Kong/docs.konghq.com/blob/main/.vale.ini
-  info: 🦍 Source code for docs.konghq.com website
-  org: https://github.com/Kong
-  name: Kong
 - source: https://github.com/splunk/vale-splunk-style-guide/blob/main/.vale.ini
-  info: Splunk documentation
+  docs: https://docs.splunk.com/Documentation/StyleGuide/current/StyleGuide/Howtouse
+  info: Splunk Enterprise and Splunk Cloud Platform power the Splunk Unified Security and Observability Platform and enable a wide range of custom applications in on-prem, cloud, and hybrid environments.
+  website: https://www.splunk.com/
   org: https://github.com/splunk
   name: Splunk
-- source: https://docs.fedoraproject.org/en-US/fedora-docs/contributing-docs/tools-vale-linter/
-  info: Fedora Linux documentation
-  org: https://github.com/fedora-infra
-  name: Fedora
-- source: https://docs.medusajs.com/contribution-guidelines/#linting-with-vale
-  info: Open-source headless commerce engine
-  org: https://github.com/medusajs
-  name: Medusa
+
+- source: https://github.com/microsoft/Documentarian
+  info: An open source toolkit for documentarians and community contributors to reduce friction and provide a delightful experience for contributing to and maintaining documentation.
+  docs: https://microsoft.github.io/Documentarian/
+  org: https://github.com/microsoft/Documentarian
+  website: https://www.microsoft.com/en-us/
+  name: Microsoft
+
+- source: https://github.com/linode/docs/blob/develop/.vale.ini
+  docs: https://www.linode.com/blog/linode/docs-as-code-at-linode/
+  info: Simplify your infrastructure with Linode's cloud computing and hosting solutions and develop, deploy, and scale faster and easier.
+  org: https://github.com/linode
+  website: https://www.linode.com/
+  name: Linode
+
 - source: https://github.com/docker/docs/blob/main/.vale.ini
+  docs: https://docs.docker.com/contribute/contribute-guide/#test-the-docs-locally
   info: Docker helps developers bring their ideas to life by conquering the complexity of app development.
   org: https://github.com/docker
+  website: https://www.docker.com/
   name: Docker
-- source: https://blog.meilisearch.com/prose-linting-with-vale/
-  info: Powerful, fast, and an easy to use search engine.
-  org: https://github.com/meilisearch
-  name: Meilisearch
-- source: https://github.com/crossplane/docs/blob/master/utils/vale/.vale.ini
-  info: Universal Control Plane
-  org: https://github.com/crossplane
-  name: Crossplane
-- source: https://docs.circ.utdallas.edu/user-guide/contributing/workflow.html#_documentation_testing
-  info: Cyberinfrastructure Research Computing (CIRC)
+
+- source: https://github.com/vaadin/docs/blob/latest/.vale.ini
+  docs: https://vaadin.com/docs/latest/contributing/docs/vale
+  info: An open platform for building modern web apps for Java back ends.
+  website: https://vaadin.com/
+  org: https://github.com/vaadin
+  name: Vaadin
+
+- source: https://github.com/vultr/vultr-mdtk/blob/main/.vale.ini
+  docs: https://github.com/vultr/vultr-mdtk
+  info: Instantly deploy High Performance Cloud Servers, Cloud GPUs, Bare Metal, and Cloud Storage worldwide.
+  org: https://github.com/Vultr
+  website: https://www.vultr.com/
+  name: Vultr
+
+- source: https://gitlab.trecis.cloud/documentation/utd/circ-vale-rules
+  docs: https://docs.circ.utdallas.edu/user-guide/contributing/workflow.html#_documentation_testing
+  info: The University of Texas at Dallas is a public research university in Richardson, Texas.
   org: https://github.com/utdal/
+  website: https://www.utdallas.edu/
   name: UT Dallas
-- source: https://hpc.nmsu.edu/contribution/vale/
-  info: New Mexico State University High Performance Computing
-  org: https://github.com/nmsu-hpc
-  name: NMSU
+
 - source: https://github.com/opensearch-project/documentation-website/blob/main/.vale.ini
-  info: OpenSearch
+  docs: https://opensearch.org/blog/style-workflow/
+  info: OpenSearch is a scalable, flexible, and extensible open-source software suite for search, analytics, and observability applications licensed under Apache 2.0.
+  website: https://opensearch.org/
   org: https://github.com/opensearch-project
   name: OpenSearch
+
+- source: https://hpc.nmsu.edu/contribution/vale/
+  docs: https://hpc.nmsu.edu/contribution/vale/
+  info: New Mexico State University is a public land-grant research university in Las Cruces, New Mexico.
+  website: https://nmsu.edu/
+  org: https://github.com/nmsu-hpc
+  name: NMSU
+
+- docs: https://blog.meilisearch.com/prose-linting-with-vale/
+  source: https://github.com/meilisearch/documentation/tree/b6837449f09587f9d6df92e1eea0c44cc394f398/.vale/styles/Meilisearch?ref=blog.meilisearch.com
+  info: Powerful, fast, and an easy to use search engine.
+  website: https://www.meilisearch.com/
+  org: https://github.com/meilisearch
+  name: Meilisearch
+
+- source: https://github.com/crossplane/docs/blob/master/utils/vale/.vale.ini
+  docs: https://docs.crossplane.io/contribute/vale/#install-vale
+  info: Crossplane is a framework for building cloud native control planes without needing to write code.
+  website: https://www.crossplane.io/
+  org: https://github.com/crossplane
+  name: Crossplane
+
+- source: https://github.com/medusajs/medusa/blob/develop/www/vale/run-vale.sh
+  docs: https://docs.medusajs.com/contribution-guidelines/#linting-with-vale
+  info: Medusa is a set of commerce modules and tools that enables thousands of developers to create rich and reliable digital commerce applications.
+  website: https://medusajs.com/
+  org: https://github.com/medusajs
+  name: Medusa
+
+- source: https://github.com/redhat-documentation/vale-at-red-hat
+  docs: https://docs.fedoraproject.org/en-US/fedora-docs/contributing-docs/tools-vale-linter/
+  info: Fedora Linux is a Linux distribution developed by the Fedora Project.
+  org: https://github.com/fedora-infra
+  website: https://fedoraproject.org/
+  name: Fedora
+
+- source: https://github.com/redhat-documentation/vale-at-red-hat
+  docs: https://redhat-documentation.github.io/vale-at-red-hat/
+  info: Red Hat is the leading provider of enterprise open source software solutions.
+  org: https://github.com/redhat-documentation
+  website: https://www.redhat.com/en
+  name: RedHat
+
+- source: https://blog.stoplight.io/linting-the-stoplight-docs-with-vale
+  docs: https://blog.stoplight.io/linting-the-stoplight-docs-with-vale
+  info: toplight leverages your OpenAPI documents to drive the entire API development process.
+  org: https://github.com/stoplightio
+  website: https://stoplight.io/
+  name: Stoplight
+
+- source: https://github.com/buildkite/docs/blob/main/vale/.vale.ini
+  docs: https://buildkite.com/blog/linting-the-buildkite-docs
+  info: Automate your team’s software development processes, from testing through to delivery, no matter the language, environment or toolchain.
+  org: https://github.com/buildkite
+  website: https://buildkite.com/
+  name: Buildkite
+
+- source: https://github.com/grafana/k6-docs/blob/main/.vale.ini
+  docs: https://grafana.com/docs/writers-toolkit/review/lint-prose/
+  info: Grafana Labs is behind leading open source projects Grafana and Loki, and the creator of the first open & composable observability platform.
+  org: https://github.com/grafana
+  website: https://grafana.com/
+  name: Grafana

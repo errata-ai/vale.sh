@@ -52,19 +52,72 @@
   </div>
 </section>
 
+<section class="bg-white pb-0">
+  <div class="container" data-aos="fade-up">
+    <div class="row justify-content-center text-center section-intro">
+      <div class="col-12 col-md-9 col-lg-8">
+        <h2>Not <em>just</em> a command-line tool</h2>
+      </div>
+      <!--end of col-->
+    </div>
+    <!--end of row-->
+    <ul class="feature-list feature-list-lg">
+      <li class="row row-cols-1 row-cols-md-2">
+        <div class="col">
+          <figure class="figure">
+            <img alt="Image" src="/images/rule.png" class="figure-img img-fluid" data-action="zoom" />
+          </figure>
+        </div>
+        <div class="col">
+          <h5>Use with your favorite apps</h5>
+          <p>
+            Get real-time feedback based on your own style guide while you
+            write in VS Code, Sublime Text, Vim, Emacs, and more.
+          </p>
+        </div>
+      </li>
+      <li class="row row-cols-1 row-cols-md-2">
+        <div class="col order-md-2">
+          <img alt="Image" src="/images/github.png" class="img-fluid" data-action="zoom" />
+        </div>
+        <div class="col">
+          <h5>Integrate into you CI workflow</h5>
+          <p>
+            Vale can be used with <a href="https://github.com/errata-ai/vale-action">GitHub Actions</a>, <a
+              href="https://circleci.com/developer/orbs/orb/circleci/vale">CircleCI</a>, or any other
+            CI/CD service.
+          </p>
+        </div>
+      </li>
+    </ul>
+    <div class="row justify-content-center text-center section-intro">
+      <div class="col-12 col-md-9 col-lg-8">
+        <p class="text-muted small">See the <a href="https://vale.sh/docs/integrations/guide/"
+            target="_blank">integration
+            guide</a> for more
+          information.</p>
+      </div>
+      <!--end of col-->
+    </div>
+  </div>
+</section>
+
 <section class="section section-sm" id="users">
   <div class="container">
     <div class="row justify-content-center text-center">
       <div class="col pb-3">
-        <h2>See how Vale is being used by ...</h2>
+        <h2>See how Vale is being used by &hellip;</h2>
       </div>
       <div class="row row-cols-3 row-cols-sm-4 row-cols-md-6 row-cols-lg-8">
         {{- range $i, $post := (shuffle .Site.Data.configs) -}}
         <div class="col-span-1 flex justify-center py-2 px-2 text-center">
-          <a href="{{ $post.source }}" rel="noreferrer" target="_blank">
+          <span class="clickable" tabindex="0" data-bs-placement="top" data-bs-toggle="popover" data-bs-trigger="focus"
+            data-bs-title="{{ $post.name }}"
+            data-bs-content='{{ $post.info }} <hr> <a href="{{ $post.source }}" target="_blank"><i class="fas fa-code"></i> source</a> | <a href="{{ $post.docs }}" target="_blank"><i class="fas fa-book"></i> docs</a> | <a href="{{ $post.website }}" target="_blank"><i class="fas fa-home"></i> homepage</a>'
+            data-bs-html="true">
             <img class="inline-block h-10 w-10" src="/images/users/{{ $post.name }}.png" />
             <div class="text-xs py-2 text-secondary">{{ $post.name }}</div>
-          </a>
+          </span>
         </div>
         {{- end -}}
       </div>
