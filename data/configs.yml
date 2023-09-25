@@ -109,7 +109,7 @@
   info: Red Hat is the leading provider of enterprise open source software solutions.
   org: https://github.com/redhat-documentation
   website: https://www.redhat.com/en
-  name: RedHat
+  name: Red Hat
 
 - source: https://blog.stoplight.io/linting-the-stoplight-docs-with-vale
   docs: https://blog.stoplight.io/linting-the-stoplight-docs-with-vale
