@@ -113,7 +113,7 @@
 
 - source: https://blog.stoplight.io/linting-the-stoplight-docs-with-vale
   docs: https://blog.stoplight.io/linting-the-stoplight-docs-with-vale
-  info: toplight leverages your OpenAPI documents to drive the entire API development process.
+  info: Stoplight leverages your OpenAPI documents to drive the entire API development process.
   org: https://github.com/stoplightio
   website: https://stoplight.io/
   name: Stoplight
