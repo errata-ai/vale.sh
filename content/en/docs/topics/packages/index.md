@@ -151,11 +151,17 @@ that you'll also have some local components  as well.
 # `Vocab/Base` folder.
 
 .github/styles/*
+!.github/styles/Vocab/
+
+.github/styles/Vocab/*
 !.github/styles/Vocab/Base
 ```
 
 The above example ignores the entire `.github/styles/` folder *except* for
-`.github/styles/Vocab/Base` (which we want to track changes for).
+`.github/styles/Vocab/Base` (which we want to track changes for). 
+The rules to ignore subfolders are written in pairs, because Git disregards
+skip-level unignore rules. Any unignored item should have its parent folder
+unignored as well.
 
 [1]: /hub/write-good/
 [2]: /hub/hugo/
