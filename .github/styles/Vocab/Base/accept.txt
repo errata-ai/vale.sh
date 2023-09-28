@@ -11,6 +11,7 @@ JetBrains
 lookahead
 lookbehind
 Lua
+npm
 precompiled
 shortcodes
 subfolder
