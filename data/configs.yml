@@ -131,3 +131,10 @@
   org: https://github.com/grafana
   website: https://grafana.com/
   name: Grafana Labs
+
+- source: https://github.com/datadog/documentation/blob/master/.vale.ini
+  docs: https://github.com/datadog/datadog-vale
+  info: Datadog is the essential monitoring and security platform for cloud applications.
+  org: https://github.com/datadog
+  website: https://www.datadoghq.com/
+  name: Datadog
