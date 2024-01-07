@@ -16,8 +16,6 @@ toc: true
 The fastest way to get started with Vale is to use the
 [Config Generator](/generator) to create a `.vale.ini` configuration file.
 
-{{< youtube xf--28Iz_TQ >}}
-
 Once you have your local `.vale.ini` created in the directory of your choice,
 run `vale sync` from the command line to initialize it:
 
@@ -66,7 +64,7 @@ The first component we're going to discuss is our `StylesPath` (the
 ```text
 $ tree styles
 ├───Microsoft
-├───Vocab
+├───config/vocabularies/
 │   ├───Blog
 │   └───Marketing
 └───write-good
@@ -98,14 +96,39 @@ In practice, you'll typically come across two types of styles:
 The dedicated [styles section](/docs/topics/styles/) explains how you can
 create your own custom style.
 
-### Vocab
+### `config`
 
-[Vocab](/docs/topics/vocab/) is a special folder designed to supplement your
-styles. Each of its sub-folders&mdash;in this case, `Blog` and
+The top-level `config` directory is reserved for all non-style configuration
+files.
+
+#### `vocabularies`
+
+The [vocabularies](/docs/topics/vocab/) directory is where you can create project-specific 
+terminology lists. Each of its sub-folders&mdash;in this case, `Blog` and
 `Marketing`&mdash;contain two files: `accept.txt` and `reject.txt`.
 
 These files allow you to control rule "exceptions" (such as what is considered
 a spelling error) without having to modify the style's source itself.
+
+#### `dictionaries`
+
+The `dictionaries` directory is where you can add custom Hunspell-compatible 
+dictionaries to be loaded by the `Vale.Spelling` rule.
+
+See [Spelling](/docs/topics/styles/#spelling) for more information.
+
+#### `ignore`
+
+The `ignore` directory is where you can add custom ignore files to be loaded
+by the `Vale.Spelling` rule.
+
+See [Spelling](/docs/topics/styles/#spelling) for more information.
+
+#### `templates`
+
+The `templates` directory is where you can add custom output templates.
+
+See [`--output`](/manual/output/) for more information.
 
 ## .vale.ini
 
