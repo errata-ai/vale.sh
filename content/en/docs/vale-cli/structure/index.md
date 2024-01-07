@@ -96,12 +96,12 @@ In practice, you'll typically come across two types of styles:
 The dedicated [styles section](/docs/topics/styles/) explains how you can
 create your own custom style.
 
-### `config`
+### config
 
 The top-level `config` directory is reserved for all non-style configuration
 files.
 
-#### `vocabularies`
+#### vocabularies
 
 The [vocabularies](/docs/topics/vocab/) directory is where you can create project-specific 
 terminology lists. Each of its sub-folders&mdash;in this case, `Blog` and
@@ -110,14 +110,14 @@ terminology lists. Each of its sub-folders&mdash;in this case, `Blog` and
 These files allow you to control rule "exceptions" (such as what is considered
 a spelling error) without having to modify the style's source itself.
 
-#### `dictionaries`
+#### dictionaries
 
 The `dictionaries` directory is where you can add custom Hunspell-compatible 
 dictionaries to be loaded by the `Vale.Spelling` rule.
 
 See [Spelling](/docs/topics/styles/#spelling) for more information.
 
-#### `ignore`
+#### ignore
 
 The `ignore` directory is where you can add custom ignore files to be loaded
 by the `Vale.Spelling` rule.

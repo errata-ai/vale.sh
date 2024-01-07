@@ -283,16 +283,26 @@ the [--config](/manual/config/) option or by defining a `VALE_CONFIG_PATH` envir
 
 Vale expects its configuration to be in a file named `.vale.ini` or
 `_vale.ini`. It'll start looking for this file in the same folder as the file
-that's being linted. If it can't find one, it'll search up up the file tree.
+that's being linted. If it can't find one, it'll search up the file tree.
 
-If no ancestor of the current directory has a configuration file, it checks for 
-a global configuration file in the OS equivalent of `$HOME` \(see below\).
+If no ancestor of the current directory has a configuration file, Vale will
+for a global configuration file (see below).
+
+## Global configuration
+
+In addition to project-specific configurations, Vale also supports a global
+configuration file and `StylesPath`. The expected location of the global
+configuration depends on your operating system:
 
 | OS      | Search Locations                                     |
 | :------ | :--------------------------------------------------- |
-| Windows | `%UserProfile%`                                      |
-| macOS   | `$HOME`                                              |
-| Linux   | `$HOME`                                              |
+| Windows | `%AppData%\vale`                                     |
+| macOS   | `$HOME/Library/Application Support/vale`             |
+| Unix    | `$XDG_CONFIG_HOME/vale`                              |
 
-If more than one configuration file is present, the closest one takes
-precedence.
+This is different from the other config-defining options (`--config`,
+`VALE_CONFIG_PATH`, etc.) in that it's loaded in addition to, rather than 
+instead of, any other configuration sources.
+
+In other words, this config file is *always* loaded and is read after
+any other sources to allow for project-agnostic customization.
