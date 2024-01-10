@@ -52,6 +52,17 @@ StylesPath = "ci/vale/styles"
 (e.g., styles and ignore files\). The path value may be absolute or relative to
 the location of the parent `.vale.ini` file.
 
+As of v3.0.0, Vale supports a default `StylesPath`. The location of this path
+depends on your operating system:
+
+| OS      | Search Locations                                     |
+| :------ | :--------------------------------------------------- |
+| Windows | `%LOCALAPPDATA%\vale\styles`                         |
+| macOS   | `$HOME/Library/Application Support/vale/styles`      |
+| Unix    | `$XDG_DATA_HOME/vale/styles`                         |
+
+(Run the `vale ls-dirs` command to see the exact locations on your system.)
+
 #### MinAlertLevel
 
 ```ini
@@ -296,9 +307,11 @@ configuration depends on your operating system:
 
 | OS      | Search Locations                                     |
 | :------ | :--------------------------------------------------- |
-| Windows | `%AppData%\vale`                                     |
-| macOS   | `$HOME/Library/Application Support/vale`             |
-| Unix    | `$XDG_CONFIG_HOME/vale`                              |
+| Windows | `%LOCALAPPDATA%\vale\.vale.ini`                      |
+| macOS   | `$HOME/Library/Application Support/vale/.vale.ini`   |
+| Unix    | `$XDG_CONFIG_HOME/vale/.vale.ini`                    |
+
+(Run the `vale ls-dirs` command to see the exact locations on your system.)
 
 This is different from the other config-defining options (`--config`,
 `VALE_CONFIG_PATH`, etc.) in that it's loaded in addition to, rather than 

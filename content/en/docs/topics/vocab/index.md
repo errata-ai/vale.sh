@@ -32,7 +32,7 @@ Vocab = Some-Name
 BasedOnStyles = Vale, MyStyle
 ```
 
-Each `Vocab` is a single folder (stored at `<StylesPath>/Vocab/<name>/`)
+Each `Vocab` is a single folder (stored at `<StylesPath>/config/vocabularies/<name>/`)
 consisting of two plain-text files&mdash;`accept.txt` and
 `reject.txt`&mdash;that contain one word, phrase, or regular expression per
 line.
@@ -64,15 +64,20 @@ folder structure:
 ```bash
 $ tree styles
 ├───MyStyle
-├───Vocab
-│   ├───Blog
-│   └───Marketing
+├───config
+│   └───vocabularies
+│       ├───Blog
+│       │   ├───accept.txt
+│       │   └───reject.txt
+│       └───Marketing
+│           ├───accept.txt
+│           └───reject.txt
 └───MyOtherStyle
 ```
 
 Here, our `StylesPath` (`/styles`) contains two styles (`MyStyle` and
 `MyOtherStyle`) and two vocabularies (`Blog` and `Marketing`). You can then
-simply reference these entries by their folder name:
+reference these entries by their folder name:
 
 ```ini title=".vale.ini"
 StylesPath = styles

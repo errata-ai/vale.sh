@@ -78,7 +78,7 @@ ENV PATH="/dita-ot-3.6/bin:$PATH"
 ENTRYPOINT ["/bin/vale"]
 ```
 
-## PyPI, npm, ...
+## Other options
 
 - [PyPI](https://pypi.org/project/vale/)
 - [npm](https://www.npmjs.com/package/@ocular-d/vale-bin)

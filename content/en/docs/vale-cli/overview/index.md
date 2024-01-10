@@ -24,8 +24,7 @@ be. To put it succinctly, Vale doesn't teach you *how to* write; it’s a tool
 
 This distinction is particularly important to understand because Vale doesn't
 offer any of its own advice. Instead, it offers a framework for creating and
-enforcing [custom rules][1]. Its approach is much more similar to code linters
-than it is to traditional grammar checkers.
+enforcing [custom rules][1]. Its approach is much more similar to code linters than it is to traditional grammar checkers.
 
 See "[Introducing Vale, an NLP-powered linter for prose][2]" for a more
 detailed explanation.
@@ -33,8 +32,7 @@ detailed explanation.
 ## Why should you use Vale?
 
 - It will enforce your own style and can go well beyond traditional
-  writing-related rules. See [GitLab's configuration][5] for an idea of what's
-  possible.
+  writing-related rules.
 
 - It understands [markup][4] well, allowing you to write your content in
   Markdown, AsciiDoc, reStructuredText, and more, without syntax-related false
