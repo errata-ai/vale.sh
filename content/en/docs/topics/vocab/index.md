@@ -57,9 +57,18 @@ without having to re-implement them.
 
 ## Folder structure
 
-`Vocab` entries are stored in `<StylesPath>/Vocab/<name>/` and are then
-referenced by `<name>` in `.vale.ini`. For example, consider the following
-folder structure:
+{{< alert context="info">}}
+**Heads up**!
+
+In versions of Vale prior to 3.0, vocabularies were stored in 
+`<StylesPath>/Vocab`. When upgrading from an older version of Vale, you'll need 
+to move your vocabularies to the new `<StylesPath>/config/vocabularies` 
+location.
+{{< /alert >}}
+
+Vocabulary entries are stored in `<StylesPath>/config/vocabularies/<name>/` and 
+are then referenced by `<name>` in `.vale.ini`. For example, consider the 
+following folder structure:
 
 ```bash
 $ tree styles
@@ -157,9 +166,3 @@ vocabularies are for style *users*:
 
 * As a user of styles, vocabularies should be able to replace the use of ignore
   files completely.
-
-For example, if you were using `Vale.Spelling` with a `<StylesPath>/vocab.txt`
-file prior to `v2.3`, you can simply copy the contents of `vocab.txt` into
-`<StylesPath>/Vocab/<MyVocab>/accept.txt` and it'll work the same (you may
-also want to disable `Vale.Terms` and `Vale.Avoid` to replicate the exact
-experience).
