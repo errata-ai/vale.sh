@@ -22,7 +22,6 @@ module.exports = {
         'alert-link',
         'container-xxl',
         'container-fluid',
-        'container-fw ',
         ...whitelister([
           './assets/scss/components/_alerts.scss',
           './assets/scss/components/_buttons.scss',
@@ -33,9 +32,6 @@ module.exports = {
           './assets/scss/common/_dark.scss',
           './node_modules/bootstrap/scss/_dropdown.scss',
           './node_modules/katex/dist/katex.css',
-          './node_modules/@hyas/doks-core/assets/scss/components/_code.scss',
-          './node_modules/@hyas/doks-core/assets/scss/components/_expressive-code.scss',
-          './node_modules/@hyas/doks-core/assets/scss/common/_syntax.scss',
         ]),
       ],
     }),

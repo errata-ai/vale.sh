@@ -68,8 +68,5 @@
   },
   "otherDependencies": {
     "hugo": "0.96.0"
-  },
-  "dependencies": {
-    "@hyas/doks-core": "^1.2.0"
   }
 }
