@@ -40,7 +40,7 @@ https://github.com/errata-ai/errata.ai/releases/download/v1.0.0/Test.zip
 BasedOnStyles = Vale
 ```
 
-The `Packages` key accepts three types of values:
+The `Packages` key accepts four types of values:
   1. a name of a package hosted
 in the official [Package Hub](/hub/)
   2. a URL to an externally-hosted
