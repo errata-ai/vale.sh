@@ -140,17 +140,20 @@ that you'll also have some local components  as well.
 
 ```ini
 # We want to ignore our StylesPath *except* for our local
-# `Vocab/Base` folder.
+# `vocabularies/Base` directory.
 
 .github/styles/*
-!.github/styles/Vocab/
+!.github/styles/config/
 
-.github/styles/Vocab/*
-!.github/styles/Vocab/Base
+.github/styles/config/*
+!.github/styles/config/vocabularies/
+
+.github/styles/config/vocabularies/*
+!.github/styles/config/vocabularies/Base
 ```
 
 The above example ignores the entire `.github/styles/` folder *except* for
-`.github/styles/Vocab/Base` (which we want to track changes for). 
+`.github/styles/config/vocabularies/Base` (which we want to track changes for). 
 The rules to ignore subfolders are written in pairs, because Git disregards
 skip-level unignore rules. Any unignored item should have its parent folder
 unignored as well.
