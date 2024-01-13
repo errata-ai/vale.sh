@@ -8,22 +8,14 @@ menu:
   docs:
     parent: topics
 weight: 70
-toc: true
-mermaid: true
+toc: tru
 ---
 
 ## Overview
 
 Packages provide a means of sharing, extending, syncing, and updating Vale configurations.
 
-{{< mermaid class="text-center" >}}
-graph TD
-    C{Package}
-    C --> D[Project 1]
-    C --> E[Project 2]
-    C --> F[Project 3]
-    F --> |local overrides| G[Project 3]
-{{< /mermaid >}}
+<img class="text-center" src="flow.png" width="100%" alt="Packages" />
 
 In the example above, Project 1 and 2 will have identical configurations (as inherited from the upstream package). Any changes to the upstream package will propagate to both projects.
 
