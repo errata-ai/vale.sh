@@ -124,7 +124,7 @@ by the `Vale.Spelling` rule.
 
 See [Spelling](/docs/topics/styles/#spelling) for more information.
 
-#### `templates`
+#### templates
 
 The `templates` directory is where you can add custom output templates.
 
