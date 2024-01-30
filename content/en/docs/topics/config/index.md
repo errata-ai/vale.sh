@@ -203,7 +203,7 @@ BlockIgnores = (?s) *({< output >}.*?{< ?/ ?output >}), \
 
 #### TokenIgnores
 
-{{< icon="👉" alert context="info">}}
+{{< alert icon="👉" context="info">}}
 `TokenIgnores` are only supported in **Markdown**, **reStructuredText**, **AsciiDoc**, 
   and **Org Mode**.
 

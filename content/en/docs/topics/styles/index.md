@@ -56,7 +56,7 @@ styles/
 where _base_, _blog_, and _docs_ are your styles that each contain certain
 rules.
 
-{{< alert icon="👉" context="warning">}}
+{{< alert icon="👉" context="info">}}
 Make sure your rule files end in extension `.yml`. Do not end them in `.yaml`,
 as Vale will not detect them.
 {{< /alert >}}
@@ -567,7 +567,7 @@ skip: 3
 
 ### script
 
-{{< alert icon="👉" context="warning">}}
+{{< alert icon="👉" context="info">}}
 When using `script`-based rules, you're limited to the standard Go [regex syntax][1].
 
 [1]: https://pkg.go.dev/regexp/syntax

@@ -93,7 +93,7 @@ scope:
 
 ### Markdown
 
-{{< alert icon="👉" context="warning" >}}
+{{< alert icon="👉" context="info" >}}
 Markdown autolinks are not currently supported. See [issues/288](https://github.com/errata-ai/vale/issues/288) for more information.
 {{< /alert >}}
 
@@ -154,7 +154,7 @@ BasedOnStyles = Vale
 
 ### DITA
 
-{{< alert icon="👉" context="warning" >}}
+{{< alert icon="👉" context="info" >}}
 Due to the dependency on the third-party `dita` command,
 you'll likely experience worse performance with DITA files compared to other formats.
 {{< /alert >}}
