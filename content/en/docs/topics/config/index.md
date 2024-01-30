@@ -307,7 +307,7 @@ Vale expects its configuration to be in a file named `.vale.ini` or
 that's being linted. If it can't find one, it'll search up the file tree.
 
 If no ancestor of the current directory has a configuration file, Vale will
-for a global configuration file (see below).
+use a global configuration file (see below).
 
 ## Global configuration
 
