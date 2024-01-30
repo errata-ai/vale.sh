@@ -138,3 +138,10 @@
   org: https://github.com/datadog
   website: https://www.datadoghq.com/
   name: Datadog
+
+- source: https://github.com/neo4j/docs-tools/blob/dev/.vale.ini
+  docs: https://github.com/neo4j/docs-tools
+  info: Neo4j is the world’s leading Graph Database.
+  org: https://github.com/neo4j
+  website: http://neo4j.com/
+  name: Neo4j
