@@ -163,6 +163,16 @@ Style1.Rule2 = error
 
 #### BlockIgnores
 
+{{< alert context="info">}}
+**Heads up**!
+
+`BlockIgnores` are only supported in **Markdown**, **reStructuredText**, **AsciiDoc**, 
+  and **Org Mode**.
+
+See [Non-standard markup](/docs/topics/scoping/#non-standard-markup) for more 
+infomration and usage examples.
+{{< /alert >}}
+
 `BlockIgnores` allow you to exclude certain block-level sections of text that
 don't have an associated HTML tag that could be used with [`SkippedScopes`](#skippedscopes).
 
@@ -182,13 +192,17 @@ BlockIgnores = (?s) *({< output >}.*?{< ?/ ?output >}), \
 (?s) *({< highlight .* >}.*?{< ?/ ?highlight >})
 ```
 
-See [Non-standard markup](/docs/topics/scoping/#non-standard-markup) for more usage examples.
-
-{{< alert icon="👉" context="warning" >}}
-Ignore patterns aren't yet supported in DITA. See [issues/407](https://github.com/errata-ai/vale/issues/407) for more information.
-{{< /alert >}}
-
 #### TokenIgnores
+
+{{< alert context="info">}}
+**Heads up**!
+
+`TokenIgnores` are only supported in **Markdown**, **reStructuredText**, **AsciiDoc**, 
+  and **Org Mode**.
+
+See [Non-standard markup](/docs/topics/scoping/#non-standard-markup) for more 
+infomration and usage examples.
+{{< /alert >}}
 
 `TokenIgnores` allow you to exclude certain inline-level sections of text that
 don't have an associated HTML tag that could be used with [`IgnoredScopes`](#ignoredscopes).
@@ -200,12 +214,6 @@ TokenIgnores = (\$+[^\n$]+\$+)
 
 The basic idea is to capture the entire inline-level section in the first grouping. See
 [regex101](https://regex101.com/r/mFM0kZ/1/) for a more thorough explanation.
-
-See [Non-standard markup](/docs/topics/scoping/#non-standard-markup) for more usage examples.
-
-{{< alert icon="👉" context="warning" >}}
-Ignore patterns aren't yet supported in DITA. See [issues/407](https://github.com/errata-ai/vale/issues/407) for more information.
-{{< /alert >}}
 
 #### Transform
 
