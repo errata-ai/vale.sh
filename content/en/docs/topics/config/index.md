@@ -121,6 +121,8 @@ mdx = md
 ```
 
 In the example above, we're telling Vale to treat MDX files as Markdown files.
+Note that this is merely an extension-level substitution and is not a means of
+adding support for a new file type.
 
 ### Format-specific settings
 
