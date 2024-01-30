@@ -56,18 +56,14 @@ styles/
 where _base_, _blog_, and _docs_ are your styles that each contain certain
 rules.
 
-{{< alert context="info">}}
-**Heads up**!
-
+{{< alert icon="👉" context="warning">}}
 Make sure your rule files end in extension `.yml`. Do not end them in `.yaml`,
 as Vale will not detect them.
 {{< /alert >}}
 
 ## Extension points
 
-{{< alert context="info">}}
-**Heads up**!
-
+{{< alert icon="👉" context="info">}}
 In addition to the standard Go [regex syntax][1], Vale also
 supports positive lookahead (`(?=re)`), negative lookahead (`(?!re)`),
 positive lookbehind (`(?<=re)`), and negative lookbehind (`(?<!re)`).
@@ -571,9 +567,7 @@ skip: 3
 
 ### script
 
-{{< alert context="info">}}
-**Heads up**!
-
+{{< alert icon="👉" context="warning">}}
 When using `script`-based rules, you're limited to the standard Go [regex syntax][1].
 
 [1]: https://pkg.go.dev/regexp/syntax

@@ -112,9 +112,7 @@ WordTemplate = \b(?:%s)\b
 
 ### Format associations
 
-{{< alert context="info">}}
-**Heads up**!
-
+{{< alert icon="👉" context="info">}}
 After making a format assignment, the configuration of the *assigned* format is 
 now applied from your `.vale.ini` file.
 
@@ -176,9 +174,7 @@ Style1.Rule2 = error
 
 #### BlockIgnores
 
-{{< alert context="info">}}
-**Heads up**!
-
+{{< alert icon="👉" context="info">}}
 `BlockIgnores` are only supported in **Markdown**, **reStructuredText**, **AsciiDoc**, 
   and **Org Mode**.
 
@@ -207,9 +203,7 @@ BlockIgnores = (?s) *({< output >}.*?{< ?/ ?output >}), \
 
 #### TokenIgnores
 
-{{< alert context="info">}}
-**Heads up**!
-
+{{< icon="👉" alert context="info">}}
 `TokenIgnores` are only supported in **Markdown**, **reStructuredText**, **AsciiDoc**, 
   and **Org Mode**.
 
@@ -266,6 +260,10 @@ This is some text
 
 ### reStructuredText
 
+{{< alert icon="👉" >}}
+Commenting out headers/headings isn't currently supported. See [issues/340](https://github.com/errata-ai/vale/issues/340) for more information.
+{{< /alert >}}
+
 reStructuredText uses its own comment style:
 
 ```text
@@ -288,10 +286,6 @@ This is some text
 # vale on
 ```
 
-{{< alert icon="👉" >}}
-Commenting out headers/headings isn't currently supported. See [issues/340](https://github.com/errata-ai/vale/issues/340) for more information.
-{{< /alert >}}
-
 ### AsciiDoc
 
 AsciiDoc uses HTML-style comments with its pass-through functionality:
@@ -308,7 +302,7 @@ This is a steward that raises an alert.
 
 ## Search process
 
-{{< alert icon="👉" >}}
+{{< alert icon="👉" context="info" >}}
 You can override the default search process by manually specifying a path using
 the [--config](/manual/config/) option or by defining a `VALE_CONFIG_PATH` environment variable.
 {{< /alert >}}

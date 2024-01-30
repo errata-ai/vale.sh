@@ -203,8 +203,6 @@ configuration) in your source code comments.
 ## Non-standard markup
 
 {{< alert context="info">}}
-**Heads up**!
-
 Ignore patterns are a low-level concept that have a few important restrictions:
 
 - They are only supported in **Markdown**, **reStructuredText**, **AsciiDoc**, 
