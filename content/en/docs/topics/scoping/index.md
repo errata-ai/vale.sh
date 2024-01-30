@@ -195,9 +195,27 @@ rs = md
 BasedOnStyles = Vale
 ```
 
+Once a markup format has been assigned, you can make use of all the 
+supported features of that format (such as ignore patterns and comment-based 
+configuration) in your source code comments.
 {{< table code.yml >}}
 
 ## Non-standard markup
+
+{{< alert context="info">}}
+**Heads up**!
+
+Ignore patterns are a low-level concept that have a few important restrictions:
+
+- They are only supported in **Markdown**, **reStructuredText**, **AsciiDoc**, 
+  and **Org Mode**.
+
+- They are processed *before* the markup file is converted to HTML, so the
+  patterns should only target **non-standard** constructs.
+
+See [Code](/docs/topics/scoping/#code-1) for information on using ignore 
+patterns in source code.
+{{< /alert >}}
 
 When working with non-HTML markup, you'll probably find that there are certain
 non-standard sections of text you'd like to ignore. This is possible using
