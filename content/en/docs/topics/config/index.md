@@ -260,7 +260,7 @@ This is some text
 
 ### reStructuredText
 
-{{< alert icon="👉" >}}
+{{< alert icon="👉" context="info" >}}
 Commenting out headers/headings isn't currently supported. See [issues/340](https://github.com/errata-ai/vale/issues/340) for more information.
 {{< /alert >}}
 
