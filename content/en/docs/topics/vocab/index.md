@@ -57,7 +57,7 @@ without having to re-implement them.
 
 ## Folder structure
 
-{{< alert context="info">}}
+{{< alert icon="👉" context="info">}}
 In versions of Vale prior to 3.0, vocabularies were stored in 
 `<StylesPath>/Vocab`. When upgrading from an older version of Vale, you'll need 
 to move your vocabularies to the new `<StylesPath>/config/vocabularies` 
