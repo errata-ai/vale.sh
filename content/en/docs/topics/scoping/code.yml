@@ -49,6 +49,13 @@ data:
       `//` (`text.comment.line.ext`),
       `/*...*/` (`text.comment.line.ext`),
       `/*` (`text.comment.block.ext`)
+  - language: Julia
+    extensions: "`.jl`"
+    scopes: |
+      `#` (`text.comment.line.ext`),
+      `#=...=#` (`text.comment.line.ext`),
+      `/*` (`text.comment.block.ext`)
+      `"""` (`text.comment.block.ext`)
   - language: LESS
     extensions: "`.less`"
     scopes: |
