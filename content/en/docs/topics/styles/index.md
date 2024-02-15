@@ -371,6 +371,10 @@ Additionally, when using `match: $title`, you can specify a style of either
 | `condition` | `string` | A binary condition upon which `formula` will trigger an alert. |
 {{< /details >}}
 
+{{< alert icon="👉" context="info">}}
+`metric` rules require floating-point comparisons, so you should, for example, use `"> 8.0"` instead of `"> 8"`.
+{{< /alert >}}
+
 ```yaml
 extends: metric
 message: "Try to keep the Flesch-Kincaid grade level (%s) below 8."
@@ -379,7 +383,7 @@ link: https://en.wikipedia.org/wiki/Flesch%E2%80%93Kincaid_readability_tests
 formula: |
   (0.39 * (words / sentences)) + (11.8 * (syllables / words)) - 15.59
 
-condition: "> 8"
+condition: "> 8.0"
 ```
 
 The table below summarizes all available variables:
@@ -414,7 +418,7 @@ following operators:
 | `math.sqrt(x)` | Square root of `x`    |
 | `math.abs(x)`  | Absolute value of `x` |
 
-A `condition` may use one of `>`, `<`, `=`, `>=`, and `<=`.
+A `condition` may use one of `>`, `<`, `==`, `>=`, and `<=`.
 
 The result of a `formula` will be compared to its `condition` and inserted
 into its `message` format specifier (`%s`).
