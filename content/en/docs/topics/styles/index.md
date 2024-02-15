@@ -362,6 +362,10 @@ Additionally, when using `match: $title`, you can specify a style of either
 
 ### metric
 
+{{< alert icon="👉" context="info">}}
+When writing conditions, be sure to use floating-point numbers. For example, use `"== 8.0"` instead of `"== 8"`.
+{{< /alert >}}
+
 `metric` enforces arbitrary formulas based on pre-defined, built-in variables.
 
 {{< details "Key summary" >}}
@@ -371,9 +375,6 @@ Additionally, when using `match: $title`, you can specify a style of either
 | `condition` | `string` | A binary condition upon which `formula` will trigger an alert. |
 {{< /details >}}
 
-{{< alert icon="👉" context="info">}}
-`metric` rules require floating-point comparisons, so you should, for example, use `"> 8.0"` instead of `"> 8"`.
-{{< /alert >}}
 
 ```yaml
 extends: metric
