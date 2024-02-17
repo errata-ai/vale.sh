@@ -41,11 +41,12 @@ BasedOnStyles = Vale
 ```
 
 The `Packages` key accepts four types of values:
-  1. a name of a package hosted
-in the official [Package Hub](/hub/)
+
+  1. A name of a package hosted
+in the official [Package Hub](/hub/);
   2. a URL to an externally-hosted
-package
-  3. an absolute or relative path to a package ZIP file located in a local file system.
+package;
+  3. an absolute or relative path to a `.zip` file located in the local file system; or
   4. an absolute or relative path to a directory containing package files.
 
 ## Style-only
@@ -154,7 +155,7 @@ that you'll also have some local components  as well.
 
 The above example ignores the entire `.github/styles/` folder *except* for
 `.github/styles/config/vocabularies/Base` (which we want to track changes for). 
-The rules to ignore subfolders are written in pairs, because Git disregards
+The rules to ignore subfolders are written in pairs because Git disregards
 skip-level unignore rules. Any unignored item should have its parent folder
 unignored as well.
 
