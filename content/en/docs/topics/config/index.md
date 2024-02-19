@@ -38,6 +38,11 @@ rather than a specific file format.
 
 #### StylesPath
 
+{{< alert icon="👉" context="info" >}}
+You can override the default `StylesPath` by manually defining a 
+`VALE_STYLES_PATH` environment variable.
+{{< /alert >}}
+
 ```ini
 # Here's an example of a relative path:
 #
