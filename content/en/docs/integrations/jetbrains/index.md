@@ -71,7 +71,7 @@ natural language."
 
 It includes a ["Project style guides"][3] feature that "lets you automate checks
 against various styles guides." They use Vale's YAML-based syntax to power
-this feature, but currently on support a subset of its overall functionality.
+this feature, but currently only support a subset of its overall functionality.
 
 [1]: https://www.jetbrains.com/help/idea/configuring-third-party-tools.html
 [2]: https://plugins.jetbrains.com/plugin/16136-grazie-
