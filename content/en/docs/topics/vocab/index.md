@@ -133,7 +133,7 @@ providing an appropriate regular expression:
 [Oo]bservability
 ```
 
-The entry, `(?i)MongoDB`, marks the entire pattern as case-insensitive while
+The first entry, `(?i)MongoDB`, marks the entire pattern as case-insensitive while
 the second, `[Oo]bservability`, provides two acceptable options.
 
 Second, you can disable `Vale.Terms` and just use `Vale.Spelling`:
