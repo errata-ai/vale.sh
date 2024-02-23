@@ -113,7 +113,7 @@ Test.Rule = YES
 
 The packaged `StylesPath` will be merged with the active local `StylesPath`
 and any included configuration files will be added to the local
-`StylesPath/.config` folder.
+`StylesPath/.vale-config` folder.
 
 ## Package ordering and overrides
 
