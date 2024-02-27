@@ -45,7 +45,8 @@ action:
 ```
 
 The `script` action allows you to define a custom suggestion script that will 
-be executed for each match. The script should return an array of strings.
+be executed for each match. The script should return an array of strings called
+`suggestions`.
 
 Scripts are written in [Tengo][3] and are stored in the
 `<StylesPath>/config/actions` directory. Here's an example script:
@@ -59,6 +60,7 @@ made := text.re_replace(`([A-Z]\w+)([A-Z]\w+)`, match, `$1-$2`)
 made = text.replace(made, "-", "_", 1)
 made = text.to_lower(made)
 
+// `suggestions` is required by Vale and represents the script's output.
 suggestions := [made]
 ```
 
