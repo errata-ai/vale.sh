@@ -103,8 +103,8 @@ action:
   name: edit
   params:
     - regex
-    - "-" # pattern
-    - " " # repl
+    - '([A-Z]\w+)([A-Z]\w+)' # pattern
+    - "$1-$2" # repl
 ```
 
 This is equivalent to the following Go code:
