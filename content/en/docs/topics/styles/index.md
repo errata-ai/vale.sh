@@ -118,6 +118,7 @@ The most general extension point is `existence`. As its name implies, it looks f
 | `raw` | `array` | A list of tokens to be concatenated into a pattern. |
 | `tokens` | `array` | A list of tokens to be transformed into a non-capturing group. |
 | `exceptions` | `array` | An array of strings to be ignored. |
+| `vocab` | `bool` | If false, disables all active vocabularies for this rule (default: true). |
 {{< /details >}}
 
 ```yaml
@@ -164,6 +165,7 @@ becomes `(?:foo)\sbar(baz)`.
 | `nonword` | `bool` | Removes the default word boundaries \(`\b`\). |
 | `swap` | `map` | A sequence of `observed: expected` pairs. |
 | `exceptions` | `array` | An array of strings to be ignored. |
+| `vocab` | `bool` | If false, disables all active vocabularies for this rule (default: true). |
 {{< /details >}}
 
 ```yaml
@@ -335,6 +337,14 @@ of `match`.
 | `exceptions` | `array` | An array of strings to be ignored. |
 | `indicators` | `array` | An array of suffixes that indicate the next token should be ignored. |
 | `threshold` | `float` | The minimum proportion of words that must be (un)capitalized for a sentence to be considered correct (default: 0.8). |
+| `prefix` | `string` | A constant prefix to ignore during case conversion. |
+| `vocab` | `bool` | If false, disables all active vocabularies for this rule (default: true). |
+{{< /details >}}
+
+```yaml
+{{< /details >}}
+
+```yaml
 {{< /details >}}
 
 ```yaml
