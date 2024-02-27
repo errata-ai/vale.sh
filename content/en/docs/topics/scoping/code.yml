@@ -84,6 +84,12 @@ data:
       `#` (`text.comment.line.ext`),
       `<#...#>` (`text.comment.line.ext`),
       `<#` (`text.comment.block.ext`)
+  - language: Protobuf
+    extensions: "`.proto`"
+    scopes: |
+      `//` (`text.comment.line.ext`),
+      `/*...*/` (`text.comment.line.ext`),
+      `/*` (`text.comment.block.ext`)
   - language: Python
     extensions: "`.py`, `.py3`, `.pyw`, `.pyi`, `rpy`"
     scopes: |
