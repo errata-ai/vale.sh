@@ -595,6 +595,10 @@ link: https://tengolang.com/
 #
 # We need this to access heading markup.
 scope: raw
+# NOTE: You may also reference a file containing the script that is stored in
+# `<StylesPath>/config/scripts`.
+# 
+# For example: `script: MyScript.tengo`.
 script: |
   text := import("text")
   matches := []
