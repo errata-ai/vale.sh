@@ -342,12 +342,6 @@ of `match`.
 {{< /details >}}
 
 ```yaml
-{{< /details >}}
-
-```yaml
-{{< /details >}}
-
-```yaml
 extends: capitalization
 message: "'%s' should be in title case"
 level: warning
