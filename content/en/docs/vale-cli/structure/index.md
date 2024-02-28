@@ -130,6 +130,20 @@ The `templates` directory is where you can add custom output templates.
 
 See [`--output`](/manual/output/) for more information.
 
+#### actions
+
+The `actions` directory is where you can add custom actions to be loaded by
+Vale. 
+
+See [Actions](/docs/topics/actions/) for more information.
+
+#### scripts
+
+The `scripts` directory is where you can add custom scripts to be loaded by
+Vale. 
+
+See [Scripts](/docs/topics/styles/#script) for more information.
+
 ## .vale.ini
 
 The `.vale.ini` file is where you'll control the majority of Vale's behavior,
