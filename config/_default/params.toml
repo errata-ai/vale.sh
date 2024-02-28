@@ -2,7 +2,7 @@
 
 ## Homepage
 description = "Vale is a command-line tool that brings code-like linting to prose. It's fast, cross-platform (Windows, macOS, and Linux), and highly customizable."
-title = "Vale.sh"
+title = "Vale"
 titleAddition = "A linter for prose"
 titleSeparator = "-"
 
