@@ -191,7 +191,7 @@ MinAlertLevel = suggestion
 # Rust + Markdown
 rs = md
 
-[*.md]
+[*.{rs,md}]
 BasedOnStyles = Vale
 ```
 

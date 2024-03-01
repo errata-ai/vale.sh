@@ -117,15 +117,6 @@ WordTemplate = \b(?:%s)\b
 
 ### Format associations
 
-{{< alert icon="👉" context="info">}}
-After making a format assignment, the configuration of the *assigned* format is 
-now applied from your `.vale.ini` file.
-
-See [code](/docs/topics/scoping/#code-1) and 
-[non-standard markup](/docs/topics/scoping/#non-standard-markup) for related
-information.
-{{< /alert >}}
-
 Format associations allow you to associate an "unknown" file extension with
 a supported [file format]({{< ref "scoping" >}}):
 
