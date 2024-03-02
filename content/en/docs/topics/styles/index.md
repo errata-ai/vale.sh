@@ -312,8 +312,8 @@ For example, consider the following text:
 > According to Wikipedia, the World Health Organization \(WHO\) is a
 > specialized agency of the United Nations that is concerned with international
 > public health. We can now use WHO because it has been defined, but we can't
-> use DAFB because people may not know what it represents. We can use DAFB when
-> it's presented as code, though.
+> use DAFB because people may not know what it represents. We can use `DAFB` 
+> when it's presented as code, though.
 
 Using the above text with our example rule yields the following:
 
