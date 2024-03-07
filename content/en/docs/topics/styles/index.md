@@ -354,6 +354,15 @@ exceptions:
   - add
 ```
 
+`capitalization` can have one or two `%s` format specifiers in its message. This
+allows us to do either of the following:
+
+```yaml
+message: "Found: '%s'; expected: '%s'."
+# or
+message: "'%s' should use title-style capitalization."
+```
+
 ### metric
 
 {{< alert icon="👉" context="info">}}
