@@ -354,16 +354,6 @@ exceptions:
   - add
 ```
 
-There are a few pre-defined variables that can be passed as matches:
-
-* `$title`: "The Quick Brown Fox Jumps Over the Lazy Dog."
-* `$sentence`: "The quick brown fox jumps over the lazy dog."
-* `$lower`: "the quick brown fox jumps over the lazy dog."
-* `$upper`: "THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG."
-
-Additionally, when using `match: $title`, you can specify a style of either
-"AP" or "Chicago".
-
 ### metric
 
 {{< alert icon="👉" context="info">}}
