@@ -333,7 +333,7 @@ of `match`.
 | Name | Type | Description |
 | :--- | :--- | :--- |
 | `match` | `string` | `$title`, `$sentence`, `$lower`, `$upper`, or a pattern. |
-| `style` | `string` | AP or Chicago; only applies when match is set to `$title`. |
+| `style` | `string` | AP or Chicago; only applies when match is set to `$title` (default: AP). |
 | `exceptions` | `array` | An array of strings to be ignored. |
 | `indicators` | `array` | An array of suffixes that indicate the next token should be ignored. |
 | `threshold` | `float` | The minimum proportion of words that must be (un)capitalized for a sentence to be considered correct (default: 0.8). |
