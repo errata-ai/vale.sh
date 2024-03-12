@@ -110,7 +110,8 @@ action:
     ...
 ```
 
-Rules that extend `substitution` will automatically populate the `params` array, so you can simply provide the `name`:
+Rules that extend `substitution` or `capitalization` will automatically 
+populate the `params` array, so you can simply provide the `name`:
 
 ```yaml
 action:
