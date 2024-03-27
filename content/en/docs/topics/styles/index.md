@@ -571,7 +571,9 @@ tag: '...'
 skip: 3
 ```
 
-`sequence`-based are [sentence-scoped](/docs/topics/scoping/#markup).
+`sequence`-based are [sentence-scoped](/docs/topics/scoping/#markup). See
+[prose/tagging](https://github.com/jdkato/prose?tab=readme-ov-file#tagging)
+for a full list of supported part-of-speech tags.
 
 ### script
 
