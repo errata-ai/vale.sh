@@ -51,6 +51,12 @@ The effects of using a custom `Vocab` are as follows:
 * Entries in `reject.txt` are automatically added to an existence rule
   (`Vale.Avoid`) that will flag all occurrences as errors.
 
+* Entries in `accept.txt` and `reject.txt` should need little overlap, if any.
+  For example, if you add `JavaScript` to `accept.txt`, then you do not need
+  to add an overlapping regular expression entry of `[Jj]avascript` in
+  `reject.txt`. Vale will enforce correct casing by virtue of the entry's
+  presence in `accept.txt`. See the section "Case sensitivity" for details.
+
 This means that your exceptions can be developed independent of a style,
 allowing you to use the same exceptions with multiple styles or switch styles
 without having to re-implement them.
