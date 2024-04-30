@@ -1,8 +1,11 @@
 {{ define "main" }}
 <div class="row flex-xl-nowrap">
-   <main class="docs-content col-12 mx-auto">
-      <h1 class="text-center">{{ .Title }}</h1>
-      <p class="lead text-center">{{ .Params.lead | safeHTML }}</p>
+   <main class="docs-content col-12 mx-auto text-center">
+      <h1>{{ .Title }}</h1>
+      <p class="lead">{{ .Params.lead | safeHTML }}</p>
+      <small class="text-secondary">
+      See the <a href="/hub">Package Hub</a> for information on the available options.
+   </small>
       <div class="card">
          <div class="card-body">
             <form id="cfg-gen">
