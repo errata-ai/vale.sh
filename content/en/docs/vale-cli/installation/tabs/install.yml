@@ -14,3 +14,11 @@
     ```
 
     See [Homebrew](https://formulae.brew.sh/formula/vale) for more information.
+
+- title: <i class="fab fa-linux"></i> Linux
+  body: |
+    ```shell
+    sudo snap install vale
+    ```
+
+    See [Snapcraft](https://github.com/errata-ai/vale-snap) for more information.
