@@ -145,3 +145,10 @@
   org: https://github.com/neo4j
   website: http://neo4j.com/
   name: Neo4j
+
+- source: https://github.com/cloudflare/cloudflare-docs/blob/production/.vale.ini
+  docs: https://github.com/cloudflare/cloudflare-docs
+  info: Connect, protect and build everywhere.
+  org: https://github.com/cloudflare
+  website: https://www.cloudflare.com/
+  name: Cloudfare
