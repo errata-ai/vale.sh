@@ -166,6 +166,7 @@ becomes `(?:foo)\sbar(baz)`.
 | `swap` | `map` | A sequence of `observed: expected` pairs. |
 | `exceptions` | `array` | An array of strings to be ignored. |
 | `vocab` | `bool` | If false, disables all active vocabularies for this rule (default: true). |
+| `capitalize` | `bool` | Matches the capitalization of the source token. |
 {{< /details >}}
 
 ```yaml
