@@ -483,7 +483,7 @@ environment variable or the `dicpath` key.
    `[Dd]estructuring` and `[Tt]ranspiler`.
 
    You can name these files anything you'd like and reference them relative to
-   the active `StylesPath`:
+   the active `StylesPath/config/ignore` directory.
 
    ```yaml
    extends: spelling
