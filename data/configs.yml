@@ -1,11 +1,4 @@
 ---
-- source: https://github.com/angular/angular/tree/main/aio/tools/doc-linter
-  docs: https://angular.io/guide/docs-lint-errors
-  info: The modern web developer’s platform.
-  website: https://angular.io/
-  org: https://github.com/angular/angular
-  name: Angular
-
 - docs: https://docs.gitlab.com/ee/development/documentation/testing.html#vale
   source: https://gitlab.com/gitlab-org/gitlab/-/tree/master/doc/.vale/gitlab
   info: The most comprehensive AI-powered DevSecOps Platform.
