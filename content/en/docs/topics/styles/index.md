@@ -244,6 +244,8 @@ the only extension point that doesn't accept a format specifier in its message.
 | `ignorecase` | `bool` | Makes all matches case-insensitive. |
 | `alpha` | `bool` | Limits all matches to alphanumeric tokens. |
 | `tokens` | `array` | A list of tokens to be transformed into a non-capturing group. |
+| `exceptions` | `array` | An array of strings to be ignored. |
+| `vocab` | `bool` | If false, disables all active vocabularies for this rule (default: true). |
 {{< /details >}}
 
 ```yaml
