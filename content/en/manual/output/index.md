@@ -41,7 +41,8 @@ type Data struct {
 }
 ```
 
-Where `core.Alert` has the same information as Vale's `--output=JSON` object.
+Where `core.Alert` has the same information as
+[Vale's `--output=JSON` object](https://vale.sh/docs/integrations/guide/#--outputjson).
 
 ## Template functions
 
