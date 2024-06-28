@@ -36,12 +36,6 @@ scopes, rules are compatible across all formats within a particular type.
 
 ### markup
 
-{{< alert icon="👉" context="info">}}
-When writing rules that match against markup syntax itself (such as `#` 
-headings in Markdown), you should use the `raw` scope to bypass the default
-markup-processing steps.
-{{< /alert >}}
-
 The default behavior for markup files is to apply rules to all non-ignored 
 sections of the file (see [Formats](#formats) for more information). This means
 that for most rules you don't need to specify a scope.
