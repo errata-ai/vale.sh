@@ -37,7 +37,7 @@ scopes, rules are compatible across all formats within a particular type.
 ### markup
 
 {{< alert icon="👉" context="info">}}
-When writing rules that match against markup synxtax itself (such as `#` 
+When writing rules that match against markup syntax itself (such as `#` 
 headings in Markdown), you should use the `raw` scope to bypass the default
 markup-processing steps.
 {{< /alert >}}
