@@ -48,12 +48,12 @@
   website: https://www.vultr.com/
   name: Vultr
 
-- source: https://gitlab.trecis.cloud/documentation/utd/circ-vale-rules
-  docs: https://docs.circ.utdallas.edu/user-guide/contributing/workflow.html#_documentation_testing
-  info: The University of Texas at Dallas is a public research university in Richardson, Texas.
-  org: https://github.com/utdal/
-  website: https://www.utdallas.edu/
-  name: UT Dallas
+# - source: https://gitlab.trecis.cloud/documentation/utd/circ-vale-rules
+#   docs: https://docs.circ.utdallas.edu/user-guide/contributing/workflow.html#_documentation_testing
+#   info: The University of Texas at Dallas is a public research university in Richardson, Texas.
+#   org: https://github.com/utdal/
+#   website: https://www.utdallas.edu/
+#   name: UT Dallas
 
 - source: https://github.com/opensearch-project/documentation-website/blob/main/.vale.ini
   docs: https://opensearch.org/blog/style-workflow/
