@@ -28,9 +28,7 @@ data:
 
   - scope: "`sentence`"
     description: |
-      Matches all sentences. **Note:** This scope is computationally expensive
-      and should only be used for rules that require sentence-level 
-      granularity (such as counting words per sentence).
+      Matches all sentences.
 
   - scope: "`blockquote`"
     description: "Matches all `<blockquote>` tags."
