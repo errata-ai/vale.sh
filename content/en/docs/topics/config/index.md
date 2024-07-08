@@ -175,7 +175,7 @@ Style1.Rule2 = error
   and **Org Mode**.
 
 See [Non-standard markup](/docs/topics/scoping/#non-standard-markup) for more 
-infomration and usage examples.
+information and usage examples.
 {{< /alert >}}
 
 `BlockIgnores` allow you to exclude certain block-level sections of text that
@@ -204,7 +204,7 @@ BlockIgnores = (?s) *({< output >}.*?{< ?/ ?output >}), \
   and **Org Mode**.
 
 See [Non-standard markup](/docs/topics/scoping/#non-standard-markup) for more 
-infomration and usage examples.
+information and usage examples.
 {{< /alert >}}
 
 `TokenIgnores` allow you to exclude certain inline-level sections of text that
