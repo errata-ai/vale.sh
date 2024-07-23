@@ -115,6 +115,8 @@ third
 The entries are case-sensitive (except for rules extending `spelling`, as
 mentioned above) and may also be regular expressions.
 
+Lines starting with `# ` are treated as comments and are ignored.
+
 ## Case sensitivity
 
 An important factor in successfully implementing a custom `Vocab` is
