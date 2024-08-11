@@ -25,7 +25,7 @@ diagnostics, and hover popups, and more. The server supports the following `init
 
 | Parameter         | Default | Description                                                                                                           |
 |---------------|--------:|-----------------------------------------------------------------------------------------------------------------------|
-| `installVale` | `true`  | Automatically install and update Vale. If `false`, the `vale` executable needs to be available on the user's `$PATH`. |
+| `installVale` | `true`  | Automatically install and update Vale to a `vale_bin` folder in the same location as `vale-ls`. If `false`, the `vale` executable needs to be available on the user's `$PATH`. |
 | `filter`      | `None`  | An [output filter](https://vale.sh/manual/filter/) to apply when calling Vale.                                        |
 | `configPath`      | `None`  | An absolute path to a `.vale.ini` file to be used as the default configuration.                                       |
 | `syncOnStartup`      | `true`  | Runs `vale sync` upon starting the server.                                       |
