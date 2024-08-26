@@ -172,3 +172,16 @@ vocabularies are for style *users*:
 
 * As a user of styles, vocabularies should be able to replace the use of ignore
   files completely.
+
+## Rules targeting vocabulary entries
+
+In cases where you want to write a rule that needs to match against an otherwise ignored token, you can add `vocab: false` to the rule definition. For example,
+
+```ini
+extends: existence
+message: Did you mean '%s'?
+vocab: false
+tokens:
+    # "MonoDB" can be in a vocab
+    - MongoDB
+```
