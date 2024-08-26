@@ -78,6 +78,13 @@ parent = "integrations"
 url = "https://github.com/chrischinchilla/vale-vscode"
 weight = 120
 
+[[docs]]
+identifier = "zed"
+name = "Zed"
+parent = "integrations"
+url = "https://github.com/koozz/zed-vale"
+weight = 120
+
 [[main]]
 name = "Docs"
 url = "/docs/"
