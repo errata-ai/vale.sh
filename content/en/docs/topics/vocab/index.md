@@ -177,7 +177,7 @@ vocabularies are for style *users*:
 
 In cases where you want to write a rule that needs to match against an otherwise ignored token, you can add `vocab: false` to the rule definition. For example,
 
-```ini
+```yaml
 extends: existence
 message: Did you mean '%s'?
 vocab: false
