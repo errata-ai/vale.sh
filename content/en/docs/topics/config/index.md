@@ -68,6 +68,16 @@ depends on your operating system:
 
 (Run the `vale ls-dirs` command to see the exact locations on your system.)
 
+#### Packages
+
+The list of packages to install to the `StylesPath`.
+
+After running the [`sync`](/manual/sync) command, the styles will be added to
+the active `StylesPath`, and any configuration files will be added to
+`StylesPath/.config` according to the order in which they were loaded.
+
+See [Packages](/docs/topics/packages) for more information and usage examples.
+
 #### MinAlertLevel
 
 ```ini
