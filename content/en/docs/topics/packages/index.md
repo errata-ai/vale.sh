@@ -85,7 +85,7 @@ Archive:  Hugo.zip
   inflating: Hugo/.vale.ini
 ```
 
-After running the [`sync`](/manual/sync) command, the configuration file be
+After running the [`sync`](/manual/sync) command, the configuration file will be
 added to `StylesPath/.config` according to the order in which it was loaded.
 
 ## Complete
