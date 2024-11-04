@@ -211,7 +211,7 @@ BlockIgnores = (?s) *({< output >}.*?{< ?/ ?output >}), \
 
 `CommentDelimiters` allow you to override standard, HTML comment delimiters (`<!-- -->`).
 
-Custom comment delimiters are useful when using non-standard formats which do not allow HTML-style comments.
+Custom comment delimiters are useful when using non-standard markup which do not allow HTML-style comments.
 
 ```ini
 [*.md]
