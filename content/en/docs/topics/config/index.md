@@ -207,6 +207,33 @@ BlockIgnores = (?s) *({< output >}.*?{< ?/ ?output >}), \
 (?s) *({< highlight .* >}.*?{< ?/ ?highlight >})
 ```
 
+#### CommentDelimiters
+
+`CommentDelimiters` allow you to override standard, HTML comment delimiters (`<!-- -->`).
+
+Custom comment delimiters are useful when using non-standard formats which do not allow HTML-style comments.
+
+```ini
+[*.md]
+CommentDelimiters = "{/*","*/}"
+```
+
+When `CommentDelimiters` are set, you can take full advantage of [markup-based configuration](/docs/topics/scoping/#markup-based-configuration) to enable or disable specific rules within a section.  
+
+For instance, when using MDX:
+
+```markup
+{/*
+<!-- vale Google.We = NO -->
+*/}
+
+We rock!
+
+{/*
+<!-- vale Google.We = YES -->
+*/}
+```
+
 #### TokenIgnores
 
 {{< alert icon="👉" context="info">}}
