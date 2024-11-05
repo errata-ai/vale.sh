@@ -214,24 +214,33 @@ BlockIgnores = (?s) *({< output >}.*?{< ?/ ?output >}), \
 Custom comment delimiters are useful when using non-standard markup which do not allow HTML-style comments.
 
 ```ini
-[*.md]
-CommentDelimiters = "{/*","*/}"
+[formats]
+mdx = md
+
+[*.mdx]
+BasedOnStyles = Vale
+
+CommentDelimiters = {/*, */}
 ```
 
-When `CommentDelimiters` are set, you can take full advantage of [markup-based configuration](/docs/topics/scoping/#markup-based-configuration) to enable or disable specific rules within a section.  
+When `CommentDelimiters` are set, you can take full advantage of [markup-based configuration](/docs/topics/scoping/#markup-based-configuration) to enable or disable specific rules within a section.
 
 For instance, when using MDX:
 
 ```markup
-{/*
-<!-- vale Google.We = NO -->
-*/}
+{/* vale off */}
 
-We rock!
+This is some text ACT test
 
-{/*
-<!-- vale Google.We = YES -->
-*/}
+This is some text ACT test
+
+{/* vale on */}
+
+{/* vale vale.Redundancy = NO */}
+
+This is some text ACT test
+
+{/* vale vale.Redundancy = YES */}
 ```
 
 #### TokenIgnores
