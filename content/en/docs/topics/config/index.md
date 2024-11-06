@@ -223,7 +223,7 @@ BasedOnStyles = Vale
 CommentDelimiters = {/*, */}
 ```
 
-When `CommentDelimiters` are set, you can take full advantage of [markup-based configuration](/docs/topics/scoping/#markup-based-configuration) to enable or disable specific rules within a section.
+When `CommentDelimiters` are set, you can take full advantage of [markup-based configuration](#markup-based-configuration) to enable or disable specific rules within a section.
 
 For instance, when using MDX:
 
