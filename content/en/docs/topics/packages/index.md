@@ -1,7 +1,6 @@
 ---
 title: Packages
-lead:
-  Share, sync, extend, and update Vale-related assets.
+lead: Share, sync, extend, and update Vale-related assets.
 draft: false
 images: []
 menu:
@@ -42,16 +41,16 @@ BasedOnStyles = Vale
 
 The `Packages` key accepts four types of values:
 
-  1. A name of a package hosted
-in the official [Package Hub](/hub/);
-  2. a URL to an externally-hosted
-package;
-  3. an absolute or relative path to a `.zip` file located in the local file system; or
-  4. an absolute or relative path to a directory containing package files.
+1. A name of a package hosted
+   in the official [Package Hub](/hub/);
+2. a URL to an externally-hosted
+   package;
+3. an absolute or relative path to a `.zip` file located in the local file system; or
+4. an absolute or relative path to a directory containing package files.
 
 ## Style-only
 
-Style-only (such as [write-good][1]) packages are a  `.zip` archive of a single
+Style-only (such as [write-good][1]) packages are a `.zip` archive of a single
 style folder:
 
 ```console
@@ -75,7 +74,7 @@ the active `StylesPath`.
 
 ## Config-only
 
-Config-only (such as [Hugo][2]) packages are a  `.zip` archive of a single
+Config-only (such as [Hugo][2]) packages are a `.zip` archive of a single
 `.vale.ini` file:
 
 ```console
@@ -137,7 +136,7 @@ You'll want to add any packaged configuration components to your `.gitignore`
 (or equivalent) file.
 
 While this can be as simple as ignoring your entire `StylesPath`, it's likely
-that you'll also have some local components  as well.
+that you'll also have some local components as well.
 
 ```ini
 # We want to ignore our StylesPath *except* for our local
@@ -153,11 +152,8 @@ that you'll also have some local components  as well.
 !.github/styles/config/vocabularies/Base
 ```
 
-The above example ignores the entire `.github/styles/` folder *except* for
-`.github/styles/config/vocabularies/Base` (which we want to track changes for). 
-The rules to ignore subfolders are written in pairs because Git disregards
-skip-level unignore rules. Any unignored item should have its parent folder
-unignored as well.
+The above example ignores the entire `.github/styles/` folder _except_ for
+`.github/styles/config/vocabularies/Base` (which we want to track changes for).
 
 [1]: /hub/write-good/
 [2]: /hub/hugo/

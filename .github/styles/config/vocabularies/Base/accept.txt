@@ -8,6 +8,7 @@ docutils
 Grazie
 jdkato
 JetBrains
+Levenshtein
 lookahead
 lookbehind
 Lua

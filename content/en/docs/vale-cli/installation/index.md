@@ -21,7 +21,12 @@ manager such as Homebrew (macOS) or Chocolatey (Windows):
 This will ensure that Vale is available on your `$PATH` and allow you to stay
 up to date with new releases.
 
+<!-- vale off -->
+<!-- TODO: Fix in Hugu package -->
+
 {{< pkgs >}}
+
+<!-- vale on -->
 
 Vale can also be found at a number of other package repositories. Many of these
 are community-maintained, so please read the package's documentation before
