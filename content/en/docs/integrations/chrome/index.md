@@ -2,7 +2,7 @@
 title: Google Chrome
 lead: |
   Use Vale with Google Chrome.
-draft: false
+draft: true
 images: []
 menu:
   docs:
@@ -20,7 +20,7 @@ recommended since it provides a more advanced integration.
 ### Install the LSP package
 
 1. Open the Command Palette (<kbd>Ctrl+Shift+P</kbd> on Windows/Linux,
-      ⇧⌘P on macOS) and select `Package Control: Install Package`.
+   ⇧⌘P on macOS) and select `Package Control: Install Package`.
 2. Select `LSP` from the list.
 
 ### Install the Vale Language Server
