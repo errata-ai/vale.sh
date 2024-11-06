@@ -10,7 +10,7 @@ jobs:
       - uses: errata-ai/vale-action@reviewdog
         with:
           files: README.md content
-          ebug: true
+          debug: true
           fail_on_error: true
           reporter: github-check
         env:
