@@ -1,5 +1,6 @@
 name: reviewdog
-on: [pull_request]
+
+on: push
 
 jobs:
   vale:
