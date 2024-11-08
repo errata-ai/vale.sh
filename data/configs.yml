@@ -152,3 +152,10 @@
   org: https://github.com/spectrocloud
   website: https://spectrocloud.com/
   name: Spectro Cloud
+
+- source: https://github.com/aws/aws-eks-best-practices/blob/master/.vale.ini
+  docs: https://github.com/aws/aws-eks-best-practices
+  info: Amazon Web Services offers reliable, scalable, and inexpensive cloud computing services.
+  org: https://github.com/aws
+  website: https://amazon.com/aws
+  name: Amazon Web Services
