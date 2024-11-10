@@ -1,0 +1,25 @@
+# See famewall.io and saythanks.io
+
+- name: Wouter Veeken
+  title: Technical Writer
+  review: |
+    Over the past 6 years, I've introduced and implemented Vale at 3 different
+    jobs in 3 companies (2 of which enterprise scale).
+
+    In addition to giving me and my fellow tech writers more control over the
+    quality of the content we put out, it's given me a lot of insight into the
+    particular writing habits of non-professional writers and ESL speakers.
+    This means I'm able to better anticipate and address the specific style and
+    grammar issues that members of this group struggle with, enabling me to
+    more effectively coach them, which in turn helps everyone feel better in
+    general about contributing to documentation.
+
+    A+++ would recommend to anyone professionally producing and/or processing
+    prose today.
+
+- name: Christian Laurent
+  title: Principal Technical Writer at iwoca
+  review: |
+    We use vale on all of our internal docs in a docs-as-code pipeline.
+    Such a great piece of software! It's powerful, it works, and it's
+    customisable.
