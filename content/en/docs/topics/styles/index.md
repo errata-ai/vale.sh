@@ -30,12 +30,12 @@ action:
   name: edit
   params:
     - remove
-    - '.?!'
+    - ".?!"
 tokens:
   - '[a-z0-9][.?!](?:\s|$)'
 ```
 
-These collections are referred to as *styles* and are organized in a
+These collections are referred to as _styles_ and are organized in a
 nested folder structure at a user-specified location
 (see [Configuration](/docs/topics/config)). For example,
 
@@ -69,6 +69,7 @@ supports positive lookahead (`(?=re)`), negative lookahead (`(?!re)`),
 positive lookbehind (`(?<=re)`), and negative lookbehind (`(?<!re)`).
 
 [1]: https://pkg.go.dev/regexp/syntax
+
 {{< /alert >}}
 
 The building blocks of styles are rules (YAML files ending in `.yml`), which utilize extension points to perform specific tasks.
@@ -95,7 +96,7 @@ level: warning
 # See the Markup section for more information on scoping.
 scope: heading
 # `link` gives the source for this rule.
-link: 'https://errata.ai/'
+link: "https://errata.ai/"
 # The number of times this rule should raise an alert.
 #
 # By default, there is no limit.
@@ -127,8 +128,8 @@ message: Consider removing '%s'
 level: warning
 ignorecase: true
 tokens:
-    - appears to be
-    - arguably
+  - appears to be
+  - arguably
 ```
 
 These tokens can be anything from simple phrases \(as in the above example\) to complex regular expressions&mdash;e.g., [the number of spaces between sentences](https://github.com/errata-ai/vale/blob/master/testdata/styles/demo/Spacing.yml) or [the position of punctuation after quotes](https://github.com/errata-ai/Google/blob/master/Google/Quotes.yml).
@@ -148,7 +149,7 @@ becomes `\b(?:appears to be|arguably)\b`.
 ```yaml
 raw:
   - '(?:foo)\sbar'
-  - '(baz)'
+  - "(baz)"
 ```
 
 becomes `(?:foo)\sbar(baz)`.
@@ -178,6 +179,9 @@ ignorecase: false
 swap:
   abundance: plenty
   accelerate: speed up
+  # You can suggest multiple alternatives for a single token
+  # by separating them with a pipe ("|").
+  masterful: skilled|authoritative|commanding
 ```
 
 If we want to suggest the use of "plenty" instead of "abundance," for example,
@@ -192,8 +196,8 @@ The keys may be regular expressions, but they can't include nested capture group
 
 ```yaml
 swap:
-  '(?:give|gave) rise to': lead to # this is okay
-  '(give|gave) rise to': lead to # this is bad!
+  "(?:give|gave) rise to": lead to # this is okay
+  "(give|gave) rise to": lead to # this is bad!
 ```
 
 `substitution` can have one or two `%s` format specifiers in its message. This
@@ -228,7 +232,7 @@ level: error
 scope: sentence
 ignorecase: false
 max: 3
-token: ','
+token: ","
 ```
 
 In the example above, we're limiting the number of commas per sentence. This is
@@ -316,7 +320,7 @@ For example, consider the following text:
 > According to Wikipedia, the World Health Organization \(WHO\) is a
 > specialized agency of the United Nations that is concerned with international
 > public health. We can now use WHO because it has been defined, but we can't
-> use DAFB because people may not know what it represents. We can use `DAFB` 
+> use DAFB because people may not know what it represents. We can use `DAFB`
 > when it's presented as code, though.
 
 Using the above text with our example rule yields the following:
@@ -376,12 +380,11 @@ When writing conditions, be sure to use floating-point numbers. For example, use
 `metric` enforces arbitrary formulas based on pre-defined, built-in variables.
 
 {{< details "Key summary" >}}
-| Name        | Type     | Description                                                     |
+| Name | Type | Description |
 | :---------- | :------- | :-------------------------------------------------------------- |
-| `formula`   | `string` | A formula of pre-defined variables to be evaluated.             |
+| `formula` | `string` | A formula of pre-defined variables to be evaluated. |
 | `condition` | `string` | A binary condition upon which `formula` will trigger an alert. |
 {{< /details >}}
-
 
 ```yaml
 extends: metric
@@ -396,20 +399,20 @@ condition: "> 8.0"
 
 The table below summarizes all available variables:
 
-|       Variable       |                                     Description                                    |
-|:--------------------:|:----------------------------------------------------------------------------------:|
-| `blockquote`         | The number of `blockquote` tags.                                                   |
-| `characters`         | The number of characters.                                                          |
-| `complex_words`      | The number of polysyllabic words without common suffixes (`es`, `ed`, `ing`, ...). |
-| `heading.h{n}`       | The number of headings at the specified level (for example, `heading.h1`).         |
-| `list`               | The number of `ol` and `ul` tags.                                                  |
-| `long_words`         | The number of words with more than 6 characters.                                   |
-| `paragraphs`         | The number of paragraphs.                                                          |
-| `polysyllabic_words` | The number of words with more than 2 syllables.                                    |
-| `pre`                | The number of `pre` tags.                                                          |
-| `sentences`          | The number of sentences.                                                           |
-| `syllables`          | The number of syllables.                                                           |
-| `words`              | The number of words.                                                               |
+|       Variable       |                                    Description                                     |
+| :------------------: | :--------------------------------------------------------------------------------: |
+|     `blockquote`     |                          The number of `blockquote` tags.                          |
+|     `characters`     |                             The number of characters.                              |
+|   `complex_words`    | The number of polysyllabic words without common suffixes (`es`, `ed`, `ing`, ...). |
+|    `heading.h{n}`    |     The number of headings at the specified level (for example, `heading.h1`).     |
+|        `list`        |                         The number of `ol` and `ul` tags.                          |
+|     `long_words`     |                  The number of words with more than 6 characters.                  |
+|     `paragraphs`     |                             The number of paragraphs.                              |
+| `polysyllabic_words` |                  The number of words with more than 2 syllables.                   |
+|        `pre`         |                             The number of `pre` tags.                              |
+|     `sentences`      |                              The number of sentences.                              |
+|     `syllables`      |                              The number of syllables.                              |
+|       `words`        |                                The number of words.                                |
 
 Since the pre-defined variables are calculated using the entire document, all
 `metric`-based rules are [`summary`-scoped](/docs/topic/scoping).
@@ -418,12 +421,12 @@ In addition to using the variables listed above, a `formula` may also use the
 following operators:
 
 |    Operator    |      Description      |
-|:--------------:|:---------------------:|
-| `+`            | Addition              |
-| `-`            | Subtraction           |
-| `*`            | Multiplication        |
-| `/`            | Division              |
-| `math.sqrt(x)` | Square root of `x`    |
+| :------------: | :-------------------: |
+|      `+`       |       Addition        |
+|      `-`       |      Subtraction      |
+|      `*`       |    Multiplication     |
+|      `/`       |       Division        |
+| `math.sqrt(x)` |  Square root of `x`   |
 | `math.abs(x)`  | Absolute value of `x` |
 
 A `condition` may use one of `>`, `<`, `==`, `>=`, and `<=`.
@@ -436,14 +439,14 @@ into its `message` format specifier (`%s`).
 `spelling` implements spell checking based on Hunspell-compatible dictionaries.
 
 {{< details "Key summary" >}}
-| Name           | Type     | Description                                                                                 |
+| Name | Type | Description |
 | :------------- | :------- | :------------------------------------------------------------------------------------------ |
-| `custom`       | `bool`   | Turn off the default filters for acronyms, abbreviations, and numbers.                      |
-| `filters`      | `array`  | An array of patterns to ignore during spell checking.                                       |
-| `ignore`       | `string` | A relative path \(from `StylesPath`\) to a file consisting of one word per line to ignore.  |
-| `dicpath`      | `string` | The location to look for `.dic` and `.aff` files.                                           |
-| `dictionaries` | `array`  | An array of dictionaries to load.                                                           |
-| `append`       | `bool`   | Adds the array of dictionaries after the default Vale dictionary, instead of replacing it.  |
+| `custom` | `bool` | Turn off the default filters for acronyms, abbreviations, and numbers. |
+| `filters` | `array` | An array of patterns to ignore during spell checking. |
+| `ignore` | `string` | A relative path \(from `StylesPath`\) to a file consisting of one word per line to ignore. |
+| `dicpath` | `string` | The location to look for `.dic` and `.aff` files. |
+| `dictionaries` | `array` | An array of dictionaries to load. |
+| `append` | `bool` | Adds the array of dictionaries after the default Vale dictionary, instead of replacing it. |
 {{< /details >}}
 
 ```yaml
@@ -474,7 +477,7 @@ environment variable or the `dicpath` key.
 
 `spelling` offers two different ways of ignoring non-dictionary words:
 
-1. Using *ignore* files: Ignore files are plain-text files
+1. Using _ignore_ files: Ignore files are plain-text files
    that list words to be ignored during spell check (one case-insensitive entry
    per line) . For example,
 
@@ -499,8 +502,8 @@ environment variable or the `dicpath` key.
      - ignore2.txt
    ```
 
-2. Using *filters*: You can also customize the spell-checking experience by
-   defining *filters*, which are Go-compatible
+2. Using _filters_: You can also customize the spell-checking experience by
+   defining _filters_, which are Go-compatible
    regular expressions to applied to individual words:
 
    ```yaml
@@ -525,7 +528,7 @@ environment variable or the `dicpath` key.
 
 ### sequence
 
-While most extension points focus on writing *style*, `sequence` aims to
+While most extension points focus on writing _style_, `sequence` aims to
 support grammar-focused rules.
 
 {{< details "Key summary" >}}
@@ -559,15 +562,15 @@ structure:
 ```yaml
 # [optional]: A regular expression (required
 # if `tag` isn't given).
-pattern: '...'
+pattern: "..."
 
 # [optional]: If true, indicates that we
 # *shouldn't* match this token.
-negate: true   # or false
+negate: true # or false
 
 # [optional]: A part-of-speech tag (required
 # if `pattern` isn't given).
-tag: '...'
+tag: "..."
 
 # [optional]: An integer meaning that there may
 # be up to `n` (3, in this case) tokens between
@@ -585,6 +588,7 @@ for a full list of supported part-of-speech tags.
 When using `script`-based rules, you're limited to the standard Go [regex syntax][1].
 
 [1]: https://pkg.go.dev/regexp/syntax
+
 {{< /alert >}}
 
 `script` allows for the creation of arbitrary logic-based rules using
@@ -596,7 +600,7 @@ When using `script`-based rules, you're limited to the standard Go [regex syntax
 | `script` | `string` | The [Tengo](https://tengolang.com/) script to execute. |
 {{< /details >}}
 
-```yaml
+````yaml
 extends: script
 message: "Consider inserting a new section heading at this point."
 link: https://tengolang.com/
@@ -606,7 +610,7 @@ link: https://tengolang.com/
 scope: raw
 # NOTE: You may also reference a file containing the script that is stored in
 # `<StylesPath>/config/scripts`.
-# 
+#
 # For example: `script: MyScript.tengo`.
 script: |
   text := import("text")
@@ -627,7 +631,7 @@ script: |
       count += 1
     }
   }
-```
+````
 
 In order to return rule matches, scripts must define a `matches` variable with an array value.
 To initialize an empty `matches` variable, use `matches := []`.
