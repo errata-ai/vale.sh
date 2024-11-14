@@ -1,0 +1,117 @@
+[
+    {
+        "language": "C",
+        "extensions": "`.c`, `.h`",
+        "scopes": "`//` (`text.comment.line.ext`),\n`/*...*/` (`text.comment.line.ext`),\n`/*` (`text.comment.block.ext`)\n"
+    },
+    {
+        "language": "C#",
+        "extensions": "`.cs`, `.csx`",
+        "scopes": "`//` (`text.comment.line.ext`),\n`/*...*/` (`text.comment.line.ext`),\n`/*` (`text.comment.block.ext`)\n"
+    },
+    {
+        "language": "C++",
+        "extensions": "`.cpp`, `.cc`, `.cxx`, `.hpp`",
+        "scopes": "`//` (`text.comment.line.ext`),\n`/*...*/` (`text.comment.line.ext`),\n`/*` (`text.comment.block.ext`)\n"
+    },
+    {
+        "language": "CSS",
+        "extensions": "`.css`",
+        "scopes": "`/*...*/` (`text.comment.line.ext`),\n`/*` (`text.comment.block.ext`)\n"
+    },
+    {
+        "language": "Go",
+        "extensions": "`.go`",
+        "scopes": "`//` (`text.comment.line.ext`),\n`/*...*/` (`text.comment.line.ext`),\n`/*` (`text.comment.block.ext`)\n"
+    },
+    {
+        "language": "Haskell",
+        "extensions": "`.hs`",
+        "scopes": "`--` (`text.comment.line.ext`),\n`{-` (`text.comment.block.ext`)\n"
+    },
+    {
+        "language": "Java",
+        "extensions": "`.java`, `.bsh`",
+        "scopes": "`//` (`text.comment.line.ext`),\n`/*...*/` (`text.comment.line.ext`),\n`/*` (`text.comment.block.ext`)\n"
+    },
+    {
+        "language": "JavaScript",
+        "extensions": "`.js`",
+        "scopes": "`//` (`text.comment.line.ext`),\n`/*...*/` (`text.comment.line.ext`),\n`/*` (`text.comment.block.ext`)\n"
+    },
+    {
+        "language": "Julia",
+        "extensions": "`.jl`",
+        "scopes": "`#` (`text.comment.line.ext`),\n`\"...\"` (`text.comment.line.ext`)\n`#=` (`text.comment.block.ext`),\n`\"\"\"` (`text.comment.block.ext`)\n"
+    },
+    {
+        "language": "LESS",
+        "extensions": "`.less`",
+        "scopes": "`//` (`text.comment.line.ext`),\n`/*...*/` (`text.comment.line.ext`),\n`/*` (`text.comment.block.ext`)\n"
+    },
+    {
+        "language": "Lua",
+        "extensions": "`.lua`",
+        "scopes": "`--` (`text.comment.line.ext`),\n`--[[` (`text.comment.block.ext`)\n"
+    },
+    {
+        "language": "Perl",
+        "extensions": "`.pl`, `.pm`, `.pod`",
+        "scopes": "`#` (`text.comment.line.ext`)\n"
+    },
+    {
+        "language": "PHP",
+        "extensions": "`.php`",
+        "scopes": "`//` (`text.comment.line.ext`),\n`#` (`text.comment.line.ext`),\n`/*...*/` (`text.comment.line.ext`),\n`/*` (`text.comment.block.ext`)\n"
+    },
+    {
+        "language": "PowerShell",
+        "extensions": "`.ps1`",
+        "scopes": "`#` (`text.comment.line.ext`),\n`<#...#>` (`text.comment.line.ext`),\n`<#` (`text.comment.block.ext`)\n"
+    },
+    {
+        "language": "Protobuf",
+        "extensions": "`.proto`",
+        "scopes": "`//` (`text.comment.line.ext`),\n`/*...*/` (`text.comment.line.ext`),\n`/*` (`text.comment.block.ext`)\n"
+    },
+    {
+        "language": "Python",
+        "extensions": "`.py`, `.py3`, `.pyw`, `.pyi`, `rpy`",
+        "scopes": "`#` (`text.comment.line.ext`),\n`\"\"\"` (`text.comment.block.ext`)\n"
+    },
+    {
+        "language": "R",
+        "extensions": "`.r`, `.R`",
+        "scopes": "`#` (`text.comment.line.ext`)\n"
+    },
+    {
+        "language": "Ruby",
+        "extensions": "`.rb`",
+        "scopes": "`#` (`text.comment.line.ext`),\n`^=begin` (`text.comment.block.ext`)\n"
+    },
+    {
+        "language": "Rust",
+        "extensions": "`.rs`",
+        "scopes": "`//` (`text.comment.line.ext`)\n"
+    },
+    {
+        "language": "Sass",
+        "extensions": "`.sass`",
+        "scopes": "`//` (`text.comment.line.ext`),\n`/*...*/` (`text.comment.line.ext`),\n`/*` (`text.comment.block.ext`)\n"
+    },
+    {
+        "language": "Scala",
+        "extensions": "`.scala`, `.sbt`",
+        "scopes": "`//` (`text.comment.line.ext`)\n"
+    },
+    {
+        "language": "Swift",
+        "extensions": "`.swift`",
+        "scopes": "`//` (`text.comment.line.ext`),\n`/*...*/` (`text.comment.line.ext`),\n`/*` (`text.comment.block.ext`)\n"
+    },
+    {
+        "language": "TypeScript",
+        "extensions": "`.ts`, `.tsx`",
+        "scopes": "`//` (`text.comment.line.ext`),\n`/*...*/` (`text.comment.line.ext`),\n`/*` (`text.comment.block.ext`)\n"
+    }
+]

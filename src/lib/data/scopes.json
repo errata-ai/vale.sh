@@ -1,0 +1,50 @@
+[
+    {
+        "scope": "heading",
+        "description": "Matches all `h{1,...}` tags. You can specify an exact level by\nappending tags—for example, `heading.h1` matches all `h1` tags.\n"
+    },
+    {
+        "scope": "table.header",
+        "description": "Matches all `th` tags."
+    },
+    {
+        "scope": "table.cell",
+        "description": "Matches all `td` tags."
+    },
+    {
+        "scope": "table.caption",
+        "description": "Matches all `caption` tags."
+    },
+    {
+        "scope": "figure.caption",
+        "description": "Matches all `figcaption` tags."
+    },
+    {
+        "scope": "list",
+        "description": "Matches all `li` tags."
+    },
+    {
+        "scope": "paragraph",
+        "description": "Matches all paragraphs (segments of text separated by two newlines).\n"
+    },
+    {
+        "scope": "sentence",
+        "description": "Matches all sentences."
+    },
+    {
+        "scope": "blockquote",
+        "description": "Matches all `blockquote` tags."
+    },
+    {
+        "scope": "alt",
+        "description": "Matches all alt attributes."
+    },
+    {
+        "scope": "summary",
+        "description": "Matches all body text (excluding headings, code spans, code blocks, and\ntable cells). This scope is useful for rules that need to match only\nsentence-level text content (such as readability scores).\n"
+    },
+    {
+        "scope": "raw",
+        "description": "Uses the raw, unprocessed markup source instead of a specific scope. This\nscope is useful for regex-based rules that need to match against the\noriginal source text.\n"
+    }
+]

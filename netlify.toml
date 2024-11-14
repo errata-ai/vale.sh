@@ -1,0 +1,52 @@
+[build]
+functions = "lambda"
+publish = "build"
+
+[[headers]]
+for = "/*"
+
+[headers.values]
+Access-Control-Allow-Origin = "*"
+Cache-Control = "public, max-age=0, must-revalidate"
+Content-Security-Policy = "default-src 'self'; connect-src 'self' https://raw.githubusercontent.com https://2y8ou39u1x-dsn.algolia.net https://2y8ou39u1x-2.algolianet.com https://2y8ou39u1x-3.algolianet.com https://vale.sh; font-src 'self' https://use.fontawesome.com https://fonts.gstatic.com https://cdnjs.cloudflare.com; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://2y8ou39u1x-3.algolianet.com https://cdn.jsdelivr.net https://use.fontawesome.com https://opencollective.com https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://use.fontawesome.com https://opencollective.com https://cdnjs.cloudflare.com; img-src * data:; frame-src 'self' 'unsafe-inline' https://www.youtube.com https://opencollective.com"
+
+[build.environment]
+NODE_VERSION = "17.8.0"
+NPM_VERSION = "8.5.5"
+GO111MODULE = "on"
+
+[context.production]
+command = "make"
+
+[context.deploy-preview]
+command = "make preview"
+
+[context.branch-deploy]
+command = "make preview"
+
+[context.next]
+command = "make"
+
+[context.next.environment]
+HUGO_ENV = "next"
+
+[[plugins]]
+package = "netlify-plugin-submit-sitemap"
+
+[plugins.inputs]
+baseUrl = "https://vale.sh/"
+ignorePeriod = 0
+providers = [
+  "google",
+  "bing",
+  "yandex",
+]
+sitemapPath = "/sitemap.xml"
+
+[dev]
+autoLaunch = false
+command = "npm run start"
+framework = "#custom"
+port = 8888
+publish = "public"
+targetPort = 1313
