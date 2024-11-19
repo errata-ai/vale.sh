@@ -125,7 +125,7 @@ func handler(request events.APIGatewayProxyRequest) (*events.APIGatewayProxyResp
 
 	j, err := toJSON(results)
 	if err != nil {
-		return newErrResponse(err)
+		return newErrResponse(err, corsHeaders)
 	}
 
 	return &events.APIGatewayProxyResponse{
