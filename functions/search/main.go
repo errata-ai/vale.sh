@@ -46,8 +46,12 @@ func toJSON(t interface{}) (string, error) {
 	return bf.String(), err
 }
 
-func newErrResponse(err error) (*events.APIGatewayProxyResponse, error) {
-	return &events.APIGatewayProxyResponse{Body: err.Error(), StatusCode: 500}, err
+func newErrResponse(err error, corsHeaders map[string]string) (*events.APIGatewayProxyResponse) (*events.APIGatewayProxyResponse, error) {
+	return &events.APIGatewayProxyResponse{
+    Body: err.Error(),
+    StatusCode: 500,
+    Headers:    corsHeaders,
+    }, err
 }
 
 func writeIndex(name string) (string, error) {
@@ -88,20 +92,28 @@ func writeIndex(name string) (string, error) {
 func handler(request events.APIGatewayProxyRequest) (*events.APIGatewayProxyResponse, error) {
 	var results []Result
 
+	// Add cors headers
+	corsHeaders := map[string]string{
+		"Content-Type":                 "application/json",
+		"Access-Control-Allow-Origin":  "*",
+		"Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+		"Access-Control-Allow-Headers": "Content-Type, Authorization",
+	}
+
 	tmpIndex, err := writeIndex(indexName)
 	if err != nil {
-		return newErrResponse(err)
+		return newErrResponse(err, corsHeaders)
 	}
 
 	engine, err := search.LoadEngine(tmpIndex)
 	if err != nil {
-		return newErrResponse(err)
+		return newErrResponse(err, corsHeaders)
 	}
 	query := request.QueryStringParameters["q"]
 
 	hits, err := engine.Search(query)
 	if err != nil {
-		return newErrResponse(err)
+		return newErrResponse(err, corsHeaders)
 	}
 
 	for _, hit := range hits {
@@ -118,7 +130,7 @@ func handler(request events.APIGatewayProxyRequest) (*events.APIGatewayProxyResp
 
 	return &events.APIGatewayProxyResponse{
 		StatusCode:      200,
-		Headers:         map[string]string{"Content-Type": "application/json"},
+		Headers:         corsHeaders,
 		Body:            j,
 		IsBase64Encoded: false,
 	}, nil
