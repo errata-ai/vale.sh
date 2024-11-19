@@ -258,7 +258,7 @@ message: "'%s' is repeated!"
 level: error
 alpha: true
 tokens:
-  - '[^\s]+'
+  - '[^\s.!?]+'
 ```
 
 ### consistency
