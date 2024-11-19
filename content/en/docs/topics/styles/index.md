@@ -591,7 +591,7 @@ When using `script`-based rules, you're limited to the standard Go [regex syntax
 
 {{< /alert >}}
 
-`script` allows for the creation of arbitrary logic-based rules using
+Use `script` to create arbitrary logic-based rules using
 [Tengo](https://github.com/d5/tengo), a Go-like scripting language.
 
 {{< details "Key summary" >}}
@@ -599,6 +599,21 @@ When using `script`-based rules, you're limited to the standard Go [regex syntax
 | :--- | :--- | :--- |
 | `script` | `string` | The [Tengo](https://tengolang.com/) script to execute. |
 {{< /details >}}
+
+In each script:
+
+1. Use Tengo's [`text`](https://github.com/d5/tengo/blob/master/docs/stdlib-text.md) module,
+   which provides a number of string- and regex-related utility functions.
+1. Process the content in the `scope` variable. The `scope` string contains text based on
+   the `scope: <scope>` setting for the rule. `scope: raw` provides the entire unprocessed
+   contents of the file. For more information, see [Scoping](/docs/topics/scoping).
+1. Populate the `matches` array with rule matches. Each match must be a map with the keys:
+
+   - `begin`: where the match begins in the content provided by the `scope` variable.
+   - `end`: where the match ends in the content provided by the `scope` variable.
+
+   For more information about map values, refer to
+   [Tengo Language Syntax | Map values](https://github.com/d5/tengo/blob/master/docs/tutorial.md#map-values).
 
 ````yaml
 extends: script
@@ -632,22 +647,6 @@ script: |
     }
   }
 ````
-
-In order to return rule matches, scripts must define a `matches` variable with an array value.
-To initialize an empty `matches` variable, use `matches := []`.
-
-A match must be a map with the keys `begin` and `end` set to integer indexes into the `scope`.
-For more information about map values, refer to [Tengo Language Syntax | Map values](https://github.com/d5/tengo/blob/master/docs/tutorial.md#map-values).
-
-All scripts have access to Tengo's [`text`](https://github.com/d5/tengo/blob/master/docs/stdlib-text.md) module, which provides a number of
-string- and regex-related utility functions.
-
-Additionally, all scripts are passed a global variable, `scope`, that contains
-the text of value of the rule's `scope:`. In our example
-definition, for instance, `scope` will be the entire, unprocessed document
-since the rule used `scope: raw`.
-
-See [Scoping](/docs/topics/scoping) for more information.
 
 ## Built-in style
 
