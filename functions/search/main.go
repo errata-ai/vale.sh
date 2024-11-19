@@ -46,12 +46,12 @@ func toJSON(t interface{}) (string, error) {
 	return bf.String(), err
 }
 
-func newErrResponse(err error, corsHeaders map[string]string) (*events.APIGatewayProxyResponse) (*events.APIGatewayProxyResponse, error) {
+func newErrResponse(err error, corsHeaders map[string]string) (*events.APIGatewayProxyResponse, error) {
 	return &events.APIGatewayProxyResponse{
-    Body: err.Error(),
-    StatusCode: 500,
-    Headers:    corsHeaders,
-    }, err
+		Body:       err.Error(),
+		StatusCode: 500,
+		Headers:    corsHeaders,
+	}, err
 }
 
 func writeIndex(name string) (string, error) {
