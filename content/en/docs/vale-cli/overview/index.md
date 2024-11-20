@@ -52,7 +52,6 @@ detailed explanation.
 [2]: https://medium.com/valelint/introducing-vale-an-nlp-powered-linter-for-prose-63c4de31be00
 [3]: https://vale.sh#users
 [4]: /docs/topics/scoping/
-[5]: https://docs.gitlab.com/ee/development/documentation/testing.html#vale
 [6]: https://github.com/errata-ai/vale#benchmarks
 [7]: /docs/integrations/guide/
 [8]: /docs/integrations/chrome/
