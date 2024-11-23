@@ -1,38 +1,38 @@
-# vale.sh
+# vale.sh [![Netlify Status](https://api.netlify.com/api/v1/badges/6b41c018-35db-4ab5-ba7f-ba23bec59fc3/deploy-status)](https://app.netlify.com/sites/eclectic-semifreddo-be083c/deploys)
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+Website and documentation for all things Vale.
 
-## Creating a project
+## Contributing
 
-If you're seeing this, you've probably already done this step. Congrats!
+### Docs
 
-```bash
-# create a new project in the current directory
-npx sv create
+The documentation is written in Markdown and is located in the
+`src/lib/content` directory. To contribute, simply edit the appropriate file
+and submit a pull request.
 
-# create a new project in my-app
-npx sv create my-app
-```
+### Media
+
+If you have a blog post, video, presentation, or any other media related to
+Vale that you'd like to share, please submit a pull request to the
+[`library`][1] repository.
+
+### Implementations
+
+If you an implementation of Vale that you'd like to share, please submit a
+pull request that:
+
+[x] Adds an SVG-formatted logo to `static/users` directory.
+[x] Adds an entry to the `src/lib/config/users.ts` file. The value of the `name`
+field should be the same as the filename of the logo (without the `.svg`
+extension).
 
 ## Developing
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+To start a development server:
 
 ```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
+$ pnpm install
+$ pnpm run dev -- --open
 ```
 
-## Building
-
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+[1]: https://github.com/errata-ai/library
