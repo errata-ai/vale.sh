@@ -4,6 +4,8 @@
 	import { Separator } from '$lib/components/ui/separator';
 	import * as Tabs from '$lib/components/ui/tabs';
 	import ResourceList from '$lib/components/docs/ResourceList.svelte';
+
+	const addURL = `https://github.com/errata-ai/vale.sh/tree/svelte?tab=readme-ov-file#packages--configurations`;
 </script>
 
 <div class="col-span-3 lg:col-span-4 lg:border-l">
@@ -15,7 +17,7 @@
 					<Tabs.Trigger value="podcasts" disabled>Rules</Tabs.Trigger>
 				</Tabs.List>
 				<div class="ml-auto mr-4">
-					<Button>
+					<Button onclick={() => window.open(addURL, '_blank')}>
 						<PlusCircled class="mr-2 h-4 w-4" />
 						Add your own
 					</Button>
