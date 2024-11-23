@@ -21,10 +21,10 @@ Vale that you'd like to share, please submit a pull request to the
 If you an implementation of Vale that you'd like to share, please submit a
 pull request that:
 
-[x] Adds an SVG-formatted logo to `static/users` directory.
-[x] Adds an entry to the `src/lib/config/users.ts` file. The value of the `name`
-field should be the same as the filename of the logo (without the `.svg`
-extension).
+- [x] Adds an SVG-formatted logo to `static/users` directory.
+- [x] Adds an entry to the `src/lib/config/users.ts` file. The value of the
+      `name` field should be the same as the filename of the logo (without the
+      `.svg` extension).
 
 ## Developing
 
