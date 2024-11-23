@@ -16,6 +16,11 @@ If you have a blog post, video, presentation, or any other media related to
 Vale that you'd like to share, please submit a pull request to the
 [`library`][1] repository.
 
+### Packages & Configurations
+
+If you have a Vale package or configuration that you'd like to share, please
+submit a pull request to the [`packages`][2] repository.
+
 ### Implementations
 
 If you an implementation of Vale that you'd like to share, please submit a
@@ -36,3 +41,4 @@ $ pnpm run dev -- --open
 ```
 
 [1]: https://github.com/errata-ai/library
+[2]: https://github.com/errata-ai/packages
