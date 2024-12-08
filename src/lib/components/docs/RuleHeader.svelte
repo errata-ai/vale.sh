@@ -77,6 +77,8 @@
 	<Table.Header>
 		<Table.Row>
 			<Table.Head>Name</Table.Head>
+			<Table.Head>Required</Table.Head>
+			<Table.Head>Default</Table.Head>
 			<Table.Head>Description</Table.Head>
 		</Table.Row>
 	</Table.Header>
@@ -84,19 +86,11 @@
 		{#each options as opt}
 			<Table.Row>
 				<Table.Cell><code>{opt.name}</code></Table.Cell>
+				<Table.Cell>{opt.required ? 'Yes' : 'No'}</Table.Cell>
+				<Table.Cell><code>{opt.default}</code></Table.Cell>
 				<Table.Cell>
 					{@html opt.description}
-					<div class="flex h-5 items-center space-x-4 pt-2 text-sm">
-						<div>
-							<span class="text-muted-foreground">Required: {opt.required ? 'Yes' : 'No'}</span>
-						</div>
-						<Separator orientation="vertical" />
-						<div><span class="text-muted-foreground">Type: <code>{opt.type}</code></span></div>
-						<Separator orientation="vertical" />
-						<div>
-							<span class="text-muted-foreground">Default: <code>{opt.default}</code></span>
-						</div>
-					</div>
+					<pre><code>{opt.info}</code></pre>
 				</Table.Cell>
 			</Table.Row>
 		{/each}
