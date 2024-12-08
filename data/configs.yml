@@ -1,6 +1,6 @@
 ---
-- docs: https://docs.gitlab.com/ee/development/documentation/testing.html#vale
-  source: https://gitlab.com/gitlab-org/gitlab/-/tree/master/doc/.vale/gitlab
+- docs: https://docs.gitlab.com/ee/development/documentation/testing/vale.html
+  source: https://gitlab.com/gitlab-org/gitlab/-/tree/master/doc/.vale
   info: The most comprehensive AI-powered DevSecOps Platform.
   website: https://about.gitlab.com/
   org: https://github.com/gitlabhq
