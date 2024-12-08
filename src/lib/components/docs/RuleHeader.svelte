@@ -86,7 +86,6 @@
 				<Table.Cell><code>{opt.name}</code></Table.Cell>
 				<Table.Cell>
 					{@html opt.description}
-					<pre><code>{opt.info}</code></pre>
 					<div class="flex h-5 items-center space-x-4 text-sm">
 						<div>
 							<span class="text-muted-foreground">Required: {opt.required ? 'Yes' : 'No'}</span>
