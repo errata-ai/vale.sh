@@ -1,6 +1,5 @@
 <script lang="ts">
 	import * as Table from '$lib/components/ui/table';
-	import * as Tooltip from '$lib/components/ui/tooltip';
 	import { docsConfig } from '$lib/config/docs';
 	import Separator from '../ui/separator/separator.svelte';
 
