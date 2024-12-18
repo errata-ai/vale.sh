@@ -40,7 +40,7 @@ BasedOnStyles = Vale
 
 ## Comments
 
-Vale supports comment-based configuration in Markdown files:
+Vale supports comment-based configuration in AsciiDoc files:
 
 - Turn Vale off entirely:
 
