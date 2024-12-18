@@ -3,6 +3,10 @@ title: AsciiDoc
 description: Learn how Vale handles AsciiDoc content.
 ---
 
+<script>
+    import Alert from '$lib/components/Alert.svelte';
+</script>
+
 AsciiDoc is supported through the external program [Asciidoctor][1]. See their
 [installation][2] instructions to get started. You'll need to ensure that
 the `asciidoctor` executable is available in your `$PATH`.
@@ -39,6 +43,10 @@ BasedOnStyles = Vale
 ```
 
 ## Comments
+
+<Alert level="info">
+Make sure the surround the inline passthrough statements with newlines, as shown below.
+</Alert>
 
 Vale supports comment-based configuration in AsciiDoc files:
 
