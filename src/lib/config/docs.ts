@@ -282,7 +282,7 @@ export const docsConfig: DocsConfig = {
             ],
         },
         {
-            title: "Intergrations",
+            title: "Integrations",
             items: [
                 {
                     title: "CircleCI",
@@ -337,7 +337,7 @@ export const docsConfig: DocsConfig = {
                     items: [],
                 },
                 {
-                    title: "Vim/Neovim",
+                    title: "Neovim",
                     href: "https://github.com/dense-analysis/ale",
                     external: true,
                     items: [],

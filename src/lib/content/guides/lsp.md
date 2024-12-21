@@ -3,9 +3,19 @@ title: LSP
 description: Get started with Vale's Language Server.
 ---
 
-The Vale Language Server (`vale-ls`) is distributed as a standalone binary that
-acts as a wrapper around a local installation of Vale, providing autocomplete,
-diagnostics, and hover popups, and more.
+<script lang="ts">
+    import Integrations from '$lib/components/docs/Integrations.svelte';
+</script>
+
+The Vale Language Server (`vale-ls`) is an implementation of the
+[Language Server Protocol (LSP)][1] that acts as a wrapper around a local installation of Vale, providing autocomplete, diagnostics, hover popups,
+and more, in many popular text editors and IDEs.
+
+Some available integrations include:
+
+<Integrations />
+
+## Configuration
 
 The server supports the following `initializationParams`:
 
