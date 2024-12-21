@@ -5,6 +5,7 @@
 [lL]ookarounds?
 [lL]ookbehind
 [sS]uperset
+[pP]assthroughs?
 Asciidoctor
 Grammarly
 Grazie

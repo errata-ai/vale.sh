@@ -86,9 +86,6 @@ destructuring
 transpiler
 ```
 
-Here, we're instructing `spelling` to ignore both `[Dd]estructuring` and
-`[Tt]ranspiler`.
-
 You can name these files anything you'd like and reference them relative to
 the active `$StylesPath/config/ignore` directory.
 
