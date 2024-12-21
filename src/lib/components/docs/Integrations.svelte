@@ -11,7 +11,7 @@
 <ul>
 	{#each integrations as item}
 		<li>
-			<a href={item.href}>{item.title}</a>
+			<a href={item.href} target="_blank">{item.title}</a>
 			{#if lspPowered.includes(item.title)}
 				<Badge>LSP</Badge>
 			{/if}
