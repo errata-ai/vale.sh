@@ -38,6 +38,7 @@ template: |
     ^${Subject} -> Body
 
   Body
+    ^# -> Next
     ^${Trailer}
     ^${Body}
 scopes:
@@ -56,7 +57,7 @@ Read the template from the top:
 
 * Three `Value` lines declare what to capture: a name and the pattern that fills it. `Subject` keeps one line. `Body` and `Trailer` are `List` values, which keep every line they capture rather than the last.
 * `Start` is the state reading begins in. Its one rule matches the first line, captures it as the subject, and moves to the `Body` state.
-* In `Body`, each line is tried against the rules in order, and the first to match wins. A trailer looks like `Word: text`, so it’s tried first; anything else is body.
+* In `Body`, each line is tried against the rules in order, and the first to match wins. A line starting with `#` is Git’s own commentary, and `-> Next` reads past it without capturing anything. A trailer looks like `Word: text`, so it’s tried next; anything else is body.
 
 `${Subject}` stands for the value’s pattern and captures what it matches. The `->` says what happens on a match; a rule without one reads the next line in the same state.
 
@@ -140,7 +141,7 @@ In a pattern, `${Name}` or `$Name` stands for the value’s pattern and captures
 
 Each scope’s `expr` names one of the template’s values, and Vale reports an error at startup if it doesn’t. The scope’s `name` is what a rule’s `scope` refers to, and `type` says how to parse the captured text: `md`, `adoc`, `html`, `rst`, or `org`. Without a `type`, the text is linted as plain lines.
 
-Consecutive lines a `List` value captures are joined into one block, so a body reads as the paragraphs it is rather than one block per line. A gap between the lines starts a new block, and so does a change of column: a block is placed by one line and one column, so every line in it has to start where its first line does.
+Consecutive lines a `List` value captures are joined into one block, so a body reads as the paragraphs it is rather than one block per line. A gap between the lines starts a new block, and so does a change of column: a block is placed by one line and one column, so every line in it has to start where its first line does. Two values captured after labels of different lengths, such as a `msgid` and a `msgstr`, never share a column and so never join, and a rule that needs both in one block matches nothing without saying why. Capture each whole line, label included, and they align at the first column.
 
 The blank line matters here. `(.*)` matches a blank line and captures it as empty, so the block continues and the paragraph break survives. `(.+)` doesn’t match a blank line, so the block ends and the next captured line starts another. For a body with `type: md`, `(.*)` gives one document with paragraphs, and `(.+)` gives one document per paragraph. Rules that count across a document, such as `occurrence` and `repetition`, see the difference.
 

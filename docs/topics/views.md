@@ -103,6 +103,7 @@ template: |
     ^${Subject} -> Body
 
   Body
+    ^# -> Next
     ^${Trailer}
     ^${Body}
 scopes:
