@@ -217,7 +217,7 @@
 			throughput, not the time a single page takes.
 		</p>
 
-		<p class="mt-6 text-sm leading-relaxed text-muted-foreground">
+		<p class="mt-6 text-sm leading-relaxed text-foreground/85">
 			Format moves this number more than corpus size does. Markdown Vale parses itself, at about 7
 			ms a page. reStructuredText and AsciiDoc go first through the tools that define them—Docutils
 			and Asciidoctor—and Vale holds those open for the whole run instead of starting one per page,
@@ -225,7 +225,7 @@
 			conversions used to cost. Rule count matters second: Docker runs fourteen rules, GitLab
 			eighty-two.
 		</p>
-		<p class="mt-8 text-sm leading-relaxed text-muted-foreground">
+		<p class="mt-8 text-sm leading-relaxed text-foreground/85">
 			Every rule ran against every page—no sampling, no incremental cache. Each project links to its
 			own docs and config above, so any of these is reproducible with one command.
 		</p>
@@ -235,7 +235,7 @@
 		title="Every rule, without the noise"
 		lede="Vale has three levels, and each project decides which findings sit at which. That decision is what makes it practical to switch every rule on—the same selection above drives this chart."
 	>
-		<div class="rounded-2xl border border-border/60 bg-card p-6 sm:p-8">
+		<div class="rounded-2xl border border-border bg-card p-6 sm:p-8">
 			<BarChart
 				rows={levels}
 				unit=""
@@ -243,7 +243,7 @@
 			/>
 		</div>
 
-		<p class="mt-6 text-sm leading-relaxed text-muted-foreground">
+		<p class="mt-6 text-sm leading-relaxed text-foreground/85">
 			The shapes differ because the policies do. GitLab reserves <code
 				class="rounded bg-muted px-1 py-0.5 font-mono text-[0.85em]">error</code
 			>
@@ -257,14 +257,14 @@
 		title="What another style guide costs you"
 		lede="Speed in the abstract is not the useful question. The useful question is what it costs to turn on the rules you actually want."
 	>
-		<div class="rounded-2xl border border-border/60 bg-card p-6 sm:p-8">
+		<div class="rounded-2xl border border-border bg-card p-6 sm:p-8">
 			<BarChart
 				rows={page}
 				caption="One 2 KB documentation page, linted from cold. Mean of 15 runs after warm-up."
 			/>
 		</div>
 
-		<p class="mt-6 text-sm leading-relaxed text-muted-foreground">
+		<p class="mt-6 text-sm leading-relaxed text-foreground/85">
 			Going from one style guide to five adds 90 ms. Most of even that is the one-time cost of
 			loading and compiling the rules, paid on every CLI invocation—which is why the language
 			server, which pays it once and then keeps the styles in memory, can re-lint as you type.
@@ -273,7 +273,7 @@
 
 	<Section title="Nothing runs but Vale">
 		<div
-			class="overflow-x-auto rounded-2xl border border-border/60 bg-card p-5 font-mono text-[13px] leading-relaxed sm:p-6"
+			class="overflow-x-auto rounded-2xl border border-border bg-card p-5 font-mono text-[13px] leading-relaxed sm:p-6"
 		>
 			<div class="whitespace-pre">
 				<span class="text-lime-600 dark:text-lime-400">$</span> brew install vale
@@ -288,9 +288,9 @@
 
 		<div class="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
 			{#each local as item}
-				<div class="rounded-xl border border-border/60 bg-card p-5">
-					<h3 class="text-sm font-semibold text-foreground">{item.title}</h3>
-					<p class="mt-2 text-sm leading-relaxed text-muted-foreground">{item.body}</p>
+				<div class="rounded-xl border border-border bg-card p-5">
+					<h3 class="text-sm font-medium text-foreground">{item.title}</h3>
+					<p class="mt-2 text-sm leading-relaxed text-foreground/85">{item.body}</p>
 				</div>
 			{/each}
 		</div>
@@ -299,9 +299,9 @@
 	<Section title="Where that speed goes" wide>
 		<div class="grid grid-cols-1 gap-4 lg:grid-cols-3">
 			{#each where as item}
-				<div class="flex flex-col gap-3 rounded-2xl border border-border/60 bg-card p-6">
-					<h3 class="font-semibold text-foreground">{item.when}</h3>
-					<p class="text-sm leading-relaxed text-muted-foreground">{item.body}</p>
+				<div class="flex flex-col gap-3 rounded-2xl border border-border bg-card p-6">
+					<h3 class="font-medium text-foreground">{item.when}</h3>
+					<p class="text-sm leading-relaxed text-foreground/85">{item.body}</p>
 					<a
 						href={item.href}
 						class="mt-auto pt-2 text-sm font-medium text-lime-600 underline decoration-lime-500/40 underline-offset-4 dark:text-lime-400"
@@ -317,7 +317,7 @@
 		lede="Every figure here comes from a public repository and an unmodified configuration. These are the exact commands for the project selected above—and then run it on your own docs, which is the number that actually matters."
 	>
 		<div
-			class="overflow-x-auto rounded-2xl border border-border/60 bg-card p-5 font-mono text-[13px] leading-relaxed sm:p-6"
+			class="overflow-x-auto rounded-2xl border border-border bg-card p-5 font-mono text-[13px] leading-relaxed sm:p-6"
 		>
 			<div class="whitespace-pre">
 				<span class="text-lime-600 dark:text-lime-400">$</span> git clone --depth 1 {current.clone}
@@ -334,9 +334,9 @@
 			</div>
 		</div>
 
-		<div class="mt-6 rounded-xl border border-border/60 bg-muted/30 p-5">
-			<h3 class="text-sm font-semibold text-foreground">How these were measured</h3>
-			<p class="mt-2 text-sm leading-relaxed text-muted-foreground">
+		<div class="mt-6 rounded-xl border border-border bg-muted p-5">
+			<h3 class="text-sm font-medium text-foreground">How these were measured</h3>
+			<p class="mt-2 text-sm leading-relaxed text-foreground/85">
 				Vale v3.17.0, built from commit
 				<code class="rounded bg-muted px-1 py-0.5 font-mono text-[0.85em]">5f071ef5</code>, on an
 				Apple M1 with 8 cores, macOS 15.7. The {current.name} figures use commit

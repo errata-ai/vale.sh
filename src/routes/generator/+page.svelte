@@ -1,541 +1,594 @@
 <script lang="ts">
 	import { MetaTags } from 'svelte-meta-tags';
-	import { copyStringToClipboard } from '$lib/utils.js';
-	import { goto } from '$app/navigation';
-	import TextEditor from '$lib/components/TextEditor.svelte';
+	import { zipSync, strToU8 } from 'fflate';
+	import { cn, copyStringToClipboard } from '$lib/utils.js';
+	import CodeBlock from '$lib/components/CodeBlock.svelte';
+	import { highlight } from '$lib/highlight-client';
+	import * as Select from '$lib/components/ui/select';
+	import * as Alert from '$lib/components/ui/alert';
+	import { Checkbox } from '$lib/components/ui/checkbox';
+	import { Label } from '$lib/components/ui/label';
+	import { Input } from '$lib/components/ui/input';
+	import { Badge } from '$lib/components/ui/badge';
+	import { Button } from '$lib/components/ui/button';
+	import MultiSelect, { type Choice } from './MultiSelect.svelte';
+	import StylePicker from './StylePicker.svelte';
 	import {
 		supplementaryStyles,
 		baseStyles,
-		configs,
-		formats,
 		alertLevels,
 		sampleSize,
 		adopterCount,
-		type Option,
 		type Level
 	} from './config.js';
-	import Check from 'lucide-svelte/icons/check';
-	import Copy from 'lucide-svelte/icons/copy';
+	import { formats, groups, readAs, byId, type Requirement } from './formats.js';
 	import Download from 'lucide-svelte/icons/download';
+	import Copy from 'lucide-svelte/icons/copy';
+	import Check from 'lucide-svelte/icons/check';
 	import RotateCcw from 'lucide-svelte/icons/rotate-ccw';
-	import ArrowUpRight from 'lucide-svelte/icons/arrow-up-right';
+	import Plus from 'lucide-svelte/icons/plus';
+	import X from 'lucide-svelte/icons/x';
 
-	let value = $state(`StylesPath = styles
-
-MinAlertLevel = suggestion
-
-[*.{md}]
-# ^ This section applies to only Markdown files.
-#
-# You can change (or add) file extensions here
-# to apply these settings to other file types.
-#
-# For example, to apply these settings to both
-# Markdown and reStructuredText:
-#
-# [*.{md,rst}]
-BasedOnStyles = Vale`);
-
-	let baseStyle = $state('');
-	let selectedStyles = $state<string[]>([]);
-	let selectedConfigs = $state<string[]>([]);
 	// Markdown by default because 46 of the 55 sampled configs lint it, and a
 	// config that matches nothing is the one outcome with no visible symptom.
 	let selectedFormats = $state<string[]>(['md']);
+	let selectedExtras = $state<string[]>([]);
+	let mappings = $state<{ ext: string; as: string }[]>([]);
+	let newExt = $state('');
+	let newAs = $state('md');
+	// What comments are written in: a `[formats]` entry per code extension
+	// has each comment parsed as that markup before it is linted.
+	let commentMarkup = $state('');
+
+	let basePick = $state<string[]>([]);
+	const baseStyle = $derived(basePick[0] ?? '');
+	let extraStyles = $state<string[]>([]);
 	let alertLevel = $state<Level>('suggestion');
+
+	// One control per kind of file, each with its own list and chips.
+	const formatChoices = (group: string): Choice[] =>
+		formats
+			.filter((f) => f.group === group)
+			.map((f) => ({
+				value: f.id,
+				label: f.label,
+				hint: f.glob ?? f.extensions.map((e) => `.${e}`).join(' '),
+				description: f.description,
+				keywords: f.extensions
+			}));
+	const placeholders: Record<string, string> = {
+		prose: 'Search: Markdown, reStructuredText, AsciiDoc…',
+		code: 'Search: Python, Go, TypeScript…',
+		structured: 'Search: notebooks, OpenAPI, commit messages…'
+	};
+
+	const chosen = $derived(selectedFormats.map((id) => byId.get(id)!).filter(Boolean));
+	const level = $derived(alertLevels.find((l) => l.value === alertLevel)!);
 
 	const hasSelections = $derived(
 		baseStyle !== '' ||
-			selectedStyles.length > 0 ||
-			selectedConfigs.length > 0 ||
+			extraStyles.length > 0 ||
+			selectedExtras.length > 0 ||
+			mappings.length > 0 ||
+			commentMarkup !== '' ||
 			alertLevel !== 'suggestion' ||
 			selectedFormats.length !== 1 ||
 			selectedFormats[0] !== 'md'
 	);
 
-	function toggleBase(v: string) {
-		baseStyle = baseStyle === v ? '' : v;
+	function toggleFormat(id: string) {
+		const next = selectedFormats.includes(id)
+			? selectedFormats.filter((s) => s !== id)
+			: [...selectedFormats, id];
+		// Never leave the config matching nothing: a config that matches no
+		// file is indistinguishable from a clean run.
+		if (next.length === 0) return;
+		selectedFormats = next;
+		// An extra belongs to its format; dropping the format drops it.
+		selectedExtras = selectedExtras.filter((v) =>
+			next.some((f) => byId.get(f)?.extras?.some((e) => e.value === v))
+		);
 	}
-	function toggleStyle(v: string) {
-		selectedStyles = selectedStyles.includes(v)
-			? selectedStyles.filter((s) => s !== v)
-			: [...selectedStyles, v];
+	function toggle(list: string[], v: string) {
+		return list.includes(v) ? list.filter((s) => s !== v) : [...list, v];
 	}
-	function toggleConfig(v: string) {
-		selectedConfigs = selectedConfigs.includes(v)
-			? selectedConfigs.filter((s) => s !== v)
-			: [...selectedConfigs, v];
-	}
-	function toggleFormat(v: string) {
-		const next = selectedFormats.includes(v)
-			? selectedFormats.filter((s) => s !== v)
-			: [...selectedFormats, v];
-		// Never leave the section glob empty: a config that matches no file is
-		// indistinguishable from a clean run.
-		selectedFormats = next.length ? next : selectedFormats;
+	function addMapping() {
+		const ext = newExt.trim().replace(/^\./, '');
+		if (!ext || !/^[\w.+-]+$/.test(ext)) return;
+		if (mappings.some((m) => m.ext === ext) || byId.has(ext)) return;
+		mappings = [...mappings, { ext, as: newAs }];
+		newExt = '';
 	}
 	function reset() {
-		baseStyle = '';
-		selectedStyles = [];
-		selectedConfigs = [];
 		selectedFormats = ['md'];
+		selectedExtras = [];
+		mappings = [];
+		commentMarkup = '';
+		basePick = [];
+		extraStyles = [];
 		alertLevel = 'suggestion';
+	}
+
+	/** External programs the chosen formats need, one line per tool. */
+	const requirements = $derived.by(() => {
+		const seen = new Map<string, Requirement>();
+		for (const f of chosen) {
+			if (f.requires && !seen.has(f.requires.tool)) seen.set(f.requires.tool, f.requires);
+		}
+		return [...seen.values()];
+	});
+
+	/** A `#` comment, wrapped so the file reads without a horizontal scroll. */
+	function comment(text: string, width = 72): string[] {
+		const out: string[] = [];
+		let line = '#';
+		for (const word of text.split(' ')) {
+			if (line.length + 1 + word.length > width && line !== '#') {
+				out.push(line);
+				line = '#';
+			}
+			line += ` ${word}`;
+		}
+		out.push(line);
+		return out;
+	}
+
+	function glob(exts: string[]) {
+		const unique = [...new Set(exts)];
+		return unique.length === 1 ? `*.${unique[0]}` : `*.{${unique.join(',')}}`;
+	}
+
+	/*
+		Composed rather than parsed and re-stringified. The output is read-only,
+		so every file is a function of the selections alone.
+	*/
+	type OutFile = { name: string; contents: string; mode: 'ini' | 'yaml' };
+
+	const files = $derived.by((): OutFile[] => {
+		const picked = [...(baseStyle ? [baseStyle] : []), ...extraStyles];
+		const styles = ['Vale', ...picked];
+		const pkgs = [...picked, ...selectedExtras];
+
+		const lines = ['StylesPath = styles', '', `MinAlertLevel = ${alertLevel}`, ''];
+		if (pkgs.length) lines.push(`Packages = ${pkgs.join(', ')}`, '');
+
+		const code = chosen.filter((f) => f.group === 'code');
+		const codeExts = [...new Set(code.flatMap((f) => f.extensions))];
+
+		if (mappings.length || (commentMarkup && codeExts.length)) {
+			lines.push('[formats]');
+			if (commentMarkup && codeExts.length) {
+				lines.push(...comment(`Comments are ${byId.get(commentMarkup)?.label ?? commentMarkup}.`));
+				for (const ext of codeExts) lines.push(`${ext} = ${commentMarkup}`);
+			}
+			if (mappings.length) {
+				lines.push(...comment('Extensions Vale does not know, and the format each is read as.'));
+				for (const m of mappings) lines.push(`${m.ext} = ${m.as}`);
+			}
+			lines.push('');
+		}
+
+		const based = `BasedOnStyles = ${styles.join(', ')}`;
+
+		const prose = chosen.filter((f) => f.group === 'prose');
+		const proseExts = [...prose.flatMap((f) => f.extensions), ...mappings.map((m) => m.ext)];
+		if (proseExts.length) {
+			const names = [...prose.map((f) => f.label), ...mappings.map((m) => `.${m.ext}`)];
+			lines.push(...comment(`${names.join(', ')}.`), `[${glob(proseExts)}]`, based, '');
+		}
+
+		if (code.length) {
+			lines.push(
+				...comment(`Comments in ${code.map((f) => f.label).join(', ')} sources.`),
+				`[${glob(codeExts)}]`,
+				based,
+				''
+			);
+		}
+
+		const views: OutFile[] = [];
+		for (const f of chosen.filter((f) => f.group === 'structured')) {
+			if (!f.view) continue;
+			lines.push(
+				...comment(`${f.label}: ${f.description}`),
+				`[${f.glob ?? glob(f.extensions)}]`,
+				based,
+				`View = ${f.view.name}`,
+				''
+			);
+			views.push({
+				name: `styles/config/views/${f.view.name}.yml`,
+				contents: f.view.contents,
+				mode: 'yaml'
+			});
+		}
+
+		return [
+			{ name: '.vale.ini', contents: lines.join('\n').trimEnd() + '\n', mode: 'ini' },
+			...views
+		];
+	});
+
+	// The blog's highlighter, run here as the files change. Until it has
+	// loaded, or for a file it has not seen yet, the text shows unstyled.
+	let rendered = $state<Record<string, string>>({});
+	$effect(() => {
+		for (const f of files) {
+			const key = `${f.name}\0${f.contents}`;
+			if (key in rendered) continue;
+			highlight(f.contents.trimEnd(), f.mode).then((html) => {
+				// Merged, then pruned to the files still on the page, so a
+				// result never evicts another and the cache stays small.
+				const keep = new Set(files.map((x) => `${x.name}\0${x.contents}`));
+				rendered = Object.fromEntries(
+					Object.entries({ ...rendered, [key]: html }).filter(([k]) => keep.has(k))
+				);
+			});
+		}
+	});
+	function escape(text: string) {
+		return text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+	}
+	function htmlFor(f: OutFile) {
+		return (
+			rendered[`${f.name}\0${f.contents}`] ??
+			`<pre class="shiki"><code>${escape(f.contents.trimEnd())}</code></pre>`
+		);
+	}
+
+	let activeFile = $state('.vale.ini');
+	const current = $derived(files.find((f) => f.name === activeFile) ?? files[0]);
+	$effect(() => {
+		if (!files.some((f) => f.name === activeFile)) activeFile = files[0].name;
+	});
+	function basename(path: string) {
+		return path.split('/').pop() ?? path;
 	}
 
 	let copied = $state(false);
 	let copyTimeout: ReturnType<typeof setTimeout>;
 	function handleCopy() {
-		copyStringToClipboard(value);
+		copyStringToClipboard(current.contents);
 		copied = true;
 		clearTimeout(copyTimeout);
 		copyTimeout = setTimeout(() => (copied = false), 2000);
 	}
-	function handleDownload() {
-		const blob = new Blob([value], { type: 'text/plain;charset=utf-8' });
+
+	function save(blob: Blob, name: string) {
 		const url = URL.createObjectURL(blob);
 		const a = document.createElement('a');
 		a.href = url;
-		a.download = '.vale.ini';
+		a.download = name;
 		document.body.appendChild(a);
 		a.click();
 		a.remove();
 		URL.revokeObjectURL(url);
 	}
-
-	/*
-		The section glob follows the formats selected. MDX files are `.mdx`, and a
-		`[*.{md}]` section does not match them -- the styles would install, `vale
-		sync` would succeed, and nothing would ever be linted (#95). Picking the
-		MDX package therefore implies the extension.
-	*/
-	const activeFormats = $derived(
-		[...new Set(selectedConfigs.includes('MDX') ? [...selectedFormats, 'mdx'] : selectedFormats)]
-			.slice()
-			.sort()
-	);
-	const section = $derived(`*.{${activeFormats.join(',')}}`);
-
-	function header(glob: string) {
-		const names = activeFormats
-			.map((f) => formats.find((o) => o.value === f)?.label ?? f)
-			.join(', ');
-		return `[${glob}]
-# ^ This section applies to ${names} files only.
-#
-# You can change (or add) file extensions here
-# to apply these settings to other file types.
-#
-# For example, to apply these settings to both
-# Markdown and reStructuredText:
-#
-# [*.{md,rst}]`;
+	/** One file downloads as itself; a set downloads as a zip of the tree. */
+	function handleDownload() {
+		if (files.length === 1) {
+			save(new Blob([files[0].contents], { type: 'text/plain;charset=utf-8' }), '.vale.ini');
+			return;
+		}
+		const tree: Record<string, Uint8Array> = {};
+		for (const f of files) tree[f.name] = strToU8(f.contents);
+		save(new Blob([zipSync(tree)], { type: 'application/zip' }), 'vale-config.zip');
 	}
-
-	/*
-		Composed rather than parsed and re-stringified. The editor is read-only, so
-		the file is a function of the selections alone -- and rewriting a section
-		name through the ini parser left the old section behind.
-	*/
-	$effect(() => {
-		const pkgs: string[] = [];
-		const styles = ['Vale'];
-
-		const base = baseStyles.find((f) => f.value === baseStyle);
-		if (base !== undefined) {
-			pkgs.push(base.value);
-			styles.push(base.value);
-		}
-
-		for (const s of selectedStyles) {
-			const found = supplementaryStyles.find((f) => f.value === s);
-			if (found !== undefined) {
-				pkgs.push(found.value);
-				styles.push(found.value);
-			}
-		}
-
-		for (const c of selectedConfigs) {
-			const found = configs.find((f) => f.value === c);
-			if (found !== undefined) {
-				pkgs.push(found.value);
-			}
-		}
-
-		const lines = ['StylesPath = styles', '', `MinAlertLevel = ${alertLevel}`, ''];
-		if (pkgs.length > 0) {
-			lines.push(`Packages = ${pkgs.join(', ')}`, '');
-		}
-		if (selectedConfigs.includes('MDX')) {
-			// Vale parses MDX through an external program; without it the run fails
-			// at the first .mdx file rather than at sync. See docs/formats/mdx.
-			lines.push(
-				'# MDX is parsed by an external program. Install it before running Vale:',
-				'#',
-				'#   npm install -g mdx2vast',
-				'#',
-				'# https://docs.vale.sh/formats/mdx',
-				''
-			);
-		}
-		lines.push(header(section), `BasedOnStyles = ${styles.join(', ')}`);
-
-		value = lines.join('\n');
-	});
 </script>
 
 <MetaTags
 	title="Config Generator"
-	description="The Config Generator allows you to quickly generate comprehensive configuration files for Vale."
+	description="Pick what you write, and get a ready-to-use Vale configuration for it."
 	canonical="https://vale.sh"
 	openGraph={{
 		url: 'https://vale.sh',
 		title: 'Vale: Your style, our editor',
 		description:
 			'Vale is a command-line tool that brings code-like linting to prose. Vale is cross-platform (Windows, macOS, and Linux), written in Go, and available on GitHub.',
-		images: [
-			{
-				url: '/media/mac.png',
-				width: 800,
-				height: 600,
-				alt: 'Example Vale output'
-			}
-		]
+		images: [{ url: '/media/mac.png', width: 800, height: 600, alt: 'Example Vale output' }]
 	}}
 />
 
-{#snippet optionCard(item: Option, checked: boolean, onToggle: () => void, single: boolean)}
-	<button
-		type="button"
-		onclick={onToggle}
-		aria-pressed={checked}
-		class="flex items-start gap-3 rounded-lg border p-4 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-500 {checked
-			? 'border-lime-500 bg-lime-500/[0.06]'
-			: 'border-border hover:border-lime-500/40 hover:bg-muted/40'}"
-	>
-		<span
-			class="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center border {single
-				? 'rounded-full'
-				: 'rounded'} {checked ? 'border-lime-500 bg-lime-500 text-black' : 'border-input'}"
-		>
-			{#if checked}<Check class="h-3.5 w-3.5" strokeWidth={3} />{/if}
-		</span>
-		<span class="min-w-0 flex-1">
-			<span class="flex flex-wrap items-baseline gap-x-2">
-				<span class="text-sm font-medium text-foreground">{item.label}</span>
-				{#if item.ruleCount > 0}
-					<span class="font-mono text-[11px] text-muted-foreground">{item.ruleCount} rules</span>
-				{/if}
-			</span>
-			<span class="mt-0.5 block text-xs leading-relaxed text-muted-foreground"
-				>{item.description}</span
-			>
-
-			<!--
-				What the option costs and who else picked it. The severity mix is the
-				honest version of "how noisy is this": a style that is mostly errors
-				behaves very differently on a first run from one that is mostly
-				suggestions, and nothing else on the page says so.
-			-->
-			{#if item.ruleCount > 0}
-				<span class="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px]">
-					{#if item.levels.error}
-						<span class="text-red-500">{item.levels.error} error</span>
-					{/if}
-					{#if item.levels.warning}
-						<span class="text-amber-500">{item.levels.warning} warning</span>
-					{/if}
-					{#if item.levels.suggestion}
-						<span class="text-sky-500">{item.levels.suggestion} suggestion</span>
-					{/if}
-				</span>
-			{/if}
-
-			<span class="mt-1.5 flex flex-wrap items-center gap-x-2 gap-y-1 text-[11px]">
-				{#if item.adoption > 0}
-					<span class="font-medium text-foreground">
-						Used by {item.adoption} of {sampleSize}
-					</span>
-					{#if item.pairedWith.length}
-						<span class="text-muted-foreground">
-							· often with {item.pairedWith.map((p) => p.name).join(' and ')}
-						</span>
-					{/if}
-				{:else}
-					<span class="text-muted-foreground">Not in the sampled configs</span>
-				{/if}
-			</span>
-		</span>
-
-		{#if item.explorer}
-			<!--
-				A link inside a button is invalid, so the card's own click is
-				suppressed here rather than nesting one.
-			-->
-			<span
-				role="link"
-				tabindex="0"
-				onclick={(e) => {
-					e.stopPropagation();
-					goto(item.explorer!);
-				}}
-				onkeydown={(e) => {
-					if (e.key === 'Enter' || e.key === ' ') {
-						e.preventDefault();
-						e.stopPropagation();
-						goto(item.explorer!);
-					}
-				}}
-				class="mt-0.5 inline-flex shrink-0 items-center gap-0.5 rounded px-1 py-0.5 text-[11px] font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-lime-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-500 dark:hover:text-lime-400"
-			>
-				Rules
-				<ArrowUpRight class="h-3 w-3" />
-			</span>
+<!-- A chosen item, with what choosing it means and a way to undo it. -->
+{#snippet chip(label: string, note: string | undefined, remove: () => void, href?: string | null)}
+	<Badge variant="secondary" class="gap-1.5 py-1 pl-2.5 pr-1 font-normal">
+		{#if href}
+			<a {href} class="font-medium hover:underline">{label}</a>
+		{:else}
+			<span class="font-medium">{label}</span>
 		{/if}
-	</button>
+		{#if note}<span class="font-mono text-[11px] text-muted-foreground">{note}</span>{/if}
+		<button
+			type="button"
+			aria-label={`Remove ${label}`}
+			onclick={remove}
+			class="rounded-sm p-0.5 text-muted-foreground hover:text-foreground"
+		>
+			<X class="size-3" />
+		</button>
+	</Badge>
 {/snippet}
 
-{#snippet stepBadge(n: number)}
-	<span
-		class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-lime-500/10 text-sm font-semibold text-lime-600 ring-1 ring-inset ring-lime-500/20 dark:text-lime-400"
-	>
-		{n}
-	</span>
-{/snippet}
-
-<div class="mx-auto max-w-6xl px-6 py-14 lg:px-8">
-	<!-- Header -->
-	<div class="mx-auto max-w-2xl text-center">
-		<p class="text-base font-semibold text-lime-600 dark:text-lime-400">Config generator</p>
-		<h1 class="mt-2 text-balance text-4xl font-semibold tracking-tight sm:text-5xl">
-			Build your <code class="font-mono text-lime-600 dark:text-lime-400">.vale.ini</code>
+<div class="mx-auto max-w-6xl px-6 py-10 lg:px-8">
+	<div class="flex flex-col gap-1">
+		<p class="text-sm font-semibold text-lime-600 dark:text-lime-400">Config generator</p>
+		<h1 class="text-2xl font-semibold tracking-tight">
+			Build your <code class="font-mono">.vale.ini</code>
 		</h1>
-		<p class="mx-auto mt-4 text-pretty text-lg leading-8 text-muted-foreground">
-			Pick your styles and formats—we'll assemble a ready-to-use configuration file.
-		</p>
-		<!--
-			Where the numbers on each option come from. Without this the counts are
-			just a badge; with it they are the same kind of evidence the adopters
-			page trades on, and the reader can go and check them.
-		-->
-		<p class="mx-auto mt-3 text-sm text-muted-foreground">
-			Each option shows what it contains and how often it turns up in
+		<p class="text-sm text-muted-foreground">
+			Pick what you write, then the styles to hold it to. Counts are from
 			<a href="/adopters" class="font-medium text-lime-600 hover:underline dark:text-lime-400">
-				{sampleSize} public <code class="font-mono">.vale.ini</code> files
+				{sampleSize} public configs
 			</a>
-			from the {adopterCount} projects we track.
+			across {adopterCount} projects.
 		</p>
 	</div>
 
-	<!--
-		`min-w-0` on both children, because a grid track is sized to its content's
-		min-content by default and the editor below reports the width of its
-		longest line. Under `lg` the two share one column, so that measurement
-		stretched the whole page to 449px inside a 342px phone -- the options
-		column overflowed even though nothing in it is wide.
-	-->
-	<div class="mt-14 grid gap-10 lg:grid-cols-2 lg:gap-12">
-		<!-- Options -->
-		<div class="min-w-0 space-y-10">
-			<!-- Step 1: Base style -->
-			<section>
-				<div class="flex items-center gap-3">
-					{@render stepBadge(1)}
-					<h2 class="text-lg font-semibold text-foreground">Base style</h2>
-				</div>
-				<p class="ml-10 mt-1.5 text-sm text-muted-foreground">
-					A comprehensive style guide to build on. Choose one as your foundation.
-				</p>
-				<div class="mt-4 grid gap-2">
-					{#each baseStyles as item}
-						{@render optionCard(item, baseStyle === item.value, () => toggleBase(item.value), true)}
-					{/each}
-				</div>
-			</section>
-
-			<!-- Step 2: Supplementary styles -->
-			<section>
-				<div class="flex items-center gap-3">
-					{@render stepBadge(2)}
-					<h2 class="text-lg font-semibold text-foreground">Supplementary styles</h2>
-				</div>
-				<p class="ml-10 mt-1.5 text-sm text-muted-foreground">
-					Smaller, focused styles you can layer on top of your base. Add as many as you like.
-				</p>
-				<div class="mt-4 grid gap-2">
-					{#each supplementaryStyles as item}
-						{@render optionCard(
-							item,
-							selectedStyles.includes(item.value),
-							() => toggleStyle(item.value),
-							false
-						)}
-					{/each}
-				</div>
-			</section>
-
+	<div class="mt-8 grid gap-8 lg:grid-cols-2">
+		<div class="flex min-w-0 flex-col gap-7">
 			<!--
-				Step 3: Formats. This was hard-coded to Markdown, which is right for
-				46 of the 55 sampled configs and silently wrong for the rest: Vale
-				only reads a file a section matches, so an unmatched extension looks
-				exactly like a clean run.
+				What you write. Vale only reads a file a section matches, so this
+				is the setting everything else in the file follows from.
 			-->
-			<section>
-				<div class="flex items-center gap-3">
-					{@render stepBadge(3)}
-					<h2 class="text-lg font-semibold text-foreground">File formats</h2>
-				</div>
-				<p class="ml-10 mt-1.5 text-sm text-muted-foreground">
-					What Vale reads. Anything not listed here is skipped without a word.
-				</p>
-				<div class="mt-4 flex flex-wrap gap-2">
-					{#each formats as fmt}
-						{@const checked = activeFormats.includes(fmt.value)}
-						{@const forced = fmt.value === 'mdx' && selectedConfigs.includes('MDX')}
-						<button
-							type="button"
-							onclick={() => toggleFormat(fmt.value)}
-							aria-pressed={checked}
-							disabled={forced}
-							title={forced ? 'Required by the MDX package selected below' : undefined}
-							class="inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-500 disabled:cursor-not-allowed disabled:opacity-70 {checked
-								? 'border-lime-500 bg-lime-500/10 text-foreground'
-								: 'border-border text-muted-foreground hover:border-lime-500/40 hover:text-foreground'}"
-						>
-							{fmt.label}
-							<span class="font-mono text-[11px] text-muted-foreground">.{fmt.value}</span>
-							{#if fmt.adoption > 0}
-								<span class="text-[11px] text-muted-foreground">{fmt.adoption}</span>
-							{/if}
-						</button>
+			<div class="flex flex-col gap-2">
+				{#each groups as g (g.id)}
+					{@const picked = chosen.filter((f) => f.group === g.id)}
+					<div class="flex flex-col gap-2">
+						<Label for={`formats-${g.id}`}>{g.label}</Label>
+						<MultiSelect
+							id={`formats-${g.id}`}
+							choices={formatChoices(g.id)}
+							selected={selectedFormats}
+							onToggle={toggleFormat}
+							placeholder={placeholders[g.id]}
+						/>
+						{#if picked.length}
+							<div class="flex flex-wrap gap-1.5">
+								{#each picked as f (f.id)}
+									{@render chip(
+										f.label,
+										f.requires ? `needs ${f.requires.tool}` : f.view ? 'adds a View' : undefined,
+										() => toggleFormat(f.id)
+									)}
+								{/each}
+							</div>
+						{:else}
+							<p class="text-xs text-muted-foreground">{g.blurb}</p>
+						{/if}
+						<!--
+							Comments in most languages carry markup of their own; a
+							`[formats]` entry has each one parsed as that markup first.
+						-->
+						{#if g.id === 'code' && picked.length}
+							<div class="flex items-center gap-2 text-sm">
+								<Label for="comment-markup" class="whitespace-nowrap text-muted-foreground">
+									Comments are written in
+								</Label>
+								<Select.Root
+									type="single"
+									value={commentMarkup || 'plain'}
+									onValueChange={(v) => (commentMarkup = v === 'plain' ? '' : v)}
+								>
+									<Select.Trigger id="comment-markup" class="w-48">
+										{commentMarkup ? byId.get(commentMarkup)?.label : 'Plain text'}
+									</Select.Trigger>
+									<Select.Content>
+										<Select.Group>
+											<Select.Item value="plain" label="Plain text" />
+											{#each ['md', 'rst', 'adoc'] as id}
+												<Select.Item value={id} label={byId.get(id)?.label ?? id} />
+											{/each}
+										</Select.Group>
+									</Select.Content>
+								</Select.Root>
+							</div>
+						{/if}
+					</div>
+				{/each}
+				<!-- A package that only means something for one chosen format. -->
+				{#each chosen.filter((f) => f.extras) as f (f.id)}
+					{#each f.extras ?? [] as extra}
+						{@const eid = `extra-${extra.value}`}
+						<div class="flex items-center gap-2 text-sm">
+							<Checkbox
+								id={eid}
+								checked={selectedExtras.includes(extra.value)}
+								onCheckedChange={() => (selectedExtras = toggle(selectedExtras, extra.value))}
+							/>
+							<Label for={eid} class="cursor-pointer">{extra.label}</Label>
+							<span class="truncate text-xs text-muted-foreground">{extra.description}</span>
+						</div>
 					{/each}
-				</div>
-			</section>
+				{/each}
+				<!--
+					An extension Vale does not know, read as one it does. A
+					`.txt.j2` template is Markdown to the reader, and a `[formats]`
+					entry says so.
+				-->
+				<details class="group text-sm">
+					<summary class="cursor-pointer list-none text-muted-foreground hover:text-foreground">
+						<span class="group-open:hidden">+ An extension of your own, read as one of these</span>
+						<span class="hidden group-open:inline">− An extension of your own</span>
+					</summary>
+					<form
+						class="mt-2 flex flex-wrap items-center gap-2"
+						onsubmit={(e) => {
+							e.preventDefault();
+							addMapping();
+						}}
+					>
+						<Input
+							bind:value={newExt}
+							placeholder=".j2"
+							aria-label="Extension"
+							class="w-24 font-mono"
+						/>
+						<span class="text-muted-foreground">read as</span>
+						<Select.Root type="single" value={newAs} onValueChange={(v) => (newAs = v)}>
+							<Select.Trigger class="w-44" aria-label="Read as">
+								{byId.get(newAs)?.label ?? newAs}
+							</Select.Trigger>
+							<Select.Content>
+								<Select.Group>
+									{#each readAs as f}
+										<Select.Item value={f.extensions[0]} label={f.label} />
+									{/each}
+								</Select.Group>
+							</Select.Content>
+						</Select.Root>
+						<Button type="submit" variant="outline" size="sm">
+							<Plus data-icon="inline-start" /> Add
+						</Button>
+					</form>
+					{#if mappings.length}
+						<div class="mt-2 flex flex-wrap gap-1.5">
+							{#each mappings as m (m.ext)}
+								{@render chip(`.${m.ext}`, `as ${byId.get(m.as)?.label ?? m.as}`, () => {
+									mappings = mappings.filter((x) => x.ext !== m.ext);
+								})}
+							{/each}
+						</div>
+					{/if}
+				</details>
+			</div>
 
-			<!-- Step 4: Alert level -->
-			<section>
-				<div class="flex items-center gap-3">
-					{@render stepBadge(4)}
-					<h2 class="text-lg font-semibold text-foreground">Strictness</h2>
-				</div>
-				<p class="ml-10 mt-1.5 text-sm text-muted-foreground">
-					The lowest severity Vale reports. Everything quieter is hidden.
+			<!-- The base style: one published guide, since two disagree. -->
+			<div class="flex flex-col gap-2">
+				<p class="text-sm font-medium">Base style</p>
+				<p class="text-xs text-muted-foreground">
+					A published guide to build on. Vale's own rules run either way; pick none to keep only
+					those.
 				</p>
-				<div class="mt-4 grid gap-2">
-					{#each alertLevels as level}
-						{@const checked = alertLevel === level.value}
-						<button
-							type="button"
-							onclick={() => (alertLevel = level.value)}
-							aria-pressed={checked}
-							class="flex items-start gap-3 rounded-lg border p-4 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-500 {checked
-								? 'border-lime-500 bg-lime-500/[0.06]'
-								: 'border-border hover:border-lime-500/40 hover:bg-muted/40'}"
-						>
-							<span
-								class="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border {checked
-									? 'border-lime-500 bg-lime-500 text-black'
-									: 'border-input'}"
-							>
-								{#if checked}<Check class="h-3.5 w-3.5" strokeWidth={3} />{/if}
-							</span>
-							<span class="min-w-0 flex-1">
-								<span class="block text-sm font-medium text-foreground">{level.label}</span>
-								<span class="mt-0.5 block text-xs leading-relaxed text-muted-foreground">
-									{level.description}
-								</span>
-								<span class="mt-1.5 block text-[11px] font-medium text-foreground">
-									Used by {level.adoption} of {sampleSize}
-								</span>
-							</span>
-						</button>
-					{/each}
-				</div>
-			</section>
+				<StylePicker options={baseStyles} bind:selected={basePick} single {sampleSize} />
+			</div>
 
-			<!-- Step 5: Configurations -->
-			<section>
-				<div class="flex items-center gap-3">
-					{@render stepBadge(5)}
-					<h2 class="text-lg font-semibold text-foreground">Markup support</h2>
-				</div>
-				<p class="ml-10 mt-1.5 text-sm text-muted-foreground">
-					Format- and library-specific settings for handling non-standard markup.
+			<!-- Smaller styles that stack on the base. -->
+			<div class="flex flex-col gap-2">
+				<p class="text-sm font-medium">Supplementary styles</p>
+				<p class="text-xs text-muted-foreground">
+					Single-purpose checks that sit on top of any base. Add as many as you like.
 				</p>
-				<div class="mt-4 grid gap-2">
-					{#each configs as item}
-						{@render optionCard(
-							item,
-							selectedConfigs.includes(item.value),
-							() => toggleConfig(item.value),
-							false
-						)}
-					{/each}
-				</div>
-			</section>
+				<StylePicker options={supplementaryStyles} bind:selected={extraStyles} {sampleSize} />
+			</div>
+
+			<!-- The lowest severity reported. -->
+			<div class="flex flex-col gap-2">
+				<Label for="level">Strictness</Label>
+				<Select.Root
+					type="single"
+					value={alertLevel}
+					onValueChange={(v) => (alertLevel = v as Level)}
+				>
+					<Select.Trigger id="level" class="w-full">{level.label}</Select.Trigger>
+					<Select.Content>
+						<Select.Group>
+							{#each alertLevels as l}
+								<Select.Item value={l.value} label={l.label}>
+									<span class="flex w-full items-baseline justify-between gap-3">
+										<span>{l.label}</span>
+										<span class="text-xs text-muted-foreground">{l.adoption}/{sampleSize}</span>
+									</span>
+								</Select.Item>
+							{/each}
+						</Select.Group>
+					</Select.Content>
+				</Select.Root>
+				<p class="text-xs text-muted-foreground">{level.description}</p>
+			</div>
 
 			{#if hasSelections}
-				<button
-					type="button"
-					onclick={reset}
-					class="inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
-				>
-					<RotateCcw class="h-3.5 w-3.5" />
-					Reset selections
-				</button>
+				<div>
+					<Button variant="ghost" size="sm" onclick={reset}>
+						<RotateCcw data-icon="inline-start" /> Reset
+					</Button>
+				</div>
 			{/if}
 		</div>
 
-		<!-- Output -->
-		<div class="min-w-0 lg:sticky lg:top-24 lg:self-start">
-			<div class="overflow-hidden rounded-xl border border-border shadow-sm">
-				<div
-					class="flex items-center justify-between gap-2 border-b border-border bg-muted/40 px-3 py-2"
-				>
-					<div class="flex items-center gap-2 pl-1">
-						<span class="h-2.5 w-2.5 rounded-full bg-border"></span>
-						<span class="h-2.5 w-2.5 rounded-full bg-border"></span>
-						<span class="h-2.5 w-2.5 rounded-full bg-border"></span>
-						<span class="ml-1 font-mono text-xs text-muted-foreground">.vale.ini</span>
+		<!-- Output: an editor's file strip, and the file it points at. -->
+		<div
+			class="flex min-w-0 flex-col gap-3 lg:sticky lg:top-32 lg:max-h-[calc(100vh-9rem)] lg:self-start lg:overflow-y-auto"
+		>
+			<div class="overflow-hidden rounded-lg border">
+				<div class="flex items-center justify-between gap-2 border-b bg-muted/40">
+					<div class="flex min-w-0 overflow-x-auto" role="tablist" aria-label="Files">
+						{#each files as f (f.name)}
+							{@const on = f.name === current.name}
+							<button
+								type="button"
+								role="tab"
+								aria-selected={on}
+								title={f.name}
+								onclick={() => (activeFile = f.name)}
+								class={cn(
+									'-mb-px shrink-0 border-b-2 px-3 py-2 font-mono text-xs transition-colors',
+									on
+										? 'border-primary bg-background text-foreground'
+										: 'border-transparent text-muted-foreground hover:text-foreground'
+								)}
+							>
+								{basename(f.name)}
+							</button>
+						{/each}
 					</div>
-					<div class="flex items-center gap-1">
-						<button
-							type="button"
-							onclick={handleCopy}
-							class="inline-flex h-8 items-center gap-1.5 rounded-md px-2.5 text-xs font-medium text-muted-foreground transition-colors hover:bg-background hover:text-foreground"
-							aria-label="Copy configuration"
-						>
-							{#if copied}
-								<Check class="h-3.5 w-3.5 text-lime-600 dark:text-lime-400" /> Copied
-							{:else}
-								<Copy class="h-3.5 w-3.5" /> Copy
-							{/if}
-						</button>
-						<button
-							type="button"
-							onclick={handleDownload}
-							class="inline-flex h-8 items-center gap-1.5 rounded-md px-2.5 text-xs font-medium text-muted-foreground transition-colors hover:bg-background hover:text-foreground"
-							aria-label="Download .vale.ini file"
-						>
-							<Download class="h-3.5 w-3.5" /> Download
-						</button>
+					<div class="flex shrink-0 items-center">
+						<Button variant="ghost" size="sm" onclick={handleCopy} aria-label="Copy this file">
+							{#if copied}<Check data-icon="inline-start" /> Copied{:else}<Copy
+									data-icon="inline-start"
+								/> Copy{/if}
+						</Button>
+						<Button variant="ghost" size="sm" onclick={handleDownload}>
+							<Download data-icon="inline-start" />
+							{files.length === 1 ? 'Download' : 'Download zip'}
+						</Button>
 					</div>
 				</div>
-				<TextEditor bind:value mode="ini" readonly={true} height="440px" />
+				{#if files.length > 1}
+					<p class="border-b bg-muted/20 px-3 py-1 font-mono text-[11px] text-muted-foreground">
+						{current.name}
+					</p>
+				{/if}
+				{#key current.name}
+					<!--
+						Not `bare`: the highlighter's own background stays, so the editor
+						sits on the palette's ground rather than the page's, and the color
+						the dark theme paints on each line has nothing to show against.
+						Only the frame is the pane's.
+					-->
+					<CodeBlock
+						html={htmlFor(current)}
+						class="[&_pre]:rounded-none [&_pre]:border-0 [&_pre]:shadow-none"
+					/>
+				{/key}
 			</div>
 
-			<div
-				class="mt-4 rounded-lg border border-border bg-muted/30 p-4 text-sm text-muted-foreground"
-			>
-				<b class="text-foreground">Tip:</b> After saving your
-				<code class="rounded bg-muted px-1 py-0.5 font-mono text-xs text-foreground">.vale.ini</code
-				>, run
-				<code class="rounded bg-muted px-1 py-0.5 font-mono text-xs text-foreground">vale sync</code
-				>
-				to install the packages. Browse everything available in the
-				<a class="font-medium text-lime-600 hover:underline dark:text-lime-400" href="/explorer"
-					>Package Explorer</a
-				>.
-			</div>
+			<!--
+				What has to be true before the first run. `vale sync` fetches the
+				packages; an external parser is a separate install the run only
+				discovers at the first file of that format.
+			-->
+			<Alert.Root>
+				<Alert.Title>Before the first run</Alert.Title>
+				<Alert.Description>
+					<ol class="list-decimal pl-4">
+						<li>
+							Save the file{files.length > 1 ? 's' : ''} at the root of the project{#if files.length > 1},
+								keeping the <code class="font-mono text-xs">styles/</code> path{/if}.
+						</li>
+						<li>Run <code class="font-mono text-xs">vale sync</code> to install the packages.</li>
+						{#each requirements as r}
+							<li>
+								Install <code class="font-mono text-xs">{r.tool}</code>:
+								<code class="font-mono text-xs">{r.install}</code>
+								<a
+									class="font-medium text-lime-600 hover:underline dark:text-lime-400"
+									href={r.docs}>Details</a
+								>
+							</li>
+						{/each}
+					</ol>
+				</Alert.Description>
+			</Alert.Root>
 		</div>
 	</div>
 </div>

@@ -15,11 +15,11 @@
 	} = $props();
 </script>
 
-<section class="border-b border-border/60 py-14 sm:py-16">
+<section class="border-b border-border py-14 sm:py-16">
 	<div class="mx-auto px-6 lg:px-8 {wide ? 'max-w-6xl' : 'max-w-4xl'}">
-		<h2 class="text-2xl font-semibold tracking-tight sm:text-3xl">{title}</h2>
+		<h2 class="text-2xl font-medium tracking-tight sm:text-3xl">{title}</h2>
 		{#if lede}
-			<p class="mt-4 max-w-2xl text-pretty leading-7 text-muted-foreground">{lede}</p>
+			<p class="mt-4 max-w-2xl text-pretty leading-7 text-foreground/85">{lede}</p>
 		{/if}
 		<div class="mt-10">
 			{@render children()}

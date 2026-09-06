@@ -94,7 +94,12 @@
 
 			<div class="mt-7 flex items-center gap-4">
 				<span class="rounded-xl bg-[--brand] p-2.5 text-[--brand-fg]">
-					<BrandIcon name="Promptless" avatar="/users/avatars/Promptless.png" size="h-10 w-10" />
+					<BrandIcon
+						mono
+						name="Promptless"
+						avatar="/users/avatars/Promptless.png"
+						size="h-10 w-10"
+					/>
 				</span>
 				<h1 class="text-3xl font-semibold tracking-tight sm:text-5xl">Promptless</h1>
 			</div>
@@ -180,7 +185,8 @@
 			>
 			documentation, with Vale enabled on each. Its <InlineCode>.vale.ini</InlineCode> sets
 			<InlineCode>MinAlertLevel = suggestion</InlineCode>, builds on Google's style package, and
-			adds a vocabulary of its own. Both repos are public, as are Promptless's style-conforming doc updates.
+			adds a vocabulary of its own. Both repos are public, as are Promptless's style-conforming doc
+			updates.
 		</p>
 
 		<div class="mt-8">

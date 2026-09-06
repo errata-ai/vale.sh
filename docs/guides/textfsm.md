@@ -32,7 +32,7 @@ engine: textfsm
 template: |
   Value Subject (.+)
   Value List Body (.*)
-  Value List Trailer ([A-Z][\w-]+: .+)
+  Value List Trailer ((?:BREAKING CHANGE|[A-Z][\w-]+): .+)
 
   Start
     ^${Subject} -> Body
@@ -57,7 +57,7 @@ Read the template from the top:
 
 * Three `Value` lines declare what to capture: a name and the pattern that fills it. `Subject` keeps one line. `Body` and `Trailer` are `List` values, which keep every line they capture rather than the last.
 * `Start` is the state reading begins in. Its one rule matches the first line, captures it as the subject, and moves to the `Body` state.
-* In `Body`, each line is tried against the rules in order, and the first to match wins. A line starting with `#` is Git’s own commentary, and `-> Next` reads past it without capturing anything. A trailer looks like `Word: text`, so it’s tried next; anything else is body.
+* In `Body`, each line is tried against the rules in order, and the first to match wins. A line starting with `#` is Git’s own commentary, and `-> Next` reads past it without capturing anything. A trailer looks like `Word: text`, or is the `BREAKING CHANGE:` line a conventional commit ends with, so it’s tried next; anything else is body.
 
 `${Subject}` stands for the value’s pattern and captures what it matches. The `->` says what happens on a match; a rule without one reads the next line in the same state.
 
@@ -144,6 +144,10 @@ Each scope’s `expr` names one of the template’s values, and Vale reports an 
 Consecutive lines a `List` value captures are joined into one block, so a body reads as the paragraphs it is rather than one block per line. A gap between the lines starts a new block, and so does a change of column: a block is placed by one line and one column, so every line in it has to start where its first line does. Two values captured after labels of different lengths, such as a `msgid` and a `msgstr`, never share a column and so never join, and a rule that needs both in one block matches nothing without saying why. Capture each whole line, label included, and they align at the first column.
 
 The blank line matters here. `(.*)` matches a blank line and captures it as empty, so the block continues and the paragraph break survives. `(.+)` doesn’t match a blank line, so the block ends and the next captured line starts another. For a body with `type: md`, `(.*)` gives one document with paragraphs, and `(.+)` gives one document per paragraph. Rules that count across a document, such as `occurrence` and `repetition`, see the difference.
+
+A value the template never fills is still a scope: one empty value at the top of the file. A rule that requires text, an `occurrence` with `min`, reports there that the value is missing, and every other rule sees no text and says nothing. That is how a commit without a trailer or a body is caught.
+
+A fact about one line is a value for that line. Whether the body is separated from the subject by a blank line is a fact about line two, so a `Gap` value captures it, `^${Subject} -> Gap` then `^${Gap} -> Body`, and an `existence` rule on `\A\S` scoped to `gap` reports a body that starts too soon, on the line where it does. A fact that spans two values, a `!` in the subject needing a `BREAKING CHANGE:` footer, is a [`conditional`](../checks/conditional.md) whose `in` names the scope its consequent lives in.
 
 A `textfsm` View takes the file over. A file the section matches is read by the template, whatever its extension, even when it’s `.md`. Only the values a scope names are linted; the rest of the file is never seen by a rule, unless the rule’s scope is `raw`, which still reads the whole file.
 

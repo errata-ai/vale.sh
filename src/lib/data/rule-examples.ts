@@ -1,7 +1,7 @@
 /**
- * The twelve `extends` values Vale accepts, each with a real rule body, for
- * the gallery on /features/extensible. Every example is something you could
- * paste into a file and run — not a schematic.
+ * The twelve `extends` values Vale accepts, each with a real rule body. Every
+ * example is something you could paste into a file and run — not a schematic.
+ * Not rendered anywhere at present; kept for an extension-points page.
  */
 export type RuleExample = {
 	id: string;

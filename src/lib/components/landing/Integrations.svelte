@@ -1,25 +1,23 @@
 <script lang="ts">
+	import ArrowRight from 'lucide-svelte/icons/arrow-right';
 	import ArrowUpRight from 'lucide-svelte/icons/arrow-up-right';
 	import BrandIcon from './BrandIcon.svelte';
+	import Section from './Section.svelte';
 	import { integrationGroups } from '$lib/data/integrations';
 </script>
 
-<div id="integrations" class="mx-auto max-w-7xl px-6 pt-7 lg:px-8">
-	<div class="mx-auto max-w-2xl sm:text-center">
-		<h2 class="text-base/7 font-semibold text-lime-600 dark:text-lime-400">One tool, every app</h2>
-		<p class="mt-2 text-pretty text-4xl font-semibold tracking-tight sm:text-balance sm:text-5xl">
-			More than just a command-line interface.
-		</p>
-		<p class="mt-6 text-lg/8 text-neutral-500">
-			Vale runs where you already write&mdash;in your editor, in your notes app, and in CI before
-			anything merges.
-		</p>
-	</div>
-
-	<div class="mx-auto mt-14 max-w-5xl space-y-12">
+<Section
+	editorial
+	id="integrations"
+	eyebrow="One tool, every app"
+	accent
+	title="More than just a command-line interface."
+	lede="Vale runs where you already write—in your editor, in your notes app, and in CI before anything merges."
+>
+	<div class="flex flex-col gap-10">
 		{#each integrationGroups as group}
 			<section>
-				<div class="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+				<div class="flex flex-wrap items-baseline gap-x-3 gap-y-1 border-t border-border pt-6">
 					<h3 class="text-sm font-semibold tracking-tight">{group.title}</h3>
 					<p class="text-sm text-muted-foreground">{group.note}</p>
 				</div>
@@ -31,7 +29,7 @@
 								href={item.href}
 								target="_blank"
 								rel="noreferrer"
-								class="group flex h-full items-center gap-3 rounded-xl border border-border bg-card p-4 transition-all duration-200 hover:-translate-y-0.5 hover:border-lime-500/40 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-500"
+								class="group flex h-full items-center gap-3 rounded-lg border border-border bg-card p-4 transition-colors duration-200 hover:border-primary/40 hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-500"
 							>
 								<BrandIcon
 									name={item.name}
@@ -54,18 +52,13 @@
 		{/each}
 	</div>
 
-	<div class="mt-14 flex justify-center pb-5">
-		<p
-			class="relative rounded-full bg-gray-50 px-4 py-1.5 text-sm/6 ring-1 ring-inset ring-gray-900/5 dark:bg-gray-400/5"
+	<div class="mt-10">
+		<a
+			href="https://docs.vale.sh/guides/lsp"
+			class="group inline-flex items-center gap-1.5 text-sm font-medium text-foreground underline decoration-lime-500/40 underline-offset-4 transition-colors hover:text-lime-600 dark:hover:text-lime-400"
 		>
-			<a
-				href="https://docs.vale.sh/guides/lsp"
-				class="font-semibold text-lime-600 dark:text-lime-400"
-			>
-				<span class="absolute inset-0" aria-hidden="true"></span>
-				Learn more about our integrations
-				<span aria-hidden="true">&rarr;</span>
-			</a>
-		</p>
+			Learn more about our integrations
+			<ArrowRight class="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+		</a>
 	</div>
-</div>
+</Section>

@@ -1,6 +1,6 @@
 import Code from 'lucide-svelte/icons/code';
 import FileCode from 'lucide-svelte/icons/file-code-2';
-import SlidersHorizontal from 'lucide-svelte/icons/sliders-horizontal';
+import Layers from 'lucide-svelte/icons/layers';
 import Gauge from 'lucide-svelte/icons/gauge';
 
 /**
@@ -14,7 +14,7 @@ export const features = [
 	{
 		slug: 'markup',
 		icon: Code,
-		title: 'Markup-aware',
+		title: 'Scopes',
 		tagline: 'Parses your markup instead of guessing at it',
 		description:
 			'Twelve formats, each through a real parser rather than a pattern. Rules can target headings, lists, or table cells—and code spans, URLs, and fenced blocks are skipped before a rule ever runs.'
@@ -22,23 +22,23 @@ export const features = [
 	{
 		slug: 'code',
 		icon: FileCode,
-		title: 'Code-aware',
+		title: 'Code',
 		tagline: 'Your comments are documentation too',
 		description:
 			'Vale lifts comments out of nineteen languages with tree-sitter grammars, so it knows where a comment ends and a marker inside a string literal stays code. The Markdown inside a doc comment is linted as though it were its own file.'
 	},
 	{
-		slug: 'extensible',
-		icon: SlidersHorizontal,
-		title: 'Extensible',
-		tagline: 'Rules that read grammar, not just strings',
+		slug: 'views',
+		icon: Layers,
+		title: 'Views',
+		tagline: 'Prose inside files that aren’t prose',
 		description:
-			'Part-of-speech patterns, cross-file relationships, readability formulas, and Tengo scripts sit alongside the token lists—twelve extension points in all. Each is a few lines of YAML in a folder you can hand around as a package.'
+			'An OpenAPI description, a notebook cell, the body of a commit, a docstring: a View says where the prose is in a file that isn’t a document, so Vale lints that and passes over the rest. A rule can target any one part by name.'
 	},
 	{
 		slug: 'speed',
 		icon: Gauge,
-		title: 'Fast',
+		title: 'Speed',
 		tagline: 'One binary, nothing to install alongside it',
 		description:
 			'Written in Go, with no runtime and files linted in parallel. GitLab runs 82 rules across all 2,827 pages of its documentation in under twenty seconds.'

@@ -4,11 +4,13 @@
 	import ArrowRight from 'lucide-svelte/icons/arrow-right';
 	import { sponsors as allSponsors, type Sponsor } from '$lib/data/sponsors';
 
-	// Kept separate from LogoWall on purpose: that band claims a company ships
-	// Vale in its pipeline, which a sponsor has not necessarily done.
+	// Kept separate from the adopter band on purpose: that band claims a
+	// company ships Vale in its pipeline, which a sponsor has not necessarily
+	// done.
 	let {
 		sponsors = allSponsors,
-		more = true
+		more = true,
+		editorial = false
 	}: {
 		sponsors?: Sponsor[];
 		/**
@@ -16,77 +18,78 @@
 		 * too and would otherwise point at the page the reader is already on.
 		 */
 		more?: boolean;
+		editorial?: boolean;
 	} = $props();
 
-	// One sponsor fills the row; the rest share it. A grid rather than a scroll
-	// rail: at two, a rail cut the second card off at the viewport edge to
-	// advertise a third that isn't there.
 	const many = $derived(sponsors.length > 1);
+
+	/*
+		The brand color is kept to a bar along the top, the icon plate, and the
+		hover state. A flat panel in the brand color read as an advertisement.
+	*/
 </script>
 
 {#if sponsors.length}
 	<Section
 		id="spotlight"
+		{editorial}
+		eyebrow={editorial ? 'Supporting the project' : undefined}
+		accent={editorial}
 		title={many ? 'Sponsor spotlights' : 'Sponsor spotlight'}
 		lede="These companies support Vale's future — and put it to work in their own products today."
 	>
-		<div class={many ? 'grid gap-4 sm:grid-cols-2' : ''}>
+		<div class={many ? 'grid gap-5 sm:grid-cols-2' : 'mx-auto max-w-2xl'}>
 			{#each sponsors as sponsor (sponsor.name)}
 				<a
 					href={sponsor.href}
 					style="--brand: {sponsor.brand}; --brand-fg: {sponsor.fg};"
-					class="group relative flex h-full w-full flex-col overflow-hidden rounded-2xl bg-[--brand] p-8 text-[--brand-fg] transition-transform duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-offset-2 sm:p-10"
+					class="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-colors hover:border-[--brand] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[--brand] focus-visible:ring-offset-2"
 				>
-					<!-- Faint dot field, so a large flat panel has some surface. -->
-					<span
-						aria-hidden="true"
-						class="pointer-events-none absolute inset-0 opacity-[0.14] [background-image:radial-gradient(currentColor_1px,transparent_1px)] [background-size:14px_14px]"
-					></span>
-
-					<span class="relative flex items-center gap-2">
-						<BrandIcon
-							name={sponsor.name}
-							slug={sponsor.icon}
-							avatar={sponsor.avatar}
-							class="h-4 w-4"
-						/>
-						<span class="text-xs font-semibold uppercase tracking-[0.14em]">
-							{sponsor.name}
+					<span class="flex flex-1 flex-col p-5 sm:p-6">
+						<span class="flex items-center gap-2.5">
+							<span
+								class="flex h-8 w-8 items-center justify-center rounded-md bg-[--brand] text-[--brand-fg]"
+							>
+								<BrandIcon
+									mono
+									name={sponsor.name}
+									slug={sponsor.icon}
+									avatar={sponsor.avatar}
+									size="h-4 w-4"
+								/>
+							</span>
+							<span class="text-sm font-medium text-foreground">{sponsor.name}</span>
+							<span
+								class="ml-auto font-mono text-[10px] uppercase tracking-[0.12em] text-muted-foreground"
+								>Sponsor</span
+							>
 						</span>
-					</span>
 
-					<p
-						class="relative mb-10 mt-8 max-w-md text-pretty text-2xl font-medium leading-snug sm:text-3xl"
-					>
-						{sponsor.blurb}
-					</p>
+						<span
+							class="mt-4 text-pretty text-xl font-medium leading-snug tracking-tight text-foreground"
+						>
+							{sponsor.blurb}
+						</span>
 
-					<!--
-						The button inverts the pair, so it stays legible whether the brand
-						is pale (dark button) or saturated (light button).
-					-->
-					<span
-						class="relative mt-auto inline-flex w-fit items-center gap-1.5 rounded-lg bg-[--brand-fg] px-5 py-2.5 text-sm font-medium text-[--brand]"
-					>
-						Read the story
-						<ArrowRight class="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+						<span
+							class="mt-auto inline-flex items-center gap-1.5 pt-5 text-sm font-medium text-foreground underline decoration-border underline-offset-4 transition-colors group-hover:decoration-[--brand]"
+						>
+							Read the story
+							<ArrowRight class="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+						</span>
 					</span>
 				</a>
 			{/each}
 		</div>
 
 		{#if more}
-			<!--
-				Quieter than the brand cards above it on purpose: those two are the
-				section, and this only says there is more behind them.
-			-->
-			<div class="mt-8 flex justify-center">
+			<div class="mt-8 flex {editorial ? 'justify-start' : 'justify-center'}">
 				<a
 					href="/sponsor"
-					class="group/all inline-flex h-11 items-center justify-center gap-2 rounded-lg border border-border bg-background px-6 text-sm font-medium text-foreground transition-colors hover:bg-muted/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-500"
+					class="group/all inline-flex items-center gap-1.5 text-sm font-medium text-foreground underline decoration-lime-500/40 underline-offset-4 transition-colors hover:text-lime-600 dark:hover:text-lime-400"
 				>
 					See everyone who funds Vale
-					<ArrowRight class="h-4 w-4 transition-transform group-hover/all:translate-x-0.5" />
+					<ArrowRight class="h-3.5 w-3.5 transition-transform group-hover/all:translate-x-0.5" />
 				</a>
 			</div>
 		{/if}

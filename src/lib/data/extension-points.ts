@@ -1,13 +1,13 @@
 /**
- * The extension points the landing page puts on a carousel.
+ * Five extension points, each with a rule a pattern match could not write.
+ * Not rendered anywhere at present; kept for an extension-points page.
  *
  * These five were chosen against one question: could a regular expression do
  * this? None of them can. `sequence` needs a part-of-speech tagger,
  * `conditional` needs a second pattern found elsewhere in the file,
  * `consistency` needs to remember what it already saw, `metric` is arithmetic
  * rather than matching, and `script` is a program. The token-list rules people
- * think of as "all Vale does" are on /features/extensible with the other
- * seven.
+ * think of as "all Vale does" are the other seven, in rule-examples.ts.
  *
  * Every rule, sample, and alert below was produced by running Vale v3.17.0
  * over the sample text with that exact rule. The alert messages and levels are

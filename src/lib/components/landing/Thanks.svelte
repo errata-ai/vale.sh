@@ -50,7 +50,7 @@
 						class="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg"
 						style="background-color: var(--brand); color: var(--brand-fg);"
 					>
-						<BrandIcon name={provider.name} slug={provider.icon} />
+						<BrandIcon mono name={provider.name} slug={provider.icon} />
 					</span>
 					<div>
 						<a

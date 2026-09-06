@@ -29,7 +29,7 @@ A View is a YAML file in the `StylesPath`'s `config/views` directory, and the [`
 | Key        | Description                                                                                                                                          |
 | ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `engine`   | What runs the queries: `dasel` for a data file, `tree-sitter` for source code, or `textfsm` for plain text.                                            |
-| `scopes`   | The queries, in order. Each has an `expr` the engine evaluates, an optional `name`, and an optional `type`.                                             |
+| `scopes`   | The queries, in order. Each has an `expr` the engine evaluates, an optional `name`, an optional `type`, and for `dasel` an optional `join`.               |
 | `template` | For `textfsm` only: the template the file is read through. Each scope's `expr` names one of its values.                                                |
 
 A scope's `name` is how a rule reaches what the query found. It is appended to the scope of every block the value produces, so a rule with `scope: title` runs on the titles and nothing else, and a rule with the usual `scope: text` runs on everything the View extracted. A query without a name is linted, and is reachable only by the scopes the format gives it.
@@ -40,7 +40,23 @@ A scope's `type` is the format the extracted text is parsed as: `md`, `rst`, `ht
 
 ## [Data](views.md#data)
 
-A `dasel` View applies to `.json`, `.yml`, `.yaml`, and `.toml` files, and each `expr` is a [Dasel](https://github.com/TomWright/dasel) selector over the parsed document. A selector may land on one string or many; every string it selects is one value, and anything that is not a string is dropped.
+A `dasel` View applies to any file its section matches. The file is read as JSON, YAML, or TOML by its extension, and as YAML, which reads JSON too, when the extension is none of those. Each `expr` is a [Dasel](https://github.com/TomWright/dasel) selector over the parsed document. A selector may land on one string or many; every string it selects is one value, and anything that is not a string is dropped. A list of strings is dropped too, unless the scope has a `join`, the separator the list is joined with to make one value. A notebook keeps each Markdown cell's source as a list of lines that already end in a line break, so the cell is one value with `join: ""`, placed where its first line is:
+
+```yaml
+# <StylesPath>/config/views/Notebook.yml
+engine: dasel
+scopes:
+  - name: cell
+    expr: cells.all().filter(equal(cell_type,markdown)).source
+    join: ""
+    type: md
+```
+
+```ini
+[*.ipynb]
+BasedOnStyles = Vale
+View = Notebook
+```
 
 ```json
 {
@@ -97,7 +113,7 @@ engine: textfsm
 template: |
   Value Subject (.+)
   Value List Body (.*)
-  Value List Trailer ([A-Z][\w-]+: .+)
+  Value List Trailer ((?:BREAKING CHANGE|[A-Z][\w-]+): .+)
 
   Start
     ^${Subject} -> Body
@@ -124,4 +140,4 @@ BasedOnStyles = Vale, House
 View = Commit
 ```
 
-A rule with `scope: subject` then runs on the first line of a commit message and nowhere else. Consecutive lines a `List` value captures at the same column are joined into one value, so a body reads as its paragraphs rather than one block per line. The [TextFSM guide](../guides/textfsm.md) walks through the template language, a transcript where only one side is linted, and how to see what a template captured.
+A rule with `scope: subject` then runs on the first line of a commit message and nowhere else. Consecutive lines a `List` value captures at the same column are joined into one value, so a body reads as its paragraphs rather than one block per line. A value the template never fills is an empty scope at the top of the file, which is where an `occurrence` rule with `min` reports that it is missing. The [TextFSM guide](../guides/textfsm.md) walks through the template language, a transcript where only one side is linted, and how to see what a template captured.

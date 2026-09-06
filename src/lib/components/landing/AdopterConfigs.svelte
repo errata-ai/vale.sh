@@ -8,6 +8,8 @@
 	import FileText from 'lucide-svelte/icons/file-text';
 	import GitBranch from 'lucide-svelte/icons/git-branch';
 
+	let { editorial = false }: { editorial?: boolean } = $props();
+
 	type Adopter = {
 		name: string;
 		category: string;
@@ -133,7 +135,14 @@
 	or the page they wrote about running it.
 {/snippet}
 
-<Section id="configs" title="Read their configs" lede={configsLede}>
+<Section
+	{editorial}
+	eyebrow={editorial ? 'Used in production' : undefined}
+	accent={editorial}
+	id="configs"
+	title="Read their configs"
+	lede={configsLede}
+>
 	<!--
 		Three static rows rather than one scrolling one.
 
@@ -142,93 +151,62 @@
 		had to pause on hover. Nine cards at three columns is the same evidence
 		with nothing to chase, and nothing is dropped from the card to get it.
 	-->
-	<ul class="grid items-stretch gap-2.5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+	<ul class="grid gap-2.5 sm:grid-cols-2 lg:grid-cols-3">
 		{#each track as card (card.name)}
+			{@const KindIcon = kindIcon[card.kind]}
 			<li>
 				<a
 					href={card.url}
 					target="_blank"
 					rel="noreferrer"
 					style="--brand: {card.brand};"
-					class="group/card relative flex h-full flex-col overflow-hidden rounded-xl border border-border bg-muted/50 p-3.5 shadow-sm transition-colors hover:border-[--brand] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[--brand] dark:bg-muted/40"
+					class="group/card relative flex h-full flex-col overflow-hidden rounded-xl border border-border bg-card p-4 transition-colors hover:border-[--brand] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[--brand]"
 				>
-					<!--
-							The soft brand wash gives each config a little identity while the
-							top rule keeps the evidence-card structure crisp.
-						-->
+					<!-- A faint brand wash on hover, so each card keeps a little identity. -->
 					<span
 						aria-hidden="true"
-						class="pointer-events-none absolute inset-0 bg-[--brand] opacity-0 transition-opacity duration-200 group-hover/card:opacity-[0.14]"
-					></span>
-					<span
-						aria-hidden="true"
-						class="pointer-events-none absolute inset-x-0 top-0 h-1 bg-[--brand]"
+						class="pointer-events-none absolute inset-0 bg-[--brand] opacity-0 transition-opacity duration-200 group-hover/card:opacity-[0.08]"
 					></span>
 
-					<!--
-							The plate stays light in both themes: the wordmarks are
-							dark-on-transparent and would vanish on a dark card.
-						-->
-					<span
-						class="relative flex h-9 w-full items-center justify-center rounded-lg bg-white px-3 ring-1 ring-black/[0.06] dark:ring-white/10"
-					>
-						{#if card.logo}
-							<img
-								src={card.logo}
-								alt={card.name}
-								class="max-h-[18px] w-auto max-w-full object-contain"
-								loading="lazy"
-							/>
-						{:else}
-							<span class="flex items-center gap-1.5 text-zinc-900">
-								<BrandIcon
-									name={card.name}
-									slug={card.slug}
-									avatar={card.avatar}
-									size="h-4 w-4"
-									class="text-[--brand]"
-								/>
-								<span class="text-sm font-semibold">{card.name}</span>
-							</span>
-						{/if}
-					</span>
-
-					<div class="relative mt-3 flex items-center justify-between gap-3">
+					<span class="relative flex items-center gap-3">
 						<span
-							class="inline-flex items-center gap-1.5 rounded-full border border-border bg-background/70 px-2.5 py-1 font-mono text-[11px] font-semibold uppercase tracking-[0.12em] text-muted-foreground shadow-sm backdrop-blur"
+							class="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-muted text-[--brand] ring-1 ring-border"
 						>
-							<svelte:component this={kindIcon[card.kind]} class="h-3.5 w-3.5 text-[--brand]" />
-							{card.kind}
+							<BrandIcon name={card.name} slug={card.slug} avatar={card.avatar} size="h-4 w-4" />
+						</span>
+						<span class="min-w-0 flex-1">
+							<span class="block truncate text-sm font-medium text-foreground">{card.name}</span>
+							<span
+								class="block truncate font-mono text-[11px] text-muted-foreground"
+								title={card.primary}>{card.primary}</span
+							>
 						</span>
 						<ArrowRight
-							class="h-4 w-4 text-muted-foreground/50 transition-transform group-hover/card:translate-x-0.5 group-hover/card:text-foreground"
+							class="h-4 w-4 shrink-0 text-muted-foreground/50 transition-transform group-hover/card:translate-x-0.5 group-hover/card:text-foreground"
 						/>
-					</div>
+					</span>
 
-					<!-- The adopter's own one-liner, clamped so cards stay level. -->
-					<p class="relative mt-2.5 line-clamp-2 text-xs leading-5 text-muted-foreground">
+					<!-- The adopter's own one-liner, clamped so the cards stay level. -->
+					<p class="relative mt-3 line-clamp-2 text-xs leading-5 text-foreground/80">
 						{card.context}
 					</p>
 
 					<span
-						class="relative mt-3 rounded-lg border border-border bg-background/60 p-2.5 shadow-sm backdrop-blur"
+						class="relative mt-3 flex min-w-0 items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.12em] text-muted-foreground"
 					>
-						<span class="block truncate font-mono text-xs text-foreground" title={card.primary}>
-							{card.primary}
-						</span>
-						<span
-							class="mt-1 block truncate font-mono text-[11px] text-muted-foreground"
-							title={card.secondary}
+						<KindIcon class="h-3 w-3 shrink-0" />
+						<span class="shrink-0">{card.kind}</span>
+						<span class="text-border">·</span>
+						<span class="truncate normal-case tracking-normal" title={card.secondary}
+							>{card.secondary}</span
 						>
-							{card.secondary}
-						</span>
 					</span>
 				</a>
 			</li>
 		{/each}
 	</ul>
 
-	<div class="mt-8 flex justify-center">
+	<div class="mt-8 flex {editorial ? 'justify-start' : 'justify-center'}">
 		<a
 			href="/adopters"
 			class="group inline-flex items-center gap-1.5 rounded-lg border border-border px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-muted/60"

@@ -1,53 +1,32 @@
 <script lang="ts">
 	import { Button } from '$lib/components/ui/button';
 	import ArrowRight from 'lucide-svelte/icons/arrow-right';
-	import Check from 'lucide-svelte/icons/check';
-	import SponsorSpotlight from './SponsorSpotlight.svelte';
-	import AdopterConfigs from './AdopterConfigs.svelte';
+	import type { Stats } from '$lib/types/stats';
+	import { assistants } from '$lib/assistants';
 
-	const config = `StylesPath = styles
-MinAlertLevel = suggestion
-Packages = Microsoft
+	let { stats }: { stats: Stats } = $props();
+	const starLabel = $derived(
+		new Intl.NumberFormat('en-US', { notation: 'compact', maximumFractionDigits: 1 }).format(
+			stats.stars
+		)
+	);
 
-[*.md]
-BasedOnStyles = Vale, Microsoft`;
-	const rule = `extends: substitution
-message: "Use '%s' instead of '%s'."
-level: warning
-swap:
-  utilize: use`;
-	const features = [
-		{
-			number: '01',
-			title: 'Your style guide, executable.',
-			text: 'Choose a published style, add your terminology, or write your own YAML rules. Decide what matters and how strictly to enforce it.',
-			link: '/explorer',
-			label: 'Explore style packages'
-		},
-		{
-			number: '02',
-			title: 'It understands the document.',
-			text: 'Check headings, paragraphs, and comments with rules that know the difference. Code blocks and inline code are skipped by default.',
-			link: '/features/markup',
-			label: 'Explore markup support'
-		},
-		{
-			number: '03',
-			title: 'Local. Fast. Yours.',
-			text: 'Run on macOS, Windows, or Linux. Lint locally without sending your writing to a service. Open source and MIT-licensed.',
-			link: '/features/speed',
-			label: 'Meet the command line'
-		}
-	];
+	/*
+		The figure reads top to bottom: a line from a team's writing guide, the
+		rule that encodes it, and the alert that rule raises in a doc. The rule
+		is a real `substitution` rule and the message is what Vale prints for
+		it. One guideline rather than several, because the point is the shape
+		of the stage from prose to YAML, not how many steps a guide has.
+	*/
 </script>
 
 <section class="hero-shell">
 	<div class="landing-wrap hero-grid">
 		<div class="hero-copy">
 			<a class="eyebrow" href="https://github.com/vale-cli/vale"
-				>OPEN SOURCE · BUILT FOR WRITERS <span aria-hidden="true">↗</span></a
+				>OPEN SOURCE · MIT · {starLabel} STARS <span aria-hidden="true">↗</span></a
 			>
-			<h1>Your style.<br />Every <span>single doc.</span></h1>
+			<h1>Your style,<br />our editor.</h1>
 			<p class="intro">
 				Vale brings code-like linting to prose. Turn your team’s writing guidelines into checks that
 				run in your editor and alongside your code.
@@ -60,111 +39,77 @@ swap:
 			</div>
 			<p class="hero-note">Your rules. Your workflow. Entirely offline.</p>
 		</div>
-		<figure class="document-demo" aria-label="Illustrative Vale style check on a Markdown document">
-			<div class="file-bar">
-				<span class="file-dot" aria-hidden="true"></span><span>getting-started.md</span><span
-					class="example-label">EXAMPLE</span
-				>
+
+		<figure
+			class="flow"
+			aria-label="How a guideline becomes a rule, and a rule becomes an alert: a line from a writing guide, the five-line YAML rule that encodes it, and the error it raises in a Markdown file"
+		>
+			<div class="stage">
+				<div class="stage-label"><span class="n">01</span>Guideline</div>
+				<div class="stage-body">
+					<p class="guide-kicker">Writing guide · Terminology</p>
+					<p class="guide-text">
+						The product is <strong>Vale CLI</strong>. Don’t write <s>Vale cli</s> or
+						<s>vale-cli</s>.
+					</p>
+				</div>
 			</div>
-			<div class="document-content">
-				<p class="doc-kicker">DOCUMENTATION / QUICKSTART</p>
-				<h2>A little clarity goes a long way.</h2>
-				<p>You can <mark>utilize</mark> Vale to keep your team’s writing consistent.</p>
-				<div class="annotation">
-					<span aria-hidden="true">↳</span>
-					<div>
-						<strong>Prefer the simpler word.</strong><br /><span
-							>Use “use” instead of “utilize”.</span
-						>
+
+			<div class="stage">
+				<div class="stage-label"><span class="n">02</span>Rule</div>
+				<div class="stage-body">
+					<p class="file">styles/Docs/Terms.yml</p>
+					<pre class="yaml"><b>extends:</b> substitution
+<b>message:</b> "Use '%s' instead of '%s'."
+<b>level:</b> error
+<b>swap:</b>
+  Vale cli: Vale CLI</pre>
+				</div>
+			</div>
+
+			<div class="stage">
+				<div class="stage-label"><span class="n">03</span>Every doc</div>
+				<div class="stage-body doc">
+					<p class="file">docs/install.md</p>
+					<ol class="lines">
+						<li><span class="src"><span class="syntax">#</span> Installation</span></li>
+						<li><span class="src"></span></li>
+						<li>
+							<span class="src"><mark>Vale cli</mark> runs on macOS, Windows, and Linux.</span>
+						</li>
+					</ol>
+					<div class="alert">
+						<span class="sev">error</span>
+						<span>Use 'Vale CLI' instead of 'Vale cli'.</span>
+						<span class="rule-name">Docs.Terms</span>
 					</div>
 				</div>
-				<p class="code-caption">Code stays code.</p>
-				<code class="code-line">const word = "utilize";</code>
 			</div>
+
 			<figcaption>
-				<span><Check size={14} aria-hidden="true" /> Prose checked. Code skipped.</span><span
-					>1 warning</span
-				>
+				Five lines of YAML per guideline. Or start from Microsoft, Google, and fourteen other
+				published styles.
 			</figcaption>
 		</figure>
 	</div>
 </section>
 
-<SponsorSpotlight />
-<AdopterConfigs />
-
-<section id="features" class="landing-wrap feature-section" aria-labelledby="why-vale">
-	<div class="section-heading">
-		<p class="eyebrow">A SHARED STANDARD</p>
-		<h2 id="why-vale">Many authors.<br />One voice.</h2>
-		<p>
-			Catch the small inconsistencies before review, so your team can focus on what the writing
-			says.
-		</p>
+<div class="agent-strip landing-wrap">
+	<div>
+		<span>Setting up with an agent?</span>{#each assistants as assistant}<a
+				href={assistant.href}
+				target="_blank"
+				rel="noreferrer">{assistant.label} ↗</a
+			>{/each}<a href="/skills">Agent skills →</a>
 	</div>
-	<div class="feature-grid">
-		{#each features as feature}<article>
-				<span class="feature-number">{feature.number} /</span>
-				<h3>{feature.title}</h3>
-				<p>{feature.text}</p>
-				<a class="text-link" href={feature.link}
-					>{feature.label} <span aria-hidden="true">↗</span></a
-				>
-			</article>{/each}
-	</div>
-</section>
-
-<section id="how-it-works" class="workflow-shell">
-	<div class="landing-wrap workflow-grid">
-		<div class="section-heading">
-			<p class="eyebrow">FROM GUIDELINES TO FEEDBACK</p>
-			<h2>A few lines of config.<br />A consistent first draft.</h2>
-			<p>
-				Start with an existing style guide. Keep the configuration in your project so everyone runs
-				the same checks.
-			</p>
-			<a class="text-link" href="https://docs.vale.sh/topics/quickstart"
-				>Follow the quickstart <span aria-hidden="true">→</span></a
-			>
-			<ol class="steps">
-				<li>
-					<strong>Install Vale.</strong><span>Choose a package for your operating system.</span>
-				</li>
-				<li>
-					<strong>Pick your styles.</strong><span
-						>Save this as <code>.vale.ini</code> in your project.</span
-					>
-				</li>
-				<li>
-					<strong>Sync, then lint.</strong><span>Download the styles and check your docs.</span>
-				</li>
-			</ol>
-		</div>
-		<div class="config-example">
-			<div class="file-bar">
-				<span>.vale.ini</span><a href="https://docs.vale.sh/topics/quickstart"
-					>Config reference ↗</a
-				>
-			</div>
-			<pre><code>{config}</code></pre>
-			<div class="command-example">
-				<p><span>$</span> vale sync</p>
-				<p><span>$</span> vale docs/</p>
-			</div>
-			<details>
-				<summary>Make it your own with a YAML rule <span aria-hidden="true">+</span></summary>
-				<pre><code>{rule}</code></pre>
-				<a class="text-link rule-link" href="https://docs.vale.sh/topics/styles"
-					>Learn to write rules →</a
-				>
-			</details>
-		</div>
-	</div>
-</section>
+	<p>
+		Thanks to <a href="https://claude.com/contact-sales/claude-for-oss">Claude for Open Source</a>.
+	</p>
+</div>
 
 <style>
 	.landing-wrap {
-		max-width: 1200px;
+		max-width: 1152px;
 		margin-inline: auto;
 		padding-inline: 32px;
 	}
@@ -174,10 +119,13 @@ swap:
 	}
 	.hero-grid {
 		display: grid;
-		grid-template-columns: 1fr 1fr;
+		grid-template-columns: 1fr 1.15fr;
 		gap: 64px;
 		align-items: center;
-		padding-block: 96px;
+		padding-block: 72px;
+	}
+	.hero-copy {
+		max-width: 500px;
 	}
 	.eyebrow {
 		font:
@@ -187,20 +135,17 @@ swap:
 		color: hsl(var(--muted-foreground));
 	}
 	h1 {
-		font-size: clamp(3.5rem, 5.7vw, 5.25rem);
+		font-size: clamp(3.5rem, 5.8vw, 5rem);
 		font-weight: 500;
 		line-height: 1.04;
-		letter-spacing: -0.065em;
+		letter-spacing: -0.055em;
 		margin-block: 24px;
-	}
-	h1 span {
-		color: hsl(var(--primary));
 	}
 	.intro {
 		max-width: 460px;
 		font-size: 18px;
 		line-height: 1.75;
-		color: hsl(var(--muted-foreground));
+		color: hsl(var(--foreground) / 0.85);
 	}
 	.actions {
 		display: flex;
@@ -213,278 +158,258 @@ swap:
 		font-size: 12px;
 		color: hsl(var(--muted-foreground));
 	}
-	.document-demo {
-		min-width: 0;
-		background: hsl(var(--card));
-		border: 1px solid hsl(var(--border));
-		border-radius: 12px;
-		box-shadow: 0 24px 60px -25px hsl(var(--foreground) / 0.2);
-		transform: rotate(1deg);
-	}
-	.file-bar {
-		display: flex;
-		align-items: center;
-		gap: 10px;
-		padding: 16px 22px;
-		border-bottom: 1px solid hsl(var(--border));
-		font:
-			12px/1.5 ui-monospace,
-			monospace;
-		color: hsl(var(--muted-foreground));
-	}
-	.file-dot {
-		width: 7px;
-		height: 7px;
-		background: hsl(var(--primary));
-		border-radius: 50%;
-	}
-	.example-label {
-		margin-left: auto;
-		font-size: 9px;
-		letter-spacing: 0.1em;
-	}
-	.document-content {
-		padding: 36px 32px;
-	}
-	.doc-kicker {
-		font:
-			9px/1.5 ui-monospace,
-			monospace;
-		letter-spacing: 0.15em;
-		color: hsl(var(--muted-foreground));
-	}
-	.document-content h2 {
-		font:
-			500 32px/1.2 Georgia,
-			serif;
-		letter-spacing: -0.02em;
-		margin-block: 18px 24px;
-	}
-	.document-content > p:not(.doc-kicker):not(.code-caption) {
-		font:
-			18px/1.85 Georgia,
-			serif;
-	}
-	mark {
-		background: hsl(var(--primary) / 0.13);
-		color: inherit;
-		text-decoration: underline wavy hsl(var(--primary));
-		text-underline-offset: 5px;
-	}
-	.annotation {
-		display: flex;
-		gap: 12px;
-		margin-block: 20px 28px;
-		padding: 15px;
-		background: hsl(var(--accent));
-		color: hsl(var(--accent-foreground));
-		border-left: 2px solid hsl(var(--primary));
-		font-size: 12px;
-		line-height: 1.8;
-	}
-	.code-caption {
-		font-size: 12px;
-		color: hsl(var(--muted-foreground));
-		margin-bottom: 10px;
-	}
-	.code-line {
-		display: block;
-		padding: 14px;
-		background: hsl(var(--muted));
-		font-size: 12px;
-		overflow-wrap: anywhere;
-	}
-	figcaption {
-		padding: 14px 20px;
-		border-top: 1px solid hsl(var(--border));
-		display: flex;
-		justify-content: space-between;
-		gap: 12px;
-		font-size: 10px;
-		color: hsl(var(--muted-foreground));
-	}
-	figcaption span:first-child {
-		display: flex;
-		align-items: center;
-		gap: 6px;
-	}
-	.text-link {
-		display: inline-flex;
-		gap: 10px;
-		align-items: center;
-		font-size: 13px;
-		font-weight: 500;
-	}
 	a:hover {
 		text-decoration: underline;
 		text-underline-offset: 4px;
 	}
-	a:focus-visible,
-	summary:focus-visible {
+	a:focus-visible {
 		outline: 2px solid hsl(var(--ring));
-		outline-offset: 5px;
+		outline-offset: 3px;
 	}
-	.feature-section {
-		padding-block: 88px;
-	}
-	.section-heading h2 {
-		font-size: clamp(2rem, 3.5vw, 2.9rem);
-		font-weight: 500;
-		line-height: 1.12;
-		letter-spacing: -0.045em;
-		margin-block: 18px;
-	}
-	.section-heading > p:not(.eyebrow) {
-		max-width: 450px;
-		line-height: 1.8;
-		color: hsl(var(--muted-foreground));
-	}
-	.feature-grid {
-		display: grid;
-		grid-template-columns: repeat(3, 1fr);
-		gap: 40px;
-		margin-top: 48px;
-	}
-	.feature-grid article {
-		border-top: 1px solid hsl(var(--border));
-		padding-top: 22px;
-	}
-	.feature-number {
-		font:
-			11px ui-monospace,
-			monospace;
-		color: hsl(var(--primary));
-	}
-	.feature-grid h3 {
-		font-size: 20px;
-		letter-spacing: -0.025em;
-		margin-block: 22px 12px;
-	}
-	.feature-grid p {
-		color: hsl(var(--muted-foreground));
-		font-size: 14px;
-		line-height: 1.85;
-		margin-bottom: 22px;
-	}
-	.workflow-shell {
-		background: hsl(var(--muted) / 0.5);
-		border-block: 1px solid hsl(var(--border));
-		scroll-margin-top: 100px;
-	}
-	.workflow-grid {
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-		gap: 72px;
-		padding-block: 80px;
-		align-items: start;
-	}
-	.section-heading > .text-link {
-		margin-top: 20px;
-	}
-	.steps {
-		display: flex;
-		flex-direction: column;
-		gap: 22px;
-		margin-top: 36px;
-		counter-reset: step;
-	}
-	.steps li {
-		display: grid;
-		grid-template-columns: 26px 1fr;
-		column-gap: 12px;
-		font-size: 13px;
-	}
-	.steps li::before {
-		counter-increment: step;
-		content: counter(step, decimal-leading-zero);
-		grid-row: span 2;
-		font:
-			11px/1.8 ui-monospace,
-			monospace;
-		color: hsl(var(--primary));
-	}
-	.steps span {
-		color: hsl(var(--muted-foreground));
-		margin-top: 4px;
-		line-height: 1.6;
-	}
-	.config-example {
+
+	/* The figure: three steps stacked in one card. */
+	.flow {
+		--error: #ef4444;
 		min-width: 0;
 		border: 1px solid hsl(var(--border));
-		border-radius: 10px;
+		border-radius: 16px;
 		background: hsl(var(--card));
+		box-shadow: 0 24px 60px -25px hsl(var(--foreground) / 0.2);
 		overflow: hidden;
 	}
-	.config-example .file-bar {
-		justify-content: space-between;
+	.stage {
+		display: grid;
+		grid-template-columns: 116px minmax(0, 1fr);
 	}
-	.file-bar a {
-		font-size: 10px;
-	}
-	pre {
-		overflow-x: auto;
-		padding: 28px;
-		font-size: 13px;
-		line-height: 2;
-	}
-	.command-example {
-		padding: 20px 28px;
+	.stage + .stage {
 		border-top: 1px solid hsl(var(--border));
+	}
+	.stage-label {
+		display: flex;
+		gap: 8px;
+		padding: 18px 16px;
+		border-right: 1px solid hsl(var(--border));
+		background: hsl(var(--muted));
 		font:
-			13px/2 ui-monospace,
+			500 11px/1.6 ui-monospace,
+			monospace;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		color: hsl(var(--muted-foreground));
+	}
+	.stage-label .n {
+		color: hsl(var(--primary));
+	}
+	.stage-body {
+		min-width: 0;
+		padding: 16px 20px;
+	}
+	.file {
+		margin-bottom: 8px;
+		font:
+			11px/1.5 ui-monospace,
+			monospace;
+		color: hsl(var(--muted-foreground));
+	}
+
+	/* 01: a paragraph as it reads in a wiki. */
+	.guide-kicker {
+		font:
+			500 11px/1.5 system-ui,
+			sans-serif;
+		letter-spacing: 0.04em;
+		color: hsl(var(--muted-foreground));
+	}
+	.guide-text {
+		margin-top: 6px;
+		font:
+			16px/1.6 Georgia,
+			'Times New Roman',
+			serif;
+		color: hsl(var(--foreground));
+	}
+	.guide-text strong {
+		font-weight: 700;
+	}
+	.guide-text s {
+		color: hsl(var(--muted-foreground));
+		text-decoration-color: var(--error);
+	}
+
+	/* 02: the YAML, keys muted so the pair at the bottom reads first. */
+	.yaml {
+		margin: 0;
+		padding: 0;
+		border: 0;
+		border-radius: 0;
+		background: none;
+		white-space: pre-wrap;
+		overflow-wrap: anywhere;
+		font:
+			12.5px/1.75 ui-monospace,
+			monospace;
+		color: hsl(var(--foreground));
+	}
+	.yaml b {
+		font-weight: 400;
+		color: hsl(var(--muted-foreground));
+	}
+
+	/* 03: three lines of an editor and the diagnostic under them. */
+	.doc {
+		font:
+			12.5px/1.75 ui-monospace,
 			monospace;
 	}
-	.command-example span {
-		color: hsl(var(--primary));
-		margin-right: 10px;
+	.lines {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		counter-reset: line;
 	}
-	details {
+	.lines li {
+		display: grid;
+		grid-template-columns: 18px minmax(0, 1fr);
+		gap: 12px;
+	}
+	.lines li::before {
+		counter-increment: line;
+		content: counter(line);
+		text-align: right;
+		font-size: 11px;
+		color: hsl(var(--muted-foreground) / 0.6);
+	}
+	.src {
+		min-width: 0;
+		min-height: 1.75em;
+		overflow-wrap: anywhere;
+	}
+	.syntax {
+		color: hsl(var(--muted-foreground));
+	}
+	mark {
+		margin: 0 -2px;
+		padding: 0 2px;
+		border-bottom: 2px solid var(--error);
+		border-radius: 2px;
+		background: color-mix(in srgb, var(--error) 12%, transparent);
+		color: inherit;
+	}
+	.alert {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: baseline;
+		gap: 4px 10px;
+		margin-top: 12px;
+		padding: 8px 12px;
+		border: 1px solid hsl(var(--border));
+		border-left: 3px solid var(--error);
+		border-radius: 8px;
+		background: hsl(var(--muted));
+		font:
+			12px/1.6 system-ui,
+			sans-serif;
+	}
+	.sev {
+		font:
+			600 11px/1.6 ui-monospace,
+			monospace;
+		color: var(--error);
+	}
+	.rule-name {
+		margin-left: auto;
+		font:
+			11px/1.6 ui-monospace,
+			monospace;
+		color: hsl(var(--muted-foreground));
+	}
+
+	figcaption {
+		padding: 12px 20px;
 		border-top: 1px solid hsl(var(--border));
-	}
-	summary {
-		cursor: pointer;
-		padding: 20px 24px;
+		background: hsl(var(--muted));
 		font-size: 12px;
+		line-height: 1.6;
+		color: hsl(var(--muted-foreground));
 	}
-	summary span {
-		float: right;
+
+	/* The line under the hero */
+	.agent-strip {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: space-between;
+		gap: 16px;
+		padding-block: 20px;
+		font-size: 12px;
+		color: hsl(var(--muted-foreground));
 	}
-	.rule-link {
-		margin: 0 28px 24px;
+	.agent-strip > div {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 12px 22px;
 	}
+	.agent-strip a {
+		color: hsl(var(--foreground));
+		text-decoration: underline;
+		text-underline-offset: 4px;
+		text-decoration-color: hsl(var(--border));
+	}
+	.agent-strip > p {
+		font-size: 10px;
+	}
+
 	@media (max-width: 900px) {
 		.hero-grid {
-			gap: 32px;
+			grid-template-columns: 1fr;
+			gap: 36px;
+			padding-block: 56px;
 		}
-		.workflow-grid {
-			gap: 32px;
+		h1 {
+			font-size: clamp(2.5rem, 9vw, 5rem);
+			margin-block: 20px;
+		}
+		.actions {
+			margin-top: 28px;
+		}
+		.hero-note {
+			margin-top: 16px;
+		}
+		.hero-copy {
+			max-width: 640px;
+			margin-inline: auto;
+			text-align: center;
+		}
+		.intro {
+			max-width: none;
+		}
+		.actions {
+			justify-content: center;
 		}
 	}
 	@media (max-width: 700px) {
 		.landing-wrap {
 			padding-inline: 24px;
 		}
-		.hero-grid,
-		.workflow-grid {
-			grid-template-columns: 1fr;
-			padding-block: 48px;
-			gap: 40px;
+		.hero-grid {
+			gap: 32px;
+			padding-block: 40px;
 		}
 		.hero-copy {
-			max-width: 500px;
+			max-width: 520px;
 		}
-		.document-demo {
-			transform: none;
+		.eyebrow {
+			display: inline-block;
+			font-size: 10px;
+			letter-spacing: 0.08em;
 		}
-		.feature-grid {
+		.stage {
 			grid-template-columns: 1fr;
-			gap: 30px;
 		}
-		.feature-section {
-			padding-block: 56px;
-		}
-		.document-content {
-			padding: 28px 24px;
+		.stage-label {
+			padding: 8px 16px;
+			border-right: 0;
+			border-bottom: 1px solid hsl(var(--border));
 		}
 	}
 </style>

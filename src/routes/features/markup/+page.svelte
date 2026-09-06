@@ -304,12 +304,12 @@
 </script>
 
 <MetaTags
-	title="Markup-aware linting — Vale"
+	title="Scopes — Vale"
 	{description}
 	canonical="https://vale.sh/features/markup"
 	openGraph={{
 		url: 'https://vale.sh/features/markup',
-		title: 'Markup-aware linting',
+		title: 'Scopes',
 		description
 	}}
 />
@@ -323,11 +323,11 @@
 		title="One rule, every syntax"
 		lede="These three files say the same thing in three markup languages. Vale parses each with its own parser and hands the linter the same prose, so a rule written once fires in all three."
 	>
-		<div class="rounded-2xl border border-border/60 bg-card">
+		<div class="rounded-2xl border border-border bg-card">
 			<div
 				role="tablist"
 				aria-label="Markup format"
-				class="flex gap-1 overflow-x-auto border-b border-border/60 px-3 py-2"
+				class="flex gap-1 overflow-x-auto border-b border-border px-3 py-2"
 			>
 				{#each syntaxes as syntax}
 					<button
@@ -353,7 +353,7 @@
 								<span class="text-muted-foreground/45">{token.v}</span>
 							{:else if token.t === 'flag'}
 								<span
-									class="decoration-amber-500 underline-offset-4 [text-decoration:underline_wavy]"
+									class="-mx-0.5 rounded-sm border-b-2 border-amber-500 bg-amber-500/10 px-0.5 text-foreground"
 									>{token.v}</span
 								>
 							{:else}
@@ -365,22 +365,22 @@
 			</div>
 
 			<div
-				class="flex flex-wrap items-center gap-x-4 gap-y-1 border-t border-border/60 px-5 py-4 font-mono text-[13px] sm:px-6"
+				class="flex flex-wrap items-center gap-x-4 gap-y-1 border-t border-border px-5 py-4 font-mono text-[13px] sm:px-6"
 			>
-				<span class="text-amber-500">warning</span>
+				<span class="text-amber-600 dark:text-amber-400">warning</span>
 				<span class="text-foreground/80">Use 'use' instead of 'utilize'.</span>
 				<span class="text-muted-foreground/60">Microsoft.Vocab</span>
 			</div>
 		</div>
 
-		<p class="mt-6 text-sm leading-relaxed text-muted-foreground">
+		<p class="mt-6 text-sm leading-relaxed text-foreground/85">
 			The dimmed characters never reach a rule. Neither does <code
 				class="rounded bg-muted px-1 py-0.5 font-mono text-[0.85em]">--output</code
 			>
 			or the link target—but <em>report format</em>, which a reader actually reads, does.
 		</p>
 
-		<p class="mt-4 text-sm leading-relaxed text-muted-foreground">
+		<p class="mt-4 text-sm leading-relaxed text-foreground/85">
 			Vale does not implement any of these syntaxes itself. Markdown goes through
 			<ExternalLink href="https://github.com/yuin/goldmark">goldmark</ExternalLink>, AsciiDoc
 			through
@@ -411,7 +411,7 @@
 			{/each}
 		</div>
 
-		<div class="mt-5 rounded-2xl border border-border/60 bg-card p-5 sm:p-6">
+		<div class="mt-5 rounded-2xl border border-border bg-card p-5 sm:p-6">
 			<div class="flex flex-col gap-3">
 				{#each blocks as block}
 					{@const on = matches(selector, block.scope)}
@@ -423,7 +423,7 @@
 						<div class="flex items-baseline justify-between gap-4">
 							<div class="min-w-0">
 								{#if block.kind === 'h2'}
-									<span class="text-lg font-semibold text-foreground">{block.text}</span>
+									<span class="text-lg font-medium text-foreground">{block.text}</span>
 								{:else if block.kind === 'li'}
 									<span class="text-sm text-foreground/90">• {block.text}</span>
 								{:else if block.kind === 'quote'}
@@ -431,7 +431,7 @@
 										>{block.text}</span
 									>
 								{:else if block.kind === 'th'}
-									<span class="text-sm font-semibold text-foreground">{block.text}</span>
+									<span class="text-sm font-medium text-foreground">{block.text}</span>
 								{:else}
 									<span class="text-sm text-foreground/90">{block.text}</span>
 								{/if}
@@ -452,8 +452,8 @@
 			</p>
 		</div>
 
-		<div class="mt-8 flex flex-col gap-4 rounded-xl border border-border/60 bg-muted/30 p-5">
-			<p class="text-sm leading-relaxed text-muted-foreground">
+		<div class="mt-8 flex flex-col gap-4 rounded-xl border border-border bg-muted p-5">
+			<p class="text-sm leading-relaxed text-foreground/85">
 				A selector matches when every part of it appears in the block's scope, in any order—so
 				<code class="rounded bg-muted px-1 py-0.5 font-mono text-[0.85em]">md.list</code> and
 				<code class="rounded bg-muted px-1 py-0.5 font-mono text-[0.85em]">list.md</code> select the
@@ -463,7 +463,7 @@
 				<code class="rounded bg-muted px-1 py-0.5 font-mono text-[0.85em]">~</code> to invert the whole
 				thing.
 			</p>
-			<p class="text-sm leading-relaxed text-muted-foreground">
+			<p class="text-sm leading-relaxed text-foreground/85">
 				Inline spans—<code class="rounded bg-muted px-1 py-0.5 font-mono text-[0.85em]">link</code>,
 				<code class="rounded bg-muted px-1 py-0.5 font-mono text-[0.85em]">strong</code>,
 				<code class="rounded bg-muted px-1 py-0.5 font-mono text-[0.85em]">emphasis</code>,
@@ -480,11 +480,11 @@
 		title="Front matter is content too"
 		lede="A title and a description are read more often than the page they sit on—they land in search results, navigation, and social cards. Vale parses front matter in Markdown, AsciiDoc, reStructuredText, MDX, and Org, and gives every field a scope of its own."
 	>
-		<div class="rounded-2xl border border-border/60 bg-card">
+		<div class="rounded-2xl border border-border bg-card">
 			<div
 				role="tablist"
 				aria-label="Front matter format"
-				class="flex gap-1 overflow-x-auto border-b border-border/60 px-3 py-2"
+				class="flex gap-1 overflow-x-auto border-b border-border px-3 py-2"
 			>
 				{#each frontMatter as fm}
 					<button
@@ -516,7 +516,7 @@
 				<div class="mt-2 whitespace-pre text-foreground/90">The body starts here.</div>
 			</div>
 
-			<div class="border-t border-border/60 px-5 py-4 sm:px-6">
+			<div class="border-t border-border px-5 py-4 sm:px-6">
 				<div class="text-xs uppercase tracking-wider text-muted-foreground/70">Scopes produced</div>
 				<div class="mt-2 flex flex-wrap gap-2 font-mono text-[13px]">
 					<span
@@ -532,14 +532,14 @@
 		</div>
 
 		<div class="mt-6 grid grid-cols-1 gap-4 md:grid-cols-2">
-			<div class="rounded-2xl border border-border/60 bg-card p-6">
-				<h3 class="text-sm font-semibold text-foreground">Title case, titles only</h3>
-				<p class="mt-2 text-sm leading-relaxed text-muted-foreground">
+			<div class="rounded-2xl border border-border bg-card p-6">
+				<h3 class="text-sm font-medium text-foreground">Title case, titles only</h3>
+				<p class="mt-2 text-sm leading-relaxed text-foreground/85">
 					The field name is part of the scope, so a rule can pick out one key and ignore every
 					other.
 				</p>
 				<div
-					class="mt-4 overflow-x-auto rounded-lg border border-border/60 bg-muted/40 p-4 font-mono text-[13px] leading-relaxed"
+					class="mt-4 overflow-x-auto rounded-lg border border-border bg-muted p-4 font-mono text-[13px] leading-relaxed"
 				>
 					<div class="whitespace-pre">
 						<span class="text-muted-foreground">extends:</span> capitalization
@@ -554,14 +554,14 @@
 				</div>
 			</div>
 
-			<div class="rounded-2xl border border-border/60 bg-card p-6">
-				<h3 class="text-sm font-semibold text-foreground">No filler in the description</h3>
-				<p class="mt-2 text-sm leading-relaxed text-muted-foreground">
+			<div class="rounded-2xl border border-border bg-card p-6">
+				<h3 class="text-sm font-medium text-foreground">No filler in the description</h3>
+				<p class="mt-2 text-sm leading-relaxed text-foreground/85">
 					This is the sentence that lands in search results. It is the wrong place for words that
 					carry no information.
 				</p>
 				<div
-					class="mt-4 overflow-x-auto rounded-lg border border-border/60 bg-muted/40 p-4 font-mono text-[13px] leading-relaxed"
+					class="mt-4 overflow-x-auto rounded-lg border border-border bg-muted p-4 font-mono text-[13px] leading-relaxed"
 				>
 					<div class="whitespace-pre">
 						<span class="text-muted-foreground">extends:</span> existence
@@ -589,7 +589,7 @@
 			</div>
 		</div>
 
-		<p class="mt-6 text-sm leading-relaxed text-muted-foreground">
+		<p class="mt-6 text-sm leading-relaxed text-foreground/85">
 			Front matter is skipped entirely unless a rule asks for it, so nothing starts firing on your
 			build configuration by accident.
 		</p>
@@ -600,13 +600,13 @@
 		lede="Every rule takes a scope. Set it, and the rule stops firing anywhere else."
 	>
 		<div class="grid grid-cols-1 gap-4 md:grid-cols-2">
-			<div class="rounded-2xl border border-border/60 bg-card p-6">
-				<h3 class="text-sm font-semibold text-foreground">Headings only</h3>
-				<p class="mt-2 text-sm leading-relaxed text-muted-foreground">
+			<div class="rounded-2xl border border-border bg-card p-6">
+				<h3 class="text-sm font-medium text-foreground">Headings only</h3>
+				<p class="mt-2 text-sm leading-relaxed text-foreground/85">
 					Enforce sentence case where it matters, and leave body text alone.
 				</p>
 				<div
-					class="mt-4 overflow-x-auto rounded-lg border border-border/60 bg-muted/40 p-4 font-mono text-[13px] leading-relaxed"
+					class="mt-4 overflow-x-auto rounded-lg border border-border bg-muted p-4 font-mono text-[13px] leading-relaxed"
 				>
 					<div class="whitespace-pre">
 						<span class="text-muted-foreground">extends:</span> capitalization
@@ -621,13 +621,13 @@
 				</div>
 			</div>
 
-			<div class="rounded-2xl border border-border/60 bg-card p-6">
-				<h3 class="text-sm font-semibold text-foreground">Everything but tables</h3>
-				<p class="mt-2 text-sm leading-relaxed text-muted-foreground">
+			<div class="rounded-2xl border border-border bg-card p-6">
+				<h3 class="text-sm font-medium text-foreground">Everything but tables</h3>
+				<p class="mt-2 text-sm leading-relaxed text-foreground/85">
 					Scopes negate. Terse table cells shouldn't trip a rule about full sentences.
 				</p>
 				<div
-					class="mt-4 overflow-x-auto rounded-lg border border-border/60 bg-muted/40 p-4 font-mono text-[13px] leading-relaxed"
+					class="mt-4 overflow-x-auto rounded-lg border border-border bg-muted p-4 font-mono text-[13px] leading-relaxed"
 				>
 					<div class="whitespace-pre">
 						<span class="text-muted-foreground">extends:</span> existence
@@ -652,9 +652,9 @@
 	>
 		<div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
 			{#each skipped as item}
-				<div class="rounded-xl border border-border/60 bg-card p-5">
-					<h3 class="text-sm font-semibold text-foreground">{item.title}</h3>
-					<p class="mt-1.5 text-sm leading-relaxed text-muted-foreground">{item.body}</p>
+				<div class="rounded-xl border border-border bg-card p-5">
+					<h3 class="text-sm font-medium text-foreground">{item.title}</h3>
+					<p class="mt-1.5 text-sm leading-relaxed text-foreground/85">{item.body}</p>
 				</div>
 			{/each}
 		</div>
@@ -671,7 +671,7 @@
 					href={format.href}
 					rel="noreferrer"
 					target="_blank"
-					class="group rounded-xl border border-border/60 bg-card px-4 py-3 transition-colors hover:border-lime-500/40"
+					class="group rounded-xl border border-border bg-card px-4 py-3 transition-colors hover:border-lime-500/40"
 				>
 					<div class="text-sm font-medium text-foreground">{format.name}</div>
 					<div class="mt-0.5 font-mono text-xs text-muted-foreground">{format.ext}</div>
@@ -683,12 +683,17 @@
 				</a>
 			{/each}
 		</div>
-		<p class="mt-6 text-sm leading-relaxed text-muted-foreground">
+		<p class="mt-6 text-sm leading-relaxed text-foreground/85">
 			Source files are handled too—see <a
 				href="/features/code"
 				class="font-medium text-foreground underline decoration-lime-500 decoration-2 underline-offset-4"
-				>code-aware linting</a
-			>, which can parse the Markdown inside a comment using everything on this page.
+				>code</a
+			>, which parses the Markdown inside a comment with everything on this page, and
+			<a
+				href="/features/views"
+				class="font-medium text-foreground underline decoration-lime-500 decoration-2 underline-offset-4"
+				>Views</a
+			>, which reach the prose in files that aren't documents at all.
 		</p>
 	</Section>
 </FeatureShell>

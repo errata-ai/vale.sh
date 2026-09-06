@@ -44,11 +44,11 @@
 	const fmt = new Intl.NumberFormat('en-US');
 </script>
 
-<div class="rounded-2xl border border-border/60 bg-card">
+<div class="rounded-2xl border border-border bg-card">
 	<div
 		role="tablist"
 		aria-label="Project"
-		class="flex gap-1 overflow-x-auto border-b border-border/60 px-3 py-2"
+		class="flex gap-1 overflow-x-auto border-b border-border px-3 py-2"
 	>
 		{#each projects as project}
 			<button
@@ -101,15 +101,13 @@
 				</span>
 			{/if}
 			<div>
-				<div
-					class="font-mono text-4xl font-semibold tracking-tight text-lime-600 dark:text-lime-400"
-				>
+				<div class="font-mono text-4xl font-medium tracking-tight text-lime-600 dark:text-lime-400">
 					{rate}
 				</div>
 				<div class="mt-1 text-sm font-medium text-foreground">pages a second</div>
 			</div>
 			<div>
-				<div class="font-mono text-4xl font-semibold tracking-tight text-foreground">
+				<div class="font-mono text-4xl font-medium tracking-tight text-foreground">
 					{current.seconds < 10 ? current.seconds.toFixed(2) : current.seconds.toFixed(1)}<span
 						class="text-2xl text-muted-foreground">s</span
 					>
@@ -146,11 +144,7 @@
 				<dt class="text-xs uppercase tracking-wider text-muted-foreground/70">Format</dt>
 				<dd class="mt-1 flex items-center gap-1.5 text-lg text-foreground">
 					{#if current.formatIcon}
-						<BrandIcon
-							name={current.format}
-							slug={current.formatIcon}
-							class="h-4 w-4 shrink-0"
-						/>
+						<BrandIcon name={current.format} slug={current.formatIcon} class="h-4 w-4 shrink-0" />
 					{/if}
 					<span class="truncate">{current.format}</span>
 				</dd>
@@ -169,9 +163,9 @@
 		</div>
 		<p class="mt-2 text-xs text-muted-foreground/70">Corpus size, relative to the largest here.</p>
 
-		<p class="mt-6 text-sm leading-relaxed text-muted-foreground">{current.note}</p>
+		<p class="mt-6 text-sm leading-relaxed text-foreground/85">{current.note}</p>
 
-		<p class="mt-4 text-sm leading-relaxed text-muted-foreground">
+		<p class="mt-4 text-sm leading-relaxed text-foreground/85">
 			<ExternalLink href={current.docs}>docs</ExternalLink>
 			{#if current.config}
 				· <ExternalLink href={current.config}>their config</ExternalLink>

@@ -23,7 +23,7 @@
 </script>
 
 <article>
-	<header class="border-b border-border/60">
+	<header class="border-b border-border">
 		<div class="mx-auto max-w-4xl px-6 pb-14 pt-10 sm:pb-16 lg:px-8">
 			<a
 				href="/#features"
@@ -39,13 +39,17 @@
 				>
 					<Icon class="h-5 w-5" />
 				</div>
-				<p class="text-sm font-medium text-lime-600 dark:text-lime-400">{feature.tagline}</p>
+				<p
+					class="font-mono text-[11px] font-medium uppercase tracking-[0.13em] text-lime-600 dark:text-lime-400"
+				>
+					{feature.tagline}
+				</p>
 			</div>
 
-			<h1 class="mt-5 text-balance text-4xl font-semibold tracking-tight sm:text-5xl">
+			<h1 class="mt-5 text-balance text-4xl font-medium tracking-[-0.03em] sm:text-5xl">
 				{feature.title}
 			</h1>
-			<p class="mt-6 text-pretty text-lg leading-8 text-muted-foreground">{lede}</p>
+			<p class="mt-6 text-pretty text-lg leading-8 text-foreground/85">{lede}</p>
 
 			<a
 				href={docs.href}
@@ -60,23 +64,27 @@
 	{@render children()}
 
 	<!-- Keep reading: the other three deep dives, in their landing-page order. -->
-	<section class="border-t border-border/60 bg-muted/20">
+	<section class="border-t border-border bg-muted">
 		<div class="mx-auto max-w-6xl px-6 py-14 sm:py-16 lg:px-8">
-			<h2 class="text-base font-semibold text-lime-600 dark:text-lime-400">Keep reading</h2>
+			<h2
+				class="font-mono text-[11px] font-medium uppercase tracking-[0.13em] text-lime-600 dark:text-lime-400"
+			>
+				Keep reading
+			</h2>
 			<div class="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
 				{#each rest as other}
 					{@const OtherIcon = other.icon}
 					<a
 						href="/features/{other.slug}"
-						class="group flex flex-col gap-3 rounded-2xl border border-border/60 bg-card p-6 transition-colors hover:border-lime-500/40"
+						class="group flex flex-col gap-3 rounded-2xl border border-border bg-card p-6 transition-colors hover:border-lime-500/40"
 					>
 						<div
 							class="flex h-9 w-9 items-center justify-center rounded-lg border border-lime-500/20 bg-lime-500/10 text-lime-600 dark:text-lime-400"
 						>
 							<OtherIcon class="h-4 w-4" />
 						</div>
-						<h3 class="font-semibold text-foreground">{other.title}</h3>
-						<p class="text-sm leading-relaxed text-muted-foreground">{other.tagline}.</p>
+						<h3 class="font-medium text-foreground">{other.title}</h3>
+						<p class="text-sm leading-relaxed text-foreground/85">{other.tagline}.</p>
 						<span
 							class="mt-auto inline-flex items-center gap-1 pt-2 text-sm font-medium text-lime-600 dark:text-lime-400"
 						>

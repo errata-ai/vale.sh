@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { brandIcons, brandIconViewBox } from '$lib/data/brand-icons';
+	import { brandIcons, brandIconViewBox, brandColors } from '$lib/data/brand-icons';
 
 	/**
 	 * Resolves a mark in three steps: a Simple Icons glyph, then a GitHub org
@@ -18,28 +18,27 @@
 		slug,
 		avatar,
 		size = 'h-5 w-5',
+		mono = false,
 		class: klass = ''
 	}: {
 		name: string;
 		slug?: string;
 		avatar?: string;
 		size?: string;
+		/** Keep the text color: for a mark on a surface painted in its own brand. */
+		mono?: boolean;
 		class?: string;
 	} = $props();
 
 	const path = $derived(slug ? brandIcons[slug] : undefined);
+	// A mark in its own color, where it has one; the rest follow the text.
+	const fill = $derived((!mono && slug && brandColors[slug]) || 'currentColor');
 	// Marks Simple Icons does not carry are not all drawn 24x24.
 	const box = $derived((slug && brandIconViewBox[slug]) || '0 0 24 24');
 </script>
 
 {#if path}
-	<svg
-		viewBox={box}
-		role="img"
-		aria-hidden="true"
-		fill="currentColor"
-		class="{size} shrink-0 {klass}"
-	>
+	<svg viewBox={box} role="img" aria-hidden="true" {fill} class="{size} shrink-0 {klass}">
 		<path d={path} />
 	</svg>
 {:else if avatar}

@@ -3,12 +3,14 @@
 	import Download from 'lucide-svelte/icons/download';
 	import Sparkles from 'lucide-svelte/icons/sparkles';
 	import Blocks from 'lucide-svelte/icons/blocks';
+	import Workflow from 'lucide-svelte/icons/workflow';
 
-	// Only the sections still on this page. Adopters, press, supporters and
+	// Only the sections below the bar. Adopters, press, supporters and
 	// infrastructure moved to /adopters, /library and /sponsor, and a chip
 	// scrolling to an anchor that is not here would land on nothing.
 	const sections = [
 		{ id: 'features', label: 'Features', icon: Sparkles },
+		{ id: 'how-it-works', label: 'How it works', icon: Workflow },
 		{ id: 'stats', label: 'Downloads', icon: Download },
 		{ id: 'integrations', label: 'Integrations', icon: Blocks }
 	];

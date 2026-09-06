@@ -28,6 +28,10 @@ export type Option = {
 	pairedWith: { name: string; count: number }[];
 	/** Its Style Explorer page, when the package is one we index. */
 	explorer: string | null;
+	/** Where the style comes from: the guide or the repository behind it. */
+	homepage: string | null;
+	/** The mark the Explorer shows for it. */
+	logo: string | null;
 };
 
 type Pkg = {
@@ -35,6 +39,7 @@ type Pkg = {
 	description: string;
 	homepage: string;
 	tags?: string[];
+	logo?: string;
 	rules?: { level?: string }[];
 };
 
@@ -60,7 +65,7 @@ function build(value: string, fallback: string): Option {
 	return {
 		value,
 		label: value,
-		description: pkg?.description ?? fallback,
+		description: fallback,
 		ruleCount: rules.length,
 		levels,
 		adoption: styleCounts[value] ?? 0,
@@ -68,7 +73,9 @@ function build(value: string, fallback: string): Option {
 			.filter(([, count]) => count > 1)
 			.slice(0, 2)
 			.map(([name, count]) => ({ name, count })),
-		explorer: pkg ? `/explorer/${pkg.name}` : null
+		explorer: pkg ? `/explorer/${pkg.name}` : null,
+		homepage: pkg?.homepage ?? null,
+		logo: pkg?.logo ?? null
 	};
 }
 
@@ -81,21 +88,33 @@ const byAdoption = (a: Option, b: Option) =>
  * they disagree -- so the step takes one.
  */
 export const baseStyles: Option[] = [
-	build('Google', 'Google Developer Documentation Style Guide.'),
-	build('Microsoft', 'Microsoft Writing Style Guide.'),
-	build('RedHat', 'Red Hat Documentation Style Guide.'),
-	build('Elastic', 'Elastic documentation style guide.'),
-	build('Salesforce', 'Salesforce documentation style guide.')
+	build(
+		'Google',
+		'Google’s developer documentation style: second person, active voice, sentence-case headings, plain words.'
+	),
+	build(
+		'Microsoft',
+		'Microsoft’s writing style: warm and direct, contractions welcome, no jargon.'
+	),
+	build(
+		'RedHat',
+		'Red Hat’s documentation style: precise terminology and consistent formatting for technical content.'
+	),
+	build('Elastic', 'Elastic’s documentation style, written for product and reference docs.'),
+	build('Salesforce', 'Salesforce’s documentation style, written for product help and reference.')
 ].sort(byAdoption);
 
 /** Narrow, single-purpose styles meant to sit on top of a base. */
 export const supplementaryStyles: Option[] = [
-	build('write-good', 'Tightens up loose, weasel-worded writing.'),
-	build('proselint', 'Checks for a wide range of common prose style errors.'),
-	build('alex', 'Catches insensitive or inconsiderate writing.'),
-	build('Readability', 'Scores how hard the text is to read.'),
-	build('neighbor', 'Flags exclusionary language.'),
-	build('Joblint', 'Flags biased or exclusionary language in job posts.')
+	build('write-good', 'Weasel words, passive voice, clichés, and other loose writing.'),
+	build('proselint', 'Redundancy, jargon, dated phrases, and other common style slips.'),
+	build('alex', 'Insensitive or inconsiderate wording, with gentler alternatives.'),
+	build(
+		'Readability',
+		'Reading-level scores, so a hard passage is flagged rather than guessed at.'
+	),
+	build('neighbor', 'Exclusionary language, and the inclusive terms to use instead.'),
+	build('Joblint', 'Biased or exclusionary language in job posts.')
 ].sort(byAdoption);
 
 /** Markup support rather than prose rules: no rules of their own. */
@@ -103,28 +122,6 @@ export const configs: Option[] = [
 	build('Hugo', 'Support for Hugo shortcodes and front matter.'),
 	build('MDX', 'Support for MDX (Markdown with embedded JSX).')
 ];
-
-export type FormatOption = {
-	/** The extension, as it appears in a section glob. */
-	value: string;
-	label: string;
-	adoption: number;
-};
-
-/**
- * The file types to lint. Vale only reads a file if a section matches it, so
- * this is the setting most likely to make a first run silently do nothing.
- */
-export const formats: FormatOption[] = [
-	{ value: 'md', label: 'Markdown' },
-	{ value: 'mdx', label: 'MDX' },
-	{ value: 'rst', label: 'reStructuredText' },
-	{ value: 'adoc', label: 'AsciiDoc' },
-	{ value: 'html', label: 'HTML' },
-	{ value: 'txt', label: 'Plain text' }
-]
-	.map((f) => ({ ...f, adoption: (stats.formats as Record<string, number>)[f.value] ?? 0 }))
-	.sort((a, b) => b.adoption - a.adoption || a.label.localeCompare(b.label));
 
 export type LevelOption = { value: Level; label: string; description: string; adoption: number };
 
