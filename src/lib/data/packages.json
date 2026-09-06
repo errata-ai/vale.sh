@@ -7097,6 +7097,14 @@
         "link": ""
       },
       {
+        "name": "AbstractionSubject",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI abstraction subject: '%s'. Name the thing the demonstrative stands for, then say what it does.",
+        "link": ""
+      },
+      {
         "name": "AffirmativeFormulas",
         "extends": "existence",
         "level": "error",
@@ -7145,6 +7153,30 @@
         "link": ""
       },
       {
+        "name": "BareHolds",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI possession verb: '%s'. Say what it contains or stores. Disable this rule for concurrency or physical-object prose.",
+        "link": ""
+      },
+      {
+        "name": "BareNames",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI designation verb: '%s'. Say that it specifies or references the thing. Disable this rule for API reference prose.",
+        "link": ""
+      },
+      {
+        "name": "BareReaches",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI arrival metaphor: '%s'. Say which step handles it, or where it is sent. Disable this rule for transit or physics prose.",
+        "link": ""
+      },
+      {
         "name": "CataphoricForecasting",
         "extends": "existence",
         "level": "error",
@@ -7185,6 +7217,14 @@
         "link": ""
       },
       {
+        "name": "ConsequenceParticiple",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI consequence tail: '%s'. End the sentence there and state the effect as its own claim.",
+        "link": ""
+      },
+      {
         "name": "ContrastiveFormulas",
         "extends": "existence",
         "level": "error",
@@ -7198,6 +7238,14 @@
         "level": "error",
         "scope": "text",
         "message": "AI contrast by negation: '%s'. State the positive directly without the trailing negation.",
+        "link": ""
+      },
+      {
+        "name": "CoordinatedReveal",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI quantified reveal: '%s'. The totality word replaces a contrast the sentence never states. Name what it rules out, or drop the word.",
         "link": ""
       },
       {
@@ -7345,6 +7393,14 @@
         "link": ""
       },
       {
+        "name": "FigurativeEarns",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI wage metaphor: '%s'. Say what the thing gets or requires. Disable this rule for payroll or finance prose.",
+        "link": ""
+      },
+      {
         "name": "FigurativeFalls",
         "extends": "existence",
         "level": "error",
@@ -7377,6 +7433,14 @@
         "link": ""
       },
       {
+        "name": "FigurativeKeeps",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI upkeep frame: '%s'. Say what the mechanism does to the thing, not what state it keeps it in.",
+        "link": ""
+      },
+      {
         "name": "FigurativeLands",
         "extends": "existence",
         "level": "error",
@@ -7406,6 +7470,14 @@
         "level": "error",
         "scope": "text",
         "message": "AI overused word: '%s'. Name the actual behavior instead of calling emphasis volume. Disable this rule for prose about sound.",
+        "link": ""
+      },
+      {
+        "name": "FigurativeNouns",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI figurative noun: '%s'. Name the concrete thing it stands for.",
         "link": ""
       },
       {
@@ -7557,7 +7629,7 @@
         "extends": "existence",
         "level": "error",
         "scope": "text",
-        "message": "AI filler: '%s'. Delete this phrase. It adds nothing.",
+        "message": "AI filler: '%s'. Delete this phrase. The sentence reads the same without it.",
         "link": ""
       },
       {
@@ -7673,6 +7745,30 @@
         "link": ""
       },
       {
+        "name": "MortalityMetaphors",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI mortality metaphor: '%s'. Say what stopped, or what was kept. Disable this rule for biology or process-lifecycle prose.",
+        "link": ""
+      },
+      {
+        "name": "MotionMetaphors",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI motion metaphor: '%s'. Name the literal operation: is passed to, or depends on.",
+        "link": ""
+      },
+      {
+        "name": "NamedAdjective",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI designation adjective: '%s'. Write the identifier itself, or say which one. Disable this rule for API reference prose.",
+        "link": ""
+      },
+      {
         "name": "NarrativePivots",
         "extends": "existence",
         "level": "error",
@@ -7686,6 +7782,14 @@
         "level": "error",
         "scope": "text",
         "message": "AI stilted negation: '%s'. Negate the verb with 'doesn't' instead of shifting 'no' onto the object.",
+        "link": ""
+      },
+      {
+        "name": "NegatedPair",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI stacked absence: '%s'. Negate the verb once, then say what the thing does instead.",
         "link": ""
       },
       {
@@ -7761,6 +7865,14 @@
         "link": ""
       },
       {
+        "name": "PseudoCleft",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI pseudo-cleft: '%s'. Put the claim first as its own sentence and delete the 'What ... is' frame.",
+        "link": ""
+      },
+      {
         "name": "RedundantPrecaution",
         "extends": "existence",
         "level": "error",
@@ -7781,7 +7893,7 @@
         "extends": "existence",
         "level": "error",
         "scope": "text",
-        "message": "AI restatement: '%s'. Delete it and trust your original phrasing.",
+        "message": "AI restatement: '%s'. Delete it and trust your original phrasing. If a second case needs the point, name both cases in the sentence that makes it.",
         "link": ""
       },
       {
@@ -7798,6 +7910,14 @@
         "level": "error",
         "scope": "raw",
         "message": "AI rhetorical self-answer: '%s'. State the point directly instead of posing and answering your own question.",
+        "link": ""
+      },
+      {
+        "name": "ScopePartition",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI scope partition: '%s'. Make the scope the subject of its own sentence instead of a fronted label.",
         "link": ""
       },
       {
@@ -7833,6 +7953,14 @@
         "link": ""
       },
       {
+        "name": "ShellNounCopula",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI shell noun: '%s'. Delete the noun and the copula. Start the sentence at the claim.",
+        "link": ""
+      },
+      {
         "name": "ShipOveruse",
         "extends": "existence",
         "level": "error",
@@ -7865,11 +7993,27 @@
         "link": ""
       },
       {
+        "name": "StrawmanContrast",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI strawman contrast: '%s'. State what it does and stop. Drop the alternative nobody proposed.",
+        "link": ""
+      },
+      {
         "name": "StructureAnnouncements",
         "extends": "existence",
         "level": "error",
         "scope": "text",
         "message": "AI structure announcement: '%s'. Present the content instead of narrating that you're about to.",
+        "link": ""
+      },
+      {
+        "name": "SummativeAppositive",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI summative appositive: '%s'. The label noun restates the clause before it. Put the claim in its own sentence, or stop at the comma.",
         "link": ""
       },
       {
