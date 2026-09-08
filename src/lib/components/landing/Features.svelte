@@ -505,11 +505,13 @@
 		display: grid;
 		grid-template-columns: minmax(0, 1fr) auto;
 		gap: 12px;
-		align-items: center;
+		align-items: baseline;
 		min-height: 1.9em;
 	}
+	/* Wrap rather than run under the scope badge on narrow screens. */
 	.line code {
-		white-space: pre;
+		white-space: pre-wrap;
+		overflow-wrap: anywhere;
 	}
 	.prose-line {
 		color: hsl(var(--accent-foreground));
