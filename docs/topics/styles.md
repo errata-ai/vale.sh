@@ -244,10 +244,6 @@ BasedOnStyles = Direct, House
 Direct.Hedging = NO
 ```
 
-### [Tests](styles.md#tests)
-
-A parent's `tests` are not inherited. They assert the parent's behavior, and a child that changes a message, a threshold, or a token list has to bring its own.
-
 ### [Sharing a pattern](styles.md#sharing-a-pattern)
 
 A directory whose name starts with `_` or `.` is skipped at load time but stays visible to `extends`, so a pattern shared by several rules can live in one file without itself becoming a rule:
