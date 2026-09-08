@@ -21,8 +21,8 @@
                 "url": "https://vale.sh"
             },
             "repositoryUrl": {
-                "url": "https://github.com/errata-ai/vale",
-                "wellKnown": "https://github.com/errata-ai/vale/blob/b0a597a6f17e8fd9cefd3d4c1d81a24ed3496a91/.well-known/funding-manifest-urls"
+                "url": "https://github.com/vale-cli/vale",
+                "wellKnown": "https://github.com/vale-cli/vale/blob/b0a597a6f17e8fd9cefd3d4c1d81a24ed3496a91/.well-known/funding-manifest-urls"
             },
             "licenses": [
                 "spdx:MIT"
@@ -44,8 +44,8 @@
                 "url": "https://vale.sh"
             },
             "repositoryUrl": {
-                "url": "https://github.com/errata-ai/vale-ls",
-                "wellKnown": "https://github.com/errata-ai/vale-ls/blob/766f299bcb14d9798795e178aeba99605194cd2a/.well-known/funding-manifest-urls"
+                "url": "https://github.com/vale-cli/vale-ls",
+                "wellKnown": "https://github.com/vale-cli/vale-ls/blob/766f299bcb14d9798795e178aeba99605194cd2a/.well-known/funding-manifest-urls"
             },
             "licenses": [
                 "spdx:MIT"
@@ -67,8 +67,8 @@
                 "url": "https://vale.sh"
             },
             "repositoryUrl": {
-                "url": "https://github.com/errata-ai/vale-action",
-                "wellKnown": "https://github.com/errata-ai/vale-action/blob/dcded780f1ff68e2558e802a165a484a4a3e2fb8/.well-known/funding-manifest-urls"
+                "url": "https://github.com/vale-cli/vale-action",
+                "wellKnown": "https://github.com/vale-cli/vale-action/blob/dcded780f1ff68e2558e802a165a484a4a3e2fb8/.well-known/funding-manifest-urls"
             },
             "licenses": [
                 "spdx:MIT"
@@ -90,8 +90,8 @@
                 "url": "https://vale.sh"
             },
             "repositoryUrl": {
-                "url": "https://github.com/errata-ai/vale.sh",
-                "wellKnown": "https://github.com/errata-ai/vale.sh/blob/e1ef580e27013749f9443e44323be9fa22d26e36/static/.well-known/funding-manifest-urls"
+                "url": "https://github.com/vale-cli/vale.sh",
+                "wellKnown": "https://github.com/vale-cli/vale.sh/blob/e1ef580e27013749f9443e44323be9fa22d26e36/static/.well-known/funding-manifest-urls"
             },
             "licenses": [
                 "spdx:MIT"

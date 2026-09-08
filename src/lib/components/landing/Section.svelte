@@ -36,7 +36,7 @@
 <section {id} class="scroll-mt-20 border-b border-border/60">
 	<div
 		class={cn(
-			'mx-auto max-w-6xl border-border/60 px-6 py-14 sm:py-16 lg:px-8',
+			'mx-auto max-w-6xl border-border/60 px-6 py-12 sm:py-16 lg:px-8 lg:py-20',
 			!editorial && 'lg:border-x'
 		)}
 	>
@@ -44,7 +44,7 @@
 			{#if eyebrow}
 				<p
 					class="text-sm font-medium leading-7 {accent
-						? 'text-lime-600 dark:text-lime-400'
+						? 'text-accent-foreground'
 						: 'text-muted-foreground'}"
 				>
 					{eyebrow}
@@ -67,12 +67,12 @@
 				{#if id}
 					<a
 						href="#{id}"
-						class="group/anchor inline-flex items-baseline gap-2 no-underline hover:no-underline"
+						class="group/anchor relative rounded-sm no-underline hover:no-underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring"
 					>
 						{title}
 						<span
 							aria-hidden="true"
-							class="text-2xl text-muted-foreground opacity-0 transition-opacity group-hover/anchor:opacity-100"
+							class="absolute ml-2 text-2xl text-muted-foreground opacity-0 transition-opacity group-hover/anchor:opacity-100 group-focus-visible/anchor:opacity-100"
 							>#</span
 						>
 					</a>
@@ -113,7 +113,9 @@
 	}
 	.editorial-heading > :global(h2) {
 		margin: 0;
+		min-width: 0;
 		max-width: 640px;
+		text-wrap: balance;
 		font-size: clamp(2rem, 3.4vw, 2.8rem);
 		line-height: 1.12;
 		letter-spacing: -0.045em;
@@ -126,7 +128,7 @@
 	}
 	@media (min-width: 900px) {
 		.editorial-heading {
-			grid-template-columns: 1.2fr 1fr;
+			grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
 		}
 	}
 </style>

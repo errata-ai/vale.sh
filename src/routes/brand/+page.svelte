@@ -252,7 +252,7 @@
 					Download everything
 				</a>
 				<a
-					href="https://github.com/errata-ai/vale.sh/tree/svelte/static/brand"
+					href="https://github.com/vale-cli/vale.sh/tree/svelte/static/brand"
 					target="_blank"
 					rel="noreferrer"
 					class="inline-flex h-11 items-center justify-center gap-2 rounded-lg border border-border bg-background px-6 text-sm font-medium text-foreground transition-colors hover:bg-muted/60"
@@ -648,7 +648,7 @@
 							<ArrowUpRight class="h-3.5 w-3.5" />
 						</a>
 						<a
-							href="https://github.com/errata-ai/vale.sh/issues"
+							href="https://github.com/vale-cli/vale.sh/issues"
 							target="_blank"
 							rel="noreferrer"
 							class={button}

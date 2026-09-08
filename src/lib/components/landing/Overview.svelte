@@ -1,23 +1,29 @@
 <script lang="ts">
 	import { Button } from '$lib/components/ui/button';
+	import CodeBlock from '$lib/components/CodeBlock.svelte';
 	import ArrowRight from 'lucide-svelte/icons/arrow-right';
 	import type { Stats } from '$lib/types/stats';
 	import { assistants } from '$lib/assistants';
+	import adopters from '$lib/data/adopters.json';
 
-	let { stats }: { stats: Stats } = $props();
+	let { stats, ruleHtml }: { stats: Stats; ruleHtml: string } = $props();
+
+	const compact = new Intl.NumberFormat('en-US', { notation: 'compact', maximumFractionDigits: 1 });
+	// Three figures beside the headline. Each is a fact with a page behind it.
+	const figures = $derived([
+		{
+			value: compact.format(stats.stars),
+			label: 'GitHub stars',
+			href: 'https://github.com/vale-cli/vale'
+		},
+		{ value: compact.format(stats.lifetime.value), label: 'downloads', href: '/library' },
+		{ value: String(adopters.length), label: 'teams listed', href: '/adopters' }
+	]);
 	const starLabel = $derived(
 		new Intl.NumberFormat('en-US', { notation: 'compact', maximumFractionDigits: 1 }).format(
 			stats.stars
 		)
 	);
-
-	/*
-		The figure reads top to bottom: a line from a team's writing guide, the
-		rule that encodes it, and the alert that rule raises in a doc. The rule
-		is a real `substitution` rule and the message is what Vale prints for
-		it. One guideline rather than several, because the point is the shape
-		of the stage from prose to YAML, not how many steps a guide has.
-	*/
 </script>
 
 <section class="hero-shell">
@@ -26,26 +32,36 @@
 			<a class="eyebrow" href="https://github.com/vale-cli/vale"
 				>OPEN SOURCE · MIT · {starLabel} STARS <span aria-hidden="true">↗</span></a
 			>
-			<h1>Your style,<br />our editor.</h1>
-			<p class="intro">
-				Vale brings code-like linting to prose. Turn your team’s writing guidelines into checks that
-				run in your editor and alongside your code.
-			</p>
-			<div class="actions">
-				<Button size="lg" href="https://docs.vale.sh/topics/quickstart"
-					>Get started <ArrowRight data-icon="inline-end" /></Button
-				>
-				<Button size="lg" variant="outline" href="#how-it-works">See how it works</Button>
+			<h1>Your style.<br /><span>Our editor.</span></h1>
+			<dl class="figures">
+				{#each figures as f (f.label)}
+					<div>
+						<dt>{f.label}</dt>
+						<dd><a href={f.href}>{f.value}</a></dd>
+					</div>
+				{/each}
+			</dl>
+			<div class="hero-description">
+				<p class="intro">
+					Vale brings code-like linting to prose. Turn your team’s writing guidelines into checks
+					that run in your editor and alongside your code.
+				</p>
+				<div class="actions">
+					<Button size="lg" href="https://docs.vale.sh/topics/quickstart"
+						>Get started <ArrowRight data-icon="inline-end" /></Button
+					>
+					<Button size="lg" variant="outline" href="#how-it-works">See how it works</Button>
+				</div>
+				<p class="hero-note">macOS, Windows & Linux · Runs offline</p>
 			</div>
-			<p class="hero-note">Your rules. Your workflow. Entirely offline.</p>
 		</div>
 
 		<figure
 			class="flow"
-			aria-label="How a guideline becomes a rule, and a rule becomes an alert: a line from a writing guide, the five-line YAML rule that encodes it, and the error it raises in a Markdown file"
+			aria-label="How a guideline becomes a rule, and a rule becomes an alert: a line from a writing guide, the YAML rule that encodes it, and the error it raises in a Markdown file"
 		>
 			<div class="stage">
-				<div class="stage-label"><span class="n">01</span>Guideline</div>
+				<div class="stage-label"><span class="n">01</span>Your guideline</div>
 				<div class="stage-body">
 					<p class="guide-kicker">Writing guide · Terminology</p>
 					<p class="guide-text">
@@ -56,19 +72,15 @@
 			</div>
 
 			<div class="stage">
-				<div class="stage-label"><span class="n">02</span>Rule</div>
+				<div class="stage-label"><span class="n">02</span>A rule you own</div>
 				<div class="stage-body">
 					<p class="file">styles/Docs/Terms.yml</p>
-					<pre class="yaml"><b>extends:</b> substitution
-<b>message:</b> "Use '%s' instead of '%s'."
-<b>level:</b> error
-<b>swap:</b>
-  Vale cli: Vale CLI</pre>
+					<CodeBlock html={ruleHtml} bare />
 				</div>
 			</div>
 
 			<div class="stage">
-				<div class="stage-label"><span class="n">03</span>Every doc</div>
+				<div class="stage-label"><span class="n">03</span>Feedback where you write</div>
 				<div class="stage-body doc">
 					<p class="file">docs/install.md</p>
 					<ol class="lines">
@@ -78,7 +90,7 @@
 							<span class="src"><mark>Vale cli</mark> runs on macOS, Windows, and Linux.</span>
 						</li>
 					</ol>
-					<div class="alert">
+					<div class="diagnostic">
 						<span class="sev">error</span>
 						<span>Use 'Vale CLI' instead of 'Vale cli'.</span>
 						<span class="rule-name">Docs.Terms</span>
@@ -87,8 +99,8 @@
 			</div>
 
 			<figcaption>
-				Five lines of YAML per guideline. Or start from Microsoft, Google, and fourteen other
-				published styles.
+				Encode your guidelines in YAML, or start with a
+				<a href="/explorer">published style guide</a>.
 			</figcaption>
 		</figure>
 	</div>
@@ -114,48 +126,128 @@
 		padding-inline: 32px;
 	}
 	.hero-shell {
+		position: relative;
 		border-bottom: 1px solid hsl(var(--border));
-		background: radial-gradient(ellipse at 80% 30%, hsl(var(--primary) / 0.09), transparent 60%);
+	}
+	/*
+		A still backdrop: a fine dot grid that fades out toward the edges, and a
+		faint wash of the accent in the corner the headline sits under. Both
+		are pseudo-elements, so there is nothing in the DOM and nothing moves.
+	*/
+	.hero-shell::before,
+	.hero-shell::after {
+		content: '';
+		position: absolute;
+		inset: 0;
+		pointer-events: none;
+	}
+	.hero-shell::before {
+		background-image: radial-gradient(hsl(var(--foreground) / 0.08) 1px, transparent 1.2px);
+		background-size: 24px 24px;
+		mask-image: radial-gradient(ellipse 70% 80% at 30% 40%, #000 20%, transparent 75%);
+	}
+	.hero-shell::after {
+		background: radial-gradient(
+			ellipse 50% 60% at 12% 18%,
+			hsl(var(--primary) / 0.08),
+			transparent 70%
+		);
 	}
 	.hero-grid {
-		display: grid;
-		grid-template-columns: 1fr 1.15fr;
-		gap: 64px;
-		align-items: center;
-		padding-block: 72px;
+		position: relative;
+		padding-block: 64px 48px;
 	}
 	.hero-copy {
-		max-width: 500px;
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr);
+		gap: 20px 64px;
+		align-items: start;
 	}
 	.eyebrow {
+		grid-column: 1 / -1;
+		justify-self: start;
 		font:
-			600 11px/1.5 ui-monospace,
+			500 11px/1.6 ui-monospace,
 			monospace;
-		letter-spacing: 0.12em;
+		letter-spacing: 0.08em;
 		color: hsl(var(--muted-foreground));
 	}
 	h1 {
-		font-size: clamp(3.5rem, 5.8vw, 5rem);
+		font-size: clamp(3.5rem, 7.5vw, 6rem);
 		font-weight: 500;
-		line-height: 1.04;
-		letter-spacing: -0.055em;
-		margin-block: 24px;
+		line-height: 1;
+		letter-spacing: -0.065em;
+	}
+	h1 span {
+		color: hsl(var(--muted-foreground));
+	}
+	/*
+		Under the headline on a wide screen, where the taller right column
+		would otherwise leave a gap; beside it on a narrower one, where the
+		headline alone would leave the right empty. Labels are set like the
+		eyebrow; the numbers are the only thing with weight.
+	*/
+	.figures {
+		grid-column: 1;
+		grid-row: 3;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 12px 36px;
+		margin: 8px 0 0;
+	}
+	.figures div {
+		display: flex;
+		flex-direction: column-reverse;
+		gap: 2px;
+	}
+	.figures dt {
+		font:
+			500 11px/1.6 ui-monospace,
+			monospace;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: hsl(var(--muted-foreground));
+	}
+	.figures dd {
+		margin: 0;
+		font-size: 28px;
+		font-weight: 600;
+		letter-spacing: -0.02em;
+		font-variant-numeric: tabular-nums;
+		line-height: 1.1;
+	}
+	.figures dd a {
+		color: hsl(var(--foreground));
+	}
+	/*
+		Pinned, not auto-placed: with the figures claiming column one, the
+		description would otherwise land in the row beside them and leave the
+		top right empty. It spans both rows and centers on the headline and
+		figures together.
+	*/
+	.hero-description {
+		grid-column: 2;
+		grid-row: 2 / span 2;
+		align-self: center;
+		min-width: 0;
 	}
 	.intro {
-		max-width: 460px;
+		max-width: 44ch;
 		font-size: 18px;
 		line-height: 1.75;
-		color: hsl(var(--foreground) / 0.85);
+		color: hsl(var(--foreground));
 	}
 	.actions {
 		display: flex;
 		flex-wrap: wrap;
 		gap: 12px;
-		margin-top: 32px;
+		margin-top: 24px;
 	}
 	.hero-note {
-		margin-top: 20px;
-		font-size: 12px;
+		margin-top: 16px;
+		font:
+			11px/1.8 ui-monospace,
+			monospace;
 		color: hsl(var(--muted-foreground));
 	}
 	a:hover {
@@ -164,69 +256,66 @@
 	}
 	a:focus-visible {
 		outline: 2px solid hsl(var(--ring));
-		outline-offset: 3px;
+		outline-offset: 4px;
 	}
-
-	/* The figure: three steps stacked in one card. */
 	.flow {
-		--error: #ef4444;
-		min-width: 0;
+		--error: hsl(var(--destructive));
+		display: grid;
+		grid-template-columns: minmax(0, 0.85fr) minmax(0, 1fr) minmax(0, 1.1fr);
+		margin-top: 48px;
 		border: 1px solid hsl(var(--border));
-		border-radius: 16px;
+		border-radius: 12px;
 		background: hsl(var(--card));
-		box-shadow: 0 24px 60px -25px hsl(var(--foreground) / 0.2);
 		overflow: hidden;
+		box-shadow: var(--shadow-sm);
 	}
 	.stage {
-		display: grid;
-		grid-template-columns: 116px minmax(0, 1fr);
+		min-width: 0;
 	}
 	.stage + .stage {
-		border-top: 1px solid hsl(var(--border));
+		border-left: 1px solid hsl(var(--border));
 	}
 	.stage-label {
 		display: flex;
-		gap: 8px;
-		padding: 18px 16px;
-		border-right: 1px solid hsl(var(--border));
-		background: hsl(var(--muted));
-		font:
-			500 11px/1.6 ui-monospace,
-			monospace;
-		letter-spacing: 0.1em;
-		text-transform: uppercase;
-		color: hsl(var(--muted-foreground));
+		align-items: center;
+		gap: 10px;
+		padding: 16px 20px;
+		border-bottom: 1px solid hsl(var(--border));
+		font-size: 11px;
+		font-weight: 500;
+		background: hsl(var(--muted) / 0.5);
 	}
-	.stage-label .n {
-		color: hsl(var(--primary));
+	.n {
+		font:
+			10px ui-monospace,
+			monospace;
+		color: hsl(var(--muted-foreground));
 	}
 	.stage-body {
+		padding: 20px;
 		min-width: 0;
-		padding: 16px 20px;
 	}
 	.file {
-		margin-bottom: 8px;
+		margin-bottom: 16px;
 		font:
-			11px/1.5 ui-monospace,
+			10px/1.6 ui-monospace,
 			monospace;
 		color: hsl(var(--muted-foreground));
+		overflow-wrap: anywhere;
 	}
-
-	/* 01: a paragraph as it reads in a wiki. */
 	.guide-kicker {
 		font:
-			500 11px/1.5 system-ui,
-			sans-serif;
-		letter-spacing: 0.04em;
+			10px/1.6 ui-monospace,
+			monospace;
 		color: hsl(var(--muted-foreground));
 	}
 	.guide-text {
-		margin-top: 6px;
+		margin-top: 20px;
+		padding-left: 14px;
+		border-left: 2px solid hsl(var(--primary));
 		font:
-			16px/1.6 Georgia,
-			'Times New Roman',
+			19px/1.65 Georgia,
 			serif;
-		color: hsl(var(--foreground));
 	}
 	.guide-text strong {
 		font-weight: 700;
@@ -235,30 +324,9 @@
 		color: hsl(var(--muted-foreground));
 		text-decoration-color: var(--error);
 	}
-
-	/* 02: the YAML, keys muted so the pair at the bottom reads first. */
-	.yaml {
-		margin: 0;
-		padding: 0;
-		border: 0;
-		border-radius: 0;
-		background: none;
-		white-space: pre-wrap;
-		overflow-wrap: anywhere;
-		font:
-			12.5px/1.75 ui-monospace,
-			monospace;
-		color: hsl(var(--foreground));
-	}
-	.yaml b {
-		font-weight: 400;
-		color: hsl(var(--muted-foreground));
-	}
-
-	/* 03: three lines of an editor and the diagnostic under them. */
 	.doc {
 		font:
-			12.5px/1.75 ui-monospace,
+			12px/1.8 ui-monospace,
 			monospace;
 	}
 	.lines {
@@ -269,71 +337,65 @@
 	}
 	.lines li {
 		display: grid;
-		grid-template-columns: 18px minmax(0, 1fr);
-		gap: 12px;
+		grid-template-columns: 12px minmax(0, 1fr);
+		gap: 10px;
 	}
 	.lines li::before {
 		counter-increment: line;
 		content: counter(line);
 		text-align: right;
-		font-size: 11px;
-		color: hsl(var(--muted-foreground) / 0.6);
+		font-size: 10px;
+		color: hsl(var(--muted-foreground));
 	}
 	.src {
 		min-width: 0;
-		min-height: 1.75em;
+		min-height: 1.8em;
 		overflow-wrap: anywhere;
 	}
 	.syntax {
 		color: hsl(var(--muted-foreground));
 	}
 	mark {
-		margin: 0 -2px;
 		padding: 0 2px;
 		border-bottom: 2px solid var(--error);
-		border-radius: 2px;
-		background: color-mix(in srgb, var(--error) 12%, transparent);
+		background: color-mix(in srgb, var(--error) 10%, transparent);
 		color: inherit;
 	}
-	.alert {
+	.diagnostic {
 		display: flex;
 		flex-wrap: wrap;
-		align-items: baseline;
-		gap: 4px 10px;
-		margin-top: 12px;
-		padding: 8px 12px;
-		border: 1px solid hsl(var(--border));
-		border-left: 3px solid var(--error);
-		border-radius: 8px;
-		background: hsl(var(--muted));
+		gap: 4px 8px;
+		margin-top: 18px;
+		padding-top: 12px;
+		border-top: 1px solid hsl(var(--border));
 		font:
 			12px/1.6 system-ui,
 			sans-serif;
 	}
 	.sev {
-		font:
-			600 11px/1.6 ui-monospace,
-			monospace;
 		color: var(--error);
+		font-weight: 600;
 	}
 	.rule-name {
-		margin-left: auto;
+		width: 100%;
 		font:
-			11px/1.6 ui-monospace,
+			10px/1.6 ui-monospace,
 			monospace;
 		color: hsl(var(--muted-foreground));
 	}
-
 	figcaption {
-		padding: 12px 20px;
+		grid-column: 1 / -1;
+		padding: 14px 20px;
 		border-top: 1px solid hsl(var(--border));
-		background: hsl(var(--muted));
 		font-size: 12px;
-		line-height: 1.6;
+		line-height: 1.7;
 		color: hsl(var(--muted-foreground));
 	}
-
-	/* The line under the hero */
+	figcaption a {
+		color: hsl(var(--foreground));
+		text-decoration: underline;
+		text-underline-offset: 3px;
+	}
 	.agent-strip {
 		display: flex;
 		flex-wrap: wrap;
@@ -358,33 +420,53 @@
 	.agent-strip > p {
 		font-size: 10px;
 	}
-
-	@media (max-width: 900px) {
-		.hero-grid {
-			grid-template-columns: 1fr;
-			gap: 36px;
-			padding-block: 56px;
+	@media (max-width: 1000px) {
+		/* Two columns this narrow leave a hole under the headline, and one
+		   column leaves the right half empty. So the headline takes the full
+		   width, and under it the paragraph and the buttons share a row. */
+		.hero-copy {
+			grid-template-columns: minmax(0, 1fr) auto;
+			gap: 24px 40px;
 		}
-		h1 {
-			font-size: clamp(2.5rem, 9vw, 5rem);
-			margin-block: 20px;
+		.figures {
+			grid-column: 2;
+			grid-row: 2;
+			flex-direction: column;
+			align-self: end;
+			align-items: flex-end;
+			gap: 14px;
+			margin: 0;
+			text-align: right;
+		}
+		.hero-description {
+			grid-column: 1 / -1;
+			grid-row: 3;
+			align-self: start;
+			display: grid;
+			grid-template-columns: minmax(0, 1fr) auto;
+			gap: 20px 40px;
+			align-items: end;
+			padding-top: 0;
 		}
 		.actions {
-			margin-top: 28px;
+			margin-top: 0;
 		}
 		.hero-note {
-			margin-top: 16px;
+			grid-column: 1 / -1;
+			margin-top: 0;
 		}
-		.hero-copy {
-			max-width: 640px;
-			margin-inline: auto;
-			text-align: center;
+		.flow {
+			grid-template-columns: 1fr 1fr;
 		}
-		.intro {
-			max-width: none;
+		.stage:first-child {
+			grid-column: 1 / -1;
+			border-bottom: 1px solid hsl(var(--border));
 		}
-		.actions {
-			justify-content: center;
+		.stage:nth-child(2) {
+			border-left: 0;
+		}
+		.guide-text {
+			margin-top: 12px;
 		}
 	}
 	@media (max-width: 700px) {
@@ -392,24 +474,50 @@
 			padding-inline: 24px;
 		}
 		.hero-grid {
-			gap: 32px;
-			padding-block: 40px;
+			padding-block: 40px 32px;
+		}
+		h1 {
+			font-size: clamp(3.5rem, 12vw, 5rem);
 		}
 		.hero-copy {
-			max-width: 520px;
-		}
-		.eyebrow {
-			display: inline-block;
-			font-size: 10px;
-			letter-spacing: 0.08em;
-		}
-		.stage {
 			grid-template-columns: 1fr;
 		}
-		.stage-label {
-			padding: 8px 16px;
-			border-right: 0;
-			border-bottom: 1px solid hsl(var(--border));
+		.figures {
+			grid-column: 1;
+			grid-row: 3;
+			flex-direction: row;
+			align-items: flex-start;
+			gap: 12px 28px;
+			text-align: left;
+		}
+		.hero-description {
+			grid-row: 4;
+			display: block;
+		}
+		.actions {
+			margin-top: 24px;
+		}
+		.hero-note {
+			margin-top: 16px;
+		}
+		.intro {
+			font-size: 16px;
+		}
+		.flow {
+			grid-template-columns: 1fr;
+			margin-top: 32px;
+		}
+		.stage + .stage {
+			border-left: 0;
+		}
+		.stage:nth-child(3) {
+			border-top: 1px solid hsl(var(--border));
+		}
+	}
+	@media (max-width: 400px) {
+		.actions {
+			flex-direction: column;
+			align-items: stretch;
 		}
 	}
 </style>

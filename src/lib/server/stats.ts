@@ -17,6 +17,7 @@ import type { Availability, Channel, Stats } from '$lib/types/stats';
 // The project moved from the errata-ai org; errata-ai/* still redirects here.
 const REPO = 'vale-cli/vale';
 const DOCKER_IMAGE = 'jdkato/vale';
+const ACTION = 'vale-cli/vale-action';
 
 /** Date the fallbacks below were last confirmed by hand. */
 const FALLBACK_DATE = '2026-08-28';
@@ -29,6 +30,7 @@ const FALLBACKS = {
 	conda: 153_174,
 	brew: 75_395,
 	chocolatey: 19_472,
+	actionRepos: 4_159,
 	contributors: 63,
 	stars: 6_038,
 	wingetVersion: '3.17.1',
@@ -185,6 +187,20 @@ async function fetchWingetVersion(fetch: Fetch): Promise<string> {
 }
 
 /** Latest stable Snap version. The Store publishes no public install counts. */
+/**
+ * Repositories whose workflows use the action, as GitHub counts them on the
+ * dependents page. The API has no endpoint for this, and the marketplace
+ * shows no install count, so the page is read the way winstall's is.
+ */
+async function fetchActionRepos(fetch: Fetch): Promise<number> {
+	const html = await text(fetch, `https://github.com/${ACTION}/network/dependents`, {
+		'User-Agent': 'vale.sh-site-build'
+	});
+	const m = html.replace(/<[^>]+>/g, ' ').match(/([\d,]+)\s+Repositories/);
+	if (!m) throw new Error('no repository count on the dependents page');
+	return Number(m[1].replace(/,/g, ''));
+}
+
 async function fetchSnapVersion(fetch: Fetch): Promise<string> {
 	const info = await json(fetch, 'https://api.snapcraft.io/v2/snaps/info/vale', {
 		'Snap-Device-Series': '16'
@@ -250,6 +266,7 @@ export async function getStats(fetch: Fetch): Promise<Stats> {
 		[conda, condaLive],
 		[brew, brewLive],
 		[chocolatey, chocoLive],
+		[actionRepos, actionLive],
 		[winget, wingetLive],
 		[snap, snapLive],
 		[repology, repologyLive],
@@ -264,6 +281,7 @@ export async function getStats(fetch: Fetch): Promise<Stats> {
 		safely('conda-forge', FALLBACKS.conda, () => fetchConda(fetch)),
 		safely('brew installs', FALLBACKS.brew, () => fetchBrew(fetch)),
 		safely('chocolatey', FALLBACKS.chocolatey, () => fetchChocolatey(fetch)),
+		safely('action repos', FALLBACKS.actionRepos, () => fetchActionRepos(fetch)),
 		safely('winget version', FALLBACKS.wingetVersion, () => fetchWingetVersion(fetch)),
 		safely('snap version', FALLBACKS.snapVersion, () => fetchSnapVersion(fetch)),
 		safely('repology', FALLBACKS.repologyFamilies, () => fetchRepology(fetch)),
@@ -334,6 +352,15 @@ export async function getStats(fetch: Fetch): Promise<Stats> {
 			window: 'lifetime',
 			source: 'https://community.chocolatey.org/packages/vale',
 			live: chocoLive
+		},
+		{
+			name: 'GitHub Action',
+			icon: 'githubactions',
+			value: actionRepos,
+			unit: 'repositories',
+			window: 'using it today',
+			source: 'https://github.com/marketplace/actions/vale-linter',
+			live: actionLive
 		}
 	];
 

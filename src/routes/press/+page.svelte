@@ -611,7 +611,7 @@
 				</div>
 				<div class="flex shrink-0 flex-wrap gap-2">
 					<a
-						href="https://github.com/errata-ai/vale.sh/edit/svelte/src/lib/data/press.json"
+						href="https://github.com/vale-cli/vale.sh/edit/svelte/src/lib/data/press.json"
 						target="_blank"
 						rel="noreferrer"
 						class="inline-flex h-9 items-center gap-2 rounded-lg bg-primary px-4 text-sm font-medium text-primary-foreground shadow-sm transition-colors hover:bg-primary/90"
@@ -620,7 +620,7 @@
 						<ArrowUpRight class="h-4 w-4" />
 					</a>
 					<a
-						href="https://github.com/errata-ai/vale.sh#add-a-post-talk-or-video"
+						href="https://github.com/vale-cli/vale.sh#add-a-post-talk-or-video"
 						target="_blank"
 						rel="noreferrer"
 						class="inline-flex h-9 items-center gap-2 rounded-lg border border-border bg-background px-4 text-sm font-medium text-foreground transition-colors hover:bg-muted/60"
@@ -653,7 +653,7 @@
 							<ArrowUpRight class="h-3.5 w-3.5" />
 						</a>
 						<a
-							href="https://github.com/errata-ai/vale.sh/issues"
+							href="https://github.com/vale-cli/vale.sh/issues"
 							target="_blank"
 							rel="noreferrer"
 							class={button}

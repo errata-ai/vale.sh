@@ -21,6 +21,8 @@ export type Channel = {
 	icon?: string;
 	/** Extra caveat, e.g. a package the project doesn't maintain. */
 	note?: string;
+	/** What `value` counts when it isn't downloads, e.g. `repositories`. */
+	unit?: string;
 	/** False when the lookup failed and `value` is the checked-in fallback. */
 	live: boolean;
 };

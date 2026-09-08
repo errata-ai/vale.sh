@@ -136,4 +136,4 @@ That's real output, and it shows the two halves working together. The `title` ru
 
 Views are the cleanest way to lint OpenAPI Specification files with Vale. By expressing your document's structure as a series of targeted Dasel queries, you get accurate error reporting, full Markdown support, and no external scripts or format conversion steps.
 
-If you have any questions or run into any problems, feel free to open an issue at the [Vale repository](https://github.com/errata-ai/vale).
+If you have any questions or run into any problems, feel free to open an issue at the [Vale repository](https://github.com/vale-cli/vale).

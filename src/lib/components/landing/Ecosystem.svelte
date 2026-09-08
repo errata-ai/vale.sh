@@ -69,7 +69,8 @@
 					href={channel.source}
 					target="_blank"
 					rel="noreferrer"
-					title="{n(channel.value)} — {channel.name}, {channel.window}"
+					title="{n(channel.value)} {channel.unit ??
+						'downloads'} — {channel.name}, {channel.window}"
 					style={brand(channel.icon) ? `--brand: ${brand(channel.icon)}` : undefined}
 					class={card}
 				>
@@ -91,7 +92,10 @@
 						<Counter value={channel.value} />
 					</span>
 					<span class="mt-1 text-xs text-muted-foreground">
-						{channel.window}{channel.note ? ` · ${channel.note}` : ''}
+						<!-- The section counts downloads; a card counting something else says so. -->
+						{channel.unit ? `${channel.unit} · ` : ''}{channel.window}{channel.note
+							? ` · ${channel.note}`
+							: ''}
 					</span>
 				</a>
 			</li>

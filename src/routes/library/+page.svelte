@@ -54,6 +54,34 @@
 			.sort((a, b) => b.year - a.year)
 	);
 
+	/*
+		Masonry that reads across. CSS columns pack cards by height but fill
+		each column top to bottom, so a newest-first list read down the columns
+		rather than along the rows. Dealing the items out instead -- the first
+		to column one, the second to column two, and so on -- keeps the packing
+		and makes each row the next few items.
+
+		The count follows the grid's breakpoints. Before hydration it is three,
+		and below `sm` the columns are `display: contents` with each card given
+		its index as `order`, so a phone reads the list in order even then.
+	*/
+	let cols = $state(3);
+	onMount(() => {
+		const wide = window.matchMedia('(min-width: 1024px)');
+		const mid = window.matchMedia('(min-width: 640px)');
+		const update = () => (cols = wide.matches ? 3 : mid.matches ? 2 : 1);
+		update();
+		wide.addEventListener('change', update);
+		mid.addEventListener('change', update);
+		return () => {
+			wide.removeEventListener('change', update);
+			mid.removeEventListener('change', update);
+		};
+	});
+	const columns = $derived(
+		Array.from({ length: cols }, (_, c) => items.filter((_, i) => i % cols === c))
+	);
+
 	// Track images that fail to load (dead/hotlink-blocked URLs) so we can swap in
 	// a branded placeholder instead of a broken-image icon.
 	let failedImages = $state<Set<string>>(new Set());
@@ -361,59 +389,63 @@
 		boxes. They render as text cards instead, with the type on the chip.
 
 		That leaves cards of two very different heights, which a row-aligned grid
-		can only absorb as dead space. Columns pack them instead. The cost is
-		reading order: items flow down each column rather than across, so the
-		year-sorted list reads newest-to-oldest per column, not per row.
+		can only absorb as dead space. The columns below pack them instead, and
+		are dealt out in the script above so the order still reads across.
 	-->
-	<div class="mt-8 columns-1 gap-6 sm:columns-2 lg:columns-3">
-		{#each items as m}
-			<article
-				class="group relative mb-6 flex break-inside-avoid flex-col overflow-hidden rounded-2xl border border-border bg-card transition-colors hover:border-lime-500/40"
-			>
-				{#if showImage(m.image)}
-					<div class="relative aspect-[16/9] w-full overflow-hidden bg-muted">
-						<img
-							src={m.image}
-							alt=""
-							onerror={() => onImgError(m.image)}
-							class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
-							loading="lazy"
-						/>
-					</div>
-				{/if}
-				<div class="flex flex-1 flex-col p-5">
-					<!-- The chip carries the icon now that the thumbnail may not. -->
-					<div class="flex items-center gap-2 text-xs">
-						<span
-							class="inline-flex items-center gap-1.5 rounded-full bg-lime-500/10 px-2 py-0.5 font-medium text-lime-600 ring-1 ring-inset ring-lime-500/20 dark:text-lime-400"
-						>
-							{#if m.type === 'video'}
-								<Play class="h-3 w-3" />
-							{:else if m.type === 'talk'}
-								<Presentation class="h-3 w-3" />
-							{:else}
-								<FileText class="h-3 w-3" />
-							{/if}
-							{typeLabel(m.type).replace(/s$/, '')}
-						</span>
-						<span class="text-muted-foreground">{m.year}</span>
-					</div>
-					<h3 class="mt-3 font-semibold leading-snug text-foreground">
-						<a
-							href={m.url}
-							target="_blank"
-							rel="noreferrer"
-							class="transition-colors after:absolute after:inset-0 focus:outline-none focus-visible:underline group-hover:text-lime-600 dark:group-hover:text-lime-400"
-						>
-							{m.title}
-						</a>
-					</h3>
-					<p class="mt-2 line-clamp-3 flex-1 text-sm leading-relaxed text-muted-foreground">
-						{m.description}
-					</p>
-					<p class="mt-4 text-sm font-medium text-muted-foreground">{m.author}</p>
-				</div>
-			</article>
+	<div class="mt-8 flex flex-col gap-6 sm:flex-row sm:items-start">
+		{#each columns as column, c}
+			<div class="contents sm:flex sm:min-w-0 sm:flex-1 sm:flex-col sm:gap-6">
+				{#each column as m, r (m.url)}
+					<article
+						style="order: {r * cols + c}"
+						class="group relative flex flex-col overflow-hidden rounded-2xl border border-border bg-card transition-colors hover:border-lime-500/40"
+					>
+						{#if showImage(m.image)}
+							<div class="relative aspect-[16/9] w-full overflow-hidden bg-muted">
+								<img
+									src={m.image}
+									alt=""
+									onerror={() => onImgError(m.image)}
+									class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+									loading="lazy"
+								/>
+							</div>
+						{/if}
+						<div class="flex flex-1 flex-col p-5">
+							<!-- The chip carries the icon now that the thumbnail may not. -->
+							<div class="flex items-center gap-2 text-xs">
+								<span
+									class="inline-flex items-center gap-1.5 rounded-full bg-lime-500/10 px-2 py-0.5 font-medium text-lime-600 ring-1 ring-inset ring-lime-500/20 dark:text-lime-400"
+								>
+									{#if m.type === 'video'}
+										<Play class="h-3 w-3" />
+									{:else if m.type === 'talk'}
+										<Presentation class="h-3 w-3" />
+									{:else}
+										<FileText class="h-3 w-3" />
+									{/if}
+									{typeLabel(m.type).replace(/s$/, '')}
+								</span>
+								<span class="text-muted-foreground">{m.year}</span>
+							</div>
+							<h3 class="mt-3 font-semibold leading-snug text-foreground">
+								<a
+									href={m.url}
+									target="_blank"
+									rel="noreferrer"
+									class="transition-colors after:absolute after:inset-0 focus:outline-none focus-visible:underline group-hover:text-lime-600 dark:group-hover:text-lime-400"
+								>
+									{m.title}
+								</a>
+							</h3>
+							<p class="mt-2 line-clamp-3 flex-1 text-sm leading-relaxed text-muted-foreground">
+								{m.description}
+							</p>
+							<p class="mt-4 text-sm font-medium text-muted-foreground">{m.author}</p>
+						</div>
+					</article>
+				{/each}
+			</div>
 		{/each}
 	</div>
 </div>

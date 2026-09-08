@@ -180,7 +180,7 @@
 		{
 			when: 'In CI',
 			body: 'A single binary to fetch and a machine-readable report to publish—no toolchain to provision on the runner first.',
-			href: 'https://github.com/errata-ai/vale-action',
+			href: 'https://github.com/vale-cli/vale-action',
 			cta: 'GitHub Actions'
 		}
 	];

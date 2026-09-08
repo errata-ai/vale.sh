@@ -6,7 +6,7 @@ export const siteConfig = {
 	links: {
 		// The repo, for anything that means *this project* — starring it, its
 		// releases, its contributors.
-		github: 'https://github.com/errata-ai/vale',
+		github: 'https://github.com/vale-cli/vale',
 		// The org, for the header's GitHub icon: it is a way in to everything
 		// under vale-cli, not a pointer at one repository.
 		org: 'https://github.com/vale-cli',
@@ -14,9 +14,9 @@ export const siteConfig = {
 		jdkato: 'https://github.com/jdkato',
 		// Not linked anywhere yet: the channel has one video on it.
 		youtube: 'https://www.youtube.com/@valecli',
-		releases: 'https://github.com/errata-ai/vale/releases',
+		releases: 'https://github.com/vale-cli/vale/releases',
 		docker: 'https://hub.docker.com/r/jdkato/vale',
-		contributors: 'https://github.com/errata-ai/vale/graphs/contributors',
+		contributors: 'https://github.com/vale-cli/vale/graphs/contributors',
 		sponsors: 'https://github.com/sponsors/jdkato',
 		openCollective: 'https://opencollective.com/vale',
 		discord: 'https://discord.gg/DM86VURrNY'

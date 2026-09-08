@@ -95,7 +95,7 @@
 
 				<!-- Same pill language as the hero eyebrow. -->
 				<a
-					href="https://github.com/errata-ai/vale/blob/master/LICENSE"
+					href="https://github.com/vale-cli/vale/blob/master/LICENSE"
 					target="_blank"
 					rel="noreferrer"
 					class="mt-5 inline-flex items-center gap-2 rounded-full border border-border bg-muted/40 py-1 pl-2.5 pr-3 font-mono text-xs text-muted-foreground transition-colors hover:bg-muted"

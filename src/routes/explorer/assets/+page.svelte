@@ -43,8 +43,10 @@
 />
 
 <div class="mx-auto max-w-6xl px-6 py-14 lg:px-8">
+	<Tabs active="assets" />
+
 	<!-- Header -->
-	<div class="mx-auto max-w-2xl text-center">
+	<div class="mx-auto mt-10 max-w-2xl text-center">
 		<p class="text-base font-semibold text-lime-600 dark:text-lime-400">Asset Explorer</p>
 		<h1 class="mt-2 text-balance text-4xl font-semibold tracking-tight sm:text-5xl">
 			Views, filters &amp; templates
@@ -56,8 +58,6 @@
 			applies, and a template shapes what a run prints.
 		</p>
 	</div>
-
-	<Tabs active="assets" />
 
 	<!-- Toolbar -->
 	<div class="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center">

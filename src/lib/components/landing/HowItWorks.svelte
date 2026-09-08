@@ -2,17 +2,9 @@
 	import { Button } from '$lib/components/ui/button';
 	import ArrowRight from 'lucide-svelte/icons/arrow-right';
 
-	const config = `StylesPath = styles
-MinAlertLevel = suggestion
-Packages = Microsoft
+	import CodeBlock from '$lib/components/CodeBlock.svelte';
 
-[*.md]
-BasedOnStyles = Vale, Microsoft`;
-	const rule = `extends: substitution
-message: "Use '%s' instead of '%s'."
-level: warning
-swap:
-  utilize: use`;
+	let { snippets }: { snippets: { config: string; rule: string; commands: string } } = $props();
 </script>
 
 <section id="how-it-works" class="workflow-shell">
@@ -51,14 +43,13 @@ swap:
 					>Config reference ↗</a
 				>
 			</div>
-			<pre><code>{config}</code></pre>
+			<div class="snippet"><CodeBlock html={snippets.config} bare /></div>
 			<div class="command-example">
-				<p><span>$</span> vale sync</p>
-				<p><span>$</span> vale docs/</p>
+				<CodeBlock html={snippets.commands} bare />
 			</div>
 			<details>
 				<summary>Make it your own with a YAML rule <span aria-hidden="true">+</span></summary>
-				<pre><code>{rule}</code></pre>
+				<div class="snippet"><CodeBlock html={snippets.rule} bare /></div>
 				<a class="text-link rule-link" href="https://docs.vale.sh/topics/styles"
 					>Learn to write rules →</a
 				>
@@ -81,8 +72,8 @@ swap:
 	}
 	.workflow-grid {
 		display: grid;
-		grid-template-columns: 1fr 1fr;
-		gap: 72px;
+		grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+		gap: clamp(32px, 5vw, 64px);
 		padding-block: 80px;
 		align-items: start;
 	}
@@ -92,6 +83,7 @@ swap:
 		line-height: 1.12;
 		letter-spacing: -0.045em;
 		margin-block: 0 18px;
+		text-wrap: balance;
 	}
 	.section-heading > p {
 		max-width: 450px;
@@ -170,11 +162,8 @@ swap:
 	.file-bar a {
 		font-size: 10px;
 	}
-	pre {
-		overflow-x: auto;
+	.snippet {
 		padding: 28px;
-		font-size: 13px;
-		line-height: 2;
 	}
 	.command-example {
 		padding: 20px 28px;
@@ -182,10 +171,6 @@ swap:
 		font:
 			13px/2 ui-monospace,
 			monospace;
-	}
-	.command-example span {
-		color: hsl(var(--primary));
-		margin-right: 10px;
 	}
 	details {
 		border-top: 1px solid hsl(var(--border));
@@ -206,7 +191,7 @@ swap:
 			gap: 32px;
 		}
 	}
-	@media (max-width: 700px) {
+	@media (max-width: 800px) {
 		.landing-wrap {
 			padding-inline: 24px;
 		}

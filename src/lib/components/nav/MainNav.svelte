@@ -4,6 +4,11 @@
 	import { siteConfig } from '$lib/config/site.js';
 	import { docsConfig } from '$lib/config/docs.js';
 	import { cn } from '$lib/utils.js';
+
+	// A page under an item's path counts as that item: /explorer/assets is
+	// still the explorer. The home link matches only itself.
+	const current = (href: string | undefined, pathname: string) =>
+		!!href && (pathname === href || (href !== '/' && pathname.startsWith(`${href}/`)));
 </script>
 
 <div class="mr-4 hidden md:flex">
@@ -19,7 +24,7 @@
 				href={item.href}
 				class={cn(
 					'inline-flex items-center gap-1.5 transition-colors hover:text-foreground/80',
-					$page.url.pathname === item.href ? 'text-foreground' : 'text-foreground/60'
+					current(item.href, $page.url.pathname) ? 'text-foreground' : 'text-foreground/60'
 				)}
 			>
 				{#if item.icon}

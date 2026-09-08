@@ -8,6 +8,25 @@ By default, Vale skips the `script`, `style`, `pre`, `figure`, `noscript`, and `
 
 The block list is replaced by [`SkippedScopes`](../keys/skippedscopes.md), the inline list by [`IgnoredScopes`](../keys/ignoredscopes.md), and the classes are added to by [`IgnoredClasses`](../keys/ignoredclasses.md).
 
+## [Templates](html.md#templates)
+
+Text that has no element of its own can be excluded by pattern: a [`BlockIgnores`](../keys/blockignores.md) match is wrapped in `<pre>`, a [`TokenIgnores`](../keys/tokenignores.md) match in `<code>`. That masks the tags of a template language, so the prose around them is linted and the variables are not:
+
+```ini
+[*.html]
+BasedOnStyles = Vale
+
+BlockIgnores = (?s)({%\s*comment\s*%}.*?{%\s*endcomment\s*%})
+TokenIgnores = ({{.*?}}), ({%.*?%}), ({#.*?#})
+```
+
+Text inside a tag, such as the string in `{% translate "..." %}`, is masked with it. A plain-text template, such as an email, has no markup to wrap a match in; read it as Markdown instead, which accepts the same patterns:
+
+```ini
+[formats]
+txt = md
+```
+
 ## [Comments](html.md#comments)
 
 Vale supports comment-based configuration in HTML files:

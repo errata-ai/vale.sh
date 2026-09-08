@@ -2,7 +2,13 @@
 	import { MetaTags } from 'svelte-meta-tags';
 	import ArrowLeft from 'lucide-svelte/icons/arrow-left';
 	import ExternalLink from 'lucide-svelte/icons/external-link';
+	import Star from 'lucide-svelte/icons/star';
+	import Download from 'lucide-svelte/icons/download';
+	import Globe from 'lucide-svelte/icons/globe';
 	import CodeBlock from '$lib/components/CodeBlock.svelte';
+	import BrandIcon from '$lib/components/landing/BrandIcon.svelte';
+
+	const compact = new Intl.NumberFormat('en-US', { notation: 'compact', maximumFractionDigits: 1 });
 
 	let { data } = $props();
 	const pkg = $derived(data.pkg);
@@ -100,14 +106,41 @@
 	</div>
 
 	<div class="mt-4 flex flex-wrap items-center gap-4 text-sm">
+		<!-- Where it lives, then how it has traveled, then what it is. -->
 		<a
 			href={pkg.homepage}
 			target="_blank"
 			rel="noreferrer"
-			class="inline-flex items-center gap-1 font-medium text-lime-600 hover:underline dark:text-lime-400"
+			class="inline-flex min-w-0 items-center gap-1.5 font-medium text-lime-600 hover:underline dark:text-lime-400"
 		>
-			Source <ExternalLink class="h-3.5 w-3.5" />
+			{#if pkg.host === 'web'}
+				<Globe class="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+			{:else}
+				<BrandIcon name={pkg.host ?? ''} slug={pkg.host} size="h-3.5 w-3.5" mono />
+			{/if}
+			<span class="truncate">{pkg.site || 'Source'}</span>
+			<ExternalLink class="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
 		</a>
+		{#if pkg.stars !== undefined}
+			<span
+				class="inline-flex items-center gap-1 text-muted-foreground"
+				title="{pkg.stars.toLocaleString('en-US')} stars"
+			>
+				<Star class="h-3.5 w-3.5" aria-hidden="true" />
+				<span class="tabular-nums">{compact.format(pkg.stars)}</span>
+				<span class="sr-only">stars</span>
+			</span>
+		{/if}
+		{#if pkg.downloads !== undefined}
+			<span
+				class="inline-flex items-center gap-1 text-muted-foreground"
+				title="{pkg.downloads.toLocaleString('en-US')} downloads across every release"
+			>
+				<Download class="h-3.5 w-3.5" aria-hidden="true" />
+				<span class="tabular-nums">{compact.format(pkg.downloads)}</span>
+				<span class="sr-only">downloads</span>
+			</span>
+		{/if}
 		{#each pkg.tags as tag}
 			<span class="rounded-full border border-border px-2.5 py-0.5 text-xs text-muted-foreground"
 				>{tag}</span

@@ -5,37 +5,37 @@
 			name: 'vale',
 			tech: 'Go',
 			info: 'The main repository containing the Vale command-line interface.',
-			link: 'https://github.com/errata-ai/vale'
+			link: 'https://github.com/vale-cli/vale'
 		},
 		{
 			name: 'vale-ls',
 			tech: 'Rust',
 			info: 'An implementation of the Language Server Protocol (LSP) for the Vale command-line tool.',
-			link: 'https://github.com/errata-ai/vale-ls'
+			link: 'https://github.com/vale-cli/vale-ls'
 		},
 		{
 			name: 'vale.sh',
 			tech: 'Svelte',
 			info: 'Website and documentation for the Vale CLI and related projects.',
-			link: 'https://github.com/errata-ai/vale.sh'
+			link: 'https://github.com/vale-cli/vale.sh'
 		},
 		{
 			name: 'vale-action',
 			tech: 'TypeScript',
 			info: 'The official GitHub Action for Vale -- install, manage, and run Vale with ease.',
-			link: 'https://github.com/errata-ai/vale-action'
+			link: 'https://github.com/vale-cli/vale-action'
 		},
 		{
 			name: 'packages',
 			tech: 'YAML',
 			info: 'A collection of pre-packaged, Vale-compatible style guides and configurations.',
-			link: 'https://github.com/errata-ai/packages'
+			link: 'https://github.com/vale-cli/packages'
 		},
 		{
 			name: 'vale-native',
 			tech: 'Go',
 			info: 'A native messaging host for the Vale CLI: Use your local configurations in Chrome, Firefox, Opera, and Edge.',
-			link: 'https://github.com/errata-ai/vale-native'
+			link: 'https://github.com/vale-cli/vale-native'
 		}
 	];
 </script>

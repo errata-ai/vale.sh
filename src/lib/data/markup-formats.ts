@@ -5,12 +5,11 @@
  * Names, order, and extensions match the table on /features/markup, which is
  * itself taken from docs.vale.sh/formats.
  *
- * `slug` keys into brandIcons. Three of the twelve have no mark anywhere --
- * reStructuredText, MyST, and DITA -- and two borrow the mark of the project
- * that defines them rather than of the format itself: AsciiDoc shows
- * Asciidoctor, the parser Vale hands `.adoc` to, and QDoc shows Qt, whose tool
- * it is. The strip draws a generic document glyph for the three that have
- * none, which is honest and keeps the row visually even.
+ * `slug` keys into brandIcons. DITA has no mark anywhere, and two borrow the
+ * mark of the project that defines them rather than of the format itself:
+ * AsciiDoc shows Asciidoctor, the parser Vale hands `.adoc` to, and QDoc
+ * shows Qt, whose tool it is. The strip draws a generic document glyph for
+ * the one that has none.
  */
 export type MarkupFormat = {
 	name: string;
@@ -22,9 +21,9 @@ export type MarkupFormat = {
 export const markupFormats: MarkupFormat[] = [
 	{ name: 'Markdown', slug: 'markdown', ext: '.md' },
 	{ name: 'AsciiDoc', slug: 'asciidoctor', ext: '.adoc' },
-	{ name: 'reStructuredText', ext: '.rst' },
+	{ name: 'reStructuredText', slug: 'restructuredtext', ext: '.rst' },
 	{ name: 'MDX', slug: 'mdx', ext: '.mdx' },
-	{ name: 'MyST', ext: '.myst' },
+	{ name: 'MyST', slug: 'myst', ext: '.myst' },
 	{ name: 'Quarto', slug: 'quarto', ext: '.qmd' },
 	{ name: 'Typst', slug: 'typst', ext: '.typ' },
 	{ name: 'HTML', slug: 'html5', ext: '.html' },

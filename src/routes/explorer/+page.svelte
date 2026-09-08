@@ -8,6 +8,11 @@
 	import Check from 'lucide-svelte/icons/check';
 	import ExternalLink from 'lucide-svelte/icons/external-link';
 	import ArrowRight from 'lucide-svelte/icons/arrow-right';
+	import Star from 'lucide-svelte/icons/star';
+	import Download from 'lucide-svelte/icons/download';
+	import ArrowUpRight from 'lucide-svelte/icons/arrow-up-right';
+	import Globe from 'lucide-svelte/icons/globe';
+	import BrandIcon from '$lib/components/landing/BrandIcon.svelte';
 	import { Icons } from '$lib/components/icons';
 	import Tabs from '$lib/components/explorer/Tabs.svelte';
 
@@ -18,6 +23,15 @@
 		url: string;
 		logo: string;
 		valeVersion?: string;
+		/** `owner/name` of the GitHub repository the archive is released from. */
+		repo?: string;
+		/** Where the homepage lives: a forge, or a website of its own. */
+		host?: string;
+		/** The homepage, shortened for a card: a repository path or a host. */
+		site?: string;
+		stars?: number;
+		/** Downloads of the archive, summed over every release. */
+		downloads?: number;
 		tags: string[];
 		rules: {
 			name: string;
@@ -44,17 +58,32 @@
 	let query = $state('');
 	let activeTag = $state('all');
 
+	// The library's own order, or by the numbers. Ties and packages without a
+	// count keep their library position.
+	type Sort = 'library' | 'stars' | 'downloads';
+	let sort = $state<Sort>('downloads');
+	const sorts: { id: Sort; label: string }[] = [
+		{ id: 'downloads', label: 'Most downloads' },
+		{ id: 'stars', label: 'Most stars' },
+		{ id: 'library', label: 'Library order' }
+	];
+
 	const tags = $derived(['all', ...Array.from(new Set(packages.flatMap((p) => p.tags))).sort()]);
 
-	const filtered = $derived(
-		packages.filter((p) => {
+	const filtered = $derived.by(() => {
+		const list = packages.filter((p) => {
 			const matchesTag = activeTag === 'all' || p.tags.includes(activeTag);
 			const q = query.trim().toLowerCase();
 			const matchesQuery =
 				!q || p.name.toLowerCase().includes(q) || p.description.toLowerCase().includes(q);
 			return matchesTag && matchesQuery;
-		})
-	);
+		});
+		if (sort === 'library') return list;
+		const key = sort;
+		return list.slice().sort((a, b) => (b[key] ?? -1) - (a[key] ?? -1));
+	});
+
+	const compact = new Intl.NumberFormat('en-US', { notation: 'compact', maximumFractionDigits: 1 });
 
 	const fmt = (t: string) =>
 		t === 'all' ? 'All' : t.replace(/-/g, ' ').replace(/^\w/, (c) => c.toUpperCase());
@@ -90,8 +119,10 @@
 />
 
 <div class="mx-auto max-w-6xl px-6 py-14 lg:px-8">
+	<Tabs active="packages" />
+
 	<!-- Header -->
-	<div class="mx-auto max-w-2xl text-center">
+	<div class="mx-auto mt-10 max-w-2xl text-center">
 		<p class="text-base font-semibold text-lime-600 dark:text-lime-400">Package Explorer</p>
 		<h1 class="mt-2 text-balance text-4xl font-semibold tracking-tight sm:text-5xl">
 			Styles &amp; configurations
@@ -104,8 +135,6 @@
 			<code class="rounded bg-muted px-1 py-0.5 font-mono text-sm text-foreground">vale sync</code>.
 		</p>
 	</div>
-
-	<Tabs active="packages" />
 
 	<!--
 		The wider ecosystem, up top rather than as a footnote: this page lists the
@@ -151,6 +180,20 @@
 				class="h-10 w-full rounded-lg border border-border bg-background pl-9 pr-3 text-sm text-foreground transition-colors placeholder:text-muted-foreground focus:border-lime-500/50 focus:outline-none focus:ring-2 focus:ring-lime-500/20"
 			/>
 		</div>
+		<label class="relative">
+			<span class="sr-only">Sort packages</span>
+			<select
+				bind:value={sort}
+				class="h-10 appearance-none rounded-lg border border-border bg-background pl-3 pr-9 text-sm text-foreground transition-colors hover:border-lime-500/40 focus:border-lime-500/50 focus:outline-none focus:ring-2 focus:ring-lime-500/20"
+			>
+				{#each sorts as s (s.id)}
+					<option value={s.id}>{s.label}</option>
+				{/each}
+			</select>
+			<ArrowRight
+				class="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 rotate-90 text-muted-foreground"
+			/>
+		</label>
 		<a
 			href={addURL}
 			target="_blank"
@@ -235,22 +278,39 @@
 							{pkg.description}
 						</p>
 
-						{#if pkg.rules?.length || pkg.assets?.length}
-							<p class="mt-3 text-xs text-muted-foreground">
-								{[
-									pkg.rules?.length ? `${pkg.rules.length} rules` : '',
-									pkg.assets?.length ? `${pkg.assets.length} assets` : ''
-								]
-									.filter(Boolean)
-									.join(' · ')}
-							</p>
-						{/if}
+						<!-- Counts: what's in the package, then how it has traveled. -->
+						<p
+							class="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-muted-foreground"
+						>
+							{#if pkg.rules?.length}<span>{pkg.rules.length} rules</span>{/if}
+							{#if pkg.assets?.length}<span>{pkg.assets.length} assets</span>{/if}
+							{#if pkg.stars !== undefined}
+								<span
+									class="inline-flex items-center gap-1"
+									title="{pkg.stars.toLocaleString('en-US')} stars"
+								>
+									<Star class="h-3 w-3" aria-hidden="true" />
+									<span class="tabular-nums">{compact.format(pkg.stars)}</span>
+									<span class="sr-only">stars</span>
+								</span>
+							{/if}
+							{#if pkg.downloads !== undefined}
+								<span
+									class="inline-flex items-center gap-1"
+									title="{pkg.downloads.toLocaleString('en-US')} downloads across every release"
+								>
+									<Download class="h-3 w-3" aria-hidden="true" />
+									<span class="tabular-nums">{compact.format(pkg.downloads)}</span>
+									<span class="sr-only">downloads</span>
+								</span>
+							{/if}
+						</p>
 
-						<div class="mt-5 border-t border-border pt-4">
+						<div class="mt-5 flex items-center justify-between gap-3 border-t border-border pt-4">
 							<button
 								type="button"
 								onclick={() => copyName(pkg.name)}
-								class="relative z-10 inline-flex h-8 items-center gap-1.5 rounded-md border border-border px-2.5 text-xs font-medium text-muted-foreground transition-colors hover:border-lime-500/40 hover:text-foreground"
+								class="relative z-10 inline-flex h-8 shrink-0 items-center gap-1.5 whitespace-nowrap rounded-md border border-border px-2.5 text-xs font-medium text-muted-foreground transition-colors hover:border-lime-500/40 hover:text-foreground"
 								aria-label="Copy package name"
 							>
 								{#if copied === pkg.name}
@@ -259,6 +319,22 @@
 									<Copy class="h-3.5 w-3.5" /> Copy name
 								{/if}
 							</button>
+							{#if pkg.site}
+								<a
+									href={pkg.homepage}
+									target="_blank"
+									rel="noreferrer"
+									class="relative z-10 flex min-w-0 flex-1 items-center justify-end gap-1 font-mono text-[11px] text-muted-foreground transition-colors hover:text-foreground"
+								>
+									{#if pkg.host === 'web'}
+										<Globe class="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+									{:else}
+										<BrandIcon name={pkg.host ?? ''} slug={pkg.host} size="h-3.5 w-3.5" mono />
+									{/if}
+									<span class="truncate">{pkg.site}</span>
+									<ArrowUpRight class="h-3 w-3 shrink-0" aria-hidden="true" />
+								</a>
+							{/if}
 						</div>
 					</li>
 				{/each}

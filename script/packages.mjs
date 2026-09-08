@@ -14,7 +14,7 @@
  * pages are static, work without JavaScript, and can be indexed.
  */
 
-import { existsSync, writeFileSync, mkdirSync } from 'node:fs';
+import { existsSync, readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { dirname } from 'node:path';
 import { unzipSync, strFromU8 } from 'fflate';
 import { parse } from 'yaml';
@@ -158,6 +158,87 @@ function collectAsset(assets, path, bytes) {
 	assets.set(`${kind}/${rest}`, asset(kind, rest, strFromU8(bytes)));
 }
 
+/**
+ * Where a package lives, read off its download URL: every entry in the
+ * library is a GitHub release asset, so the URL names the repository and the
+ * archive. The Red Hat repository publishes three packages from one release,
+ * which is why downloads are counted per archive rather than per repository.
+ */
+function sourceOf(pkg) {
+	const m = pkg.url.match(/^https:\/\/github\.com\/([^/]+\/[^/]+)\/releases\/.*\/([^/]+)$/);
+	if (!m) {
+		return null;
+	}
+	return { repo: m[1], asset: m[2] };
+}
+
+/**
+ * The site a package points readers at, for a card: which kind of host it
+ * is, and a short name for it. A forge homepage is shown as its repository
+ * path under the forge's own mark; anything else is a website, shown by host.
+ */
+function siteOf(homepage) {
+	try {
+		const u = new URL(homepage);
+		const path = u.pathname.replace(/\/$/, '');
+		if (u.hostname === 'github.com') {
+			return { host: 'github', site: path.replace(/^\//, '') };
+		}
+		if (u.hostname === 'gitlab.com' || u.hostname.startsWith('gitlab.')) {
+			return { host: 'gitlab', site: path.replace(/^\//, '') };
+		}
+		return { host: 'web', site: u.hostname };
+	} catch {
+		return { host: 'web', site: '' };
+	}
+}
+
+const ghHeaders = {
+	Accept: 'application/vnd.github+json',
+	'User-Agent': 'vale.sh-build',
+	...(process.env.GITHUB_TOKEN ? { Authorization: `Bearer ${process.env.GITHUB_TOKEN}` } : {})
+};
+
+async function github(path) {
+	const res = await fetch(`https://api.github.com${path}`, { headers: ghHeaders });
+	if (!res.ok) {
+		throw new Error(`${res.status} fetching ${path}`);
+	}
+	return { body: await res.json(), link: res.headers.get('link') ?? '' };
+}
+
+/** Stargazers on the repository. */
+async function starsFor(repo) {
+	const { body } = await github(`/repos/${repo}`);
+	if (typeof body.stargazers_count !== 'number') {
+		throw new Error(`no star count for ${repo}`);
+	}
+	return body.stargazers_count;
+}
+
+/**
+ * Downloads of one archive, summed over every release that shipped it. The
+ * releases list is paged, so the Link header is followed to the end.
+ */
+async function downloadsFor(repo, asset) {
+	let total = 0;
+	let page = 1;
+	for (;;) {
+		const { body, link } = await github(`/repos/${repo}/releases?per_page=100&page=${page}`);
+		for (const release of body) {
+			for (const a of release.assets ?? []) {
+				if (a.name === asset) {
+					total += a.download_count ?? 0;
+				}
+			}
+		}
+		if (!/rel="next"/.test(link)) {
+			return total;
+		}
+		page++;
+	}
+}
+
 async function rulesFor(pkg) {
 	// `url` is the archive itself, not the directory holding it.
 	const res = await fetch(pkg.url);
@@ -225,6 +306,19 @@ try {
 	console.error(`packages: ${err.message}`);
 	process.exit(1);
 }
+// The last generated file, so a package whose GitHub lookup fails keeps the
+// numbers it had rather than losing them for one build.
+const previous = new Map();
+if (existsSync(OUT)) {
+	try {
+		for (const p of JSON.parse(readFileSync(OUT, 'utf8'))) {
+			previous.set(p.name, p);
+		}
+	} catch {
+		// Unreadable is the same as absent.
+	}
+}
+
 const packages = [];
 let failed = 0;
 
@@ -232,8 +326,25 @@ for (const pkg of library) {
 	const entry = {
 		...pkg,
 		name: fixEncoding(pkg.name),
-		description: fixEncoding(pkg.description)
+		description: fixEncoding(pkg.description),
+		...siteOf(pkg.homepage)
 	};
+
+	const source = sourceOf(pkg);
+	const last = previous.get(entry.name);
+	if (source) {
+		entry.repo = source.repo;
+		try {
+			[entry.stars, entry.downloads] = await Promise.all([
+				starsFor(source.repo),
+				downloadsFor(source.repo, source.asset)
+			]);
+		} catch (err) {
+			console.warn(`packages: ${pkg.name}: ${err.message}`);
+			entry.stars = last?.stars;
+			entry.downloads = last?.downloads;
+		}
+	}
 
 	try {
 		const { rules, assets, valeVersion } = await rulesFor(pkg);
@@ -252,7 +363,11 @@ for (const pkg of library) {
 
 	packages.push(entry);
 	const extra = entry.assets.length ? `, ${entry.assets.length} assets` : '';
-	console.log(`  ${entry.name.padEnd(16)} ${String(entry.rules.length).padStart(3)} rules${extra}`);
+	const counts =
+		entry.stars !== undefined ? `, ${entry.stars} stars, ${entry.downloads} downloads` : '';
+	console.log(
+		`  ${entry.name.padEnd(16)} ${String(entry.rules.length).padStart(3)} rules${extra}${counts}`
+	);
 }
 
 mkdirSync(dirname(OUT), { recursive: true });

@@ -43,11 +43,11 @@
 	that visibility is what a sponsorship buys.
 -->
 <main>
-	<Overview stats={data.stats} />
+	<Overview stats={data.stats} ruleHtml={data.snippets.heroRule} />
 	<SponsorSpotlight editorial />
 	<AdopterConfigs editorial />
 	<Features />
 	<Ecosystem stats={data.stats} />
 	<Integrations />
-	<HowItWorks />
+	<HowItWorks snippets={data.snippets} />
 </main>
