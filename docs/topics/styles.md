@@ -127,7 +127,39 @@ The bracket key takes scalars: a number, a boolean, a level. It refuses the keys
 Rule inheritance requires Vale v3.20.0 or later.
 {% endhint %}
 
-An `extends` value containing a dot names a rule rather than a check. The new rule starts from that rule's full definition and lays its own keys on top, so two styles can share one carefully built pattern and disagree only about message, level, or a handful of entries:
+An `extends` value containing a dot names another rule rather than one of the checks. The new rule starts from that rule's full definition and lays its own keys on top, so two styles can share one carefully built pattern and differ only where they mean to.
+
+The examples below extend these two parents:
+
+```yaml
+# Direct/Hedging.yml
+extends: existence
+message: "Consider removing '%s'."
+level: warning
+ignorecase: true
+tokens:
+  - perhaps
+  - somewhat
+  - it seems
+```
+
+```yaml
+# Direct/Terms.yml
+extends: substitution
+message: "Use '%s' instead of '%s'."
+level: warning
+ignorecase: true
+swap:
+  e-mail: email
+  utilize: use
+  web site: website
+```
+
+The parent only has to exist on the `StylesPath`; it does not have to be switched on. Inheritance is a file reference, and `vale sync` is what puts the file there. The built-in `Vale` rules have no file, so they cannot be extended.
+
+### [Values](styles.md#values)
+
+A key the child writes replaces the parent's value. Every other key is inherited as it is:
 
 ```yaml
 # House/Hedging.yml
@@ -136,25 +168,87 @@ message: "Hedge: '%s'. We state things plainly here."
 level: error
 ```
 
-The parent has to be present on the `StylesPath`, not enabled: inheritance is a file reference, and `vale sync` is what puts the file there. The built-in `Vale` rules have no file, so they cannot be extended.
+`House.Hedging` reports the parent's three phrases as errors, with the new message. Its `ignorecase` and `tokens` are the parent's.
 
-A bare key replaces the parent's value wholesale. Lists and maps also take overlay edits:
-
-* `key+` appends to the parent's list, or merges into a parent map with the child's entries winning.
-* `key-` removes entries from a parent list by their source text, or the named keys from a parent map. Removing something the parent does not have is an error, so an upstream rename is heard about rather than silently diverged from.
+This holds for a list or a map too: a bare `tokens` or `swap` in the child replaces the parent's wholesale.
 
 ```yaml
-# Stricter than the parent: two more phrases, one dropped.
+# House/Basically.yml
+extends: Direct.Hedging
+message: "Only '%s'."
+tokens:
+  - basically
+```
+
+`House.Basically` reports `basically` and nothing else.
+
+### [Lists](styles.md#lists)
+
+A list can be edited instead of replaced. `tokens+` appends to the parent's list, and `tokens-` removes from it:
+
+```yaml
+# House/Stricter.yml
 extends: Direct.Hedging
 message: "Hedge: '%s'."
 tokens+:
-  - 'arguably'
-  - 'to some extent'
+  - arguably
+  - to some extent
 tokens-:
-  - 'perhaps'
+  - perhaps
 ```
 
-Writing both `key` and `key+` (or `key-`) in one file is an error: that says "replace" and "edit the replacement" at once. A chain may run ten rules deep before Vale assumes it is a cycle.
+`House.Stricter` reports `somewhat`, `it seems`, `arguably`, and `to some extent`. An entry to remove has to match one of the parent's as YAML reads it, so `perhaps` and `'perhaps'` are the same entry.
+
+Any list key takes `+` and `-`: `exceptions`, `tokens`, `raw`, and so on.
+
+### [Maps](styles.md#maps)
+
+A map takes the same two edits. `swap+` merges the child's entries into the parent's, and the child's value wins where both have the same key. `swap-` takes a list of keys to drop:
+
+```yaml
+# House/Terms.yml
+extends: Direct.Terms
+swap+:
+  utilize: apply
+  sign-in: sign in
+swap-:
+  - web site
+```
+
+`House.Terms` maps `e-mail` to `email`, `utilize` to `apply`, and `sign-in` to `sign in`. It no longer knows `web site`.
+
+### [What is an error](styles.md#what-is-an-error)
+
+Removing something the parent does not have is an error, so an upstream rename is heard about rather than silently diverged from:
+
+```
+'tokens-': the parent has no entry 'maybe' to remove
+```
+
+Writing both `key` and `key+` (or `key-`) in one file is an error: that says "replace" and "edit the replacement" at once. Only a rule that extends another rule can use `+` or `-`; a rule that extends a check has no parent for them to act on. A chain may run ten rules deep before Vale assumes it is a cycle.
+
+### [Running the parent too](styles.md#running-the-parent-too)
+
+Extending a rule does not switch the parent off. If the parent's style is also on, both rules run and both report:
+
+```
+test.md:1:20:Direct.Hedging:Consider removing 'perhaps'.
+test.md:1:20:House.Hedging:Hedge: 'perhaps'. We state things plainly here.
+```
+
+Switch the parent off in the configuration when that is not what you want:
+
+```ini
+[*.md]
+BasedOnStyles = Direct, House
+Direct.Hedging = NO
+```
+
+### [Tests](styles.md#tests)
+
+A parent's `tests` are not inherited. They assert the parent's behavior, and a child that changes a message, a threshold, or a token list has to bring its own.
+
+### [Sharing a pattern](styles.md#sharing-a-pattern)
 
 A directory whose name starts with `_` or `.` is skipped at load time but stays visible to `extends`, so a pattern shared by several rules can live in one file without itself becoming a rule:
 
@@ -165,6 +259,15 @@ styles/GenZ/
 ├── Budget.yml
 ├── Density.yml
 └── Presence.yml
+```
+
+Every segment of the name after the style is a path component, so the rules refer to the file as `GenZ._shared.Slang`:
+
+```yaml
+# GenZ/Presence.yml
+extends: GenZ._shared.Slang
+message: "'%s' is slang."
+level: error
 ```
 
 A fragment is validated as the chain's root, so it must carry a `message`, even one no alert will ever show.
