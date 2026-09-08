@@ -66,12 +66,14 @@ pass:[<!-- vale Style.Redundancy = YES -->]
 * Turn off specific match(es) within a rule:
 
 ```adoc
-pass:[<!-- vale Style.Redundancy["ACT test","OTHER"] = NO -->]
+pass:[<!-- vale Style.Redundancy["ACT test","OTHER"\] = NO -->]
 
 This is some text ACT test
 
-pass:[<!-- vale Style.Redundancy["ACT test","OTHER"] = YES -->]
+pass:[<!-- vale Style.Redundancy["ACT test","OTHER"\] = YES -->]
 ```
+
+The `]` that closes the match list is escaped as `\]`: a `pass:[]` passthrough ends at the first unescaped `]`, and without the escape the comment is cut short before Vale reads it.
 
 * Turn on or off specific styles:
 
