@@ -136,6 +136,33 @@ function tree() {
 	return out;
 }
 
+function commit() {
+	// A commit message as a TextFSM View reads it: subject and trailers lit,
+	// the body as prose, and two alerts at their columns. Mirrors PostBanner.
+	const lines = [
+		['fix!: report the shortfall at the scope that fell short.', 'named', '1:56'],
+		['', '', ''],
+		['Zero matches leave no occurence to point at, but the scope', 'body', '3:23'],
+		['has a position of its own.', 'body', ''],
+		['', '', ''],
+		["BREAKING CHANGE: the alert lands on the scope's first line.", 'named', ''],
+		['Signed-off-by: Jane Doe <jane@example.com>', 'named', '']
+	];
+	const rowH = PANE.h / lines.length;
+	let out = '';
+	lines.forEach(([text, part, alert], i) => {
+		const y = PANE.y + i * rowH + rowH / 2 + 8;
+		if (text) {
+			out += `<text x="${PANE.x}" y="${y}" font-family="${MONO}" font-size="22" fill="${part === 'named' ? C.lime : C.muted}" xml:space="preserve">${esc(text)}</text>`;
+		}
+		if (alert) {
+			out += `<circle cx="${PANE.x + PANE.w - 82}" cy="${y - 7}" r="7" fill="${C.rose}"/>`;
+			out += `<text x="${PANE.x + PANE.w}" y="${y}" text-anchor="end" font-family="${MONO}" font-size="22" fill="${C.rose}">${alert}</text>`;
+		}
+	});
+	return out;
+}
+
 function sketch(seed) {
 	const rand = mulberry32(hash(seed));
 	const LINES = 6;
@@ -211,7 +238,13 @@ for (const file of readdirSync(`${root}src/posts`).sort()) {
 	if (meta.image) continue;
 
 	const title =
-		meta.motif === 'view' ? 'vale API.yml' : meta.motif === 'tree' ? 'tree Std' : `vale ${slug}.md`;
+		meta.motif === 'view'
+			? 'vale API.yml'
+			: meta.motif === 'tree'
+				? 'tree Std'
+				: meta.motif === 'commit'
+					? 'vale --path=COMMIT_EDITMSG'
+					: `vale ${slug}.md`;
 	const art =
 		meta.motif === 'savings'
 			? savings()
@@ -221,7 +254,9 @@ for (const file of readdirSync(`${root}src/posts`).sort()) {
 					? view()
 					: meta.motif === 'tree'
 						? tree()
-						: sketch(slug);
+						: meta.motif === 'commit'
+							? commit()
+							: sketch(slug);
 
 	const lines = wrap(meta.title);
 	const text = lines
@@ -237,7 +272,7 @@ for (const file of readdirSync(`${root}src/posts`).sort()) {
 	${art}
 	<text x="64" y="472" font-family="${MONO}" font-size="20" letter-spacing="4" fill="${C.lime}">THE VALE BLOG</text>
 	${text}
-	<text x="${W - 64}" y="472" text-anchor="end" font-family="${MONO}" font-size="22" fill="${C.muted}">vale.sh/blog/${esc(slug)}</text>
+	<text x="${W - 64}" y="${H - 44}" text-anchor="end" font-family="${MONO}" font-size="22" fill="${C.muted}">vale.sh/blog/${esc(slug)}</text>
 </svg>`;
 
 	const png = new Resvg(svg, {

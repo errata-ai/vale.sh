@@ -1,7 +1,21 @@
 {
-	"vale": "3.20.0",
-	"generated": "2026-09-02",
+	"vale": "v3.21.0",
+	"generated": "2026-09-09",
 	"posts": {
+		"commits": {
+			"errors": 0,
+			"warnings": 0,
+			"suggestions": 0,
+			"words": 748,
+			"sentences": 50,
+			"paragraphs": 21,
+			"grade": 5.4,
+			"ease": 83.1,
+			"smog": 7.8,
+			"complex": 3,
+			"minutes": 4,
+			"ms": 101
+		},
 		"openapi": {
 			"errors": 0,
 			"warnings": 0,
@@ -14,7 +28,7 @@
 			"smog": 12.1,
 			"complex": 11,
 			"minutes": 3,
-			"ms": 100
+			"ms": 98
 		},
 		"std": {
 			"errors": 0,
@@ -28,7 +42,7 @@
 			"smog": 9.7,
 			"complex": 6,
 			"minutes": 5,
-			"ms": 108
+			"ms": 113
 		},
 		"voices": {
 			"errors": 0,
@@ -42,7 +56,7 @@
 			"smog": 9.3,
 			"complex": 7,
 			"minutes": 9,
-			"ms": 102
+			"ms": 105
 		}
 	}
 }

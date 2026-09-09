@@ -24,6 +24,7 @@
 		// 'view': a structured file whose prose fields alone light up.
 		// 'tree': a library of rules as a directory tree.
 		// 'savings': cumulative token cost, resident lines against the rules band.
+		// 'commit': a commit message read as subject, body, and trailers.
 		motif?: string;
 		alt?: string;
 		class?: string;
@@ -129,6 +130,29 @@
 		{ glyph: '└── ', dir: 'Usage/', rules: 'GenderedTerms, FirstPerson…' }
 	];
 
+	// The 'commit' motif: a commit message as a TextFSM View reads it. Real
+	// text, because the parts are the point: the subject and trailers a View
+	// names are lit, the body is prose, and two alerts sit at their columns.
+	type CommitLine = { text: string; part?: 'named' | 'body'; alert?: string };
+
+	const commitLines: CommitLine[] = [
+		{
+			text: 'fix!: report the shortfall at the scope that fell short.',
+			part: 'named',
+			alert: '1:56'
+		},
+		{ text: '' },
+		{
+			text: 'Zero matches leave no occurence to point at, but the scope',
+			part: 'body',
+			alert: '3:23'
+		},
+		{ text: 'has a position of its own.', part: 'body' },
+		{ text: '' },
+		{ text: "BREAKING CHANGE: the alert lands on the scope's first line.", part: 'named' },
+		{ text: 'Signed-off-by: Jane Doe <jane@example.com>', part: 'named' }
+	];
+
 	// The 'savings' motif: line endpoints as percentages of the tallest line,
 	// from the measured per-request costs (skill 3,777 / briefs 1,535 / a
 	// full alert report 735). Lines scale to the box; labels stay HTML.
@@ -150,7 +174,13 @@
 	];
 
 	const title = $derived(
-		motif === 'view' ? 'vale API.yml' : motif === 'tree' ? 'tree Std' : `vale ${seed}.md`
+		motif === 'view'
+			? 'vale API.yml'
+			: motif === 'tree'
+				? 'tree Std'
+				: motif === 'commit'
+					? 'vale --path=COMMIT_EDITMSG'
+					: `vale ${seed}.md`
 	);
 </script>
 
@@ -197,6 +227,26 @@
 							<span class="font-medium text-lime-600 dark:text-lime-400">{line.dir}</span>
 							{#if line.rules}
 								<span class="ml-3 truncate text-muted-foreground">{line.rules}</span>
+							{/if}
+						</div>
+					{/each}
+				</div>
+			{:else if motif === 'commit'}
+				<div
+					class="flex min-h-0 flex-1 flex-col justify-center overflow-hidden px-4 py-2 font-mono text-[10px] leading-[1.6] sm:text-[11px]"
+				>
+					{#each commitLines as line, i (i)}
+						<div class="flex items-center whitespace-pre">
+							<span
+								class={line.part === 'named'
+									? 'text-lime-600 dark:text-lime-400'
+									: 'text-muted-foreground'}>{line.text || ' '}</span
+							>
+							{#if line.alert}
+								<span class="ml-auto flex shrink-0 items-center gap-1.5 pl-3">
+									<span class="h-1.5 w-1.5 rounded-full bg-rose-400"></span>
+									<span class="text-rose-400">{line.alert}</span>
+								</span>
 							{/if}
 						</div>
 					{/each}
