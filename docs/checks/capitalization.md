@@ -29,6 +29,14 @@ exceptions:
   - add
 ```
 
+```markdown
+## Getting started with the API
+```
+
+```bash
+test.md:1:4:style.Headings:'Getting started with the API' should be in title case
+```
+
 ## [styles](capitalization.md#styles)
 
 The `capitalization` extension point supports two styles: “AP” and “Chicago.”

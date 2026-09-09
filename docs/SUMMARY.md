@@ -61,6 +61,7 @@
 * [MyST](formats/myst.md)
 * [Quarto](formats/quarto.md)
 * [R Markdown](formats/rmarkdown.md)
+* [Jupyter](formats/jupyter.md)
 * [AsciiDoc](formats/asciidoc.md)
 * [MDX](formats/mdx.md)
 * [HTML](formats/html.md)

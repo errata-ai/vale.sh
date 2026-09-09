@@ -24,7 +24,13 @@ max: 3
 token: ','
 ```
 
-In the example above, we’re limiting the number of commas per sentence.
+In the example above, we’re limiting the number of commas per sentence. The alert lands on the first match in the scope that went over:
+
+> First, second, third, fourth, and fifth. Then, done.
+
+```bash
+test.md:1:6:style.Commas:More than 3 commas!
+```
 
 ## [min](occurrence.md#min)
 
@@ -37,6 +43,14 @@ level: suggestion
 scope: paragraph
 min: 1
 token: 'for example'
+```
+
+> Some tools, for example Vale, lint prose.
+>
+> Others lint code.
+
+```bash
+test.md:3:1:style.Examples:A paragraph here has no example (found 0).
 ```
 
 When a scope has zero matches there is no occurrence to point at, so the alert is anchored to the scope's first word — one alert per scope that fell short, at that scope's own position.

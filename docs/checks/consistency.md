@@ -21,3 +21,11 @@ either:
   advisor: adviser
   centre: center
 ```
+
+The first spelling to appear sets the expectation, and each later use of the other one is flagged:
+
+> Ask your advisor. The centre has an adviser too.
+
+```bash
+test.md:1:37:style.Consistency:Inconsistent spelling of 'adviser'.
+```

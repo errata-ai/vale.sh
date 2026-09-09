@@ -25,6 +25,13 @@ tokens:
   - arguably
 ```
 
+> This is arguably the best option, and it appears to be stable.
+
+```bash
+test.md:1:9:style.Hedging:Consider removing 'arguably'
+test.md:1:42:style.Hedging:Consider removing 'appears to be'
+```
+
 These tokens can be anything from simple phrases (as in the above example) to regular expressions—e.g., [the number of spaces between sentences](https://github.com/vale-cli/vale/blob/master/testdata/styles/demo/Spacing.yml) or [the position of punctuation after quotes](https://github.com/vale-cli/Google/blob/master/Google/Quotes.yml).
 
 ### [tokens](existence.md#tokens)

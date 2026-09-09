@@ -65,3 +65,27 @@ Populate the `matches` array with rule matches. Each match must be a map with th
 * `message`, optionally: a message for this match, in place of the rule's own. Its `%s` is the matched text.
 {% endstep %}
 {% endstepper %}
+
+Run on a section of five one-line paragraphs, the script flags the fourth one:
+
+```markdown
+# Intro
+
+One.
+
+Two.
+
+Three.
+
+Four.
+
+Five.
+
+# Next
+
+Six.
+```
+
+```bash
+test.md:9:1:style.Sections:Consider inserting a new section heading at this point.
+```

@@ -22,6 +22,17 @@ message: "Did you really mean '%s'?"
 level: error
 ```
 
+<!-- vale off -->
+
+> Teh build runs on evrey push.
+
+<!-- vale on -->
+
+```bash
+test.md:1:1:style.Spelling:Did you really mean 'Teh'?
+test.md:1:19:style.Spelling:Did you really mean 'evrey'?
+```
+
 By default, `spelling` includes a custom, open-source [dictionary for American English](https://github.com/vale-cli/en_US-web).
 
 ## [Dictionaries](spelling.md#dictionaries)

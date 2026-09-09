@@ -107,7 +107,15 @@ tokens:
     target: true
 ```
 
-This matches "The dog chased the cat until **it** tired" — two nouns, then a pronoun — but not "The dog barked because it hungered." Without `skip`, `min` means consecutive occurrences: `tag: JJ, min: 2` is two adjectives in a row.
+This matches "The dog chased the cat until **it** tired" — two nouns, then a pronoun — but not "The dog barked because it hungered." With `target` on the pronoun, the alert covers only `it`:
+
+> The dog chased the cat until it tired. The dog barked because it hungered.
+
+```bash
+test.md:1:30:style.Pronouns:Avoid ambiguous pronouns.
+```
+
+Without `skip`, `min` means consecutive occurrences: `tag: JJ, min: 2` is two adjectives in a row.
 
 {% hint style="info" %}
 Reaching every block, and honoring a declared `scope`, requires Vale v3.17.0 or later. Earlier versions read sentences from paragraphs only.

@@ -25,6 +25,12 @@ formula: |
 condition: '> 8.0'
 ```
 
+> The implementation of the aforementioned methodology necessitates considerable computational infrastructure, notwithstanding the organization's preexisting technological capabilities.
+
+```bash
+test.md:1:1:style.Readability:Try to keep the Flesch-Kincaid grade level (34.16) below 8.
+```
+
 ## [Variables](metric.md#variables)
 
 The table below summarizes all available variables:

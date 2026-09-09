@@ -25,6 +25,13 @@ swap:
   accelerate: speed up
 ```
 
+> There is an abundance of ways to accelerate this.
+
+```bash
+test.md:1:13:style.Preferred:Consider using 'plenty' instead of 'abundance'
+test.md:1:34:style.Preferred:Consider using 'speed up' instead of 'accelerate'
+```
+
 If we want to suggest the use of “plenty” instead of “abundance,” for example, we’d write:
 
 ```yaml
@@ -45,7 +52,13 @@ You can also reference capture groups for more dynamic substitutions:
 
 ```yaml
 swap:
-  'within the (.*)?directory': in the $1 directory
+  'within the (\w+) directory': in the $1 directory
+```
+
+> The file is within the config directory.
+
+```bash
+test.md:1:13:style.Paths:Consider using 'in the config directory' instead of 'within the config directory'
 ```
 
 ## Multiple suggestions

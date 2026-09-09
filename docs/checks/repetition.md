@@ -19,7 +19,18 @@ message: "'%s' is repeated!"
 level: error
 alpha: true
 tokens:
-  - '[^s.!?]+'
+  - '[^\s.!?]+'
+```
+
+<!-- vale off -->
+
+> This is is a test of the the rule.
+
+<!-- vale on -->
+
+```bash
+test.md:1:6:style.Repetition:'is' is repeated!
+test.md:1:22:style.Repetition:'the' is repeated!
 ```
 
 ## [Vale.Repetition](repetition.md#valerepetition)

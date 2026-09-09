@@ -37,7 +37,51 @@ Using the above text with our example rule yields the following:
 test.md:1:224:style.UnexpandedAcronyms:'DAFB' has no definition
 ```
 
-`conditional` also takes an optional `exceptions` list. Any token listed as an exception won’t be flagged.
+A definition has to come before the use: a match of `second` covers every `first` after it in the file, in any later paragraph, and a `first` before it is flagged. Every undefined use is flagged, not only the first one.
+
+## [Several definition forms](conditional.md#several-definition-forms)
+
+Every capture group in `second` counts, so a pattern with an alternation accepts more than one way of defining a term. The rule below is satisfied by `WHO: World Health Organization` and by `World Health Organization (WHO)` alike:
+
+```yaml
+extends: conditional
+message: "'%s' has no definition"
+level: error
+scope: text
+first: '\b([A-Z]{3,5})\b'
+second: '\b([A-Z]{3,5}): (?:[A-Z][a-z]+ ?)+|(?:\b[A-Z][a-z]+ )+\(([A-Z]{3,5})\)'
+```
+
+> WHO: World Health Organization. The Central Intelligence Agency (CIA) is next. But FBI is never defined, so FBI is flagged both times.
+
+```bash
+test.md:1:84:style.UnexpandedAcronyms:'FBI' has no definition
+test.md:1:109:style.UnexpandedAcronyms:'FBI' has no definition
+```
+
+## [Exceptions and vocabulary](conditional.md#exceptions-and-vocabulary)
+
+A `first` match listed in `exceptions` is never flagged. The project's [vocabulary](../keys/vocabularies.md) is added to that list, so a term in `accept.txt` needs no definition either, and a multi-word entry covers the terms inside it: with `AWS CLI` accepted, `AWS` and `CLI` pass when they appear together and are flagged when they appear alone.
+
+```yaml
+extends: conditional
+message: "'%s' has no definition"
+level: error
+scope: text
+first: '\b([A-Z]{3,5})\b'
+second: '(?:\b[A-Z][a-z]+ )+\(([A-Z]{3,5})\)'
+exceptions:
+  - ABC
+  - ADD
+```
+
+> The API is fine. The AWS CLI is fine. AWS alone is not.
+
+```bash
+test.md:1:39:style.UnexpandedAcronyms:'AWS' has no definition
+```
+
+Set `vocab: false` to ignore the vocabulary and use only the rule's own `exceptions`.
 
 ## [Presence checks](conditional.md#presence-checks)
 
