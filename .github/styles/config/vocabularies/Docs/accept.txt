@@ -61,3 +61,5 @@ winget
 Typst
 triaging
 validator
+Dependabot
+Forgejo
