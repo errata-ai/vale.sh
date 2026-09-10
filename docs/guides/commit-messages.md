@@ -52,7 +52,7 @@ Commits.Imperative = error
 Conventional.Footer = NO
 ```
 
-A rule a tool leaves off by default, commitlint's `scope-enum` or `references-empty`, is off here too; `Commitlint.References = YES` turns it on. The package's [rule reference](https://github.com/jdkato/commits/blob/main/docs/rules.md) lists every rule with its level, and a guide per tool, [commitlint](https://github.com/jdkato/commits/blob/main/docs/commitlint.md), [gitlint](https://github.com/jdkato/commits/blob/main/docs/gitlint.md), [committed](https://github.com/jdkato/commits/blob/main/docs/committed.md), [conform](https://github.com/jdkato/commits/blob/main/docs/conform.md), and [commitizen](https://github.com/jdkato/commits/blob/main/docs/commitizen.md), maps that tool's config to the rules here.
+A rule a tool leaves off by default, commitlint's `scope-enum` or `references-empty`, is off here too; `Commitlint.References = YES` turns it on. Each rule file in the package's [styles](https://github.com/jdkato/commits/tree/main/Commits/styles) opens with what it reports and why, carries its level, and links the passage it enforces. A guide per tool, [commitlint](https://github.com/jdkato/commits/blob/main/docs/commitlint.md), [gitlint](https://github.com/jdkato/commits/blob/main/docs/gitlint.md), [committed](https://github.com/jdkato/commits/blob/main/docs/committed.md), [conform](https://github.com/jdkato/commits/blob/main/docs/conform.md), and [commitizen](https://github.com/jdkato/commits/blob/main/docs/commitizen.md), maps that tool's config to the rules here.
 
 ## The hook
 
