@@ -78,7 +78,7 @@
 
 * [LSP](guides/lsp.md)
 * [Agents](guides/agents.md)
-* [Commit messages](guides/commit-messages.md)
+* [Commits](guides/commit-messages.md)
 * [MCP](guides/mcp.md)
 * [Regex](guides/regex.md)
 * [TextFSM](guides/textfsm.md)

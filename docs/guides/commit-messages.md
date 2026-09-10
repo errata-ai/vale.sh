@@ -1,4 +1,4 @@
-# Commit messages
+# Commits
 
 Lint the log with the same tool that lints the docs: a convention for the subject, body, and trailers, spelling on the body, and a hook that stops a bad commit.
 
