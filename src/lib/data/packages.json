@@ -12,7 +12,9 @@
     "site": "krishnasunkam/vale-ai-tells",
     "repo": "krishnasunkam/vale-ai-tells",
     "stars": 1,
-    "downloads": 500,
+    "downloads": 554,
+    "version": "v1.0.0",
+    "released": "2026-08-25",
     "rules": [
       {
         "name": "AbstractTriad",
@@ -167,7 +169,9 @@
     "site": "redhat-documentation.github.io",
     "repo": "redhat-documentation/vale-at-red-hat",
     "stars": 56,
-    "downloads": 176367,
+    "downloads": 176867,
+    "version": "v677",
+    "released": "2026-08-26",
     "rules": [
       {
         "name": "ClosedAttributeBlocks",
@@ -298,7 +302,9 @@
     "site": "jhradilek/asciidoctor-dita-vale",
     "repo": "jhradilek/asciidoctor-dita-vale",
     "stars": 7,
-    "downloads": 69685,
+    "downloads": 70156,
+    "version": "v1.1.14",
+    "released": "2026-09-07",
     "rules": [
       {
         "name": "AdmonitionTitle",
@@ -657,6 +663,767 @@
     "valeVersion": ""
   },
   {
+    "name": "Commits",
+    "description": "Commit messages: nine conventions and the rule sets of commitlint, gitlint, committed, conform, and commitizen, read through a View.",
+    "homepage": "https://github.com/jdkato/commits",
+    "url": "https://github.com/jdkato/commits/releases/latest/download/Commits.zip",
+    "logo": "https://github.com/jdkato.png",
+    "tags": [
+      "style"
+    ],
+    "host": "github",
+    "site": "jdkato/commits",
+    "repo": "jdkato/commits",
+    "stars": 0,
+    "downloads": 0,
+    "version": "v0.1.0",
+    "released": "2026-09-10",
+    "rules": [
+      {
+        "name": "Blank",
+        "extends": "existence",
+        "level": "error",
+        "scope": "gap",
+        "message": "Separate the subject from the body with a blank line.",
+        "link": "https://git-scm.com/docs/git-commit#_discussion"
+      },
+      {
+        "name": "Body",
+        "extends": "occurrence",
+        "level": "error",
+        "scope": "body",
+        "message": "Commit body is empty.",
+        "link": "https://github.com/siderolabs/conform#commit-policy"
+      },
+      {
+        "name": "Body",
+        "extends": "conditional",
+        "level": "warning",
+        "scope": "subject",
+        "message": "A body is mandatory except for 'docs', and runs at least 20 characters: explain why.",
+        "link": "https://github.com/angular/angular/blob/main/contributing-docs/commit-message-guidelines.md#commit-message-format"
+      },
+      {
+        "name": "Body",
+        "extends": "occurrence",
+        "level": "error",
+        "scope": "body",
+        "message": "A body is required: say why.",
+        "link": "https://commitlint.js.org/reference/rules.html#body-empty"
+      },
+      {
+        "name": "BodyIsMissing",
+        "extends": "occurrence",
+        "level": "error",
+        "scope": "body",
+        "message": "B6 body-is-missing.",
+        "link": "https://jorisroovers.com/gitlint/latest/rules/builtin_rules/#b6-body-is-missing"
+      },
+      {
+        "name": "BodyLength",
+        "extends": "Commits._shared.Wrap",
+        "level": "error",
+        "scope": "text",
+        "message": "A body line runs past 100 characters from '%s'.",
+        "link": "https://github.com/conventional-changelog/commitlint/tree/master/%40commitlint/config-conventional#body-max-line-length"
+      },
+      {
+        "name": "BodyMaxLength",
+        "extends": "occurrence",
+        "level": "error",
+        "scope": "body",
+        "message": "A body of %d characters, past body-max-length.",
+        "link": "https://commitlint.js.org/reference/rules.html#body-max-length"
+      },
+      {
+        "name": "BodyMaxLineLength",
+        "extends": "Commits._shared.Wrap",
+        "level": "error",
+        "scope": "text",
+        "message": "B1 body-max-line-length: this line runs past 80 from '%s'.",
+        "link": "https://jorisroovers.com/gitlint/latest/rules/builtin_rules/#b1-body-max-line-length"
+      },
+      {
+        "name": "BodyMinLength",
+        "extends": "occurrence",
+        "level": "error",
+        "scope": "body",
+        "message": "B5 body-min-length: a body of %d characters.",
+        "link": "https://jorisroovers.com/gitlint/latest/rules/builtin_rules/#b5-body-min-length"
+      },
+      {
+        "name": "BodyMinLength",
+        "extends": "occurrence",
+        "level": "error",
+        "scope": "body",
+        "message": "A body of %d characters, under body-min-length.",
+        "link": "https://commitlint.js.org/reference/rules.html#body-min-length"
+      },
+      {
+        "name": "BodyTrailingWhitespace",
+        "extends": "existence",
+        "level": "error",
+        "scope": "raw",
+        "message": "B2 body-trailing-whitespace.",
+        "link": "https://jorisroovers.com/gitlint/latest/rules/builtin_rules/#b2-body-trailing-whitespace"
+      },
+      {
+        "name": "Breaking",
+        "extends": "existence",
+        "level": "error",
+        "scope": "trailer",
+        "message": "'%s' is the one token the spec reads case-sensitively: write 'BREAKING CHANGE:'.",
+        "link": "https://www.conventionalcommits.org/en/v1.0.0/#specification"
+      },
+      {
+        "name": "BreakingBang",
+        "extends": "conditional",
+        "level": "error",
+        "scope": "trailer",
+        "message": "A 'BREAKING CHANGE:' footer goes with a '!' in the header.",
+        "link": "https://commitlint.js.org/reference/rules.html#breaking-change-exclamation-mark"
+      },
+      {
+        "name": "Capital",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "subject",
+        "message": "The summary completes 'This change modifies Go to ...', so it does not start with a capital: '%s'.",
+        "link": "https://go.dev/doc/contribute#commit_messages"
+      },
+      {
+        "name": "Capitalize",
+        "extends": "existence",
+        "level": "error",
+        "scope": "subject",
+        "message": "Capitalize the subject line: '%s'.",
+        "link": "https://cbea.ms/git-commit/#capitalize"
+      },
+      {
+        "name": "Capitalized",
+        "extends": "Commits._shared.Capitalized",
+        "level": "error",
+        "scope": "text",
+        "message": "The summary is not capitalized: '%s'.",
+        "link": "https://github.com/angular/angular/blob/main/contributing-docs/commit-message-guidelines.md#summary"
+      },
+      {
+        "name": "Case",
+        "extends": "existence",
+        "level": "error",
+        "scope": "subject",
+        "message": "A label is in capitals: '%s'.",
+        "link": "https://github.com/ahmadawais/Emoji-Log#getting-started"
+      },
+      {
+        "name": "Closes",
+        "extends": "existence",
+        "level": "error",
+        "scope": "trailer",
+        "message": "A Closes: tag takes a URL to the public report, not '%s'.",
+        "link": "https://www.kernel.org/doc/html/latest/process/submitting-patches.html#describe-your-changes"
+      },
+      {
+        "name": "Commit",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "body",
+        "message": "Refer to a commit by twelve or more characters of its SHA-1 and its summary: 'commit e21d2170f366 (\"video: remove ...\")'.",
+        "link": "https://www.kernel.org/doc/html/latest/process/submitting-patches.html#describe-your-changes"
+      },
+      {
+        "name": "DCO",
+        "extends": "Kernel.SignedOff",
+        "level": "error",
+        "scope": "text",
+        "message": "Commit does not have a valid DCO: 'Signed-off-by: Name <email>'.",
+        "link": "https://github.com/siderolabs/conform#commit-policy"
+      },
+      {
+        "name": "Description",
+        "extends": "existence",
+        "level": "error",
+        "scope": "subject",
+        "message": "A description follows the type: what the change does.",
+        "link": "https://www.conventionalcommits.org/en/v1.0.0/#specification"
+      },
+      {
+        "name": "DescriptionLength",
+        "extends": "Commitlint.SubjectLength",
+        "level": "error",
+        "scope": "text",
+        "message": "Conventional commit description is %d characters, over descriptionLength.",
+        "link": "https://github.com/siderolabs/conform#commit-policy"
+      },
+      {
+        "name": "DisallowCleanupCommits",
+        "extends": "existence",
+        "level": "error",
+        "scope": "subject",
+        "message": "CC2 contrib-disallow-cleanup-commits: '%s'.",
+        "link": "https://jorisroovers.com/gitlint/latest/rules/contrib_rules/#cc2-contrib-disallow-cleanup-commits"
+      },
+      {
+        "name": "Exclamation",
+        "extends": "existence",
+        "level": "error",
+        "scope": "subject",
+        "message": "No '!' before the colon; mark a breaking change with a 'BREAKING CHANGE:' footer.",
+        "link": "https://commitlint.js.org/reference/rules.html#subject-exclamation-mark"
+      },
+      {
+        "name": "Fixes",
+        "extends": "existence",
+        "level": "error",
+        "scope": "trailer",
+        "message": "A Fixes: tag carries at least 12 characters of the SHA-1 and the summary in parentheses: 'Fixes: 54a4f0239f2e (\"KVM: MMU: ...\")'.",
+        "link": "https://www.kernel.org/doc/html/latest/process/submitting-patches.html#describe-your-changes"
+      },
+      {
+        "name": "Footer",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "body",
+        "message": "'%s' is a footer. Put a blank line between the body and the footers.",
+        "link": "https://www.conventionalcommits.org/en/v1.0.0/#specification"
+      },
+      {
+        "name": "FooterLength",
+        "extends": "existence",
+        "level": "error",
+        "scope": "trailer",
+        "message": "A footer line runs past 100 characters from '%s'.",
+        "link": "https://github.com/conventional-changelog/commitlint/tree/master/%40commitlint/config-conventional#footer-max-line-length"
+      },
+      {
+        "name": "FooterMaxLength",
+        "extends": "occurrence",
+        "level": "error",
+        "scope": "trailer",
+        "message": "Footers of %d characters, past footer-max-length.",
+        "link": "https://commitlint.js.org/reference/rules.html#footer-max-length"
+      },
+      {
+        "name": "FooterRequired",
+        "extends": "occurrence",
+        "level": "error",
+        "scope": "trailer",
+        "message": "A footer is required.",
+        "link": "https://commitlint.js.org/reference/rules.html#footer-empty"
+      },
+      {
+        "name": "FullStop",
+        "extends": "Commits._shared.Period",
+        "level": "error",
+        "scope": "text",
+        "message": "A subject does not end with a period.",
+        "link": "https://github.com/conventional-changelog/commitlint/tree/master/%40commitlint/config-conventional#subject-full-stop"
+      },
+      {
+        "name": "HardTab",
+        "extends": "existence",
+        "level": "error",
+        "scope": "raw",
+        "message": "T4/B3 hard-tab: a tab character.",
+        "link": "https://jorisroovers.com/gitlint/latest/rules/builtin_rules/#t4-title-hard-tab"
+      },
+      {
+        "name": "HeaderCase",
+        "extends": "existence",
+        "level": "error",
+        "scope": "subject",
+        "message": "Commit header case is not lower: '%s'.",
+        "link": "https://github.com/siderolabs/conform#commit-policy"
+      },
+      {
+        "name": "HeaderCase",
+        "extends": "existence",
+        "level": "error",
+        "scope": "subject",
+        "message": "header-case is lower-case: '%s'.",
+        "link": "https://commitlint.js.org/reference/rules.html#header-case"
+      },
+      {
+        "name": "HeaderLength",
+        "extends": "Commits._shared.SubjectLength",
+        "level": "error",
+        "scope": "text",
+        "message": "Header is %d characters.",
+        "link": "https://github.com/siderolabs/conform#commit-policy"
+      },
+      {
+        "name": "HeaderLength",
+        "extends": "Commits._shared.SubjectLength",
+        "level": "error",
+        "scope": "text",
+        "message": "A header of %d characters, past header-max-length.",
+        "link": "https://github.com/conventional-changelog/commitlint/tree/master/%40commitlint/config-conventional#header-max-length"
+      },
+      {
+        "name": "HeaderMinLength",
+        "extends": "occurrence",
+        "level": "error",
+        "scope": "subject",
+        "message": "A header of %d characters, under header-min-length.",
+        "link": "https://commitlint.js.org/reference/rules.html#header-min-length"
+      },
+      {
+        "name": "Imperative",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "subject",
+        "message": "Write the subject as a command: 'Add', not '%s'.",
+        "link": "https://git-scm.com/docs/SubmittingPatches#describe-changes"
+      },
+      {
+        "name": "Intention",
+        "extends": "existence",
+        "level": "error",
+        "scope": "subject",
+        "message": "Begin with a gitmoji, as the emoji or its ':shortcode:', then a space. '%s' is not one.",
+        "link": "https://gitmoji.dev/specification"
+      },
+      {
+        "name": "InvalidLastCharacter",
+        "extends": "Commits._shared.Period",
+        "level": "error",
+        "scope": "text",
+        "message": "Commit header ends in an invalid character.",
+        "link": "https://github.com/siderolabs/conform#commit-policy"
+      },
+      {
+        "name": "Issue",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "body, trailer",
+        "message": "Reference an issue as 'Fixes #12345' or 'Updates #12345', not '%s'.",
+        "link": "https://go.dev/doc/contribute#commit_messages"
+      },
+      {
+        "name": "Jira",
+        "extends": "Jira.Key",
+        "level": "error",
+        "scope": "text",
+        "message": "Commit header does not contain a Jira issue key from the configured projects.",
+        "link": "https://github.com/siderolabs/conform#commit-policy"
+      },
+      {
+        "name": "Key",
+        "extends": "occurrence",
+        "level": "error",
+        "scope": "subject",
+        "message": "Include the issue key in the subject, in capitals: 'PROJ-123'.",
+        "link": "https://support.atlassian.com/jira-software-cloud/docs/reference-issues-in-your-development-work/"
+      },
+      {
+        "name": "Length",
+        "extends": "Commits._shared.SubjectLength",
+        "level": "warning",
+        "scope": "text",
+        "message": "A summary of %d characters; the kernel asks for no more than 70-75.",
+        "link": "https://www.kernel.org/doc/html/latest/process/submitting-patches.html#the-canonical-patch-format"
+      },
+      {
+        "name": "Limit",
+        "extends": "Commits._shared.SubjectLength",
+        "level": "warning",
+        "scope": "text",
+        "message": "A subject of %d characters. Shoot for 50; 72 is the hard limit.",
+        "link": "https://cbea.ms/git-commit/#limit-50"
+      },
+      {
+        "name": "LineLength",
+        "extends": "Commits._shared.Wrap",
+        "level": "error",
+        "scope": "text",
+        "message": "line_length: this line runs past 72 from '%s'.",
+        "link": "https://github.com/crate-ci/committed/blob/master/docs/reference.md"
+      },
+      {
+        "name": "Lowercase",
+        "extends": "Commits._shared.TypeCase",
+        "level": "error",
+        "scope": "text",
+        "message": "A type is lower-case: '%s'.",
+        "link": "https://github.com/angular/angular/blob/main/contributing-docs/commit-message-guidelines.md#type"
+      },
+      {
+        "name": "MergeCommit",
+        "extends": "existence",
+        "level": "error",
+        "scope": "subject",
+        "message": "merge_commit: '%s'.",
+        "link": "https://github.com/crate-ci/committed/blob/master/docs/reference.md"
+      },
+      {
+        "name": "Message",
+        "extends": "existence",
+        "level": "error",
+        "scope": "subject",
+        "message": "A message follows the intention: what the change does.",
+        "link": "https://gitmoji.dev/specification"
+      },
+      {
+        "name": "NoFixup",
+        "extends": "existence",
+        "level": "error",
+        "scope": "subject",
+        "message": "no_fixup: '%s'.",
+        "link": "https://github.com/crate-ci/committed/blob/master/docs/reference.md"
+      },
+      {
+        "name": "NoWip",
+        "extends": "existence",
+        "level": "error",
+        "scope": "subject",
+        "message": "no_wip: '%s'.",
+        "link": "https://github.com/crate-ci/committed/blob/master/docs/reference.md"
+      },
+      {
+        "name": "Package",
+        "extends": "existence",
+        "level": "error",
+        "scope": "subject",
+        "message": "Prefix the first line with the affected package: 'net/http: %s ...'.",
+        "link": "https://go.dev/doc/contribute#commit_messages"
+      },
+      {
+        "name": "Period",
+        "extends": "Commits._shared.Period",
+        "level": "error",
+        "scope": "text",
+        "message": "No period at the end of the summary.",
+        "link": "https://github.com/angular/angular/blob/main/contributing-docs/commit-message-guidelines.md#summary"
+      },
+      {
+        "name": "Period",
+        "extends": "Commits._shared.Period",
+        "level": "error",
+        "scope": "text",
+        "message": "Do not end the subject line with a period.",
+        "link": "https://cbea.ms/git-commit/#end"
+      },
+      {
+        "name": "Placeholder",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "subject",
+        "message": "'%s' says nothing about the change. Say what it does.",
+        "link": "https://git-scm.com/docs/SubmittingPatches#describe-changes"
+      },
+      {
+        "name": "References",
+        "extends": "occurrence",
+        "level": "error",
+        "scope": "raw",
+        "message": "Reference an issue somewhere in the message: '#123'.",
+        "link": "https://commitlint.js.org/reference/rules.html#references-empty"
+      },
+      {
+        "name": "Revert",
+        "extends": "conditional",
+        "level": "error",
+        "scope": "subject",
+        "message": "A revert names what it reverts in the body: 'This reverts commit <SHA>'.",
+        "link": "https://github.com/angular/angular/blob/main/contributing-docs/commit-message-guidelines.md#revert-commits"
+      },
+      {
+        "name": "Scope",
+        "extends": "existence",
+        "level": "error",
+        "scope": "subject",
+        "message": "A scope names a section of the codebase; '()' names nothing. Drop it or fill it.",
+        "link": "https://www.conventionalcommits.org/en/v1.0.0/#specification"
+      },
+      {
+        "name": "Scope",
+        "extends": "existence",
+        "level": "error",
+        "scope": "subject",
+        "message": "'%s' is not one of the scopes: api, cli, docs.",
+        "link": "https://commitlint.js.org/reference/rules.html#scope-enum"
+      },
+      {
+        "name": "ScopeCase",
+        "extends": "existence",
+        "level": "error",
+        "scope": "subject",
+        "message": "A scope is lower-case: '%s'.",
+        "link": "https://commitlint.js.org/reference/rules.html#scope-case"
+      },
+      {
+        "name": "ScopeRequired",
+        "extends": "existence",
+        "level": "error",
+        "scope": "subject",
+        "message": "A scope is required: '%s(scope):'.",
+        "link": "https://commitlint.js.org/reference/rules.html#scope-empty"
+      },
+      {
+        "name": "Sentence",
+        "extends": "Commits._shared.Period",
+        "level": "warning",
+        "scope": "text",
+        "message": "The summary is not a complete sentence: no period at the end.",
+        "link": "https://go.dev/doc/contribute#commit_messages"
+      },
+      {
+        "name": "SignedOff",
+        "extends": "occurrence",
+        "level": "error",
+        "scope": "trailer",
+        "message": "Sign the patch off: git commit -s.",
+        "link": "https://www.kernel.org/doc/html/latest/process/submitting-patches.html#sign-your-work-the-developer-s-certificate-of-origin"
+      },
+      {
+        "name": "Space",
+        "extends": "existence",
+        "level": "error",
+        "scope": "subject",
+        "message": "A space follows the colon.",
+        "link": "https://www.conventionalcommits.org/en/v1.0.0/#specification"
+      },
+      {
+        "name": "SubjectCapitalized",
+        "extends": "existence",
+        "level": "error",
+        "scope": "subject",
+        "message": "subject_capitalized: '%s'.",
+        "link": "https://github.com/crate-ci/committed/blob/master/docs/reference.md"
+      },
+      {
+        "name": "SubjectCase",
+        "extends": "Commits._shared.Capitalized",
+        "level": "error",
+        "scope": "text",
+        "message": "A subject does not open with a capital: '%s'.",
+        "link": "https://github.com/conventional-changelog/commitlint/tree/master/%40commitlint/config-conventional#subject-case"
+      },
+      {
+        "name": "SubjectLength",
+        "extends": "Commits._shared.SubjectLength",
+        "level": "error",
+        "scope": "text",
+        "message": "subject_length: a subject of %d columns.",
+        "link": "https://github.com/crate-ci/committed/blob/master/docs/reference.md"
+      },
+      {
+        "name": "SubjectLength",
+        "extends": "occurrence",
+        "level": "error",
+        "scope": "subject",
+        "message": "A subject of %d characters, outside subject-min-length and subject-max-length.",
+        "link": "https://commitlint.js.org/reference/rules.html#subject-max-length"
+      },
+      {
+        "name": "SubjectNotPunctuated",
+        "extends": "existence",
+        "level": "error",
+        "scope": "subject",
+        "message": "subject_not_punctuated: '%s'.",
+        "link": "https://github.com/crate-ci/committed/blob/master/docs/reference.md"
+      },
+      {
+        "name": "Subsystem",
+        "extends": "existence",
+        "level": "error",
+        "scope": "subject",
+        "message": "Prefix the summary with the subsystem: 'x86/mm: %s ...'.",
+        "link": "https://www.kernel.org/doc/html/latest/process/submitting-patches.html#the-canonical-patch-format"
+      },
+      {
+        "name": "ThisPatch",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "subject, body",
+        "message": "Give the order, not the report: 'make xyzzy do frotz', not '%s makes'.",
+        "link": "https://www.kernel.org/doc/html/latest/process/submitting-patches.html#describe-your-changes"
+      },
+      {
+        "name": "TitleMaxLength",
+        "extends": "Commits._shared.SubjectLength",
+        "level": "error",
+        "scope": "text",
+        "message": "T1 title-max-length: a title of %d characters.",
+        "link": "https://jorisroovers.com/gitlint/latest/rules/builtin_rules/#t1-title-max-length"
+      },
+      {
+        "name": "TitleMinLength",
+        "extends": "occurrence",
+        "level": "error",
+        "scope": "subject",
+        "message": "T8 title-min-length: a title of %d characters.",
+        "link": "https://jorisroovers.com/gitlint/latest/rules/builtin_rules/#t8-title-min-length"
+      },
+      {
+        "name": "TitleMustNotContainWord",
+        "extends": "existence",
+        "level": "error",
+        "scope": "subject",
+        "message": "T5 title-must-not-contain-word: '%s'.",
+        "link": "https://jorisroovers.com/gitlint/latest/rules/builtin_rules/#t5-title-must-not-contain-word"
+      },
+      {
+        "name": "TitleTrailingPunctuation",
+        "extends": "existence",
+        "level": "error",
+        "scope": "subject",
+        "message": "T3 title-trailing-punctuation: '%s'.",
+        "link": "https://jorisroovers.com/gitlint/latest/rules/builtin_rules/#t3-title-trailing-punctuation"
+      },
+      {
+        "name": "Token",
+        "extends": "existence",
+        "level": "error",
+        "scope": "body, trailer",
+        "message": "A footer token uses '-' in place of whitespace: 'Signed-off-by', not '%s'.",
+        "link": "https://www.conventionalcommits.org/en/v1.0.0/#specification"
+      },
+      {
+        "name": "Trailer",
+        "extends": "occurrence",
+        "level": "error",
+        "scope": "trailer",
+        "message": "No trailer matched the required token, by default 'Signed-off-by: '.",
+        "link": "https://commitlint.js.org/reference/rules.html#trailer-exists"
+      },
+      {
+        "name": "Truncated",
+        "extends": "Commits._shared.SubjectLength",
+        "level": "error",
+        "scope": "text",
+        "message": "A subject of %d characters; GitHub truncates it past 72.",
+        "link": "https://cbea.ms/git-commit/#limit-50"
+      },
+      {
+        "name": "Type",
+        "extends": "existence",
+        "level": "error",
+        "scope": "subject",
+        "message": "Begin with one of the seven labels: 📦 NEW:, 👌 IMPROVE:, 🐛 FIX:, 📖 DOC:, 🚀 RELEASE:, 🤖 TEST:, ‼️ BREAKING:. '%s' is not one.",
+        "link": "https://github.com/ahmadawais/Emoji-Log#getting-started"
+      },
+      {
+        "name": "Type",
+        "extends": "Commitlint.Type",
+        "level": "error",
+        "scope": "text",
+        "message": "allowed_types: '%s' is not one of fix, feat, chore, docs, style, refactor, perf, test.",
+        "link": "https://github.com/crate-ci/committed/blob/master/docs/reference.md"
+      },
+      {
+        "name": "Type",
+        "extends": "existence",
+        "level": "error",
+        "scope": "subject",
+        "message": "'%s' is not an Angular type: build, ci, docs, feat, fix, perf, refactor, test, or revert.",
+        "link": "https://github.com/angular/angular/blob/main/contributing-docs/commit-message-guidelines.md#type"
+      },
+      {
+        "name": "Type",
+        "extends": "existence",
+        "level": "error",
+        "scope": "subject",
+        "message": "Start with a type, then a colon: 'fix: ...', 'feat(scope)!: ...'. '%s' is not one.",
+        "link": "https://www.conventionalcommits.org/en/v1.0.0/#specification"
+      },
+      {
+        "name": "Type",
+        "extends": "Commitlint.Type",
+        "level": "error",
+        "scope": "text",
+        "message": "'%s' is not a commitizen type: build, bump, chore, ci, docs, feat, fix, perf, refactor, revert, style, test.",
+        "link": "https://commitizen-tools.github.io/commitizen/commands/check/"
+      },
+      {
+        "name": "Type",
+        "extends": "existence",
+        "level": "error",
+        "scope": "subject",
+        "message": "'%s' is not a config-conventional type: build, chore, ci, docs, feat, fix, perf, refactor, revert, style, test.",
+        "link": "https://github.com/conventional-changelog/commitlint/tree/master/%40commitlint/config-conventional#type-enum"
+      },
+      {
+        "name": "TypeCase",
+        "extends": "Commits._shared.TypeCase",
+        "level": "error",
+        "scope": "text",
+        "message": "A type is lower-case: '%s'.",
+        "link": "https://github.com/conventional-changelog/commitlint/tree/master/%40commitlint/config-conventional#type-case"
+      },
+      {
+        "name": "Whitespace",
+        "extends": "existence",
+        "level": "error",
+        "scope": "subject",
+        "message": "Whitespace at the edge of the subject.",
+        "link": "https://git-scm.com/docs/git-commit#Documentation/git-commit.txt---cleanupltmodegt"
+      },
+      {
+        "name": "Wrap",
+        "extends": "Commits._shared.Wrap",
+        "level": "warning",
+        "scope": "text",
+        "message": "Wrap the description at around 72 columns; this line runs on from '%s'.",
+        "link": "https://go.dev/doc/contribute#commit_messages"
+      },
+      {
+        "name": "Wrap",
+        "extends": "Commits._shared.Wrap",
+        "level": "warning",
+        "scope": "text",
+        "message": "Wrap the explanation at 75 columns; this line runs on from '%s'.",
+        "link": "https://www.kernel.org/doc/html/latest/process/submitting-patches.html#the-canonical-patch-format"
+      },
+      {
+        "name": "Wrap",
+        "extends": "Commits._shared.Wrap",
+        "level": "warning",
+        "scope": "text",
+        "message": "Wrap the body at 72 characters; this line runs on from '%s'.",
+        "link": "https://cbea.ms/git-commit/#wrap-72"
+      }
+    ],
+    "assets": [
+      {
+        "kind": "template",
+        "name": "commitlint.tmpl"
+      },
+      {
+        "kind": "template",
+        "name": "committed.tmpl"
+      },
+      {
+        "kind": "template",
+        "name": "conform.tmpl"
+      },
+      {
+        "kind": "template",
+        "name": "github.tmpl"
+      },
+      {
+        "kind": "template",
+        "name": "gitlint.tmpl"
+      },
+      {
+        "kind": "template",
+        "name": "hook.tmpl"
+      },
+      {
+        "kind": "view",
+        "name": "Commit",
+        "engine": "textfsm",
+        "scopes": [
+          "subject",
+          "gap",
+          "body",
+          "trailer"
+        ]
+      }
+    ],
+    "valeVersion": ">=3.21.0"
+  },
+  {
     "name": "Elastic",
     "description": "Elastic Docs' style guide rules for the Vale linter.",
     "homepage": "https://github.com/elastic/vale-rules",
@@ -669,7 +1436,9 @@
     "site": "elastic/vale-rules",
     "repo": "elastic/vale-rules",
     "stars": 11,
-    "downloads": 38934,
+    "downloads": 39303,
+    "version": "v1.7.1",
+    "released": "2026-08-18",
     "rules": [
       {
         "name": "Accessibility",
@@ -969,7 +1738,9 @@
     "site": "vale-cli/Google",
     "repo": "vale-cli/Google",
     "stars": 90,
-    "downloads": 1552123,
+    "downloads": 1561366,
+    "version": "v0.7.1",
+    "released": "2026-08-04",
     "rules": [
       {
         "name": "Acronyms",
@@ -1277,7 +2048,9 @@
     "site": "vale-cli/Harper",
     "repo": "vale-cli/Harper",
     "stars": 1,
-    "downloads": 596,
+    "downloads": 748,
+    "version": "v0.1.0",
+    "released": "2026-08-05",
     "rules": [
       {
         "name": "ACoupleMore",
@@ -5677,7 +6450,9 @@
     "site": "vale-cli/Hugo",
     "repo": "vale-cli/Hugo",
     "stars": 7,
-    "downloads": 121021,
+    "downloads": 121462,
+    "version": "v0.4.0",
+    "released": "2026-08-28",
     "rules": [],
     "assets": [],
     "valeVersion": ""
@@ -5695,7 +6470,9 @@
     "site": "vale-cli/Joblint",
     "repo": "vale-cli/Joblint",
     "stars": 14,
-    "downloads": 129212,
+    "downloads": 129640,
+    "version": "v0.4.1",
+    "released": "2021-04-07",
     "rules": [
       {
         "name": "Acronyms",
@@ -5850,7 +6627,9 @@
     "site": "vale-cli/MDX",
     "repo": "vale-cli/MDX",
     "stars": 3,
-    "downloads": 116140,
+    "downloads": 117667,
+    "version": "v0.3.0",
+    "released": "2026-07-31",
     "rules": [],
     "assets": [],
     "valeVersion": ""
@@ -5868,7 +6647,9 @@
     "site": "vale-cli/Microsoft",
     "repo": "vale-cli/Microsoft",
     "stars": 111,
-    "downloads": 763275,
+    "downloads": 768992,
+    "version": "v0.15.1",
+    "released": "2026-08-04",
     "rules": [
       {
         "name": "Accessibility",
@@ -6263,7 +7044,9 @@
     "site": "redhat-documentation.github.io",
     "repo": "redhat-documentation/vale-at-red-hat",
     "stars": 56,
-    "downloads": 104367,
+    "downloads": 104568,
+    "version": "v677",
+    "released": "2026-08-26",
     "rules": [
       {
         "name": "AdditionalResourcesHeadingHasRoleID",
@@ -6410,7 +7193,9 @@
     "site": "vale-cli/Readability",
     "repo": "vale-cli/Readability",
     "stars": 29,
-    "downloads": 219987,
+    "downloads": 220824,
+    "version": "v0.1.1",
+    "released": "2022-10-31",
     "rules": [
       {
         "name": "AutomatedReadability",
@@ -6485,7 +7270,9 @@
     "site": "redhat-documentation.github.io",
     "repo": "redhat-documentation/vale-at-red-hat",
     "stars": 56,
-    "downloads": 324160,
+    "downloads": 325008,
+    "version": "v677",
+    "released": "2026-08-26",
     "rules": [
       {
         "name": "Abbreviations",
@@ -6800,7 +7587,9 @@
     "site": "sfadriaan/Salesforce",
     "repo": "sfadriaan/Salesforce",
     "stars": 1,
-    "downloads": 236,
+    "downloads": 265,
+    "version": "v0.1.0",
+    "released": "2026-07-30",
     "rules": [
       {
         "name": "AppExchange",
@@ -7043,7 +7832,9 @@
     "site": "vale-cli/Std",
     "repo": "vale-cli/Std",
     "stars": 2,
-    "downloads": 284,
+    "downloads": 398,
+    "version": "v0.2.0",
+    "released": "2026-09-08",
     "rules": [
       {
         "name": "Abbreviations.Acronyms",
@@ -7173,8 +7964,10 @@
     "host": "github",
     "site": "tbhb/vale-ai-tells",
     "repo": "tbhb/vale-ai-tells",
-    "stars": 87,
-    "downloads": 50401,
+    "stars": 91,
+    "downloads": 53729,
+    "version": "v1.34.0",
+    "released": "2026-09-07",
     "rules": [
       {
         "name": "AbsoluteAssertions",
@@ -8230,7 +9023,9 @@
     "site": "vale-cli/alex",
     "repo": "vale-cli/alex",
     "stars": 25,
-    "downloads": 312394,
+    "downloads": 314005,
+    "version": "v0.2.3",
+    "released": "2024-11-02",
     "rules": [
       {
         "name": "Ablist",
@@ -8338,7 +9133,9 @@
     "site": "a11yfred/neighbor",
     "repo": "a11yfred/neighbor",
     "stars": 1,
-    "downloads": 949,
+    "downloads": 992,
+    "version": "v2.2.0",
+    "released": "2026-05-26",
     "rules": [
       {
         "name": "AbleistLanguage",
@@ -8461,7 +9258,9 @@
     "site": "vale-cli/proselint",
     "repo": "vale-cli/proselint",
     "stars": 45,
-    "downloads": 660828,
+    "downloads": 663614,
+    "version": "v0.3.4",
+    "released": "2024-06-09",
     "rules": [
       {
         "name": "Airlinese",
@@ -8752,7 +9551,9 @@
     "site": "vale-cli/write-good",
     "repo": "vale-cli/write-good",
     "stars": 49,
-    "downloads": 1090613,
+    "downloads": 1097132,
+    "version": "v0.4.1",
+    "released": "2024-06-09",
     "rules": [
       {
         "name": "Cliches",

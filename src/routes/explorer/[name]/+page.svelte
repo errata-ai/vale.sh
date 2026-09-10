@@ -4,6 +4,7 @@
 	import ExternalLink from 'lucide-svelte/icons/external-link';
 	import Star from 'lucide-svelte/icons/star';
 	import Download from 'lucide-svelte/icons/download';
+	import Tag from 'lucide-svelte/icons/tag';
 	import Globe from 'lucide-svelte/icons/globe';
 	import CodeBlock from '$lib/components/CodeBlock.svelte';
 	import BrandIcon from '$lib/components/landing/BrandIcon.svelte';
@@ -12,6 +13,18 @@
 
 	let { data } = $props();
 	const pkg = $derived(data.pkg);
+
+	// The newest release's date, for the stats row.
+	const released = $derived(
+		pkg.released
+			? new Date(`${pkg.released}T00:00:00Z`).toLocaleDateString('en-US', {
+					month: 'short',
+					day: 'numeric',
+					year: 'numeric',
+					timeZone: 'UTC'
+				})
+			: ''
+	);
 
 	// A package's meta.json can declare the Vale version its rules need.
 	// `>=1.0.0` is the legacy "any version" idiom, so only a real floor is
@@ -141,6 +154,17 @@
 				<span class="sr-only">downloads</span>
 			</span>
 		{/if}
+		{#if pkg.version}
+			<span
+				class="inline-flex items-center gap-1 text-muted-foreground"
+				title={released ? `Latest release, published ${released}` : 'Latest release'}
+			>
+				<Tag class="h-3.5 w-3.5" aria-hidden="true" />
+				<span class="font-mono text-xs">{pkg.version}</span>
+				{#if released}<span class="text-xs">· {released}</span>{/if}
+				<span class="sr-only">latest release</span>
+			</span>
+		{/if}
 		{#each pkg.tags as tag}
 			<span class="rounded-full border border-border px-2.5 py-0.5 text-xs text-muted-foreground"
 				>{tag}</span
@@ -164,6 +188,15 @@
 			<code class="rounded bg-muted px-1 py-0.5 font-mono text-xs text-foreground">vale sync</code>.
 		</p>
 		<CodeBlock html={data.snippetHtml} code={data.snippet} class="mt-3" />
+		{#if data.pin}
+			<p class="mt-4 text-sm text-muted-foreground">
+				The name installs the latest release each time <code
+					class="rounded bg-muted px-1 py-0.5 font-mono text-xs text-foreground">vale sync</code
+				>
+				runs. To stay on {pkg.version}, the release this page describes, give its URL instead:
+			</p>
+			<CodeBlock html={data.pinHtml} code={data.pin} class="mt-3" />
+		{/if}
 	</section>
 
 	<!-- Assets -->

@@ -19,7 +19,11 @@ import { dirname } from 'node:path';
 import { unzipSync, strFromU8 } from 'fflate';
 import { parse } from 'yaml';
 
+// `VALE_LIBRARY` points the build at another copy of the library: a commit's
+// raw URL when the branch's is still cached, or a fork's while an entry is
+// in review.
 const LIBRARY =
+	process.env.VALE_LIBRARY ??
 	'https://raw.githubusercontent.com/vale-cli/packages/refs/heads/master/library.json';
 const OUT = 'src/lib/data/packages.json';
 
@@ -217,23 +221,33 @@ async function starsFor(repo) {
 }
 
 /**
- * Downloads of one archive, summed over every release that shipped it. The
- * releases list is paged, so the Link header is followed to the end.
+ * What the releases say about one archive: downloads summed over every
+ * release that shipped it, and the tag and date of the newest one that did.
+ * The list comes newest first, so the first release carrying the asset is
+ * the one `releases/latest/download` resolves to, drafts and pre-releases
+ * aside. It is paged, so the Link header is followed to the end.
  */
-async function downloadsFor(repo, asset) {
-	let total = 0;
+async function releasesFor(repo, asset) {
+	let downloads = 0;
+	let version = '';
+	let released = '';
 	let page = 1;
 	for (;;) {
 		const { body, link } = await github(`/repos/${repo}/releases?per_page=100&page=${page}`);
 		for (const release of body) {
 			for (const a of release.assets ?? []) {
-				if (a.name === asset) {
-					total += a.download_count ?? 0;
+				if (a.name !== asset) {
+					continue;
+				}
+				downloads += a.download_count ?? 0;
+				if (!version && !release.draft && !release.prerelease) {
+					version = release.tag_name ?? '';
+					released = (release.published_at ?? '').slice(0, 10);
 				}
 			}
 		}
 		if (!/rel="next"/.test(link)) {
-			return total;
+			return { downloads, version, released };
 		}
 		page++;
 	}
@@ -335,14 +349,20 @@ for (const pkg of library) {
 	if (source) {
 		entry.repo = source.repo;
 		try {
-			[entry.stars, entry.downloads] = await Promise.all([
+			const [stars, releases] = await Promise.all([
 				starsFor(source.repo),
-				downloadsFor(source.repo, source.asset)
+				releasesFor(source.repo, source.asset)
 			]);
+			entry.stars = stars;
+			entry.downloads = releases.downloads;
+			entry.version = releases.version;
+			entry.released = releases.released;
 		} catch (err) {
 			console.warn(`packages: ${pkg.name}: ${err.message}`);
 			entry.stars = last?.stars;
 			entry.downloads = last?.downloads;
+			entry.version = last?.version;
+			entry.released = last?.released;
 		}
 	}
 
@@ -365,8 +385,9 @@ for (const pkg of library) {
 	const extra = entry.assets.length ? `, ${entry.assets.length} assets` : '';
 	const counts =
 		entry.stars !== undefined ? `, ${entry.stars} stars, ${entry.downloads} downloads` : '';
+	const version = entry.version ? `, ${entry.version}` : '';
 	console.log(
-		`  ${entry.name.padEnd(16)} ${String(entry.rules.length).padStart(3)} rules${extra}${counts}`
+		`  ${entry.name.padEnd(16)} ${String(entry.rules.length).padStart(3)} rules${extra}${counts}${version}`
 	);
 }
 

@@ -140,4 +140,6 @@ BasedOnStyles = Vale, House
 View = Commit
 ```
 
+The [Commits](../guides/commit-messages.md) package ships this View with the conventions and the hook; the [TextFSM guide](../guides/textfsm.md) walks through the template language.
+
 A rule with `scope: subject` then runs on the first line of a commit message and nowhere else. Consecutive lines a `List` value captures at the same column are joined into one value, so a body reads as its paragraphs rather than one block per line. A value the template never fills is an empty scope at the top of the file, which is where an `occurrence` rule with `min` reports that it is missing. The [TextFSM guide](../guides/textfsm.md) walks through the template language, a transcript where only one side is linted, and how to see what a template captured.

@@ -14,5 +14,20 @@ export const load: PageServerLoad = async ({ params }) => {
 		error(404, `No package named "${params.name}".`);
 	}
 	const snippet = `Packages = ${pkg.name}\n\n[*.md]\nBasedOnStyles = Vale, ${pkg.name}`;
-	return { pkg, snippet, snippetHtml: await highlight(snippet, 'ini') };
+
+	// The name installs whatever release is latest when `vale sync` runs. A
+	// pinned URL names the release the page shows, so a repository stays on
+	// the rules it was reviewed with until someone moves it.
+	let pin = '';
+	if (pkg.version && pkg.repo) {
+		const archive = pkg.url.split('/').pop();
+		pin = `Packages = https://github.com/${pkg.repo}/releases/download/${pkg.version}/${archive}`;
+	}
+	return {
+		pkg,
+		snippet,
+		snippetHtml: await highlight(snippet, 'ini'),
+		pin,
+		pinHtml: pin ? await highlight(pin, 'ini') : ''
+	};
 };

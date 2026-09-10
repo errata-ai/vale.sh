@@ -98,6 +98,8 @@ In a `commit-msg` hook, the message arrives on stdin. `--path` tells Vale which 
 vale --path=COMMIT_EDITMSG < "$1"
 ```
 
+For commit messages, this is done: the [Commits](commit-messages.md) package ships the View, the conventions, and the hook.
+
 ## How a template is read
 
 ![The template as a state machine: Start moves to Body on a line matching Subject, capturing it; Body stays in Body on a Trailer or Body line, capturing one each; the record is emitted at the end of the file and each value becomes a scope.](../.gitbook/assets/textfsm-states.svg)

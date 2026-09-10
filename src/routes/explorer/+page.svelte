@@ -32,6 +32,10 @@
 		stars?: number;
 		/** Downloads of the archive, summed over every release. */
 		downloads?: number;
+		/** The tag of the newest release that ships the archive. */
+		version?: string;
+		/** When that release was published, as YYYY-MM-DD. */
+		released?: string;
 		tags: string[];
 		rules: {
 			name: string;
@@ -53,6 +57,16 @@
 		if (!p.valeVersion || p.valeVersion === '>=1.0.0') return '';
 		return p.valeVersion.replace(/^>=\s*/, 'Vale ≥ ');
 	};
+
+	// A release date, for a title: the month and year are what a reader
+	// wants to know about how current a package is.
+	const released = (iso: string) =>
+		new Date(`${iso}T00:00:00Z`).toLocaleDateString('en-US', {
+			month: 'short',
+			day: 'numeric',
+			year: 'numeric',
+			timeZone: 'UTC'
+		});
 
 	const packages: Pkg[] = generated;
 	let query = $state('');
@@ -265,6 +279,14 @@
 										<span
 											class="rounded-full border border-lime-500/40 px-2 py-0.5 font-mono text-[11px] font-medium text-lime-600 dark:text-lime-400"
 											>{requires(pkg)}</span
+										>
+									{/if}
+									{#if pkg.version}
+										<span
+											class="rounded-full border border-border px-2 py-0.5 font-mono text-[11px] font-medium text-muted-foreground"
+											title={pkg.released
+												? `Latest release, ${released(pkg.released)}`
+												: 'Latest release'}>{pkg.version}</span
 										>
 									{/if}
 								</div>
